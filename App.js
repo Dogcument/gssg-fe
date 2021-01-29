@@ -1,22 +1,22 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 // screen component
 import WritingScreen from './Writing/WritingScreen';
 import StorageScreen from './Storage/StorageScreen';
 import SettingScreen from './Setting/SettingScreen';
 
-const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
 
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Writing">
-        <Stack.Screen name="Writing" component={WritingScreen} />
-        <Stack.Screen name="Storage" component={StorageScreen} />
-        <Stack.Screen name="Setting" component={SettingScreen} />
-      </Stack.Navigator>
+      <Tab.Navigator>
+        <Tab.Screen name="Writing" component={WritingScreen}></Tab.Screen>
+        <Tab.Screen name="Storage" component={StorageScreen}></Tab.Screen>
+        <Tab.Screen name="Setting" component={SettingScreen}></Tab.Screen>
+      </Tab.Navigator>
     </NavigationContainer>
   );
 }
