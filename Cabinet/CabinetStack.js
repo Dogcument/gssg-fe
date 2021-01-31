@@ -10,7 +10,11 @@ function CabinetStack() {
             <Stack.Screen
                 name="Cabinet"
                 component={CabinetScreen}
-                options={{ title: "보관함" }} />
+                options={{
+                    title: "보관함",
+                    headerTitleAlign: 'left',
+                }}
+            />
         </Stack.Navigator>
     );
 }

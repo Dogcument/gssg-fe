@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { Button } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+
 import MyPageScreen from './MyPageScreen';
 
 const Stack = createStackNavigator();
@@ -9,16 +10,23 @@ function MyPageStack() {
     return (
         <Stack.Navigator>
             <Stack.Screen
-                name="마이페이지"
+                name="MyPage"
                 component={MyPageScreen}
                 options={{
+                    title: "마이페이지",
+                    headerTitleAlign: 'left',
                     headerRight: () => (
-                        <Button
-                            onPress={() => alert('설정화면으로 이동')}
-                            title="톱니바퀴"
-                            color="#00cc00"
-                        />
-                    ),
+                        <HeaderButtons>
+                            <Item
+                                title="종"
+                                onPress={() => alert("종")}
+                            />
+                            <Item
+                                title="톱니"
+                                onPress={() => alert("톱니")}
+                            />
+                        </HeaderButtons>
+                    )
                 }}
             />
         </Stack.Navigator>
