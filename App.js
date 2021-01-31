@@ -4,8 +4,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 // screen component
 import WritingScreen from './Writing/WritingScreen';
-import StorageScreen from './Storage/StorageScreen';
-import SettingScreen from './Setting/SettingScreen';
+import CabinetScreen from './Cabinet/CabinetScreen';
+import MyPageScreen from './MyPage/MyPageScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -14,8 +14,8 @@ function App() {
     <NavigationContainer>
       <Tab.Navigator>
         <Tab.Screen name="Writing" component={WritingScreen}></Tab.Screen>
-        <Tab.Screen name="Storage" component={StorageScreen}></Tab.Screen>
-        <Tab.Screen name="Setting" component={SettingScreen}></Tab.Screen>
+        <Tab.Screen name="Cabinet" component={CabinetScreen}></Tab.Screen>
+        <Tab.Screen name="MyPage" component={MyPageScreen}></Tab.Screen>
       </Tab.Navigator>
     </NavigationContainer>
   );

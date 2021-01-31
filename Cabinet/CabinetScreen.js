@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { View, Text } from 'react-native';
 
-function SettingScreen() {
+function CabinetScreen() {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Storage Screen</Text>
+        <Text>Cabinet Screen</Text>
       </View>
     );
   }
   
-export default SettingScreen; 
+export default CabinetScreen; 
