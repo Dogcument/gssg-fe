@@ -1,10 +1,13 @@
+// To set expo entry js file
+import { registerRootComponent } from 'expo';
+
 import * as React from 'react';
 
 // screen component
 import LogoScreen from './Logo/LogoScreen';
 import MainScreen from './Main/MainScreen';
 
-export default class extends React.Component {
+class App extends React.Component {
   state = {
     isLoading: true
   }
@@ -15,10 +18,12 @@ export default class extends React.Component {
   }
 
   render() {
-    if(this.state.isLoading) {
-      return <LogoScreen/>
+    if (this.state.isLoading) {
+      return <LogoScreen />
     } else {
-      return <MainScreen/>
+      return <MainScreen />
     }
   }
 }
+
+registerRootComponent(App);
