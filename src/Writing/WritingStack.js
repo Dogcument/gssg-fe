@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
+import { Button } from 'react-native';
 
 // scene components
 import WritingPrepareScreen from './WritingPrepareScreen';
-import WritingScreen from './WritingScreen';
+import { WritingScreen, OnDoneButtonClicked } from './WritingScreen';
 
 const Stack = createStackNavigator();
 
@@ -18,7 +19,15 @@ const WritingStack = () => {
             <Stack.Screen
                 name="WritingScreen"
                 component={WritingScreen}
-                options={{ title: '실제 글 싸는 곳' }}
+                options={{
+                    title: '실제 글 싸는 곳',
+                    headerRight: () => (
+                        <Button
+                            title="글싸기"
+                            onPress={() => OnDoneButtonClicked()}
+                        />
+                    )
+                }}
             />
         </Stack.Navigator>
     );
