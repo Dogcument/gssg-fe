@@ -1,19 +1,27 @@
 import * as React from 'react';
 import { View, TextInput } from 'react-native';
 
-export function WritingScreen() {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <TextInput
-        multiline={true}
-        placeholder="여기에 입력"
-      />
-    </View>
-  );
+var contentText = "";
+export class WritingScreen extends React.Component {
+  render() {
+    return (
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <TextInput
+          multiline={true}
+          placeholder="여기에 입력"
+          onChangeText={inputText => this.onChangeText(inputText)}
+        />
+      </View>
+    );
+  }
+
+  onChangeText(inputText) {
+    contentText = inputText;
+  }
 }
 
 export function OnDoneButtonClicked() {
   return (
-    alert("글쌌다")
-  )
+    alert(contentText)
+  );
 }

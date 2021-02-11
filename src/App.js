@@ -2,6 +2,7 @@
 import { registerRootComponent } from 'expo';
 
 import * as React from 'react';
+import { StatusBar } from 'react-native';
 
 // screen component
 import LogoScreen from './Logo/LogoScreen';
@@ -18,6 +19,8 @@ class App extends React.Component {
   }
 
   render() {
+    StatusBar.setBarStyle('dark-content', true);
+    
     if (this.state.isLoading) {
       return <LogoScreen />
     } else {

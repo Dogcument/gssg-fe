@@ -6,9 +6,6 @@ import styles from '../_Style/Styles';
 function CabinetScreen() {
   return (
     <ScrollView>
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Cabinet Screen</Text>
-      </View>
       <View style={styles.container}>
 
         <View style={styles.box}>
