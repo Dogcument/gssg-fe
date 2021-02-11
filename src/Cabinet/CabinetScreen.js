@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { View, Text } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
+import AsyncStorage from '@react-native-community/async-storage';
+
 import styles from '../_Style/Styles';
 
 function CabinetScreen() {
@@ -55,6 +57,11 @@ function CabinetScreen() {
 
     </ScrollView>
   )
+}
+
+// Gunny TODO
+function LoadLocalData() {
+  AsyncStorage.getAllKeys();
 }
 
 export default CabinetScreen; 

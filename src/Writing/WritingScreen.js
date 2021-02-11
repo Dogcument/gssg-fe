@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { View, TextInput } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 
 var contentText = "";
 export class WritingScreen extends React.Component {
@@ -20,8 +21,13 @@ export class WritingScreen extends React.Component {
   }
 }
 
+var KeyName = Date.now();
+// Gunny Tempcode - Prototype
+function SaveToLocalMachine() {
+  AsyncStorage.setItem(KeyName, contentText, () => {});
+};
+
 export function OnDoneButtonClicked() {
-  return (
-    alert(contentText)
-  );
+  alert(KeyName + "_" + contentText);
+  SaveToLocalMachine();
 }
