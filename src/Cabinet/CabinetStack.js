@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import CabinetScreen from './CabinetScreen';
+import { CabinetScreen } from './CabinetScreen';
 
 const Stack = createStackNavigator();
 

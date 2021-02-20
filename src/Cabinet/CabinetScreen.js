@@ -1,67 +1,51 @@
 import * as React from 'react';
-import { View, Text } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import AsyncStorage from '@react-native-community/async-storage';
+import { CabinetItem } from './CabinetItem';
 
-import styles from '../_Style/Styles';
+export class CabinetScreen extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoad: false,
+      data: 0
+    }
+    this.LoadData();
+  }
 
-function CabinetScreen() {
-  return (
-    <ScrollView>
-      <View style={styles.container}>
+  LoadData = async () => {
+    const keys = await AsyncStorage.getAllKeys();
+    let loadedData = [];
+    for (let i = 0; i < keys.length; i++) {
+      const value = await AsyncStorage.getItem(keys[i]);
+      loadedData.push({
+        time: keys[i],
+        content: value
+      });
+    }
 
-        <View style={styles.box}>
-          <View style={styles.contents}>
-            <Text style={styles.boxText}>
-              contents
-            </Text>
-          </View>
-          <View style={styles.profile}>
-            <Text style={styles.boxText}>
-              profile
-            </Text>
-          </View>
-        </View>
-        <View style={styles.blank} />
+    this.setState({
+      isLoad: true,
+      data: { loadedData }
+    }, () => alert("All loaded"))
+  }
 
-        <View style={styles.box}>
-          <View style={styles.contents}>
-            <Text style={styles.boxText}>
-              contents
-            </Text>
-          </View>
-          <View style={styles.profile}>
-            <Text style={styles.boxText}>
-              profile
-            </Text>
-          </View>
-        </View>
-        <View style={styles.blank} />
+  render() {
+    if (!this.state.isLoad) {
+      return (
+        <ScrollView></ScrollView>
+      )
+    }
 
-
-        <View style={styles.box}>
-          <View style={styles.contents}>
-            <Text style={styles.boxText}>
-              contents
-            </Text>
-          </View>
-          <View style={styles.profile}>
-            <Text style={styles.boxText}>
-              profile
-            </Text>
-          </View>
-        </View>
-        <View style={styles.blank} />
-
-      </View>
-
-    </ScrollView>
-  )
+    console.log("Rendering after loaded");
+    const ItemList = this.state.data.loadedData;
+    return (
+      <ScrollView>
+        {
+          ItemList.map((value) => 
+            <CabinetItem writingTime={value.time} content={value.content} />)
+        }
+      </ScrollView>
+    )
+  }
 }
-
-// Gunny TODO
-function LoadLocalData() {
-  AsyncStorage.getAllKeys();
-}
-
-export default CabinetScreen; 
