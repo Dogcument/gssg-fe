@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text, View } from 'react-native';
+import { TouchableOpacity, Text, View } from 'react-native';
 import { styles } from './Styles';
 
 export class CabinetItem extends React.Component {
@@ -7,15 +7,16 @@ export class CabinetItem extends React.Component {
     const writingTime = this.props.writingTime;
     const content = this.props.content;
     return (
-      <View style={styles.container}>
+      <TouchableOpacity
+        style={styles.container}
+        onPress={() => console.log("CabinetItem Clicked")}>
         <Text style={[styles.text, { flex: 1 }]}>
           {writingTime || 'WritingTime'}
         </Text>
         <Text style={[styles.text, { flex: 1 }]}>
           {content || 'Content'}
         </Text>
-      </View>
-
+      </TouchableOpacity>
     );
   }
 }

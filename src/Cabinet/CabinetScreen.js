@@ -27,7 +27,7 @@ export class CabinetScreen extends React.Component {
     this.setState({
       isLoad: true,
       data: { loadedData }
-    }, () => alert("All loaded"))
+    });
   }
 
   render() {
