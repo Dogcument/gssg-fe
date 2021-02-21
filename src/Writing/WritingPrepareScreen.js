@@ -1,15 +1,18 @@
 import * as React from 'react';
-import { Button, View, Text } from 'react-native';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
+import { styles } from './Styles'
 
 const WritingPrepareScreen = ({ navigation }) => {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text>오늘의 주제~!</Text>
-      <Button
-        onPress={() => OnWritingButtonClicked(navigation)}
-        title="글작성(댕댕이 발바닥)"
-        color="#841584"
-      />
+      <TouchableOpacity
+        style={styles.FacebookStyle} activeOpacity={0.5}
+        onPress={() => OnWritingButtonClicked(navigation)}>
+        <Image
+          style={styles.ImageIconStyle}
+          source={require('./Images/WritingButton.png')} />
+      </TouchableOpacity>
     </View>
   );
 }

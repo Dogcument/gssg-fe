@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { Text, View } from 'react-native';
+import { styles } from './Styles';
 
 export class CabinetItem extends React.Component {
   render() {
@@ -18,21 +19,3 @@ export class CabinetItem extends React.Component {
     );
   }
 }
-
-// Dummy Style
-// Jiwung TODO
-const styles = StyleSheet.create({
-  container: {
-    width: '100%',
-    height: 80,
-    flexDirection: 'row',
-    backgroundColor: 'skyblue',
-    alignItems: 'center',
-    justifyContent: 'space-around',
-    marginTop: 5,
-    marginBottom: 5
-  },
-  text: {
-    color: 'white'
-  }
-});

@@ -43,7 +43,7 @@ export class CabinetScreen extends React.Component {
       <ScrollView>
         {
           ItemList.map((value) => 
-            <CabinetItem writingTime={value.time} content={value.content} />)
+            <CabinetItem key={value.time} writingTime={value.time} content={value.content} />)
         }
       </ScrollView>
     )
