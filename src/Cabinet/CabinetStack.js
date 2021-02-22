@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { CabinetScreen } from './CabinetScreen';
+import { CabinetItemDetail } from './CabinetItemDetail';
+import { useNavigation } from "@react-navigation/native";
 
 const Stack = createStackNavigator();
 
@@ -9,9 +11,17 @@ function CabinetStack() {
         <Stack.Navigator>
             <Stack.Screen
                 name="Cabinet"
-                component={CabinetScreen}
+                component={() => <CabinetScreen navigation={useNavigation()} />}
                 options={{
                     title: "보관함",
+                    headerTitleAlign: 'left',
+                }}
+            />
+            <Stack.Screen
+                name="CabinetItemDetail"
+                component={() => <CabinetItemDetail/>}
+                options={{
+                    title: "보관함 상세보기",
                     headerTitleAlign: 'left',
                 }}
             />

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { ScrollView } from 'react-native-gesture-handler';
 import AsyncStorage from '@react-native-community/async-storage';
+
 import { CabinetItem } from './CabinetItem';
 
 export class CabinetScreen extends React.Component {
@@ -39,11 +40,16 @@ export class CabinetScreen extends React.Component {
 
     console.log("Rendering after loaded");
     const ItemList = this.state.data.loadedData;
+    const navigation = this.props.navigation;
     return (
       <ScrollView>
         {
-          ItemList.map((value) => 
-            <CabinetItem key={value.time} writingTime={value.time} content={value.content} />)
+          ItemList.map((value) =>
+            <CabinetItem
+              key={value.time}
+              navigation={navigation}
+              writingTime={value.time}
+              content={value.content} />)
         }
       </ScrollView>
     )

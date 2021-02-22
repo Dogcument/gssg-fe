@@ -11,7 +11,7 @@ const WritingPrepareScreen = ({ navigation }) => {
         onPress={() => OnWritingButtonClicked(navigation)}>
         <Image
           style={styles.ImageIconStyle}
-          source={require('./Images/WritingButton.png')} />
+          source={require('./Images/1_WritingButton.png')} />
       </TouchableOpacity>
     </View>
   );
