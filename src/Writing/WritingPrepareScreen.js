@@ -9,7 +9,7 @@ const WritingPrepareScreen = ({ navigation }) => {
       style={{ width: "100%", height: "100%" }}>
 
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'space-around' }}>
-        <Text>오늘의 주제~!</Text>
+        <Text style={styles.title}>오늘의 주제~!</Text>
         <TouchableOpacity
           style={styles.FacebookStyle} activeOpacity={0.5}
           onPress={() => OnWritingButtonClicked(navigation)}>

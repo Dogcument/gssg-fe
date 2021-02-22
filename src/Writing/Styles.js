@@ -1,6 +1,26 @@
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
+    container : {
+        flex : 1,
+        alignItems: 'center',
+        justifyContent: 'space-around'
+    },
+
+    title : {
+        fontSize : 30,
+        fontFamily : 'BMEULJIROTTF',
+    },
+
+    textInput : {
+        width : '90%',
+        marginLeft : '5%',
+        marginRight : '5%',
+        textAlign : 'center',
+        textAlignVertical: 'center',
+        borderWidth : 0
+    },
+
     FacebookStyle: {
         flexDirection: 'row',
         alignItems: 'center',
