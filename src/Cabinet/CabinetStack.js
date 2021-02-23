@@ -19,7 +19,10 @@ function CabinetStack() {
             />
             <Stack.Screen
                 name="CabinetItemDetail"
-                component={() => <CabinetItemDetail/>}
+                component={({ route }) => <CabinetItemDetail
+                    writingTime={route.params.writingTime}
+                    content={route.params.content} />
+                }
                 options={{
                     title: "보관함 상세보기",
                     headerTitleAlign: 'left',

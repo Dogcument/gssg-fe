@@ -7,10 +7,9 @@ export class CabinetItemDetail extends React.Component {
         super(props);
     }
     render() {
-        //const { navigation } = this.props;
         return (
             <Text>
-                테스트
+                작성시간 : {this.props.writingTime}  내용 : {this.props.content}
             </Text>
         )
     }

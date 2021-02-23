@@ -7,7 +7,6 @@ export class CabinetItem extends React.Component {
     const writingTime = this.props.writingTime;
     const content = this.props.content;
     const navigation = this.props.navigation;
-
     return (
       <TouchableOpacity
         style={styles.container}
@@ -25,10 +24,8 @@ export class CabinetItem extends React.Component {
 
 function OnCabinetItemClicked(navigation, writingTime, content) {
   console.log("CabinetItem Clicked");
-  navigation.navigate('CabinetItemDetail',
-    {
-      navigation: navigation,
-      writingTime: writingTime,
-      content: content
-    });
+  navigation.navigate('CabinetItemDetail', {
+    writingTime: writingTime,
+    content: content
+  });
 }
