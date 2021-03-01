@@ -3,6 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { CabinetScreen } from './CabinetScreen';
 import { CabinetItemDetail } from './CabinetItemDetail';
 import { useNavigation } from "@react-navigation/native";
+import RNPickerSelect from 'react-native-picker-select';
 
 const Stack = createStackNavigator();
 
@@ -15,6 +16,15 @@ function CabinetStack() {
                 options={{
                     title: "보관함",
                     headerTitleAlign: 'left',
+                    headerRight: () => (
+                        <RNPickerSelect
+                            onValueChange={(value) => console.log(value)}
+                            items={[
+                                { label: "테스트 Lavel", value: "테스트 Value" }
+                            ]}
+                        >
+                        </RNPickerSelect>
+                    )
                 }}
             />
             <Stack.Screen
