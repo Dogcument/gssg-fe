@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
-
+import { useNavigation } from "@react-navigation/native";
 import MyPageScreen from './MyPageScreen';
 
 const Stack = createStackNavigator();
@@ -11,7 +11,7 @@ function MyPageStack() {
         <Stack.Navigator>
             <Stack.Screen
                 name="MyPage"
-                component={MyPageScreen}
+                component={() => <MyPageScreen navigation={useNavigation()} />}
                 options={{
                     title: "마이페이지",
                     headerTitleAlign: 'left',
