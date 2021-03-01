@@ -4,9 +4,6 @@ export const styles = StyleSheet.create({
     FacebookStyle: {
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: '#485a96',
-        borderWidth: .5,
-        borderColor: '#fff',
         height: 40,
         borderRadius: 5,
         margin: 5,
@@ -15,8 +12,18 @@ export const styles = StyleSheet.create({
     ImageIconStyle: {
         padding: 10,
         margin: 5,
-        height: 25,
-        width: 25,
+        height: 60,
+        width: 60,
         resizeMode: 'stretch',
+    },
+
+    TextInputStyle: {
+        textAlign: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width : '90%',
+        borderRadius: 10,
+        borderWidth: 2,
+        borderColor: '#009688',
     }
 });

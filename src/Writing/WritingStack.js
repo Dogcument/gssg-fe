@@ -24,7 +24,7 @@ const WritingStack = () => {
                     headerTitleAlign: 'left',
                     headerRight: () => (
                         <Button
-                            title="글싸기"
+                            title="글쓰기"
                             onPress={() => OnDoneButtonClicked()}
                         />
                     )
