@@ -1,5 +1,6 @@
 // To set expo entry js file
 import { registerRootComponent } from 'expo';
+import * as Font from 'expo-font';
 
 import * as React from 'react';
 import { StatusBar } from 'react-native';
@@ -15,6 +16,7 @@ class App extends React.Component {
 
   // show Logo in 3000ms. (3Sec)
   componentDidMount = async () => {
+    await Font.loadAsync({ABC: require('../assets/fonts/BMEULJIROTTF.ttf')});
     setTimeout(() => { this.setState({ isLoading: false }) }, 3000);
   }
 
