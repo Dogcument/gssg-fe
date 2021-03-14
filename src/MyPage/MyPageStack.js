@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
-import { useNavigation } from "@react-navigation/native";
-import MyPageScreen from './MyPageScreen';
+import { MyPageScreen } from './MyPageScreen';
 import { SettingScreen } from './SettingScreen';
+import { MyPageItemDetail } from './MyPageItemDetail';
 
 const Stack = createStackNavigator();
 
@@ -36,8 +36,19 @@ function MyPageStack({ navigation }) {
                 options={{
                     title: "세팅",
                     headerTitleAlign: 'left'
-                }}>
-            </Stack.Screen>
+                }}
+            />
+            <Stack.Screen
+                name="MyPageItemDetail"
+                component={({ route }) => <MyPageItemDetail
+                    writingTime={route.params.writingTime}
+                    content={route.params.content} />
+                }
+                options={{
+                    title: "마이페이지 아이템 디테일",
+                    headerTitleAlign: 'left',
+                }}
+            />
         </Stack.Navigator>
     );
 }

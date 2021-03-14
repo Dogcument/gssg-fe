@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Text } from 'react-native';
 
-export class CabinetItemDetail extends React.Component {
+export class MyPageItemDetail extends React.Component {
     render() {
         return (
             <Text>

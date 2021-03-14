@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, Text } from 'react-native';
+import { TouchableOpacity, Text } from 'react-native';
 import { styles } from './Styles';
 
 export class MyPageItem extends React.Component {
@@ -8,7 +8,7 @@ export class MyPageItem extends React.Component {
     const content = this.props.content;
     const navigation = this.props.navigation;
     return (
-      <View
+      <TouchableOpacity
         style={styles.itemContainer}
         onPress={() => OnMyPageItemClicked(navigation, writingTime, content)}>
         <Text style={[styles.text, { flex: 1 }]}>
@@ -17,14 +17,13 @@ export class MyPageItem extends React.Component {
         <Text style={[styles.text, { flex: 1 }]}>
           {content || 'Content'}
         </Text>
-      </View>
+      </TouchableOpacity>
     );
   }
 }
 
 function OnMyPageItemClicked(navigation, writingTime, content) {
-  console.log("CabinetItem Clicked");
-  navigation.navigate('CabinetItemDetail', {
+  navigation.navigate('MyPageItemDetail', {
     writingTime: writingTime,
     content: content
   });

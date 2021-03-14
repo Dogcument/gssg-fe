@@ -38,7 +38,6 @@ export class MyPageScreen extends React.Component {
       )
     }
 
-    console.log("Rendering after loaded");
     const ItemList = this.state.data.loadedData;
     const navigation = this.props.navigation;
 
@@ -63,5 +62,3 @@ export class MyPageScreen extends React.Component {
     );
   }
 }
-
-export default MyPageScreen; 

@@ -38,7 +38,6 @@ export class CabinetScreen extends React.Component {
       )
     }
 
-    console.log("Rendering after loaded");
     const ItemList = this.state.data.loadedData;
     const navigation = this.props.navigation;
     return (
