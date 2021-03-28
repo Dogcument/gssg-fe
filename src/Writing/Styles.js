@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
 
     title : {
         fontSize : 30,
-        fontFamily : 'ABC'
+        fontFamily : 'title'
     },
 
     textInput : {

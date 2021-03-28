@@ -16,13 +16,19 @@ class App extends React.Component {
 
   // show Logo in 3000ms. (3Sec)
   componentDidMount = async () => {
-    await Font.loadAsync({ABC: require('../assets/fonts/BMEULJIROTTF.ttf')});
+    await Font.loadAsync(
+      {
+        title: require('../assets/fonts/BMEULJIROTTF.ttf'),
+        topbar: require('../assets/fonts/SpoqaHanSansNeo-Bold.ttf'),
+        content: require('../assets/fonts/SpoqaHanSansNeo-Regular.ttf')
+      },
+    );
     setTimeout(() => { this.setState({ isLoading: false }) }, 3000);
   }
 
   render() {
     StatusBar.setBarStyle('dark-content', true);
-    
+
     if (this.state.isLoading) {
       return <LogoScreen />
     } else {

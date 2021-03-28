@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { ScrollView } from 'react-native-gesture-handler';
 import AsyncStorage from '@react-native-community/async-storage';
-
 import { CabinetItem } from './CabinetItem';
 
 export class CabinetScreen extends React.Component {

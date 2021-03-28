@@ -15,6 +15,9 @@ function CabinetStack() {
                 component={() => <CabinetScreen navigation={useNavigation()} />}
                 options={{
                     title: "보관함",
+                    headerTitleStyle: {
+                        fontFamily: 'topbar'
+                    },
                     headerTitleAlign: 'left',
                     headerRight: () => (
                         <RNPickerSelect
@@ -35,6 +38,9 @@ function CabinetStack() {
                 }
                 options={{
                     title: "보관함 상세보기",
+                    headerTitleStyle: {
+                        fontFamily: 'topbar'
+                    },
                     headerTitleAlign: 'left',
                 }}
             />

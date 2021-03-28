@@ -14,7 +14,12 @@ const WritingStack = () => {
             <Stack.Screen
                 name="WritingPrepareScreen"
                 component={WritingPrepareScreen}
-                options={{ title: '제시어 주는곳' }}
+                options={{
+                    title: '제시어 주는곳',
+                    headerTitleStyle: {
+                        fontFamily: 'topbar'
+                    }
+                }}
             />
             <Stack.Screen
                 name="WritingScreen"

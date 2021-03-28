@@ -4,6 +4,8 @@ import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { MyPageScreen } from './MyPageScreen';
 import { SettingScreen } from './SettingScreen';
 import { MyPageItemDetail } from './MyPageItemDetail';
+import { styles } from './Styles';
+import { TouchableOpacity, Image } from 'react-native';
 
 const Stack = createStackNavigator();
 
@@ -15,17 +17,26 @@ function MyPageStack({ navigation }) {
                 component={() => <MyPageScreen navigation={navigation} />}
                 options={{
                     title: "마이페이지",
+                    headerTitleStyle: {
+                        fontFamily: 'topbar'
+                    },
                     headerTitleAlign: 'left',
                     headerRight: () => (
                         <HeaderButtons>
-                            <Item
-                                title="종"
-                                onPress={() => alert("개발중입니다.")}
-                            />
-                            <Item
-                                title="톱니"
-                                onPress={() => OpenSettingScreen(navigation)}
-                            />
+                            <TouchableOpacity
+                                style={styles.FacebookStyle} activeOpacity={0.5}
+                                onPress={() => alert("개발중입니다.")}>
+                                <Image
+                                    style={styles.ImageIconStyle}
+                                    source={require('./Images/1_Alarm.png')} />
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                style={styles.FacebookStyle} activeOpacity={0.5}
+                                onPress={() => OpenSettingScreen(navigation)}>
+                                <Image
+                                    style={styles.ImageIconStyle}
+                                    source={require('./Images/2_Setup.png')} />
+                            </TouchableOpacity>
                         </HeaderButtons>
                     )
                 }}
@@ -35,6 +46,9 @@ function MyPageStack({ navigation }) {
                 component={() => <SettingScreen />}
                 options={{
                     title: "세팅",
+                    headerTitleStyle: {
+                        fontFamily: 'topbar'
+                    },
                     headerTitleAlign: 'left'
                 }}
             />
