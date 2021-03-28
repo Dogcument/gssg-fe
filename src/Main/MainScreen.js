@@ -15,7 +15,11 @@ const Tab = createBottomTabNavigator();
 function App() {
   return (
     <NavigationContainer>
-      <Tab.Navigator>
+      <Tab.Navigator tabBarOptions={{
+        style: {
+          backgroundColor: '#ae9784'
+        }
+      }}>
         <Tab.Screen
           name="글쓰기"
           component={WritingStack}
