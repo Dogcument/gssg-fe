@@ -11,8 +11,8 @@ function CabinetStack() {
     const CabinetComponent = () => <CabinetScreen navigation={useNavigation()} />
     const CabinetItemDetailComponent = ({ route }) => <CabinetItemDetail
         writingTime={route.params.writingTime}
-        content={route.params.content} {...props} />
-        
+        content={route.params.content}/>
+
     return (
         <Stack.Navigator>
             <Stack.Screen
