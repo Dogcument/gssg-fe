@@ -8,11 +8,16 @@ import RNPickerSelect from 'react-native-picker-select';
 const Stack = createStackNavigator();
 
 function CabinetStack() {
+    const CabinetComponent = () => <CabinetScreen navigation={useNavigation()} />
+    const CabinetItemDetailComponent = ({ route }) => <CabinetItemDetail
+        writingTime={route.params.writingTime}
+        content={route.params.content} {...props} />
+        
     return (
         <Stack.Navigator>
             <Stack.Screen
                 name="Cabinet"
-                component={() => <CabinetScreen navigation={useNavigation()} />}
+                component= { CabinetComponent }
                 options={{
                     title: "보관함",
                     headerTitleStyle: {
@@ -32,11 +37,8 @@ function CabinetStack() {
             />
             <Stack.Screen
                 name="CabinetItemDetail"
-                component={({ route }) => <CabinetItemDetail
-                    writingTime={route.params.writingTime}
-                    content={route.params.content} />
-                }
-                options={{
+                component= { CabinetItemDetailComponent }
+                options= {{
                     title: "보관함 상세보기",
                     headerTitleStyle: {
                         fontFamily: 'topbar'
