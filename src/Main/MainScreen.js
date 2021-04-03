@@ -16,6 +16,7 @@ function App() {
   return (
     <NavigationContainer>
       <Tab.Navigator tabBarOptions={{
+        showLabel: false,
         style: {
           backgroundColor: '#ae9784'
         }
