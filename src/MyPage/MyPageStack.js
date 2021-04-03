@@ -27,14 +27,14 @@ function MyPageStack({ navigation }) {
                                 style={styles.FacebookStyle} activeOpacity={0.5}
                                 onPress={() => alert("개발중입니다.")}>
                                 <Image
-                                    style={styles.ImageIconStyle}
+                                    style={styles.StackIconStyle}
                                     source={require('./Images/1_Alarm.png')} />
                             </TouchableOpacity>
                             <TouchableOpacity
                                 style={styles.FacebookStyle} activeOpacity={0.5}
                                 onPress={() => OpenSettingScreen(navigation)}>
                                 <Image
-                                    style={styles.ImageIconStyle}
+                                    style={styles.StackIconStyle}
                                     source={require('./Images/2_Setup.png')} />
                             </TouchableOpacity>
                         </HeaderButtons>

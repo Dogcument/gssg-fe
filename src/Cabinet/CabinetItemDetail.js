@@ -23,7 +23,7 @@ export class CabinetItemDetail extends React.Component {
                     <Text style={{
                         fontFamily : 'content'
                     }}>
-                        내용 : {this.props.content}
+                        {this.props.content}
                     </Text>
                 </View>
                 <View style={{
