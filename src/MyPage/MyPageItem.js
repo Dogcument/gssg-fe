@@ -9,7 +9,7 @@ export class MyPageItem extends React.Component {
     const navigation = this.props.navigation;
     return (
       <TouchableOpacity
-        style={styles.itemContainer}
+        style={[styles.itemContainer]}
         onPress={() => OnMyPageItemClicked(navigation, writingTime, content)}>
         <Text style={[styles.text, { flex: 1 }]}>
           {writingTime || 'WritingTime'}

@@ -20,7 +20,7 @@ class App extends React.Component {
       {
         title: require('../assets/fonts/BMEULJIROTTF.ttf'),
         topbar: require('../assets/fonts/SpoqaHanSansNeo-Bold.ttf'),
-        content: require('../assets/fonts/SpoqaHanSansNeo-Regular.ttf')
+        content: require('../assets/fonts/SpoqaHanSansNeo-Medium.ttf')
       },
     );
     setTimeout(() => { this.setState({ isLoading: false }) }, 3000);

@@ -7,15 +7,14 @@ export const styles = StyleSheet.create({
     width: '95%',
     height: 160,
     flexDirection: 'column',
-    backgroundColor: 'skyblue',
-    alignItems: 'center',
-    justifyContent: 'space-around',
+    borderWidth : 1.5,
+    borderColor: '#ae9784',
+    justifyContent: 'space-between',
     marginTop: 5,
     marginBottom: 5,
-    marginLeft : '2.5%'
+    marginLeft : '2.5%',
   },
   content : {
-    flex : 3,
     flexDirection : 'row',
     justifyContent : 'flex-start',
   },
@@ -27,21 +26,28 @@ export const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     flexDirection: 'column',
-    color: 'white',
     fontFamily : 'content'
   },
   subtext: {
     width: '100%',
     alignItems: 'flex-end',
     flexDirection: 'column',
-    color: 'white',
     fontFamily : 'content'
+  },
+  profileView : {
+    alignItems : 'flex-start',
+    flexDirection : 'column',
+    justifyContent : 'space-around'
+  },
+  ImageStyle: {
+    height: 50,
+    width: 50,
   },
   ImageIconStyle: {
     padding: 10,
     margin: 5,
-    height: 60,
-    width: 60,
+    height: 35,
+    width: 35,
     // resizeMode: 'stretch',
   }
 }

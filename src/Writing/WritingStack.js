@@ -27,6 +27,9 @@ const WritingStack = () => {
                 options={{
                     title: '실제 글 싸는 곳',
                     headerTitleAlign: 'left',
+                    headerTitleStyle: {
+                        fontFamily: 'topbar'
+                    },
                     headerRight: () => (
                         <Button
                             title="글쓰기"

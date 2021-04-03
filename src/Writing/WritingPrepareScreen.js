@@ -7,9 +7,9 @@ const WritingPrepareScreen = ({ navigation }) => {
     <ImageBackground
       source={require("./Images/10_PaperBackground.png")}
       style={{ width: "100%", height: "100%" }}>
-
+      <View style={{ height : '15%'}}></View>
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'space-around' }}>
-        <Text style={styles.title}>오늘의 주제~!</Text>
+        <Text style={styles.title}>"오늘의 주제"</Text>
         <TouchableOpacity
           style={styles.FacebookStyle} activeOpacity={0.5}
           onPress={() => OnWritingButtonClicked(navigation)}>

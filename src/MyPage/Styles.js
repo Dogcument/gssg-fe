@@ -7,8 +7,9 @@ export const styles = StyleSheet.create({
         width: '100%',
         height: 200,
         flexDirection: 'row',
-        backgroundColor: 'skyblue',
         alignItems: 'center',
+        borderWidth : 1, borderColor: '#ae9784',
+        borderRightWidth : 0, borderLeftWidth : 0, borderTopWidth : 0,
         justifyContent: 'space-around',
         marginTop: 5,
         marginBottom: 5
@@ -24,14 +25,16 @@ export const styles = StyleSheet.create({
         justifyContent : 'space-around'
     },
     itemContainer: {
-        width: '100%',
-        height: 80,
+        width: '95%',
+        height: 50,
+        borderRadius : 50,
         flexDirection: 'row',
-        backgroundColor: 'black',
+        backgroundColor: '#ae9784',
         alignItems: 'center',
         justifyContent: 'space-around',
         marginTop: 5,
-        marginBottom: 5
+        marginBottom: 5,
+        marginLeft: '2.5%'
     },
     FacebookStyle: {
         flexDirection: 'row',
@@ -41,11 +44,8 @@ export const styles = StyleSheet.create({
         margin: 5,
     },
     ImageIconStyle: {
-        padding: 10,
-        margin: 5,
-        height: 60,
-        width: 60,
-        resizeMode: 'stretch',
+        height: 50,
+        width: 50,
     },
     text: {
         color: 'white',
