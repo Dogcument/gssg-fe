@@ -14,7 +14,6 @@ function MyPageStack({ navigation }) {
         <Stack.Navigator>
             <Stack.Screen
                 name="MyPage"
-                component={() => <MyPageScreen navigation={navigation} />}
                 options={{
                     title: "마이페이지",
                     headerTitleStyle: {
@@ -39,30 +38,31 @@ function MyPageStack({ navigation }) {
                             </TouchableOpacity>
                         </HeaderButtons>
                     )
-                }}
-            />
+                }}>
+                {navigation => <MyPageScreen navigation={navigation} />}
+            </Stack.Screen>
             <Stack.Screen
                 name="Setting"
-                component={() => <SettingScreen />}
                 options={{
                     title: "세팅",
                     headerTitleStyle: {
                         fontFamily: 'topbar'
                     },
                     headerTitleAlign: 'left'
-                }}
-            />
+                }}>
+                {() => <SettingScreen />}
+            </Stack.Screen>
             <Stack.Screen
                 name="MyPageItemDetail"
-                component={({ route }) => <MyPageItemDetail
-                    writingTime={route.params.writingTime}
-                    content={route.params.content} />
-                }
                 options={{
                     title: "마이페이지 아이템 디테일",
                     headerTitleAlign: 'left',
-                }}
-            />
+                }}>
+                {({ route }) => <MyPageItemDetail
+                    writingTime={route.params.writingTime}
+                    content={route.params.content} />
+                }
+            </Stack.Screen>
         </Stack.Navigator>
     );
 }
