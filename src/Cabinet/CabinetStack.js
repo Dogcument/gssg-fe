@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Image } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { CabinetScreen } from './CabinetScreen';
 import { CabinetItemDetail } from './CabinetItemDetail';
@@ -44,6 +45,13 @@ function CabinetStack() {
                         fontFamily: 'topbar'
                     },
                     headerTitleAlign: 'left',
+                    headerBackTitleVisible: false,
+                    headerBackImage: () =>
+                        <Image
+                            style={{ marginLeft: 20, width: 20, height: 20 }}
+                            source={require('../Main/Images/BackButton.png')}>
+                        </Image>
+
                 }}
             />
         </Stack.Navigator>
