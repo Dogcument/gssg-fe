@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { Button } from 'react-native';
+import { Button, Image } from 'react-native';
 
 // scene components
 import WritingPrepareScreen from './WritingPrepareScreen';
@@ -35,7 +35,13 @@ const WritingStack = () => {
                             title="글쓰기"
                             onPress={() => OnDoneButtonClicked()}
                         />
-                    )
+                    ),
+                    headerBackTitleVisible: false,
+                    headerBackImage: () =>
+                        <Image
+                            style={{ marginLeft: 20, width: 20, height: 20 }}
+                            source={require('../Main/Images/BackButton.png')}>
+                        </Image>
                 }}
             />
         </Stack.Navigator>
