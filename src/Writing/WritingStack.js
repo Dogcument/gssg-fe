@@ -15,10 +15,7 @@ const WritingStack = () => {
                 name="WritingPrepareScreen"
                 component={WritingPrepareScreen}
                 options={{
-                    title: '제시어 주는곳',
-                    headerTitleStyle: {
-                        fontFamily: 'topbar'
-                    }
+                    headerShown: false
                 }}
             />
             <Stack.Screen
