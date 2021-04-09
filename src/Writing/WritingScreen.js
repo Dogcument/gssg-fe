@@ -19,9 +19,9 @@ export class WritingScreen extends React.Component {
           style={styles.TextInputStyle}
           multiline={true}
           placeholder="여기에 입력"
+          returnKeyType='none'
           numberOfLines={numberOfLines}
           onChangeText={inputText => this.onChangeText(inputText)}
-          onKeyPress={this.appKeyPress}
         />
       </View>
     );
@@ -29,13 +29,6 @@ export class WritingScreen extends React.Component {
 
   onChangeText(inputText) {
     contentText = inputText;
-  }
-
-  appKeyPress = e => {
-    const {numberOfLines} = this.state;
-    if (e.key == "Enter") {
-      this.setState({ numberOfLines: numberOfLines + 1 })
-    }
   }
 }
 
