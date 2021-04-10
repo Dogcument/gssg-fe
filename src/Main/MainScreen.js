@@ -32,7 +32,8 @@ function App() {
                   style={{ width: 30, height: 30 }}
                 />
               );
-            }
+            },
+            unmountOnBlur: true
           }}
         />
         <Tab.Screen
@@ -46,7 +47,8 @@ function App() {
                   style={{ width: 30, height: 30 }}
                 />
               );
-            }
+            },
+            unmountOnBlur: true
           }}
         />
         <Tab.Screen
@@ -60,7 +62,8 @@ function App() {
                   style={{ width: 30, height: 30 }}
                 />
               );
-            }
+            },
+            unmountOnBlur: true
           }}
         />
       </Tab.Navigator>
