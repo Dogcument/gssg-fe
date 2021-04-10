@@ -56,6 +56,11 @@ function MyPageStack({ navigation }) {
                 options={{
                     title: "마이페이지 아이템 디테일",
                     headerTitleAlign: 'left',
+                    headerBackImage: () =>
+                    <Image
+                        style={{ marginLeft: 20, width: 20, height: 20 }}
+                        source={require('../Main/Images/BackButton.png')}>
+                    </Image>
                 }}>
                 {({ route }) => <MyPageItemDetail
                     writingTime={route.params.writingTime}
