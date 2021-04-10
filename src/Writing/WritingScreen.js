@@ -32,7 +32,7 @@ export class WritingScreen extends React.Component {
 }
 
 function SaveToLocalMachine() {
-  var KeyName = Date.now();
+  var KeyName = String(Date.now());
   AsyncStorage.setItem(KeyName, contentText, () => { });
 };
 
