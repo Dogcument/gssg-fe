@@ -1,10 +1,12 @@
 import * as React from 'react';
 import { TouchableOpacity, Text } from 'react-native';
 import { styles } from './Styles';
+import moment from 'moment';
 
 export class MyPageItem extends React.Component {
   render() {
-    const writingTime = this.props.writingTime;
+    const writingTimeEpoch = Number(this.props.writingTime);
+    const writingTime = moment(writingTimeEpoch).format('YYYY.MM.DD HH:MM');
     const content = this.props.content;
     const navigation = this.props.navigation;
     return (
