@@ -10,11 +10,12 @@ import { TouchableOpacity, Image } from 'react-native';
 const Stack = createStackNavigator();
 
 function MyPageStack({ navigation }) {
+    const MyPageComponent = () => <MyPageScreen navigation={navigation} />;
     return (
         <Stack.Navigator>
             <Stack.Screen
                 name="MyPage"
-                component={() => <MyPageScreen navigation={navigation} />}
+                component={MyPageComponent}
                 options={{
                     title: "마이페이지",
                     headerTitleStyle: {
