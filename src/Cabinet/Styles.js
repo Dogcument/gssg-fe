@@ -5,7 +5,7 @@ import { StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
   container: {
     width: '95%',
-    height: 160,
+    height: 200,
     flexDirection: 'column',
     borderWidth : 1,
     borderColor: '#ae9784',
@@ -40,14 +40,14 @@ export const styles = StyleSheet.create({
     justifyContent : 'space-around'
   },
   ImageStyle: {
-    height: 50,
+    height: 0,
     width: 50,
   },
   ImageIconStyle: {
     padding: 10,
     margin: 5,
-    height: 35,
-    width: 35,
+    height: 40,
+    width: 40,
     // resizeMode: 'stretch',
   }
 }

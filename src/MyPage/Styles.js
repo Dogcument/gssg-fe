@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
         width: '100%',
         height: 200,
         flexDirection: 'column',
-        borderWidth: 1, borderColor: '#ae9784',
+        borderWidth: 0.5, borderColor: '#ae9784',
         borderRightWidth: 0, borderLeftWidth: 0, borderTopWidth: 0,
         marginTop: 5
     },

@@ -17,11 +17,11 @@ export class MyPageItem extends React.Component {
           style={{ height : 40, width : 40, marginLeft : 5,
           backgroundColor : '#ae9784', borderRadius : 100,
           justifyContent : 'center', alignItems : 'center' }}>
-          <Text style={{ fontFamily : 'title' }}>
+          <Text style={{ fontFamily : 'title', color : '#FFFFFF' }}>
             번호
           </Text>
         </View>
-        <Text style={{ marginLeft : 10, fontFamily : 'content', flex : 1 }}>
+        <Text style={{ marginLeft : 10, fontFamily : 'content', flex : 1, color : '#FFFFFF', fontSize : 20, fontWeight : 'bold' }}>
           글감
         </Text>
         <Text style={[styles.text, { marginLeft : 10, fontSize : 10, flex : 1 }]}>
@@ -31,7 +31,7 @@ export class MyPageItem extends React.Component {
           source={require('./Images/7_Bone.png')}>
         </Image>
         <View style={{width : '5%'}}>
-          <Text style={{ fontFamily : 'content', fontSize : 10 }}>
+          <Text style={{ fontFamily : 'content', fontSize : 10, color : '#FFFFFF' }}>
             0
           </Text>
         </View>
@@ -39,7 +39,7 @@ export class MyPageItem extends React.Component {
           source={require('./Images/9_Chat.png')}>
         </Image>
         <View style={{width : '5%', marginRight : 10}}>
-          <Text style={{ fontFamily : 'content', fontSize : 10 }}>
+          <Text style={{ fontFamily : 'content', fontSize : 10, color : '#FFFFFF' }}>
             0
           </Text>
         </View>

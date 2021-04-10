@@ -13,12 +13,11 @@ export class CabinetItem extends React.Component {
       <TouchableOpacity
         style={styles.container}
         onPress={() => OnCabinetItemClicked(navigation, writingTime, content)}>
-        <View style={[styles.text, { flex: 3.5, marginTop : 5 }]}>
+        <View style={[styles.text, { flex: 3.5, marginTop : 5, justifyContent : 'center' }]}>
           <Text style={
             [styles.subtext, {
               fontFamily: 'profile',
-              marginTop: 10, marginLeft: 10, width: '95%',
-              textAlign: 'center'
+              marginTop: 10, marginLeft: 10, width: '95%', textAlign : 'center'
             }]} numberOfLines={6} ellipsizeMode={'tail'}>
             {content || 'Content'}
           </Text>
@@ -29,7 +28,7 @@ export class CabinetItem extends React.Component {
             source={require('./Images/3_Profile.png')}>
           </Image>
           <View style={{ flexDirection: 'row', alignItems: 'center', flex: 1 }}>
-            <View style={{ height: '60%', width: 3, backgroundColor: '#ae9784', marginRight: 5 }} />
+            <View style={{ height: '40%', width: 3, backgroundColor: '#ae9784', marginRight: 5 }} />
             <View style={{ flexDirection: 'column' }}>
               <Text style={{ fontFamily: 'content', fontSize: 10, fontWeight: 'bold' }}>
                 이름
