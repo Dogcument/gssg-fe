@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
     width: '95%',
     height: 160,
     flexDirection: 'column',
-    borderWidth : 1.5,
+    borderWidth : 1,
     borderColor: '#ae9784',
     justifyContent: 'space-between',
     marginTop: 5,
