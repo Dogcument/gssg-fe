@@ -1,10 +1,9 @@
 import * as React from 'react';
 import { View, TextInput } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
-import { styles, StyleSheet } from './Styles';
+import { styles } from './Styles';
 
 var contentText = "";
-var numberOfLines = 1;
 
 export class WritingScreen extends React.Component {
   state = {
@@ -12,7 +11,7 @@ export class WritingScreen extends React.Component {
   };
 
   render() {
-    const {numberOfLines} = this.state;
+    const { numberOfLines } = this.state;
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <TextInput
@@ -32,13 +31,15 @@ export class WritingScreen extends React.Component {
   }
 }
 
-var KeyName = Date.now();
-// Gunny Tempcode - Prototype
 function SaveToLocalMachine() {
+  var KeyName = Date.now();
   AsyncStorage.setItem(KeyName, contentText, () => { });
 };
 
-export function OnDoneButtonClicked() {
-  alert(KeyName + "_" + contentText);
+export function OnDoneButtonClicked(navigation) {
   SaveToLocalMachine();
+
+  return (
+    navigation.navigate('보관함', { screen: 'Cabinet' })
+  );
 }

@@ -8,7 +8,7 @@ import { WritingScreen, OnDoneButtonClicked } from './WritingScreen';
 
 const Stack = createStackNavigator();
 
-const WritingStack = () => {
+const WritingStack = ({navigation}) => {
     return (
         <Stack.Navigator>
             <Stack.Screen
@@ -30,7 +30,7 @@ const WritingStack = () => {
                     headerRight: () => (
                         <Button
                             title="글쓰기"
-                            onPress={() => OnDoneButtonClicked()}
+                            onPress={() => OnDoneButtonClicked(navigation)}
                         />
                     ),
                     headerBackTitleVisible: false,
