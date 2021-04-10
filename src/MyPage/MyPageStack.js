@@ -56,6 +56,7 @@ function MyPageStack({ navigation }) {
                 options={{
                     title: "마이페이지 아이템 디테일",
                     headerTitleAlign: 'left',
+                    headerBackTitleVisible: false,
                     headerBackImage: () =>
                     <Image
                         style={{ marginLeft: 20, width: 20, height: 20 }}
