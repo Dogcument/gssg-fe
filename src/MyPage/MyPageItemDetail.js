@@ -15,24 +15,25 @@ export class MyPageItemDetail extends React.Component {
                     flex: 9,
                     textAlign: 'center',
                     justifyContent: 'center',
-                    width : '95%',
-                    marginLeft : '2.5'
+                    marginLeft: '5%',
+                    width: '90%'
                 }}>
                     <Text style={{
-                        fontFamily: 'content'
+                        fontFamily: 'content',
+                        textAlign: 'center'
                     }}>
                         {this.props.content}
                     </Text>
                     <Text style={{
-                    fontSize: 10,
-                    textAlign: 'center',
-                    marginTop : 15,
-                    fontFamily : 'content'
-                }}>
-                    {this.props.writingTime}
-                </Text>
+                        fontSize: 10,
+                        textAlign: 'center',
+                        marginTop: 15,
+                        fontFamily: 'content'
+                    }}>
+                        {this.props.writingTime}
+                    </Text>
                 </View>
-                
+
                 <View style={{
                     flex: 1,
                     flexDirection: 'row',
@@ -41,7 +42,7 @@ export class MyPageItemDetail extends React.Component {
                     <Image
                         style={[styles.ImageStyle, { marginLeft: 15, marginRight: 15 }]}
                         source={require('./Images/3_Profile.png')} />
-                    <View style={[styles.profileView], { flexDirection: 'row', flex : 1 }}>
+                    <View style={[styles.profileView], { flexDirection: 'row', flex: 1 }}>
                         <View style={{ height: 40, width: 3, backgroundColor: '#ae9784', marginRight: 5 }}>
                         </View>
                         <View style={{ flexDirection: 'column', justifyContent: 'center', marginLeft: 5 }}>
@@ -54,12 +55,12 @@ export class MyPageItemDetail extends React.Component {
                         </View>
                     </View>
                     <TouchableOpacity>
-                        <Image style={{height : 20, width : 20, marginRight : 10 }}
+                        <Image style={{ height: 20, width: 20, marginRight: 10 }}
                             source={require('./Images/7_Bone.png')}>
                         </Image>
                     </TouchableOpacity>
                     <TouchableOpacity>
-                        <Image style={{height : 20, width : 20, marginRight : 10 }}
+                        <Image style={{ height: 20, width: 20, marginRight: 10 }}
                             source={require('./Images/9_Chat.png')}>
                         </Image>
                     </TouchableOpacity>

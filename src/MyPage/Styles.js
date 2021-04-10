@@ -44,8 +44,8 @@ export const styles = StyleSheet.create({
         width: 50,
     },
     StackIconStyle: {
-        height: 30,
-        width: 30,
+        height: 20,
+        width: 20,
     },
     ImageStyle: {
         height: 50,

@@ -13,7 +13,7 @@ export class WritingScreen extends React.Component {
   render() {
     const { numberOfLines } = this.state;
     return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', width : '95%', marginLeft : '2.5%' }}>
         <TextInput
           style={styles.TextInputStyle}
           multiline={true}

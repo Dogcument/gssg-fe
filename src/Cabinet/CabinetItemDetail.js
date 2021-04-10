@@ -19,7 +19,8 @@ export class CabinetItemDetail extends React.Component {
                     width : '90%'
                 }}>
                     <Text style={{
-                        fontFamily: 'content'
+                        fontFamily: 'content',
+                        textAlign : 'center'
                     }}>
                         {this.props.content}
                     </Text>

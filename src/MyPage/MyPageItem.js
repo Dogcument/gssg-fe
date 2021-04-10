@@ -24,15 +24,25 @@ export class MyPageItem extends React.Component {
         <Text style={{ marginLeft : 10, fontFamily : 'content', flex : 1 }}>
           글감
         </Text>
-        <Text style={[styles.text, { marginLeft : 10, fontSize : 10 }]}>
+        <Text style={[styles.text, { marginLeft : 10, fontSize : 10, flex : 1 }]}>
           {writingTime || 'WritingTime'}
         </Text>
         <Image style={{ height: 15, width: 15, marginLeft : 5, marginRight: 10 }}
           source={require('./Images/7_Bone.png')}>
         </Image>
+        <View style={{width : '5%'}}>
+          <Text style={{ fontFamily : 'content', fontSize : 10 }}>
+            0
+          </Text>
+        </View>
         <Image style={{ height: 15, width: 15, marginRight: 10 }}
           source={require('./Images/9_Chat.png')}>
         </Image>
+        <View style={{width : '5%', marginRight : 10}}>
+          <Text style={{ fontFamily : 'content', fontSize : 10 }}>
+            0
+          </Text>
+        </View>
       </TouchableOpacity>
     );
   }
