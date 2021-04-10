@@ -29,7 +29,7 @@ function App() {
               return (
                 <Image
                   source={focused ? navigationIcons[0].active : navigationIcons[0].inactive}
-                  style={{ width: 20, height: 20 }}
+                  style={{ width: 30, height: 30 }}
                 />
               );
             }
@@ -43,7 +43,7 @@ function App() {
               return (
                 <Image
                   source={focused ? navigationIcons[1].active : navigationIcons[1].inactive}
-                  style={{ width: 20, height: 20 }}
+                  style={{ width: 30, height: 30 }}
                 />
               );
             }
@@ -57,7 +57,7 @@ function App() {
               return (
                 <Image
                   source={focused ? navigationIcons[2].active : navigationIcons[2].inactive}
-                  style={{ width: 20, height: 20 }}
+                  style={{ width: 30, height: 30 }}
                 />
               );
             }

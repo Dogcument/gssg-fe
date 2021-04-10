@@ -6,30 +6,26 @@ export const styles = StyleSheet.create({
     profileContainer: {
         width: '100%',
         height: 200,
-        flexDirection: 'row',
-        alignItems: 'center',
-        borderWidth : 1, borderColor: '#ae9784',
-        borderRightWidth : 0, borderLeftWidth : 0, borderTopWidth : 0,
-        justifyContent: 'space-around',
-        marginTop: 5,
-        marginBottom: 5
+        flexDirection: 'column',
+        borderWidth: 1, borderColor: '#ae9784',
+        borderRightWidth: 0, borderLeftWidth: 0, borderTopWidth: 0,
+        marginTop: 5
     },
     profileImageStyle: {
-        height: 180,
-        width: 180,
+        height: '80%'
     },
-    profileView : {
-        flex : 6,
-        alignItems : 'flex-start',
-        flexDirection : 'column',
-        justifyContent : 'space-around'
+    profileView: {
+        flex: 6,
+        alignItems: 'flex-start',
+        flexDirection: 'column',
+        justifyContent: 'space-around'
     },
     itemContainer: {
         width: '95%',
         height: 50,
-        borderRadius : 50,
+        borderRadius: 50,
         flexDirection: 'row',
-        backgroundColor: '#ae9784',
+        backgroundColor: '#d1c0a5',
         alignItems: 'center',
         justifyContent: 'space-around',
         marginTop: 5,
@@ -51,8 +47,12 @@ export const styles = StyleSheet.create({
         height: 30,
         width: 30,
     },
+    ImageStyle: {
+        height: 50,
+        width: 50,
+    },
     text: {
         color: 'white',
-        fontFamily : 'content'
+        fontFamily: 'content'
     }
 });
