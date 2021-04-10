@@ -14,6 +14,7 @@ function MyPageStack({ navigation }) {
         <Stack.Navigator>
             <Stack.Screen
                 name="MyPage"
+                component={() => <MyPageScreen navigation={navigation} />}
                 options={{
                     title: "마이페이지",
                     headerTitleStyle: {
@@ -38,9 +39,7 @@ function MyPageStack({ navigation }) {
                             </TouchableOpacity>
                         </HeaderButtons>
                     )
-                }}>
-                {navigation => <MyPageScreen navigation={navigation} />}
-            </Stack.Screen>
+                }} />
             <Stack.Screen
                 name="Setting"
                 options={{
