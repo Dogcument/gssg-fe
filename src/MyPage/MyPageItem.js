@@ -6,7 +6,7 @@ import moment from 'moment';
 export class MyPageItem extends React.Component {
   render() {
     const writingTimeEpoch = Number(this.props.writingTime);
-    const writingTime = moment(writingTimeEpoch).format('YYYY.MM.DD HH:MM');
+    const writingTime = moment(writingTimeEpoch).format('YYYY.MM.DD HH:mm');
     const content = this.props.content;
     const navigation = this.props.navigation;
     return (
