@@ -53,6 +53,6 @@ export const styles = StyleSheet.create({
     },
     text: {
         color: 'white',
-        fontFamily: 'content'
+        fontFamily: 'SpoqaMedium'
     }
 });

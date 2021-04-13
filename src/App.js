@@ -19,9 +19,9 @@ class App extends React.Component {
     await Font.loadAsync(
       {
         title: require('../assets/fonts/BMEULJIROTTF.ttf'),
-        topbar: require('../assets/fonts/SpoqaHanSansNeo-Bold.ttf'),
-        content: require('../assets/fonts/SpoqaHanSansNeo-Medium.ttf'),
-        profile: require('../assets/fonts/SpoqaHanSansNeo-Regular.ttf')
+        SpoqaBold: require('../assets/fonts/SpoqaHanSansNeo-Bold.ttf'),
+        SpoqaMedium: require('../assets/fonts/SpoqaHanSansNeo-Medium.ttf'),
+        SpoqaRegular: require('../assets/fonts/SpoqaHanSansNeo-Regular.ttf')
       },
     );
     setTimeout(() => { this.setState({ isLoading: false }) }, 3000);

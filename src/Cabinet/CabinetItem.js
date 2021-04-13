@@ -13,16 +13,19 @@ export class CabinetItem extends React.Component {
       <TouchableOpacity
         style={styles.container}
         onPress={() => OnCabinetItemClicked(navigation, writingTime, content)}>
+          
         <View style={[styles.text, { flex: 3.5, marginTop : 5, justifyContent : 'center' }]}>
           <Text style={
             [styles.subtext, {
-              fontFamily: 'profile',
+              fontFamily: 'SpoqaRegular',
               marginTop: 10, marginLeft: 10, width: '95%', textAlign : 'center'
             }]} numberOfLines={6} ellipsizeMode={'tail'}>
             {content || 'Content'}
           </Text>
         </View>
+
         <View style={{ height: 5 }}></View>
+
         <View style={[styles.content, { flex: 1.5, flexDirection: 'row' }]}>
           <Image style={styles.ImageIconStyle}
             source={require('./Images/3_Profile.png')}>
@@ -30,10 +33,10 @@ export class CabinetItem extends React.Component {
           <View style={{ flexDirection: 'row', alignItems: 'center', flex: 1 }}>
             <View style={{ height: '40%', width: 3, backgroundColor: '#ae9784', marginRight: 5 }} />
             <View style={{ flexDirection: 'column' }}>
-              <Text style={{ fontFamily: 'content', fontSize: 10, fontWeight: 'bold' }}>
+              <Text style={{ fontFamily: 'SpoqaMedium', fontSize: 10, fontWeight: 'bold' }}>
                 이름
               </Text>
-              <Text style={{ fontFamily: 'content', fontSize: 10 }}>
+              <Text style={{ fontFamily: 'SpoqaMedium', fontSize: 10 }}>
                 {writingTime || 'WritingTime'}
               </Text>
             </View>

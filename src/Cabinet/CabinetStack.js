@@ -22,7 +22,7 @@ function CabinetStack() {
                 options={{
                     title: "보관함",
                     headerTitleStyle: {
-                        fontFamily: 'topbar'
+                        fontFamily: 'SpoqaBold'
                     },
                     headerTitleAlign: 'left',
                     headerRight: () => (
@@ -42,7 +42,7 @@ function CabinetStack() {
                 options={{
                     title: '',
                     headerTitleStyle: {
-                        fontFamily: 'topbar'
+                        fontFamily: 'SpoqaBold'
                     },
                     headerTitleAlign: 'left',
                     headerBackTitleVisible: false,

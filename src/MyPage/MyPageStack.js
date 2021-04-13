@@ -19,7 +19,7 @@ function MyPageStack({ navigation }) {
                 options={{
                     title: "마이페이지",
                     headerTitleStyle: {
-                        fontFamily: 'topbar'
+                        fontFamily: 'SpoqaBold'
                     },
                     headerTitleAlign: 'left',
                     headerRight: () => (
@@ -46,7 +46,7 @@ function MyPageStack({ navigation }) {
                 options={{
                     title: "세팅",
                     headerTitleStyle: {
-                        fontFamily: 'topbar'
+                        fontFamily: 'SpoqaBold'
                     },
                     headerTitleAlign: 'left'
                 }}>

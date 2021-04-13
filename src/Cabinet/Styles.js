@@ -26,13 +26,13 @@ export const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     flexDirection: 'column',
-    fontFamily : 'content'
+    fontFamily : 'SpoqaMedium'
   },
   subtext: {
     width: '100%',
     alignItems: 'flex-end',
     flexDirection: 'column',
-    fontFamily : 'content'
+    fontFamily : 'SpoqaMedium'
   },
   profileView : {
     alignItems : 'flex-start',
@@ -40,7 +40,7 @@ export const styles = StyleSheet.create({
     justifyContent : 'space-around'
   },
   ImageStyle: {
-    height: 0,
+    height: 50,
     width: 50,
   },
   ImageIconStyle: {

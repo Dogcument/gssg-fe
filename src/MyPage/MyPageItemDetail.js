@@ -19,7 +19,7 @@ export class MyPageItemDetail extends React.Component {
                     width: '90%'
                 }}>
                     <Text style={{
-                        fontFamily: 'content',
+                        fontFamily: 'SpoqaMedium',
                         textAlign: 'center'
                     }}>
                         {this.props.content}
@@ -28,7 +28,7 @@ export class MyPageItemDetail extends React.Component {
                         fontSize: 10,
                         textAlign: 'center',
                         marginTop: 15,
-                        fontFamily: 'content'
+                        fontFamily: 'SpoqaMedium'
                     }}>
                         {this.props.writingTime}
                     </Text>
@@ -46,11 +46,11 @@ export class MyPageItemDetail extends React.Component {
                         <View style={{ height: 40, width: 3, backgroundColor: '#ae9784', marginRight: 5 }}>
                         </View>
                         <View style={{ flexDirection: 'column', justifyContent: 'center', marginLeft: 5 }}>
-                            <Text style={{ fontFamily: 'topbar' }}>
-                                아이디
+                            <Text style={{ fontFamily: 'SpoqaBold' }}>
+                                오건돼지오건돼지오건돼지
                             </Text>
-                            <Text style={{ fontFamily: 'topbar' }}>
-                                간단한 소개
+                            <Text style={{ fontFamily: 'SpoqaRegular', fontSize : 13 }}>
+                                돼지는 오건입니다.
                             </Text>
                         </View>
                     </View>
