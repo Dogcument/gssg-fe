@@ -12,13 +12,13 @@ function CabinetStack() {
     const CabinetComponent = () => <CabinetScreen navigation={useNavigation()} />
     const CabinetItemDetailComponent = ({ route }) => <CabinetItemDetail
         writingTime={route.params.writingTime}
-        content={route.params.content}/>
+        content={route.params.content} />
 
     return (
         <Stack.Navigator>
             <Stack.Screen
                 name="Cabinet"
-                component= { CabinetComponent }
+                component={CabinetComponent}
                 options={{
                     title: "보관함",
                     headerTitleStyle: {
@@ -38,9 +38,9 @@ function CabinetStack() {
             />
             <Stack.Screen
                 name="CabinetItemDetail"
-                component= { CabinetItemDetailComponent }
-                options= {{
-                    title: "보관함 상세보기",
+                component={CabinetItemDetailComponent}
+                options={{
+                    title: '',
                     headerTitleStyle: {
                         fontFamily: 'topbar'
                     },

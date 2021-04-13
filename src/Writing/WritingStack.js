@@ -22,11 +22,7 @@ const WritingStack = ({navigation}) => {
                 name="WritingScreen"
                 component={WritingScreen}
                 options={{
-                    title: '실제 글 싸는 곳',
-                    headerTitleAlign: 'left',
-                    headerTitleStyle: {
-                        fontFamily: 'topbar'
-                    },
+                    title: '',
                     headerRight: () => (
                         <Button
                             title="글쓰기"

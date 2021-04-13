@@ -16,7 +16,6 @@ export class WritingScreen extends React.Component {
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', width : '95%', marginLeft : '2.5%' }}>
         <TextInput
           style={styles.TextInputStyle}
-          multiline={true}
           placeholder="여기에 입력"
           returnKeyType='none'
           numberOfLines={numberOfLines}
