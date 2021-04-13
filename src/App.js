@@ -9,6 +9,7 @@ import { StatusBar } from 'react-native';
 import LogoScreen from './Logo/LogoScreen';
 import MainScreen from './Main/MainScreen';
 
+import AsyncStorage from '@react-native-community/async-storage';
 class App extends React.Component {
   state = {
     isLoading: true
@@ -27,13 +28,25 @@ class App extends React.Component {
     setTimeout(() => { this.setState({ isLoading: false }) }, 3000);
   }
 
+  IsNewbie = async () => {
+    const nicknameKey = await AsyncStorage.getItem("Nickname");
+    return nicknameKey == null;
+  }
+
   render() {
     StatusBar.setBarStyle('dark-content', true);
 
     if (this.state.isLoading) {
       return <LogoScreen />
     } else {
-      return <MainScreen />
+      if (this.IsNewbie()) {
+        // return <PopupScreen?>
+        console.log("I am a newbie");
+        // tempcode
+        return <MainScreen />
+      } else {
+        return <MainScreen />
+      }
     }
   }
 }
