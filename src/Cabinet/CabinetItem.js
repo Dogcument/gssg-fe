@@ -56,7 +56,7 @@ export class CabinetItem extends React.Component {
 }
 
 function OnCabinetItemClicked(navigation, writingTime, content) {
-  navigation.navigate('CabinetItemDetail', {
+  navigation.navigate('ItemDetail', {
     writingTime: writingTime,
     content: content
   });

@@ -1,9 +1,8 @@
 import * as React from 'react';
 import { Text, View, Image } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import { styles } from './Styles';
 
-export class MyPageItemDetail extends React.Component {
+export class ItemDetail extends React.Component {
     render() {
         return (
             <View style={{
@@ -41,7 +40,7 @@ export class MyPageItemDetail extends React.Component {
                 }}>
                     <Image
                         style={[styles.ImageStyle, { marginLeft: 15, marginRight: 15 }]}
-                        source={require('./Images/3_Profile.png')} />
+                        source={require('../Images/Profile.png')} />
                     <View style={[styles.profileView], { flexDirection: 'row', flex: 1 }}>
                         <View style={{ height: 40, width: 3, backgroundColor: '#ae9784', marginRight: 5 }}>
                         </View>
@@ -49,21 +48,11 @@ export class MyPageItemDetail extends React.Component {
                             <Text style={{ fontFamily: 'SpoqaBold' }}>
                                 오건돼지오건돼지오건돼지
                             </Text>
-                            <Text style={{ fontFamily: 'SpoqaRegular', fontSize : 13 }}>
+                            <Text style={{ fontFamily: 'SpoqaRegular', fontSize: 13 }}>
                                 돼지는 오건입니다.
                             </Text>
                         </View>
                     </View>
-                    <TouchableOpacity>
-                        <Image style={{ height: 20, width: 20, marginRight: 10 }}
-                            source={require('./Images/7_Bone.png')}>
-                        </Image>
-                    </TouchableOpacity>
-                    <TouchableOpacity>
-                        <Image style={{ height: 20, width: 20, marginRight: 10 }}
-                            source={require('./Images/9_Chat.png')}>
-                        </Image>
-                    </TouchableOpacity>
                 </View>
             </View>
         )

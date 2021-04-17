@@ -1,16 +1,16 @@
 import * as React from 'react';
-import { Image } from 'react-native';
+import { Image, TouchableOpacity } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { CabinetScreen } from './CabinetScreen';
-import { CabinetItemDetail } from './CabinetItemDetail';
 import { useNavigation } from "@react-navigation/native";
 import RNPickerSelect from 'react-native-picker-select';
-
+import { HeaderButtons } from 'react-navigation-header-buttons';
+import { ItemDetail } from '../Common/ItemDetail';
 const Stack = createStackNavigator();
 
 function CabinetStack() {
     const CabinetComponent = () => <CabinetScreen navigation={useNavigation()} />
-    const CabinetItemDetailComponent = ({ route }) => <CabinetItemDetail
+    const ItemDetailComponent = ({ route }) => <ItemDetail
         writingTime={route.params.writingTime}
         content={route.params.content} />
 
@@ -37,21 +37,37 @@ function CabinetStack() {
                 }}
             />
             <Stack.Screen
-                name="CabinetItemDetail"
-                component={CabinetItemDetailComponent}
+                name="ItemDetail"
+                component={ItemDetailComponent}
                 options={{
                     title: '',
-                    headerTitleStyle: {
-                        fontFamily: 'SpoqaBold'
-                    },
-                    headerTitleAlign: 'left',
                     headerBackTitleVisible: false,
-                    headerBackImage: () =>
+                    headerBackImage: () => (
                         <Image
                             style={{ marginLeft: 20, width: 20, height: 20 }}
                             source={require('../Main/Images/BackButton.png')}>
                         </Image>
-
+                    ),
+                    headerRight: () => (
+                        <HeaderButtons>
+                            <TouchableOpacity
+                                style={{ width: 20, height: 20, marginRight: 15 }}
+                                activeOpacity={0.5}
+                                onPress={() => alert("좋아요 표시 화면으로 이동")}>
+                                <Image
+                                    style={{ width: 20, height: 20 }}
+                                    source={require('../Images/Bone.png')} />
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                style={{ width: 20, height: 20, marginRight: 15 }}
+                                activeOpacity={0.5}
+                                onPress={() => alert("댓글 표시 화면으로 이동")}>
+                                <Image
+                                    style={{ width: 20, height: 20 }}
+                                    source={require('../Images/Chat.png')} />
+                            </TouchableOpacity>
+                        </HeaderButtons>
+                    )
                 }}
             />
         </Stack.Navigator>

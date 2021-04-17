@@ -49,7 +49,7 @@ export class MyPageItem extends React.Component {
 }
 
 function OnMyPageItemClicked(navigation, writingTime, content) {
-  navigation.navigate('MyPageItemDetail', {
+  navigation.navigate('ItemDetail', {
     writingTime: writingTime,
     content: content
   });
