@@ -3,6 +3,9 @@ import { ScrollView } from 'react-native-gesture-handler';
 import AsyncStorage from '@react-native-community/async-storage';
 import { CabinetItem } from './CabinetItem';
 
+function IsValidKey(key) {
+  return key != "EXPO_CONSTANTS_INSTALLATION_ID";
+}
 export class CabinetScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -21,6 +24,10 @@ export class CabinetScreen extends React.Component {
     
     let loadedData = [];
     for (let i = 0; i < keys.length; i++) {
+      if (!IsValidKey(keys[i])) {
+        continue;
+      }
+
       const value = await AsyncStorage.getItem(keys[i]);
       loadedData.push({
         time: keys[i],
