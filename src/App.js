@@ -8,13 +8,16 @@ import { StatusBar } from 'react-native';
 // screen component
 import LogoScreen from './Logo/LogoScreen';
 import MainScreen from './Main/MainScreen';
-import Popup from './Logo/Popup';
 
 import AsyncStorage from '@react-native-community/async-storage';
 
 class App extends React.Component {
-  state = {
-    isLoading: true
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoading: true,
+      isNewbie: false
+    };
   }
 
   // show Logo in 3000ms. (3Sec)
@@ -27,21 +30,26 @@ class App extends React.Component {
         SpoqaRegular: require('../assets/fonts/SpoqaHanSansNeo-Regular.ttf')
       },
     );
-    setTimeout(() => { this.setState({ isLoading: false }) }, 3000);
+    this.GetIsNewbie();
   }
 
-  IsNewbie = async () => {
-    const nicknameKey = await AsyncStorage.getItem("Nickname");
-    return nicknameKey == null;
+  GetIsNewbie() {
+    AsyncStorage.getItem("Nickname", (result) => {
+      if (result == null) {
+        console.log("뉴비 입장");
+        this.state.isNewbie = true;
+      }
+
+      setTimeout(() => { this.setState({ isLoading: false }) }, 3000);
+    });
   }
 
   render() {
     StatusBar.setBarStyle('dark-content', true);
-
     if (this.state.isLoading) {
       return <LogoScreen />
     } else {
-      return <MainScreen IsNewbie={this.IsNewbie()}/>
+      return <MainScreen IsNewbie={this.state.isNewbie} />
     }
   }
 }

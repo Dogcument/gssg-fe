@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Image } from 'react-native';
+import { Image, View } from 'react-native';
 
 // screen component
 import WritingStack from '../Writing/WritingStack';
@@ -18,19 +18,18 @@ export default class MainScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isNewbie: true
+      isNewbie: props.IsNewbie
     };
   }
   setPopupVisible = value => {
     this.setState({
       isNewbie: value
-    })
+    });
   }
   render() {
     return (
       <NavigationContainer>
         <Popup visible={this.state.isNewbie} setPopupVisible={this.setPopupVisible} />
-
         <Tab.Navigator tabBarOptions={{
           showLabel: false,
           style: {
