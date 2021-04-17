@@ -77,7 +77,7 @@ function MyPageStack({ navigation }) {
                                 onPress={() => alert("좋아요 표시 화면으로 이동")}>
                                 <Image
                                     style={{ width: 20, height: 20 }}
-                                    source={require('../Images/Bone.png')} />
+                                    source={require('../Common/Images/Bone.png')} />
                             </TouchableOpacity>
                             <TouchableOpacity
                                 style={{ width: 20, height: 20, marginRight: 15 }}
@@ -85,7 +85,7 @@ function MyPageStack({ navigation }) {
                                 onPress={() => alert("댓글 표시 화면으로 이동")}>
                                 <Image
                                     style={{ width: 20, height: 20 }}
-                                    source={require('../Images/Chat.png')} />
+                                    source={require('../Common/Images/Chat.png')} />
                             </TouchableOpacity>
                         </HeaderButtons>
                     )

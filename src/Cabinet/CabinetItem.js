@@ -28,7 +28,7 @@ export class CabinetItem extends React.Component {
 
         <View style={[styles.content, { flex: 1.5, flexDirection: 'row' }]}>
           <Image style={styles.ImageIconStyle}
-            source={require('./Images/3_Profile.png')}>
+            source={require('../Common/Images/Profile.png')}>
           </Image>
           <View style={{ flexDirection: 'row', alignItems: 'center', flex: 1 }}>
             <View style={{ height: '40%', width: 3, backgroundColor: '#ae9784', marginRight: 5 }} />
@@ -43,10 +43,10 @@ export class CabinetItem extends React.Component {
           </View>
           <View style={{alignItems : 'center', flexDirection : 'row'}}>
             <Image style={{ height: 13, width: 13, marginRight: 10 }}
-              source={require('./Images/7_Bone.png')}>
+              source={require('../Common/Images/Bone.png')}>
             </Image>
             <Image style={{ height: 13, width: 13, marginRight: 10 }}
-              source={require('./Images/9_Chat.png')}>
+              source={require('../Common/Images/Chat.png')}>
             </Image>
           </View>
         </View>

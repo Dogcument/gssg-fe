@@ -40,7 +40,7 @@ export class ItemDetail extends React.Component {
                 }}>
                     <Image
                         style={[styles.ImageStyle, { marginLeft: 15, marginRight: 15 }]}
-                        source={require('../Images/Profile.png')} />
+                        source={require('./Images/Profile.png')} />
                     <View style={[styles.profileView], { flexDirection: 'row', flex: 1 }}>
                         <View style={{ height: 40, width: 3, backgroundColor: '#ae9784', marginRight: 5 }}>
                         </View>

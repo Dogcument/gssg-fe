@@ -9,7 +9,7 @@ export class MyPageProfile extends React.Component {
                 <View style={{ width: '90%', flexDirection: 'row', flex: 3, alignItems: 'center', marginLeft: '5%' }}>
                     <Image
                         style={[styles.profileImageStyle, { flex: 1 }]}
-                        source={require('./Images/3_Profile.png')} />
+                        source={require('../Common/Images/Profile.png')} />
                     <View style={{ flexDirection: 'row', justifyContent: 'space-around', flex: 3 }}>
                         <View style={{ flexDirection: 'column', alignItems : 'center', marginLeft : '10%' }}>
                             <Text style={{ fontFamily: 'SpoqaRegular', fontSize : 12, marginBottom : 5 }}>
