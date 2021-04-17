@@ -21,7 +21,7 @@ const Popup = props => {
             <Text style={{ flex: 8, fontFamily: 'SpoqaBold', fontSize: 20 }}>
               작가 등록증
             </Text>
-            <TouchableHighlight style={{ flex: 0.5 }} onPress={() => setModalVisible(false)}>
+            <TouchableHighlight style={{ flex: 0.5 }} onPress={() => props.setPopupVisible(false)}>
               <Text>-></Text>
             </TouchableHighlight>
           </View>

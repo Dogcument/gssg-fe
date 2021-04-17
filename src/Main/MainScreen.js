@@ -8,67 +8,82 @@ import WritingStack from '../Writing/WritingStack';
 import CabinetStack from '../Cabinet/CabinetStack';
 import MyPageStack from '../MyPage/MyPageStack';
 
+import Popup from '../Logo/Popup';
+
 import { navigationIcons } from './TabBarIcons';
 
 const Tab = createBottomTabNavigator();
 
-function App() {
-  return (
-    <NavigationContainer>
-      <Tab.Navigator tabBarOptions={{
-        showLabel: false,
-        style: {
-          backgroundColor: '#ae9784'
-        }
-      }}>
-        <Tab.Screen
-          name="글쓰기"
-          component={WritingStack}
-          options={{
-            tabBarIcon: ({ focused }) => {
-              return (
-                <Image
-                  source={focused ? navigationIcons[0].active : navigationIcons[0].inactive}
-                  style={{ width: 30, height: 30 }}
-                />
-              );
-            },
-            unmountOnBlur: true
-          }}
-        />
-        <Tab.Screen
-          name="보관함"
-          component={CabinetStack}
-          options={{
-            tabBarIcon: ({ focused }) => {
-              return (
-                <Image
-                  source={focused ? navigationIcons[1].active : navigationIcons[1].inactive}
-                  style={{ width: 30, height: 30 }}
-                />
-              );
-            },
-            unmountOnBlur: true
-          }}
-        />
-        <Tab.Screen
-          name="마이페이지"
-          component={MyPageStack}
-          options={{
-            tabBarIcon: ({ focused }) => {
-              return (
-                <Image
-                  source={focused ? navigationIcons[2].active : navigationIcons[2].inactive}
-                  style={{ width: 30, height: 30 }}
-                />
-              );
-            },
-            unmountOnBlur: true
-          }}
-        />
-      </Tab.Navigator>
-    </NavigationContainer>
-  );
-}
+export default class MainScreen extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isNewbie: true
+    };
+  }
+  setPopupVisible = value => {
+    this.setState({
+      isNewbie: value
+    })
+  }
+  render() {
+    return (
+      <NavigationContainer>
+        <Popup visible={this.state.isNewbie} setPopupVisible={this.setPopupVisible} />
 
-export default App;
+        <Tab.Navigator tabBarOptions={{
+          showLabel: false,
+          style: {
+            backgroundColor: '#ae9784'
+          }
+        }}>
+          <Tab.Screen
+            name="글쓰기"
+            component={WritingStack}
+            options={{
+              tabBarIcon: ({ focused }) => {
+                return (
+                  <Image
+                    source={focused ? navigationIcons[0].active : navigationIcons[0].inactive}
+                    style={{ width: 30, height: 30 }}
+                  />
+                );
+              },
+              unmountOnBlur: true
+            }}
+          />
+          <Tab.Screen
+            name="보관함"
+            component={CabinetStack}
+            options={{
+              tabBarIcon: ({ focused }) => {
+                return (
+                  <Image
+                    source={focused ? navigationIcons[1].active : navigationIcons[1].inactive}
+                    style={{ width: 30, height: 30 }}
+                  />
+                );
+              },
+              unmountOnBlur: true
+            }}
+          />
+          <Tab.Screen
+            name="마이페이지"
+            component={MyPageStack}
+            options={{
+              tabBarIcon: ({ focused }) => {
+                return (
+                  <Image
+                    source={focused ? navigationIcons[2].active : navigationIcons[2].inactive}
+                    style={{ width: 30, height: 30 }}
+                  />
+                );
+              },
+              unmountOnBlur: true
+            }}
+          />
+        </Tab.Navigator>
+      </NavigationContainer>
+    );
+  }
+}

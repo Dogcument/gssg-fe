@@ -41,15 +41,7 @@ class App extends React.Component {
     if (this.state.isLoading) {
       return <LogoScreen />
     } else {
-      if (this.IsNewbie()) {
-        // return <PopupScreen?>
-        console.log("I am a newbie");
-        
-        // tempcode
-        return <Popup />
-      } else {
-        return <MainScreen />
-      }
+      return <MainScreen IsNewbie={this.IsNewbie()}/>
     }
   }
 }
