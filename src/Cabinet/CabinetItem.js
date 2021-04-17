@@ -11,22 +11,18 @@ export class CabinetItem extends React.Component {
     const navigation = this.props.navigation;
     return (
       <TouchableOpacity
-        style={styles.container}
+        style={styles.ItemContainer}
         onPress={() => OnCabinetItemClicked(navigation, writingTime, content)}>
           
-        <View style={[styles.text, { flex: 3.5, marginTop : 5, justifyContent : 'center' }]}>
-          <Text style={
-            [styles.subtext, {
-              fontFamily: 'SpoqaRegular',
-              marginTop: 10, marginLeft: 10, width: '95%', textAlign : 'center'
-            }]} numberOfLines={6} ellipsizeMode={'tail'}>
+        <View style={[styles.ItemContent]}>
+          <Text style={[styles.ItemText]} numberOfLines={6} ellipsizeMode={'tail'}>
             {content || 'Content'}
           </Text>
         </View>
 
         <View style={{ height: 5 }}></View>
 
-        <View style={[styles.content, { flex: 1.5, flexDirection: 'row' }]}>
+        <View style={[styles.ItemProfile]}>
           <Image style={styles.ImageIconStyle}
             source={require('../Common/Images/Profile.png')}>
           </Image>

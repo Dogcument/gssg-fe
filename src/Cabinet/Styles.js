@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 // Dummy Style
 // Jiwung TODO
 export const styles = StyleSheet.create({
-  container: {
+  ItemContainer: {
     width: '95%',
     height: 200,
     flexDirection: 'column',
@@ -14,25 +14,30 @@ export const styles = StyleSheet.create({
     marginBottom: 5,
     marginLeft : '2.5%',
   },
-  content : {
+  ItemContent: {
+    width: '100%',
+    height: '100%',
+    flexDirection: 'column',
+    flex : 3.5,
+    marginTop : 5,
+    justifyContent : 'center'
+  },
+  ItemProfile : {
     flexDirection : 'row',
     justifyContent : 'flex-start',
+    flex : 1.5,
+    flexDirection : 'row'
+  },
+  ItemText: {
+    alignItems: 'flex-end',
+    flexDirection: 'column',
+    fontFamily: 'SpoqaRegular',
+    marginTop: 10, marginLeft: 10,
+    width: '95%', textAlign : 'center'
   },
   profile : {
     flex : 2,
     justifyContent : 'flex-end'
-  },
-  text: {
-    width: '100%',
-    height: '100%',
-    flexDirection: 'column',
-    fontFamily : 'SpoqaMedium'
-  },
-  subtext: {
-    width: '100%',
-    alignItems: 'flex-end',
-    flexDirection: 'column',
-    fontFamily : 'SpoqaMedium'
   },
   profileView : {
     alignItems : 'flex-start',

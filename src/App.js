@@ -8,8 +8,10 @@ import { StatusBar } from 'react-native';
 // screen component
 import LogoScreen from './Logo/LogoScreen';
 import MainScreen from './Main/MainScreen';
+import Popup from './Logo/Popup';
 
 import AsyncStorage from '@react-native-community/async-storage';
+
 class App extends React.Component {
   state = {
     isLoading: true
@@ -42,8 +44,9 @@ class App extends React.Component {
       if (this.IsNewbie()) {
         // return <PopupScreen?>
         console.log("I am a newbie");
+        
         // tempcode
-        return <MainScreen />
+        return <Popup />
       } else {
         return <MainScreen />
       }
