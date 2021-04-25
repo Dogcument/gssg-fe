@@ -21,14 +21,14 @@ export class MyPageItem extends React.Component {
             번호
           </Text>
         </View>
-        <Text style={{ marginLeft : 10, fontFamily : 'SpoqaMedium', flex : 1, color : '#FFFFFF', fontSize : 20, fontWeight : 'bold' }}>
+        <Text style={{ marginLeft : 10, marginBottom : -2, fontFamily : 'SpoqaMedium', flex : 1, color : '#FFFFFF', fontSize : 20, fontWeight : 'bold' }}>
           글감
         </Text>
         <Text style={[styles.text, { marginLeft : 10, fontSize : 10, flex : 1 }]}>
           {writingTime || 'WritingTime'}
         </Text>
         <Image style={{ height: 15, width: 15, marginLeft : 5, marginRight: 5 }}
-          source={require('../Common/Images/BoneWhite.png')}>
+          source={require('./Images/7_BoneWhite.png')}>
         </Image>
         <View style={{width : '5%'}}>
           <Text style={{ fontFamily : 'SpoqaMedium', fontSize : 10, color : '#FFFFFF' }}>
@@ -36,7 +36,7 @@ export class MyPageItem extends React.Component {
           </Text>
         </View>
         <Image style={{ height: 15, width: 15, marginRight: 5 }}
-          source={require('../Common/Images/ChatWhite.png')}>
+          source={require('./Images/9_ChatWhite.png')}>
         </Image>
         <View style={{width : '5%', marginRight : 10}}>
           <Text style={{ fontFamily : 'SpoqaMedium', fontSize : 10, color : '#FFFFFF' }}>

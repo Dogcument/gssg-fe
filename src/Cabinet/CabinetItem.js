@@ -23,7 +23,7 @@ export class CabinetItem extends React.Component {
         <View style={{ height: 5 }}></View>
 
         <View style={[styles.ItemProfile]}>
-          <Image style={styles.ImageIconStyle}
+          <Image style={[styles.ImageIconStyle]}
             source={require('../Common/Images/Profile.png')}>
           </Image>
           <View style={{ flexDirection: 'row', alignItems: 'center', flex: 1 }}>

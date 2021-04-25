@@ -53,6 +53,7 @@ export const styles = StyleSheet.create({
     margin: 5,
     height: 40,
     width: 40,
+    marginBottom : -100
     // resizeMode: 'stretch',
   }
 }
