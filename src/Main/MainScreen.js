@@ -8,8 +8,6 @@ import WritingStack from '../Writing/WritingStack';
 import CabinetStack from '../Cabinet/CabinetStack';
 import MyPageStack from '../MyPage/MyPageStack';
 
-import Popup from '../Logo/Popup';
-
 import { navigationIcons } from './TabBarIcons';
 
 const Tab = createBottomTabNavigator();
@@ -21,15 +19,9 @@ export default class MainScreen extends React.Component {
       isNewbie: props.IsNewbie
     };
   }
-  setPopupVisible = value => {
-    this.setState({
-      isNewbie: value
-    });
-  }
   render() {
     return (
       <NavigationContainer>
-        <Popup visible={this.state.isNewbie} setPopupVisible={this.setPopupVisible} />
         <Tab.Navigator tabBarOptions={{
           showLabel: false,
           style: {
