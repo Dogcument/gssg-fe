@@ -1,25 +1,33 @@
 import React from "react";
 import {
     Modal,
-    TouchableHighlight,
     StyleSheet,
     Image,
     TouchableOpacity
 } from "react-native";
 
-const Popup = props => {
+const Images = [
+    require('./Images/Pop_up_1.png'),
+    require('./Images/Pop_up_2.png'),
+    require('./Images/Pop_up_3.png'),
+    require('./Images/Pop_up_4.png'),
+    require('./Images/Pop_up_5.png'),
+    require('./Images/Pop_up_6.png')
+]
+
+const PopupInfoScreen = props => {
     return (
         <Modal animationType="fade" transparent={true} visible={props.visible}
             style={{justifyContent : 'center', alignItems : 'center'}}>
             <TouchableOpacity style={styles.modalBackground}>
                 <Image style={styles.popupImage}
-                    source={require('./Images/Pop_up_3.png')}>
+                    source={Images[0]}>
                 </Image>
             </TouchableOpacity>
         </Modal>
     );
 };
-export default Popup;
+export default PopupInfoScreen;
 
 const styles = StyleSheet.create({
     modalBackground: {
