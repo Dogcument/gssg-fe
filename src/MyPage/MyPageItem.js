@@ -28,7 +28,7 @@ export class MyPageItem extends React.Component {
           {writingTime || 'WritingTime'}
         </Text>
         <Image style={{ height: 15, width: 15, marginLeft : 5, marginRight: 5 }}
-          source={require('../Common/Images/Bone.png')}>
+          source={require('../Common/Images/BoneWhite.png')}>
         </Image>
         <View style={{width : '5%'}}>
           <Text style={{ fontFamily : 'SpoqaMedium', fontSize : 10, color : '#FFFFFF' }}>
@@ -36,7 +36,7 @@ export class MyPageItem extends React.Component {
           </Text>
         </View>
         <Image style={{ height: 15, width: 15, marginRight: 5 }}
-          source={require('../Common/Images/Chat.png')}>
+          source={require('../Common/Images/ChatWhite.png')}>
         </Image>
         <View style={{width : '5%', marginRight : 10}}>
           <Text style={{ fontFamily : 'SpoqaMedium', fontSize : 10, color : '#FFFFFF' }}>

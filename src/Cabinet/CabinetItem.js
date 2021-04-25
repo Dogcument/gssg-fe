@@ -38,10 +38,10 @@ export class CabinetItem extends React.Component {
             </View>
           </View>
           <View style={{alignItems : 'center', flexDirection : 'row'}}>
-            <Image style={{ height: 13, width: 13, marginRight: 10 }}
+            <Image style={{ height: 20, width: 20, marginRight: 10, marginBottom : -15 }}
               source={require('../Common/Images/Bone.png')}>
             </Image>
-            <Image style={{ height: 13, width: 13, marginRight: 10 }}
+            <Image style={{ height: 20, width: 20, marginRight: 10, marginBottom : -15 }}
               source={require('../Common/Images/Chat.png')}>
             </Image>
           </View>
