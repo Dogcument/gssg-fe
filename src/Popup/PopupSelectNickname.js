@@ -16,10 +16,10 @@ const Popup = props => {
         <View style={{ margin: 15, flex : 1 }}>
           <View style={{ flexDirection: 'row', flex: 1, justifyContent : 'center', alignItems : 'center' }}>
             <Image source={require('../Writing/Images/1_WritingButton.png')} style={{ height : 25, width : 25 }} />
-            <Text style={{ flex: 8, fontFamily: 'SpoqaBold', fontSize: 20, marginLeft : 10 }}>
+            <Text style={{ flex: 1, fontFamily: 'SpoqaBold', fontSize: 20, marginLeft : 10 }}>
               작가 등록증
             </Text>
-            <TouchableHighlight style={{ flex: 0.5, marginRight : 10 }} onPress={() => props.setPopupVisible(false)}>
+            <TouchableHighlight style={{ alignSelf : 'flex-end' }} onPress={() => props.setPopupVisible(false)}>
               <Image style={{width : 25, height : 25}}
                 source={require('../Main/Images/NextButton.png')} />
             </TouchableHighlight>
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     height: '20%',
     backgroundColor : '#FFFFFF',
     borderColor : '#d4d4d4',
-    marginTop : '120%', marginLeft : '10%',
+    marginTop : '130%', marginLeft : '10%',
     borderRadius : 10
   }
 });

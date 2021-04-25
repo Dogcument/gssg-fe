@@ -20,34 +20,34 @@ const Popup = props => {
             <View style={{ flex: 1, flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-around', padding: 5 }}>
               <TouchableOpacity>
                 <Image source={require('../MyPage/Images/기본강아지.png')}
-                  style={{ width: 45, height: 45 }} />
+                  style={{ width: 50, height: 50 }} />
               </TouchableOpacity>
               <TouchableOpacity>
                 <Image source={require('../MyPage/Images/불독.png')}
-                  style={{ width: 45, height: 45 }} />
+                  style={{ width: 50, height: 50 }} />
               </TouchableOpacity>
               <TouchableOpacity>
                 <Image source={require('../MyPage/Images/사모예드.png')}
-                  style={{ width: 45, height: 45 }} />
+                  style={{ width: 50, height: 50 }} />
               </TouchableOpacity>
               <TouchableOpacity>
                 <Image source={require('../MyPage/Images/요크.png')}
-                  style={{ width: 45, height: 45 }} />
+                  style={{ width: 50, height: 50 }} />
               </TouchableOpacity>
               <TouchableOpacity>
                 <Image source={require('../MyPage/Images/코기.png')}
-                  style={{ width: 45, height: 45 }} />
+                  style={{ width: 50, height: 50 }} />
               </TouchableOpacity>
               <TouchableOpacity>
                 <Image source={require('../MyPage/Images/허스키.png')}
-                  style={{ width: 45, height: 45 }} />
+                  style={{ width: 50, height: 50 }} />
               </TouchableOpacity>
             </View>
           </ScrollView>
 
           <View style={{ flexDirection: 'column', width: '35%' }}>
             <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
-              <TouchableHighlight style={{ marginRight: 10 }} onPress={() => props.setPopupVisible(false)}>
+              <TouchableHighlight onPress={() => props.setPopupVisible(false)}>
                 <Image style={{ width: 25, height: 25 }}
                   source={require('../Main/Images/NextButton.png')} />
               </TouchableHighlight>
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     height: '20%',
     backgroundColor: '#FFFFFF',
     borderColor: '#d4d4d4',
-    marginTop: '120%', marginLeft: '10%',
+    marginTop: '130%', marginLeft: '10%',
     borderRadius: 10
   }
 });

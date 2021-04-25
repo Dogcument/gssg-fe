@@ -7,7 +7,6 @@ import { Image, View } from 'react-native';
 import WritingStack from '../Writing/WritingStack';
 import CabinetStack from '../Cabinet/CabinetStack';
 import MyPageStack from '../MyPage/MyPageStack';
-
 import { navigationIcons } from './TabBarIcons';
 
 const Tab = createBottomTabNavigator();

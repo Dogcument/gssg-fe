@@ -40,7 +40,7 @@ class App extends React.Component {
         this.state.isNewbie = true;
       }
 
-      setTimeout(() => { this.setState({ isLoading: false }) }, 3000);
+      // setTimeout(() => { this.setState({ isLoading: false }) }, 3000);
     });
   }
 
