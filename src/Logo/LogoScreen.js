@@ -2,29 +2,37 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { ImageBackground } from "react-native";
 import Popup from '../Popup/PopupSelectNickname';
+import MainScreen from '../Main/MainScreen';
 
 export default class LogoScreen extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            isNewbie: props.IsNewbie
-        };
+            goMainScreen: false
+        }
     }
-    setPopupVisible = value => {
-        this.setState({
-            isNewbie: { value }
-        });
+
+    GotoMainScreen = value => {
+        this.setState({ goMainScreen: true });
     }
 
     render() {
-        return (
-            <NavigationContainer>
-                <Popup visible={this.state.isNewbie} setPopupVisible={this.setPopupVisible}/>
-                <ImageBackground
-                    source={require("./Images/1_Logo.png")}
-                    style={{ width: "100%", height: "100%" }}>
-                </ImageBackground>
-            </NavigationContainer>
-        );
+        if (this.state.goMainScreen) {
+            return <MainScreen />
+        } else {
+            return (
+                <NavigationContainer>
+                    <Popup
+                        visible={this.props.isNewbie}
+                        GotoMainScreen={this.GotoMainScreen}
+                    />
+                    <ImageBackground
+                        source={require("./Images/1_Logo.png")}
+                        style={{ width: "100%", height: "100%" }}>
+                    </ImageBackground>
+                </NavigationContainer>
+            );
+
+        }
     }
 }

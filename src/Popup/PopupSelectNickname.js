@@ -19,7 +19,7 @@ const Popup = props => {
             <Text style={{ flex: 1, fontFamily: 'SpoqaBold', fontSize: 20, marginLeft : 10 }}>
               작가 등록증
             </Text>
-            <TouchableHighlight style={{ alignSelf : 'flex-end' }} onPress={() => props.setPopupVisible(false)}>
+            <TouchableHighlight style={{ alignSelf : 'flex-end' }} onPress={() => props.GotoMainScreen()}>
               <Image style={{width : 25, height : 25}}
                 source={require('../Main/Images/NextButton.png')} />
             </TouchableHighlight>

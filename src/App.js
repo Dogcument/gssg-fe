@@ -30,26 +30,30 @@ class App extends React.Component {
         SpoqaRegular: require('../assets/fonts/SpoqaHanSansNeo-Regular.ttf')
       },
     );
+
     this.GetIsNewbie();
   }
 
   GetIsNewbie() {
     AsyncStorage.getItem("Nickname", (result) => {
       if (result == null) {
-        console.log("뉴비 입장");
         this.state.isNewbie = true;
       }
 
-      // setTimeout(() => { this.setState({ isLoading: false }) }, 3000);
+      setTimeout(() => { this.setState({ isLoading: false }) }, 3000);
     });
   }
 
   render() {
     StatusBar.setBarStyle('dark-content', true);
     if (this.state.isLoading) {
-      return <LogoScreen />
+      return <LogoScreen isNewbie={false} />
     } else {
-      return <MainScreen IsNewbie={this.state.isNewbie} />
+      if (this.state.isNewbie) {
+        return <LogoScreen isNewbie={this.state.isNewbie} />
+      } else {
+        return <MainScreen />
+      }
     }
   }
 }
