@@ -47,7 +47,7 @@ const Popup = props => {
 
           <View style={{ flexDirection: 'column', width: '35%' }}>
             <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
-              <TouchableHighlight onPress={() => props.setPopupVisible(false)}>
+              <TouchableHighlight onPress={() => props.GotoMainScreen()}>
                 <Image style={{ width: 25, height: 25 }}
                   source={require('../Main/Images/NextButton.png')} />
               </TouchableHighlight>
