@@ -16,7 +16,7 @@ const Popup = props => {
       <View style={styles.modalBackground}>
         <View style={{ margin: 15, flex: 1, flexDirection: 'row' }}>
           <ScrollView horizontal={false}
-            style={{ width: '65%', flexDirection: 'column', backgroundColor: '#a98baa' }}>
+            style={{ width: '65%', flexDirection: 'column', backgroundColor: '#d4d4d4', borderRadius : 10 }}>
             <View style={{ flex: 1, flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-around', padding: 5 }}>
               <TouchableOpacity>
                 <Image source={require('../MyPage/Images/기본강아지.png')}

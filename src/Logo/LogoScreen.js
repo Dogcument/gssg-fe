@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { ImageBackground } from "react-native";
-import Popup from '../Popup/PopupSelectNickname';
+import Popup from '../Popup/PopupSelectDog';
 import MainScreen from '../Main/MainScreen';
 
 export default class LogoScreen extends React.Component {
