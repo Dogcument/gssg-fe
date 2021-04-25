@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { ImageBackground } from "react-native";
-import { PopupNicknameSetScreen } from '../Popup/PopupSignUp';
+import { PopupSignUpScreen } from '../Popup/PopupSignUp';
 import MainScreen from '../Main/MainScreen';
 
 export default class LogoScreen extends React.Component {
@@ -22,7 +22,7 @@ export default class LogoScreen extends React.Component {
         } else {
             return (
                 <NavigationContainer>
-                    <PopupNicknameSetScreen
+                    <PopupSignUpScreen
                         visible={this.props.isNewbie}
                         GotoMainScreen={this.GotoMainScreen}
                     />
