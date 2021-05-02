@@ -47,10 +47,10 @@ class App extends React.Component {
   render() {
     StatusBar.setBarStyle('dark-content', true);
     if (this.state.isLoading) {
-      return <LogoScreen isNewbie={false} />
+      return <LogoScreen signUp={false} />
     } else {
       if (this.state.isNewbie) {
-        return <LogoScreen isNewbie={this.state.isNewbie} />
+        return <LogoScreen signUp={true} />
       } else {
         return <MainScreen />
       }

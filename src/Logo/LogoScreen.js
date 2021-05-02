@@ -1,6 +1,5 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { ImageBackground } from "react-native";
 import { SignUpScreen } from '../SignUp/SignUpScreen';
 import MainScreen from '../Main/MainScreen';
 
@@ -23,7 +22,7 @@ export default class LogoScreen extends React.Component {
             return (
                 <NavigationContainer>
                     <SignUpScreen
-                        visible={this.props.isNewbie}
+                        signUp={this.props.signUp}
                         GotoMainScreen={this.GotoMainScreen}
                     />
                 </NavigationContainer>
