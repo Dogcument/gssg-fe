@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { ImageBackground, KeyboardAvoidingView } from "react-native";
+import { ImageBackground } from "react-native";
 import { PopupSignUpScreen } from '../Popup/PopupSignUp';
 import MainScreen from '../Main/MainScreen';
 
@@ -22,17 +22,14 @@ export default class LogoScreen extends React.Component {
         } else {
             return (
                 <NavigationContainer>
-                    <KeyboardAvoidingView
-                        behavior={Platform.OS === "ios" ? "padding" : "height"}>
-                        <SignUpScreen
-                            visible={this.props.isNewbie}
-                            GotoMainScreen={this.GotoMainScreen}
-                        />
-                        <ImageBackground
-                            source={require("./Images/1_Logo.png")}
-                            style={{ width: "100%", height: "100%" }}>
-                        </ImageBackground>
-                    </KeyboardAvoidingView>
+                    <PopupSignUpScreen
+                        visible={this.props.isNewbie}
+                        GotoMainScreen={this.GotoMainScreen}
+                    />
+                    <ImageBackground
+                        source={require("./Images/1_Logo.png")}
+                        style={{ width: "100%", height: "100%" }}>
+                    </ImageBackground>
                 </NavigationContainer>
             );
 
