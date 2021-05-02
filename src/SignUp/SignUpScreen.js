@@ -48,6 +48,7 @@ export class SignUpScreen extends React.Component {
           return (
             <View style={{ width: '100%', height: '100%' }}>
               <ImageBackground source={require('../Logo/Images/1_Logo.png')} style={{ position: 'absolute', width: '100%', height: '100%' }} />
+              <View style={{ width : '100%', height : '100%', backgroundColor : '#000000', opacity : 0.5}} />
               <View style={styles.modalBackground}>
                 <View style={{ margin: 15, flex: 1 }}>
                   <View style={{ flexDirection: 'row', flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -82,6 +83,7 @@ export class SignUpScreen extends React.Component {
           return (
             <View style={{ width: '100%', height: '100%' }}>
               <ImageBackground source={require('../Logo/Images/1_Logo.png')} style={{ position: 'absolute', width: '100%', height: '100%' }} />
+              <View style={{ width : '100%', height : '100%', backgroundColor : '#000000', opacity : 0.5}} />
               <View style={styles.modalBackground}>
                 <View style={{ margin: 15, flex: 1, flexDirection: 'row' }}>
                   <ScrollView horizontal={false}
@@ -134,9 +136,9 @@ export class SignUpScreen extends React.Component {
         case SignUpState.ShowTutorial:
           // tempcode 
           return (
-            <TutorialScreen>
-              
-            </TutorialScreen>
+              <TutorialScreen>
+                
+              </TutorialScreen>
           );
       }
     } else {
