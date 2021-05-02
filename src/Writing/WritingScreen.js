@@ -12,7 +12,7 @@ export class WritingScreen extends React.Component {
         <TextInput
           style={styles.TextInputStyle}
           placeholder="여기에 입력"
-          multiline='true'
+          multiline={true}
           returnKeyType='default'
           onChangeText={inputText => this.onChangeText(inputText)}
         />
@@ -31,6 +31,7 @@ function SaveToLocalMachine() {
 };
 
 export function OnDoneButtonClicked(navigation) {
+  console.log(contentText);
   SaveToLocalMachine();
 
   return (
