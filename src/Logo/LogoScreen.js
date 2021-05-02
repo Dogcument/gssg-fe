@@ -1,5 +1,4 @@
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
 import { SignUpScreen } from '../SignUp/SignUpScreen';
 import MainScreen from '../Main/MainScreen';
 
@@ -20,12 +19,10 @@ export default class LogoScreen extends React.Component {
             return <MainScreen />
         } else {
             return (
-                <NavigationContainer>
-                    <SignUpScreen
-                        signUp={this.props.signUp}
-                        GotoMainScreen={this.GotoMainScreen}
-                    />
-                </NavigationContainer>
+                <SignUpScreen
+                    signUp={this.props.signUp}
+                    GotoMainScreen={this.GotoMainScreen}
+                />
             );
 
         }

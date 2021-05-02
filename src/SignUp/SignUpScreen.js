@@ -11,10 +11,12 @@ import {
   ImageBackground
 } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { TutorialScreen } from "./TutorialScreen";
 
 export var SignUpState = {
   SetNickname: 1,
-  SetDog: 2
+  SetDog: 2,
+  ShowTutorial: 3,
 }
 
 export class SignUpScreen extends React.Component {
@@ -31,6 +33,9 @@ export class SignUpScreen extends React.Component {
         this.setState({ signUpState: SignUpState.SetDog });
         break;
       case SignUpState.SetDog:
+        this.setState({ signUpState: SignUpState.ShowTutorial });
+        break;
+      case SignUpState.ShowTutorial:
         this.props.GotoMainScreen();
         break;
     }
@@ -125,6 +130,13 @@ export class SignUpScreen extends React.Component {
                 </View>
               </View>
             </View>
+          );
+        case SignUpState.ShowTutorial:
+          // tempcode 
+          return (
+            <TutorialScreen>
+              
+            </TutorialScreen>
           );
       }
     } else {
