@@ -1,7 +1,6 @@
 import React from "react";
 import {
     View,
-    Modal,
     StyleSheet,
     Image,
     TouchableOpacity
@@ -16,7 +15,7 @@ const Images = [
     require('./Images/Pop_up_6.png')
 ]
 
-const DogSelectScreen = props => {
+export const TutorialScreen = props => {
     return (
         <View animationType="fade" transparent={true} visible={props.visible}
             style={{justifyContent : 'center', alignItems : 'center'}}>
@@ -28,7 +27,6 @@ const DogSelectScreen = props => {
         </View>
     );
 };
-export default DogSelectScreen;
 
 const styles = StyleSheet.create({
     modalBackground: {
