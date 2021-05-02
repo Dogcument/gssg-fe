@@ -6,19 +6,14 @@ import { styles } from './Styles';
 var contentText = "";
 
 export class WritingScreen extends React.Component {
-  state = {
-    numberOfLines: 1
-  };
-
   render() {
-    const { numberOfLines } = this.state;
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', width : '95%', marginLeft : '2.5%' }}>
         <TextInput
           style={styles.TextInputStyle}
           placeholder="여기에 입력"
-          returnKeyType='none'
-          numberOfLines={numberOfLines}
+          multiline='true'
+          returnKeyType='default'
           onChangeText={inputText => this.onChangeText(inputText)}
         />
       </View>
