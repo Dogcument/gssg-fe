@@ -4,10 +4,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 
 import { MyPageProfile } from './MyPageProfile';
 import { MyPageItem } from './MyPageItem';
-
-function IsValidKey(key) {
-  return key != "EXPO_CONSTANTS_INSTALLATION_ID";
-}
+import { IsValidKey } from '../Common/CommonFunction'
 
 export class MyPageScreen extends React.Component {
   constructor(props) {

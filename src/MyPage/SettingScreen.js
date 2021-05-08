@@ -2,9 +2,6 @@ import * as React from 'react';
 import { View, TouchableOpacity, Text } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 
-function IsWritingKey(key) {
-    return !(key == "Nickname" || key == "Comment");
-}
 export class SettingScreen extends React.Component {
 
     DeleteNicknameAndComment = async () => {
@@ -24,7 +21,7 @@ export class SettingScreen extends React.Component {
     DeleteWritings = async () => {
         const keys = await AsyncStorage.getAllKeys();
         for (let i = 0; i < keys.length; i++) {
-            if (!IsWritingKey(keys[i])) {
+            if (!IsValidKey(keys[i])) {
                 continue;
             }
             AsyncStorage.removeItem(keys[i]);

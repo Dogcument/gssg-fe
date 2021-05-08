@@ -2,10 +2,8 @@ import * as React from 'react';
 import { ScrollView } from 'react-native-gesture-handler';
 import AsyncStorage from '@react-native-community/async-storage';
 import { CabinetItem } from './CabinetItem';
+import { IsValidKey } from '../Common/CommonFunction'
 
-function IsValidKey(key) {
-  return key != "EXPO_CONSTANTS_INSTALLATION_ID";
-}
 export class CabinetScreen extends React.Component {
   constructor(props) {
     super(props);

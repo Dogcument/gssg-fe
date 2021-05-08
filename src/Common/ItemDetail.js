@@ -3,6 +3,11 @@ import { Text, View, Image } from 'react-native';
 import { styles } from './Styles';
 
 export class ItemDetail extends React.Component {
+    constructor() {
+        super();
+        
+    }
+
     render() {
         return (
             <View style={{

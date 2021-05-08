@@ -3,7 +3,6 @@ import { Image, TouchableOpacity } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { CabinetScreen } from './CabinetScreen';
 import { useNavigation } from "@react-navigation/native";
-import RNPickerSelect from 'react-native-picker-select';
 import { HeaderButtons } from 'react-navigation-header-buttons';
 import { ItemDetail } from '../Common/ItemDetail';
 const Stack = createStackNavigator();
@@ -25,15 +24,6 @@ function CabinetStack() {
                         fontFamily: 'SpoqaBold'
                     },
                     headerTitleAlign: 'left',
-                    headerRight: () => (
-                        <RNPickerSelect
-                            onValueChange={(value) => console.log(value)}
-                            items={[
-                                { label: "테스트 Lavel", value: "테스트 Value" }
-                            ]}
-                        >
-                        </RNPickerSelect>
-                    )
                 }}
             />
             <Stack.Screen
