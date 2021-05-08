@@ -7,12 +7,12 @@ export class SettingScreen extends React.Component {
     DeleteNicknameAndComment = async () => {
         const nicknameKey = await AsyncStorage.getItem("Nickname");
         if (nicknameKey != null) {
-            AsyncStorage.removeItem(nicknameKey);
+            AsyncStorage.removeItem("Nickname");
         }
 
         const commentKey = await AsyncStorage.getItem("Comment");
         if (commentKey != null) {
-            AsyncStorage.removeItem(commentKey);
+            AsyncStorage.removeItem("Comment");
         }
 
         alert("닉네임과 Comment가 초기화 되었습니다.");

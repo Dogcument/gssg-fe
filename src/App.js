@@ -10,6 +10,7 @@ import LogoScreen from './Logo/LogoScreen';
 import MainScreen from './Main/MainScreen';
 
 import AsyncStorage from '@react-native-community/async-storage';
+import { UserInfo } from './Common/CommonMethod'
 
 class App extends React.Component {
   constructor(props) {
@@ -36,6 +37,11 @@ class App extends React.Component {
 
   GetIsNewbie = async () => {
     const nickname = await AsyncStorage.getItem("Nickname");
+    const comment =  await AsyncStorage.getItem("Comment");
+
+    let userInfo = new UserInfo();
+    userInfo.SetInfo(nickname, comment);
+
     this.state.isNewbie = nickname == null;
     setTimeout(() => { this.setState({ isLoading: false }) }, 3000);
   }

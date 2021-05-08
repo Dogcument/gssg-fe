@@ -1,9 +1,11 @@
 import * as React from 'react';
 import { View, Text, Image } from 'react-native';
+import { UserInfo } from '../Common/CommonMethod';
 import { styles } from './Styles';
 
 export class MyPageProfile extends React.Component {
     render() {
+        const userInfo = new UserInfo();
         return (
             <View style={[styles.profileContainer]}>
                 <View style={{ width: '90%', flexDirection: 'row', flex: 3, alignItems: 'center', marginLeft: '5%' }}>
@@ -31,10 +33,10 @@ export class MyPageProfile extends React.Component {
                 </View>
                 <View style={{ width : ' 90%', marginLeft : '5%', flexDirection: 'column', flex: 2 }}>
                     <Text style={{ fontFamily: 'SpoqaBold', marginLeft: 10, fontSize : 13 }}>
-                        3년차서당개
+                        {userInfo.GetNickName()}
                     </Text>
                     <Text style={{ fontFamily: 'SpoqaRegular', marginLeft: 10, marginTop: 5, fontSize : 12 }}>
-                        풍월 딱 대 ㅋㅋ
+                        {userInfo.GetComment()}
                     </Text>
                 </View>
 

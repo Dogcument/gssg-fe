@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 
 import { MyPageProfile } from './MyPageProfile';
 import { MyPageItem } from './MyPageItem';
-import { IsValidKey } from '../Common/CommonFunction'
+import { IsValidKey } from '../Common/CommonMethod'
 
 export class MyPageScreen extends React.Component {
   constructor(props) {

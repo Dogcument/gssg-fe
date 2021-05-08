@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Text, View, Image } from 'react-native';
 import { styles } from './Styles';
+import { UserInfo } from '../Common/CommonMethod'
 
 export class ItemDetail extends React.Component {
     constructor() {
@@ -9,6 +10,7 @@ export class ItemDetail extends React.Component {
     }
 
     render() {
+        let userInfo = new UserInfo();
         return (
             <View style={{
                 flex: 1,
@@ -51,10 +53,10 @@ export class ItemDetail extends React.Component {
                         </View>
                         <View style={{ flexDirection: 'column', justifyContent: 'center', marginLeft: 5 }}>
                             <Text style={{ fontFamily: 'SpoqaBold' }}>
-                                오건돼지오건돼지오건돼지
+                                {userInfo.GetNickName()}
                             </Text>
                             <Text style={{ fontFamily: 'SpoqaRegular', fontSize: 13 }}>
-                                돼지는 오건입니다.
+                                {userInfo.GetComment()}
                             </Text>
                         </View>
                     </View>

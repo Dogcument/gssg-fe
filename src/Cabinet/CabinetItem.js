@@ -2,6 +2,7 @@ import * as React from 'react';
 import { TouchableOpacity, Text, View, Image } from 'react-native';
 import { styles } from './Styles';
 import moment from 'moment';
+import { UserInfo } from '../Common/CommonMethod'
 
 export class CabinetItem extends React.Component {
   render() {
@@ -9,6 +10,8 @@ export class CabinetItem extends React.Component {
     const writingTime = moment(writingTimeEpoch).format('YYYY.MM.DD HH:mm');
     const content = this.props.content;
     const navigation = this.props.navigation;
+    const userInfo = new UserInfo();
+
     return (
       <TouchableOpacity
         style={styles.ItemContainer}
@@ -30,7 +33,7 @@ export class CabinetItem extends React.Component {
             <View style={{ height: '40%', width: 3, backgroundColor: '#ae9784', marginRight: 5 }} />
             <View style={{ flexDirection: 'column' }}>
               <Text style={{ fontFamily: 'SpoqaMedium', fontSize: 10, fontWeight: 'bold' }}>
-                이름
+                {userInfo.GetNickName()}
               </Text>
               <Text style={{ fontFamily: 'SpoqaMedium', fontSize: 10 }}>
                 {writingTime || 'WritingTime'}

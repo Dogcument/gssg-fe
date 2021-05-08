@@ -12,6 +12,7 @@ import {
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { TutorialScreen } from "./TutorialScreen";
 import AsyncStorage from '@react-native-community/async-storage';
+import { UserInfo } from '../Common/CommonMethod';
 
 export var SignUpState = {
   SetNickname: 1,
@@ -19,8 +20,8 @@ export var SignUpState = {
   ShowTutorial: 3,
 }
 
-let nickNameText = "";
-let commentText = "";
+let nickName = "";
+let comment = "";
 export class SignUpScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -32,15 +33,15 @@ export class SignUpScreen extends React.Component {
   OnNextButtonClicked() {
     switch (this.state.signUpState) {
       case SignUpState.SetNickname:
-        if (nickNameText == "") {
+        if (nickName == "") {
           alert("닉네임이 비어있어요");
           return;
-        } if (commentText == "") {
+        } if (comment == "") {
           alert("코멘트가 비어있어요");
           return;
         }
         
-        AsyncStorage.setItem("Nickname", nickNameText, (error) => {
+        AsyncStorage.setItem("Nickname", nickName, (error) => {
           if (!error) {
             return;
           }
@@ -48,7 +49,7 @@ export class SignUpScreen extends React.Component {
           AsyncStorage.removeItem("Nickname");
         });
 
-        AsyncStorage.setItem("Comment", commentText, (error) => {
+        AsyncStorage.setItem("Comment", comment, (error) => {
           if (!error) {
             return;
           }
@@ -56,6 +57,8 @@ export class SignUpScreen extends React.Component {
           AsyncStorage.removeItem("Comment");
         });
 
+        let userInfo = new UserInfo();
+        userInfo.SetInfo(nickName, comment);
         this.setState({ signUpState: SignUpState.SetDog });
         break;
       case SignUpState.SetDog:
@@ -68,13 +71,11 @@ export class SignUpScreen extends React.Component {
   }
 
   onNicknameChange(text) {
-    nickNameText = text;
-    console.log(nickNameText);
+    nickName = text;
   }
 
   onCommentChange(text) {
-    commentText = text;
-    console.log(commentText);
+    comment = text;
   }
 
   render() {
