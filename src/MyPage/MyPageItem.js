@@ -13,33 +13,28 @@ export class MyPageItem extends React.Component {
       <TouchableOpacity
         style={[styles.itemContainer]}
         onPress={() => OnMyPageItemClicked(navigation, writingTime, content)}>
-        <View
-          style={{ height : 40, width : 40, marginLeft : 5,
-          backgroundColor : '#ae9784', borderRadius : 100,
-          justifyContent : 'center', alignItems : 'center' }}>
-          <Text style={{ fontFamily : 'title', color : '#FFFFFF' }}>
-            번호
-          </Text>
-        </View>
-        <Text style={{ marginLeft : 10, marginBottom : -2, fontFamily : 'SpoqaMedium', flex : 1, color : '#FFFFFF', fontSize : 20, fontWeight : 'bold' }}>
+        <Text style={{ fontFamily : 'SpoqaBold', fontSize : 15, marginLeft : '3%' }}>
+          #1
+        </Text>
+        <Text style={{ marginLeft : 10, fontFamily : 'SpoqaMedium', flex : 1, fontSize : 20, fontWeight : 'bold' }}>
           글감
         </Text>
-        <Text style={[styles.text, { marginLeft : 10, fontSize : 10, flex : 1 }]}>
+        <Text style={{ marginLeft : 10, fontFamily: 'SpoqaMedium', fontSize : 10, flex : 1 }}>
           {writingTime || 'WritingTime'}
         </Text>
         <Image style={{ height: 15, width: 15, marginLeft : 5, marginRight: 5 }}
-          source={require('./Images/7_BoneWhite.png')}>
+          source={require('../Common/Images/Bone.png')}>
         </Image>
         <View style={{width : '5%'}}>
-          <Text style={{ fontFamily : 'SpoqaMedium', fontSize : 10, color : '#FFFFFF' }}>
-            99
+          <Text style={{ fontFamily : 'SpoqaMedium', fontSize : 10 }}>
+            0
           </Text>
         </View>
         <Image style={{ height: 15, width: 15, marginRight: 5 }}
-          source={require('./Images/9_ChatWhite.png')}>
+          source={require('../Common/Images/Chat.png')}>
         </Image>
         <View style={{width : '5%', marginRight : 10}}>
-          <Text style={{ fontFamily : 'SpoqaMedium', fontSize : 10, color : '#FFFFFF' }}>
+          <Text style={{ fontFamily : 'SpoqaMedium', fontSize : 10 }}>
             0
           </Text>
         </View>

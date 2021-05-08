@@ -195,7 +195,7 @@ const styles = StyleSheet.create({
   modalBackground: {
     position: 'absolute',
     width: '80%',
-    height: '20%',
+    height: 125,
     backgroundColor: '#FFFFFF',
     borderColor: '#d4d4d4',
     marginTop: '130%', marginLeft: '10%',

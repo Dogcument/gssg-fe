@@ -5,14 +5,16 @@ import { StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
     profileContainer: {
         width: '100%',
-        height: 200,
+        height: 300,
+        padding : 10,
         flexDirection: 'column',
+        backgroundColor : '#ae9784',
         borderWidth: 0.5, borderColor: '#ae9784',
         borderRightWidth: 0, borderLeftWidth: 0, borderTopWidth: 0,
-        marginTop: 5
+        shadowColor : '#000000', shadowOpacity : 0.3, shadowOffset : {width : 4, height : 4}, shadowRadius : 5
     },
     profileImageStyle: {
-        height: '80%'
+        width : '70%'
     },
     profileView: {
         flex: 6,
@@ -23,14 +25,14 @@ export const styles = StyleSheet.create({
     itemContainer: {
         width: '95%',
         height: 50,
-        borderRadius: 50,
         flexDirection: 'row',
-        backgroundColor: '#d1c0a5',
+        borderColor : '#ae9784', borderWidth : 1,
         alignItems: 'center',
         justifyContent: 'space-around',
         marginTop: 5,
         marginBottom: 5,
-        marginLeft: '2.5%'
+        marginLeft: '2.5%',
+        shadowColor : '#000000', shadowOpacity : 0.3, shadowOffset : {width : 4, height : 4}, shadowRadius : 5
     },
     FacebookStyle: {
         flexDirection: 'row',
@@ -50,9 +52,5 @@ export const styles = StyleSheet.create({
     ImageStyle: {
         height: 50,
         width: 50,
-    },
-    text: {
-        color: 'white',
-        fontFamily: 'SpoqaMedium'
     }
 });
