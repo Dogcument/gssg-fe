@@ -34,14 +34,10 @@ class App extends React.Component {
     this.GetIsNewbie();
   }
 
-  GetIsNewbie() {
-    AsyncStorage.getItem("Nickname", (result) => {
-      if (result == null) {
-        this.state.isNewbie = true;
-      }
-
-      setTimeout(() => { this.setState({ isLoading: false }) }, 3000);
-    });
+  GetIsNewbie = async () => {
+    const nickname = await AsyncStorage.getItem("Nickname");
+    this.state.isNewbie = nickname == null;
+    setTimeout(() => { this.setState({ isLoading: false }) }, 3000);
   }
 
   render() {

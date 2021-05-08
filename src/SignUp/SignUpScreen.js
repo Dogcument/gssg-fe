@@ -4,7 +4,6 @@ import {
   TextInput,
   View,
   ScrollView,
-  Modal,
   TouchableHighlight,
   StyleSheet,
   Image,
@@ -12,6 +11,7 @@ import {
 } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { TutorialScreen } from "./TutorialScreen";
+import AsyncStorage from '@react-native-community/async-storage';
 
 export var SignUpState = {
   SetNickname: 1,
@@ -19,6 +19,8 @@ export var SignUpState = {
   ShowTutorial: 3,
 }
 
+let nickNameText = "";
+let commentText = "";
 export class SignUpScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -30,6 +32,30 @@ export class SignUpScreen extends React.Component {
   OnNextButtonClicked() {
     switch (this.state.signUpState) {
       case SignUpState.SetNickname:
+        if (nickNameText == "") {
+          alert("닉네임이 비어있어요");
+          return;
+        } if (commentText == "") {
+          alert("코멘트가 비어있어요");
+          return;
+        }
+        
+        AsyncStorage.setItem("Nickname", nickNameText, (error) => {
+          if (!error) {
+            return;
+          }
+          alert("이미 Nickname이 있는디? 지운다?");
+          AsyncStorage.removeItem("Nickname");
+        });
+
+        AsyncStorage.setItem("Comment", commentText, (error) => {
+          if (!error) {
+            return;
+          }
+          alert("이미 Comment가 있는디? 지운다?");
+          AsyncStorage.removeItem("Comment");
+        });
+
         this.setState({ signUpState: SignUpState.SetDog });
         break;
       case SignUpState.SetDog:
@@ -39,6 +65,16 @@ export class SignUpScreen extends React.Component {
         this.props.GotoMainScreen();
         break;
     }
+  }
+
+  onNicknameChange(text) {
+    nickNameText = text;
+    console.log(nickNameText);
+  }
+
+  onCommentChange(text) {
+    commentText = text;
+    console.log(commentText);
   }
 
   render() {
@@ -67,13 +103,17 @@ export class SignUpScreen extends React.Component {
                       필명
                       </Text>
                     <TextInput placeholder="필명을 입력해주세요!" placeholderTextColor='#FFFFFF'
-                      style={{ fontSize: 12, backgroundColor: '#d4d4d4', borderRadius: 5, width: '60%', height: '23%', paddingLeft: 5 }} />
+                      style={{ fontSize: 12, backgroundColor: '#d4d4d4', borderRadius: 5, width: '60%', height: '23%', paddingLeft: 5}}
+                      onChangeText={text => this.onNicknameChange(text)}
+                      />
                     <View style={{ height: 5 }}></View>
                     <Text style={{ fontFamily: 'SpoqaMedium' }}>
                       한 줄 소개
                       </Text>
                     <TextInput placeholder="간단한 설명을 해주세요!" placeholderTextColor='#FFFFFF'
-                      style={{ fontSize: 12, backgroundColor: '#d4d4d4', borderRadius: 5, width: '100%', height: '23%', paddingLeft: 5 }} />
+                      style={{ fontSize: 12, backgroundColor: '#d4d4d4', borderRadius: 5, width: '100%', height: '23%', paddingLeft: 5 }}
+                      onChangeText={text => this.onCommentChange(text)}
+                      />
                   </View>
                 </View>
               </View>
