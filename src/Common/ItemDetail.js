@@ -4,11 +4,6 @@ import { styles } from './Styles';
 import { UserInfo } from '../Common/CommonMethod'
 
 export class ItemDetail extends React.Component {
-    constructor() {
-        super();
-        
-    }
-
     render() {
         let userInfo = new UserInfo();
         return (

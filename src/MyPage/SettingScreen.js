@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { View, TouchableOpacity, Text } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
-
+import { IsValidKey } from '../Common/CommonMethod';
 export class SettingScreen extends React.Component {
 
     DeleteNicknameAndComment = async () => {
