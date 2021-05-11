@@ -21,21 +21,21 @@ export class MyPageProfile extends React.Component {
                     </View>
                     <Image
                         style={[styles.profileImageStyle]} resizeMode='contain'
-                        source={require('../Common/Images/Profile.png')} />
+                        source={require('./Images/H_Silver.png')} />
                     <View style={{ width : '15%', flexDirection: 'column', alignItems : 'center'}}>
                         <Text style={{ fontFamily: 'SpoqaRegular', fontSize : 12, marginBottom : 5, color : '#FFFFFF' }}>
                             Follower
                         </Text>
                         <Text style={{fontFamily : 'SpoqaMedium', fontSize : 20, fontWeight : 'bold', color : '#FFFFFF' }}>
-                            19.2k
+                            19k
                         </Text>
                     </View>
                 </View>
-                <View style={{ width : ' 90%', marginLeft : '5%', flexDirection: 'column', flex: 2.5, alignItems : 'center' }}>
-                    <Text style={{ fontFamily: 'SpoqaBold', marginLeft: 10, fontSize : 15, color : '#FFFFFF' }}>
+                <View style={{ width : ' 90%', marginLeft : '5%', marginTop : '7.5%', flexDirection: 'column', flex: 2.5, alignItems : 'center' }}>
+                    <Text style={{ fontFamily: 'SpoqaBold', marginLeft: 10, fontSize : 20, color : '#FFFFFF' }}>
                         {userInfo.GetNickName()}
                     </Text>
-                    <Text style={{ fontFamily: 'SpoqaRegular', marginLeft: 10, marginTop: 5, fontSize : 12, color : '#FFFFFF' }}>
+                    <Text style={{ fontFamily: 'SpoqaRegular', marginLeft: 10, marginTop: 5, fontSize : 15, color : '#FFFFFF' }}>
                         {userInfo.GetComment()}
                     </Text>
                 </View>

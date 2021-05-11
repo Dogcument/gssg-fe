@@ -11,10 +11,10 @@ export const styles = StyleSheet.create({
         backgroundColor : '#ae9784',
         borderWidth: 0.5, borderColor: '#ae9784',
         borderRightWidth: 0, borderLeftWidth: 0, borderTopWidth: 0,
-        shadowColor : '#000000', shadowOpacity : 0.3, shadowOffset : {width : 4, height : 4}, shadowRadius : 5
+        shadowColor : '#000000', shadowOpacity : 0.3, shadowOffset : {width : 2, height : 2}, shadowRadius : 3
     },
     profileImageStyle: {
-        width : '70%'
+        width : '60%'
     },
     profileView: {
         flex: 6,
@@ -32,7 +32,7 @@ export const styles = StyleSheet.create({
         marginTop: 5,
         marginBottom: 5,
         marginLeft: '2.5%',
-        shadowColor : '#000000', shadowOpacity : 0.3, shadowOffset : {width : 4, height : 4}, shadowRadius : 5
+        shadowColor : '#000000', shadowOpacity : 0.3, shadowOffset : {width : 2, height : 2}, shadowRadius : 3
     },
     FacebookStyle: {
         flexDirection: 'row',
