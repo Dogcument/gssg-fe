@@ -5,6 +5,8 @@ import { Button, Image } from 'react-native';
 // scene components
 import WritingPrepareScreen from './WritingPrepareScreen';
 import { WritingScreen, OnDoneButtonClicked } from './WritingScreen';
+import { TouchableHighlight, TouchableOpacity } from 'react-native-gesture-handler';
+import { HeaderButtons } from 'react-navigation-header-buttons';
 
 const Stack = createStackNavigator();
 
@@ -24,10 +26,14 @@ const WritingStack = ({navigation}) => {
                 options={{
                     title: '',
                     headerRight: () => (
-                        <Button
-                            title="글쓰기"
-                            onPress={() => OnDoneButtonClicked(navigation)}
-                        />
+                        <HeaderButtons>
+                            <TouchableOpacity
+                                onPress={() => OnDoneButtonClicked(navigation)}>
+                                    <Image
+                                        source={require('../Common/Images/animal-paw-print.png')}
+                                        style={{ width : 20, height : 20, marginRight : 20}}/>
+                                </TouchableOpacity>
+                        </HeaderButtons>
                     ),
                     headerBackTitleVisible: false,
                     headerBackImage: () =>

@@ -9,7 +9,7 @@ export class MyPageProfile extends React.Component {
         return (
             <View style={[styles.profileContainer]}>
                 <View
-                    style={{ flexDirection: 'row', flex: 7.5, marginLeft : '5%', marginRight : '5%',
+                    style={{ flexDirection: 'row', flex: 7.5, marginLeft : '2.5%', marginRight : '2.5%',
                              alignItems: 'center', justifyContent : 'space-around'}}>
                     <View style={{ width : '15%', flexDirection: 'column', alignItems : 'center' }}>
                         <Text style={{ fontFamily: 'SpoqaRegular', fontSize : 12, marginBottom : 5, color : '#FFFFFF' }}>

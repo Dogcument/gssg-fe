@@ -158,7 +158,7 @@ export class SignUpScreen extends React.Component {
                   </ScrollView>
 
                   <View style={{ flexDirection: 'column', width: '35%' }}>
-                    <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
+                    <View style={{ flexDirection: 'row', justifyContent: 'flex-end', marginLeft : 20, marginBottom : 20 }}>
                       <TouchableHighlight onPress={() => this.OnNextButtonClicked()}>
                         <Image style={{ width: 25, height: 25 }}
                           source={require('../Main/Images/NextButton.png')} />

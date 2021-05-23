@@ -32,17 +32,19 @@ export class SettingScreen extends React.Component {
 
     render() {
         return (
-            <View>
+            <View style={{ alignItems : 'center', justifyContent : 'center', marginTop : 20}}>
                 <TouchableOpacity
+                    style = {{ width : '90%', height : 50 }}
                     onPress={() => this.DeleteNicknameAndComment()}>
-                    <Text>
+                    <Text style={{ fontFamily : 'SpoqaRegular', fontSize : 15}}>
                         초기화 Nickname / Comment
                     </Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
+                    style = {{ width : '90%', height : 50 }}
                     onPress={() => this.DeleteWritings()}>
-                    <Text>
+                    <Text style={{ fontFamily : 'SpoqaRegular', fontSize : 15}}>
                         작성한 글 초기화
                     </Text>
                 </TouchableOpacity>

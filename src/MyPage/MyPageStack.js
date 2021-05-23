@@ -23,7 +23,11 @@ function MyPageStack({ navigation }) {
                 options={{
                     title: "마이페이지",
                     headerTitleStyle: {
-                        fontFamily: 'SpoqaBold'
+                        fontFamily: 'SpoqaBold',
+                    },
+                    headerStyle : {
+                        backgroundColor : '#ae9784',
+                        shadowColor: 'transparent'
                     },
                     headerTitleAlign: 'left',
                     headerRight: () => (
@@ -52,7 +56,14 @@ function MyPageStack({ navigation }) {
                     headerTitleStyle: {
                         fontFamily: 'SpoqaBold'
                     },
-                    headerTitleAlign: 'left'
+                    headerTitleAlign: 'left',
+                    
+                    headerBackImage: () =>
+                    <Image
+                        style={{ marginLeft: 20, width: 20, height: 20 }}
+                        source={require('../Main/Images/BackButton.png')}>
+                    </Image>
+                
                 }}>
                 {() => <SettingScreen />}
             </Stack.Screen>
