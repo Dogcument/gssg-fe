@@ -86,7 +86,7 @@ export class SignUpScreen extends React.Component {
         case SignUpState.SetNickname:
           return (
             <KeyboardAvoidingView
-              behavior={Platform.OS === "ios" ? "padding" : "height"}
+              behavior={Platform.OS === "ios" ? "position" : "height"}
               style={{ width: '100%', height: '100%' }}>
               <ImageBackground source={require('../Logo/Images/1_Logo.png')} style={{ position: 'absolute', width: '100%', height: '100%' }} />
               <View style={{ width: '100%', height: '100%', backgroundColor: '#000000', opacity: 0.5 }} />
