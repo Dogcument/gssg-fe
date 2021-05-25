@@ -1,11 +1,10 @@
 import * as React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { Button, Image } from 'react-native';
+import { Image, TouchableOpacity } from 'react-native';
 
 // scene components
 import WritingPrepareScreen from './WritingPrepareScreen';
 import { WritingScreen, OnDoneButtonClicked } from './WritingScreen';
-import { TouchableHighlight, TouchableOpacity } from 'react-native-gesture-handler';
 import { HeaderButtons } from 'react-navigation-header-buttons';
 
 const Stack = createStackNavigator();

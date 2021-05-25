@@ -7,9 +7,11 @@ import {
   TouchableHighlight,
   StyleSheet,
   Image,
-  ImageBackground
+  ImageBackground,
+  KeyboardAvoidingView,
+  Platform,
+  TouchableOpacity
 } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
 import { TutorialScreen } from "./TutorialScreen";
 import AsyncStorage from '@react-native-community/async-storage';
 import { UserInfo } from '../Common/CommonMethod';
@@ -40,7 +42,7 @@ export class SignUpScreen extends React.Component {
           alert("코멘트가 비어있어요");
           return;
         }
-        
+
         AsyncStorage.setItem("Nickname", nickName, (error) => {
           if (!error) {
             return;
@@ -83,7 +85,9 @@ export class SignUpScreen extends React.Component {
       switch (this.state.signUpState) {
         case SignUpState.SetNickname:
           return (
-            <View style={{ width: '100%', height: '100%' }}>
+            <KeyboardAvoidingView
+              behavior={Platform.OS === "ios" ? "position" : "height"}
+              style={{ width: '100%', height: '100%' }}>
               <ImageBackground source={require('../Logo/Images/1_Logo.png')} style={{ position: 'absolute', width: '100%', height: '100%' }} />
               <View style={{ width: '100%', height: '100%', backgroundColor: '#000000', opacity: 0.5 }} />
               <View style={styles.modalBackground}>
@@ -104,9 +108,9 @@ export class SignUpScreen extends React.Component {
                       필명
                       </Text>
                     <TextInput placeholder="필명을 입력해주세요!" placeholderTextColor='#FFFFFF'
-                      style={{ fontSize: 12, backgroundColor: '#d4d4d4', borderRadius: 5, width: '60%', height: '23%', paddingLeft: 5}}
+                      style={{ fontSize: 12, backgroundColor: '#d4d4d4', borderRadius: 5, width: '60%', height: '23%', paddingLeft: 5 }}
                       onChangeText={text => this.onNicknameChange(text)}
-                      />
+                    />
                     <View style={{ height: 5 }}></View>
                     <Text style={{ fontFamily: 'SpoqaMedium' }}>
                       한 줄 소개
@@ -114,11 +118,11 @@ export class SignUpScreen extends React.Component {
                     <TextInput placeholder="간단한 설명을 해주세요!" placeholderTextColor='#FFFFFF'
                       style={{ fontSize: 12, backgroundColor: '#d4d4d4', borderRadius: 5, width: '100%', height: '23%', paddingLeft: 5 }}
                       onChangeText={text => this.onCommentChange(text)}
-                      />
+                    />
                   </View>
                 </View>
               </View>
-            </View>
+            </KeyboardAvoidingView>
           );
         case SignUpState.SetDog:
           return (
@@ -158,7 +162,7 @@ export class SignUpScreen extends React.Component {
                   </ScrollView>
 
                   <View style={{ flexDirection: 'column', width: '35%' }}>
-                    <View style={{ flexDirection: 'row', justifyContent: 'flex-end', marginLeft : 20, marginBottom : 20 }}>
+                    <View style={{ flexDirection: 'row', justifyContent: 'flex-end', marginLeft: 20, marginBottom: 20 }}>
                       <TouchableHighlight onPress={() => this.OnNextButtonClicked()}>
                         <Image style={{ width: 25, height: 25 }}
                           source={require('../Main/Images/NextButton.png')} />
