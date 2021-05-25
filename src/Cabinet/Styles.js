@@ -4,6 +4,7 @@ import { StyleSheet } from 'react-native';
 // Jiwung TODO
 export const styles = StyleSheet.create({
   ItemContainer: {
+    backgroundColor : '#FFFFFF',
     width: '95%',
     height: 200,
     flexDirection: 'column',
@@ -13,7 +14,8 @@ export const styles = StyleSheet.create({
     marginTop: 5,
     marginBottom: 5,
     marginLeft : '2.5%',
-    shadowColor : '#000000', shadowOffset : {width : 2, height : 2}, shadowOpacity : 0.3, shadowRadius : 3
+    shadowColor : '#000000', shadowOffset : { width : 2, height : 2},
+    shadowOpacity : 0.3, shadowRadius : 3,
   },
   ItemContent: {
     width: '100%',

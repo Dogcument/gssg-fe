@@ -175,7 +175,6 @@ export class SignUpScreen extends React.Component {
             </View>
           );
         case SignUpState.ShowTutorial:
-          // tempcode 
           return (
             <TutorialScreen GotoMainScreen={this.props.GotoMainScreen} />
           );
