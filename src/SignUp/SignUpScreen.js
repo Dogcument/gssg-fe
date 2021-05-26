@@ -15,6 +15,7 @@ import {
 import { TutorialScreen } from "./TutorialScreen";
 import AsyncStorage from '@react-native-community/async-storage';
 import { UserInfo } from '../Common/CommonMethod';
+import { Dogs, DogImages } from '../Common/Dogs'
 
 export var SignUpState = {
   SetNickname: 1,
@@ -28,7 +29,8 @@ export class SignUpScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      signUpState: SignUpState.SetNickname
+      signUpState: SignUpState.SetNickname,
+      selectedDog: Dogs.Normal
     }
   }
 
@@ -78,6 +80,10 @@ export class SignUpScreen extends React.Component {
 
   onCommentChange(text) {
     comment = text;
+  }
+
+  onDogSelected(dog) {
+    this.setState({selectedDog: dog});
   }
 
   render() {
@@ -134,27 +140,27 @@ export class SignUpScreen extends React.Component {
                   <ScrollView horizontal={false}
                     style={{ width: '65%', flexDirection: 'column', backgroundColor: '#d4d4d4', borderRadius: 10 }}>
                     <View style={{ flex: 1, flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-around', padding: 5 }}>
-                      <TouchableOpacity>
+                      <TouchableOpacity onPress={() => this.onDogSelected(Dogs.Normal)}>
                         <Image source={require('../MyPage/Images/기본강아지.png')}
                           style={{ width: 50, height: 50 }} />
                       </TouchableOpacity>
-                      <TouchableOpacity>
+                      <TouchableOpacity onPress={() => this.onDogSelected(Dogs.Buldog)}>
                         <Image source={require('../MyPage/Images/불독.png')}
                           style={{ width: 50, height: 50 }} />
                       </TouchableOpacity>
-                      <TouchableOpacity>
+                      <TouchableOpacity onPress={() => this.onDogSelected(Dogs.Samo)}>
                         <Image source={require('../MyPage/Images/사모예드.png')}
                           style={{ width: 50, height: 50 }} />
                       </TouchableOpacity>
-                      <TouchableOpacity>
+                      <TouchableOpacity onPress={() => this.onDogSelected(Dogs.York)}>
                         <Image source={require('../MyPage/Images/요크.png')}
                           style={{ width: 50, height: 50 }} />
                       </TouchableOpacity>
-                      <TouchableOpacity>
+                      <TouchableOpacity onPress={() => this.onDogSelected(Dogs.Corgi)}>
                         <Image source={require('../MyPage/Images/코기.png')}
                           style={{ width: 50, height: 50 }} />
                       </TouchableOpacity>
-                      <TouchableOpacity>
+                      <TouchableOpacity onPress={() => this.onDogSelected(Dogs.Hurskey)}>
                         <Image source={require('../MyPage/Images/허스키.png')}
                           style={{ width: 50, height: 50 }} />
                       </TouchableOpacity>
@@ -169,9 +175,9 @@ export class SignUpScreen extends React.Component {
                       </TouchableHighlight>
                     </View>
                     <View style={{ flex: 1, flexDirection: 'column', alignItems: 'center', justifyContent: 'space-around', marginTop: -15 }}>
-                      <Image source={require('../MyPage/Images/기본강아지.png')}
+                      <Image source={DogImages[this.state.selectedDog]}
                         style={{ width: 80, height: 80 }} />
-                      <Text style={{ fontFamily: 'SpoqaBold', fontSize: 15 }}> 강아지 </Text>
+                      <Text style={{ fontFamily: 'SpoqaBold', fontSize: 15 }}> {this.state.selectedDog} </Text>
                     </View>
                   </View>
                 </View>
