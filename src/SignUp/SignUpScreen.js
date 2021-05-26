@@ -66,6 +66,14 @@ export class SignUpScreen extends React.Component {
         this.setState({ signUpState: SignUpState.SetDog });
         break;
       case SignUpState.SetDog:
+        AsyncStorage.setItem("SelectedDog", this.state.selectedDog, (error) => {
+          if (!error) {
+            return;
+          }
+          alert("이미 Dog 있는디? 지운다?");
+          AsyncStorage.removeItem("SelectedDog");
+        });
+
         this.setState({ signUpState: SignUpState.ShowTutorial });
         break;
       case SignUpState.ShowTutorial:

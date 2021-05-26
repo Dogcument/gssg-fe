@@ -9,10 +9,12 @@ export class MyPageItem extends React.Component {
     const writingTime = moment(writingTimeEpoch).format('YYYY.MM.DD HH:mm');
     const content = this.props.content;
     const navigation = this.props.navigation;
+    const selectedDog = this.props.selectedDog;
+    
     return (
       <TouchableOpacity
         style={[styles.itemContainer]}
-        onPress={() => OnMyPageItemClicked(navigation, writingTime, content)}>
+        onPress={() => OnMyPageItemClicked(navigation, writingTime, content, selectedDog)}>
         <Text style={{ fontFamily : 'SpoqaBold', fontSize : 15, marginLeft : '3%' }}>
           #1
         </Text>
@@ -43,9 +45,10 @@ export class MyPageItem extends React.Component {
   }
 }
 
-function OnMyPageItemClicked(navigation, writingTime, content) {
+function OnMyPageItemClicked(navigation, writingTime, content, selectedDog) {
   navigation.navigate('ItemDetail', {
     writingTime: writingTime,
-    content: content
+    content: content,
+    selectedDog: selectedDog
   });
 }

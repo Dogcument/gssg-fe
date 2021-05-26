@@ -5,13 +5,14 @@ import AsyncStorage from '@react-native-community/async-storage';
 import { MyPageProfile } from './MyPageProfile';
 import { MyPageItem } from './MyPageItem';
 import { IsValidKey } from '../Common/CommonMethod'
-
+import { Dogs } from '../Common/Dogs'
 export class MyPageScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       isLoad: false,
-      data: 0
+      data: 0,
+      selectedDog: Dogs.Normal
     }
     this.LoadData();
   }
@@ -34,6 +35,10 @@ export class MyPageScreen extends React.Component {
         content: value
       });
     }
+
+    const selectedDog = await AsyncStorage.getItem("SelectedDog");
+    this.state.selectedDog = selectedDog;
+
     this.setState({
       isLoad: true,
       data: { loadedData }
@@ -61,6 +66,7 @@ export class MyPageScreen extends React.Component {
           {
             ItemList.map((value) =>
               <MyPageItem
+                selectedDog={this.state.selectedDog}
                 key={value.time}
                 navigation={navigation}
                 writingTime={value.time}

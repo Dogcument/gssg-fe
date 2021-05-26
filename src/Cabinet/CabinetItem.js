@@ -3,6 +3,7 @@ import { TouchableOpacity, Text, View, Image } from 'react-native';
 import { styles } from './Styles';
 import moment from 'moment';
 import { UserInfo } from '../Common/CommonMethod'
+import { DogImages } from '../Common/Dogs'
 
 export class CabinetItem extends React.Component {
   render() {
@@ -11,11 +12,12 @@ export class CabinetItem extends React.Component {
     const content = this.props.content;
     const navigation = this.props.navigation;
     const userInfo = new UserInfo();
+    const selectedDog = this.props.selectedDog;
 
     return (
       <TouchableOpacity      
         style={[styles.ItemContainer]}
-        onPress={() => OnCabinetItemClicked(navigation, writingTime, content)}>
+        onPress={() => OnCabinetItemClicked(navigation, writingTime, content, selectedDog)}>
           <View style={[styles.ItemContent]}>
             <Text style={[styles.ItemText]} numberOfLines={6} ellipsizeMode={'tail'}>
               {content || 'Content'}
@@ -26,7 +28,7 @@ export class CabinetItem extends React.Component {
 
           <View style={[styles.ItemProfile]}>
             <Image style={[styles.ImageIconStyle]}
-              source={require('../Common/Images/Profile.png')}>
+              source={DogImages[selectedDog]}>
             </Image>
             <View style={{ flexDirection: 'row', alignItems: 'center', flex: 1 }}>
               <View style={{ height: '40%', width: 3, backgroundColor: '#ae9784', marginRight: 5 }} />
@@ -53,9 +55,10 @@ export class CabinetItem extends React.Component {
   }
 }
 
-function OnCabinetItemClicked(navigation, writingTime, content) {
+function OnCabinetItemClicked(navigation, writingTime, content, selectedDog) {
   navigation.navigate('ItemDetail', {
     writingTime: writingTime,
-    content: content
+    content: content,
+    selectedDog: selectedDog
   });
 }

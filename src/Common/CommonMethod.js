@@ -3,6 +3,8 @@ export function IsValidKey(key) {
     return false;
   } else if (key == "Comment") {
     return false;
+  } else if (key == "SelectedDog") {
+    return false;
   }
 
   return key != "EXPO_CONSTANTS_INSTALLATION_ID";
