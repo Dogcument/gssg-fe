@@ -25,7 +25,12 @@ const WritingStack = ({navigation}) => {
                 name="WritingScreen"
                 component={WritingScreen}
                 options={{
-                    title: '',
+                    title: '오건은 돼지다.', // ProtoWriting 하나씩 늘리면서 받기
+                    headerTitleStyle: {
+                        fontFamily: 'title',
+                        fontSize : 25
+                    },
+                    headerTitleAlign : 'center',                    
                     headerRight: () => (
                         <HeaderButtons>
                             <TouchableOpacity

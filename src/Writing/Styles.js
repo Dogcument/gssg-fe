@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
     },
 
     title : {
-        fontSize : 30,
+        fontSize : 40,
         fontFamily : 'title'
     },
 
