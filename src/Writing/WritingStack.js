@@ -3,18 +3,20 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { Image, TouchableOpacity } from 'react-native';
 
 // scene components
-import WritingPrepareScreen from './WritingPrepareScreen';
+import { WritingPrepareScreen } from './WritingPrepareScreen';
 import { WritingScreen, OnDoneButtonClicked } from './WritingScreen';
 import { HeaderButtons } from 'react-navigation-header-buttons';
 
 const Stack = createStackNavigator();
 
 const WritingStack = ({navigation}) => {
+    const WritingPrepareScreenComponent = () => <WritingPrepareScreen navigation={navigation}/>
+
     return (
         <Stack.Navigator>
             <Stack.Screen
                 name="WritingPrepareScreen"
-                component={WritingPrepareScreen}
+                component={WritingPrepareScreenComponent}
                 options={{
                     headerShown: false
                 }}
