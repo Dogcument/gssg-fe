@@ -19,16 +19,16 @@ export class MyPageScreen extends React.Component {
 
   LoadData = async () => {
     const keys = await AsyncStorage.getAllKeys();
-    keys.sort(function(a, b) {
+    keys.sort(function (a, b) {
       return b - a;
     });
 
     let loadedData = [];
     for (let i = 0; i < keys.length; i++) {
-      if(!IsValidKey(keys[i])) {
+      if (!IsValidKey(keys[i])) {
         continue;
       }
-      
+
       const value = await AsyncStorage.getItem(keys[i]);
       loadedData.push({
         time: keys[i],
@@ -59,7 +59,7 @@ export class MyPageScreen extends React.Component {
       <View style={{ flex: 1 }}>
         { /* Fixed Line */}
         <View>
-          <MyPageProfile></MyPageProfile>
+          <MyPageProfile selectedDog={this.state.selectedDog} />
         </View>
         { /* Fixed Line */}
         <ScrollView>

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Text, View, Image } from 'react-native';
 import { styles } from './Styles';
 import { UserInfo } from '../Common/CommonMethod'
-import { Dog, DogImages } from '../Common/Dogs'
+import { DogImages } from '../Common/Dogs'
 export class ItemDetail extends React.Component {
     constructor(props) {
         super(props);
