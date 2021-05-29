@@ -7,12 +7,15 @@ import {
   TouchableHighlight,
   StyleSheet,
   Image,
-  ImageBackground
+  ImageBackground,
+  KeyboardAvoidingView,
+  Platform,
+  TouchableOpacity
 } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
 import { TutorialScreen } from "./TutorialScreen";
 import AsyncStorage from '@react-native-community/async-storage';
 import { UserInfo } from '../Common/CommonMethod';
+import { Dogs, DogImages } from '../Common/Dogs'
 
 export var SignUpState = {
   SetNickname: 1,
@@ -26,7 +29,8 @@ export class SignUpScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      signUpState: SignUpState.SetNickname
+      signUpState: SignUpState.SetNickname,
+      selectedDog: Dogs.Normal
     }
   }
 
@@ -40,7 +44,7 @@ export class SignUpScreen extends React.Component {
           alert("코멘트가 비어있어요");
           return;
         }
-        
+
         AsyncStorage.setItem("Nickname", nickName, (error) => {
           if (!error) {
             return;
@@ -62,6 +66,14 @@ export class SignUpScreen extends React.Component {
         this.setState({ signUpState: SignUpState.SetDog });
         break;
       case SignUpState.SetDog:
+        AsyncStorage.setItem("SelectedDog", this.state.selectedDog, (error) => {
+          if (!error) {
+            return;
+          }
+          alert("이미 Dog 있는디? 지운다?");
+          AsyncStorage.removeItem("SelectedDog");
+        });
+
         this.setState({ signUpState: SignUpState.ShowTutorial });
         break;
       case SignUpState.ShowTutorial:
@@ -78,12 +90,18 @@ export class SignUpScreen extends React.Component {
     comment = text;
   }
 
+  onDogSelected(dog) {
+    this.setState({selectedDog: dog});
+  }
+
   render() {
     if (this.props.signUp) {
       switch (this.state.signUpState) {
         case SignUpState.SetNickname:
           return (
-            <View style={{ width: '100%', height: '100%' }}>
+            <KeyboardAvoidingView
+              behavior={Platform.OS === "ios" ? "position" : "height"}
+              style={{ width: '100%', height: '100%' }}>
               <ImageBackground source={require('../Logo/Images/1_Logo.png')} style={{ position: 'absolute', width: '100%', height: '100%' }} />
               <View style={{ width: '100%', height: '100%', backgroundColor: '#000000', opacity: 0.5 }} />
               <View style={styles.modalBackground}>
@@ -104,9 +122,9 @@ export class SignUpScreen extends React.Component {
                       필명
                       </Text>
                     <TextInput placeholder="필명을 입력해주세요!" placeholderTextColor='#FFFFFF'
-                      style={{ fontSize: 12, backgroundColor: '#d4d4d4', borderRadius: 5, width: '60%', height: '23%', paddingLeft: 5}}
+                      style={{ fontSize: 12, backgroundColor: '#d4d4d4', borderRadius: 5, width: '60%', height: '23%', paddingLeft: 5 }}
                       onChangeText={text => this.onNicknameChange(text)}
-                      />
+                    />
                     <View style={{ height: 5 }}></View>
                     <Text style={{ fontFamily: 'SpoqaMedium' }}>
                       한 줄 소개
@@ -114,11 +132,11 @@ export class SignUpScreen extends React.Component {
                     <TextInput placeholder="간단한 설명을 해주세요!" placeholderTextColor='#FFFFFF'
                       style={{ fontSize: 12, backgroundColor: '#d4d4d4', borderRadius: 5, width: '100%', height: '23%', paddingLeft: 5 }}
                       onChangeText={text => this.onCommentChange(text)}
-                      />
+                    />
                   </View>
                 </View>
               </View>
-            </View>
+            </KeyboardAvoidingView>
           );
         case SignUpState.SetDog:
           return (
@@ -130,27 +148,27 @@ export class SignUpScreen extends React.Component {
                   <ScrollView horizontal={false}
                     style={{ width: '65%', flexDirection: 'column', backgroundColor: '#d4d4d4', borderRadius: 10 }}>
                     <View style={{ flex: 1, flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-around', padding: 5 }}>
-                      <TouchableOpacity>
+                      <TouchableOpacity onPress={() => this.onDogSelected(Dogs.Normal)}>
                         <Image source={require('../MyPage/Images/기본강아지.png')}
                           style={{ width: 50, height: 50 }} />
                       </TouchableOpacity>
-                      <TouchableOpacity>
+                      <TouchableOpacity onPress={() => this.onDogSelected(Dogs.Buldog)}>
                         <Image source={require('../MyPage/Images/불독.png')}
                           style={{ width: 50, height: 50 }} />
                       </TouchableOpacity>
-                      <TouchableOpacity>
+                      <TouchableOpacity onPress={() => this.onDogSelected(Dogs.Samo)}>
                         <Image source={require('../MyPage/Images/사모예드.png')}
                           style={{ width: 50, height: 50 }} />
                       </TouchableOpacity>
-                      <TouchableOpacity>
+                      <TouchableOpacity onPress={() => this.onDogSelected(Dogs.York)}>
                         <Image source={require('../MyPage/Images/요크.png')}
                           style={{ width: 50, height: 50 }} />
                       </TouchableOpacity>
-                      <TouchableOpacity>
+                      <TouchableOpacity onPress={() => this.onDogSelected(Dogs.Corgi)}>
                         <Image source={require('../MyPage/Images/코기.png')}
                           style={{ width: 50, height: 50 }} />
                       </TouchableOpacity>
-                      <TouchableOpacity>
+                      <TouchableOpacity onPress={() => this.onDogSelected(Dogs.Hurskey)}>
                         <Image source={require('../MyPage/Images/허스키.png')}
                           style={{ width: 50, height: 50 }} />
                       </TouchableOpacity>
@@ -158,16 +176,16 @@ export class SignUpScreen extends React.Component {
                   </ScrollView>
 
                   <View style={{ flexDirection: 'column', width: '35%' }}>
-                    <View style={{ flexDirection: 'row', justifyContent: 'flex-end', marginLeft : 20, marginBottom : 20 }}>
+                    <View style={{ flexDirection: 'row', justifyContent: 'flex-end', marginLeft: 20, marginBottom: 20 }}>
                       <TouchableHighlight onPress={() => this.OnNextButtonClicked()}>
                         <Image style={{ width: 25, height: 25 }}
                           source={require('../Main/Images/NextButton.png')} />
                       </TouchableHighlight>
                     </View>
                     <View style={{ flex: 1, flexDirection: 'column', alignItems: 'center', justifyContent: 'space-around', marginTop: -15 }}>
-                      <Image source={require('../MyPage/Images/기본강아지.png')}
+                      <Image source={DogImages[this.state.selectedDog]}
                         style={{ width: 80, height: 80 }} />
-                      <Text style={{ fontFamily: 'SpoqaBold', fontSize: 15 }}> 강아지 </Text>
+                      <Text style={{ fontFamily: 'SpoqaBold', fontSize: 15 }}> {this.state.selectedDog} </Text>
                     </View>
                   </View>
                 </View>
@@ -175,7 +193,6 @@ export class SignUpScreen extends React.Component {
             </View>
           );
         case SignUpState.ShowTutorial:
-          // tempcode 
           return (
             <TutorialScreen GotoMainScreen={this.props.GotoMainScreen} />
           );

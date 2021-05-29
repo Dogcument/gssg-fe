@@ -1,10 +1,12 @@
-import * as React from 'react';
-import { View, Text, Image } from 'react-native';
-import { UserInfo } from '../Common/CommonMethod';
-import { styles } from './Styles';
+import * as React from 'react'
+import { View, Text, Image } from 'react-native'
+import { UserInfo } from '../Common/CommonMethod'
+import { styles } from './Styles'
+import { DogImages } from '../Common/Dogs'
 
 export class MyPageProfile extends React.Component {
     render() {
+        const selectedDog = this.props.selectedDog;
         const userInfo = new UserInfo();
         return (
             <View style={[styles.profileContainer]}>
@@ -21,7 +23,7 @@ export class MyPageProfile extends React.Component {
                     </View>
                     <Image
                         style={[styles.profileImageStyle]} resizeMode='contain'
-                        source={require('./Images/H_Silver.png')} />
+                        source={DogImages[selectedDog]} />
                     <View style={{ width : '15%', flexDirection: 'column', alignItems : 'center'}}>
                         <Text style={{ fontFamily: 'SpoqaRegular', fontSize : 12, marginBottom : 5, color : '#FFFFFF' }}>
                             Follower

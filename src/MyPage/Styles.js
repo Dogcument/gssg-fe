@@ -23,6 +23,7 @@ export const styles = StyleSheet.create({
         justifyContent: 'space-around'
     },
     itemContainer: {
+        backgroundColor : '#FFFFFF',
         width: '95%',
         height: 50,
         flexDirection: 'row',

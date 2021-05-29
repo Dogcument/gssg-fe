@@ -3,13 +3,15 @@ import { ScrollView } from 'react-native-gesture-handler';
 import AsyncStorage from '@react-native-community/async-storage';
 import { CabinetItem } from './CabinetItem';
 import { IsValidKey } from '../Common/CommonMethod'
+import { Dogs } from '../Common/Dogs'
 
 export class CabinetScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       isLoad: false,
-      data: 0
+      data: 0,
+      selectedDog: Dogs.Normal
     }
     this.LoadData();
   }
@@ -33,6 +35,9 @@ export class CabinetScreen extends React.Component {
       });
     }
 
+    const selectedDog = await AsyncStorage.getItem("SelectedDog");
+    this.state.selectedDog = selectedDog;
+
     this.setState({
       isLoad: true,
       data: { loadedData }
@@ -53,6 +58,7 @@ export class CabinetScreen extends React.Component {
         {
           ItemList.map((value) =>
             <CabinetItem
+              selectedDog={this.state.selectedDog}
               key={value.time}
               navigation={navigation}
               writingTime={value.time}

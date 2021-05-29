@@ -2,9 +2,14 @@ import * as React from 'react';
 import { Text, View, Image } from 'react-native';
 import { styles } from './Styles';
 import { UserInfo } from '../Common/CommonMethod'
-
+import { DogImages } from '../Common/Dogs'
 export class ItemDetail extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
     render() {
+        const selectedDog = this.props.selectedDog;
         let userInfo = new UserInfo();
         return (
             <View style={{
@@ -42,7 +47,7 @@ export class ItemDetail extends React.Component {
                 }}>
                     <Image
                         style={[styles.ImageStyle, { marginLeft: 15, marginRight: 15 }]}
-                        source={require('./Images/Profile.png')} />
+                        source={DogImages[selectedDog]} />
                     <View style={[styles.profileView], { flexDirection: 'row', flex: 1 }}>
                         <View style={{ height: 40, width: 3, backgroundColor: '#ae9784', marginRight: 5 }}>
                         </View>
