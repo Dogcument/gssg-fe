@@ -9,8 +9,14 @@ import { HeaderButtons } from 'react-navigation-header-buttons';
 
 const Stack = createStackNavigator();
 
-const WritingStack = ({navigation}) => {
-    const WritingPrepareScreenComponent = () => <WritingPrepareScreen navigation={navigation}/>
+const WritingStack = ({ navigation }) => {
+    const WritingPrepareScreenComponent = () => <WritingPrepareScreen
+        navigation={navigation}
+    />
+    const WritingScreenComponent = ({ route }) => <WritingScreen
+        subject={route.params.subject}
+        navigation={navigation}
+    />
 
     return (
         <Stack.Navigator>
@@ -18,14 +24,14 @@ const WritingStack = ({navigation}) => {
                 name="WritingPrepareScreen"
                 component={WritingPrepareScreenComponent}
                 options={{
-                    headerShown: false
+                    //headerShown: false
                 }}
             />
             <Stack.Screen
                 name="WritingScreen"
-                component={WritingScreen}
+                component={WritingScreenComponent}
                 options={{
-                    title: '오건은 돼지다.', // ProtoWriting 하나씩 늘리면서 받기
+                    headerTitle: "Brrraaaah",
                     headerTitleStyle: {
                         fontFamily: 'title',
                         fontSize : 25
@@ -35,10 +41,10 @@ const WritingStack = ({navigation}) => {
                         <HeaderButtons>
                             <TouchableOpacity
                                 onPress={() => OnDoneButtonClicked(navigation)}>
-                                    <Image
-                                        source={require('../Common/Images/animal-paw-print.png')}
-                                        style={{ width : 20, height : 20, marginRight : 20}}/>
-                                </TouchableOpacity>
+                                <Image
+                                    source={require('../Common/Images/animal-paw-print.png')}
+                                    style={{ width: 20, height: 20, marginRight: 20 }} />
+                            </TouchableOpacity>
                         </HeaderButtons>
                     ),
                     headerBackTitleVisible: false,

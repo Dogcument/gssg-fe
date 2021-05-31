@@ -3,12 +3,21 @@ import { View, TextInput } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import { styles } from './Styles';
 
-var contentText = "";
+var content = "";
+var subject = "";
 
 export class WritingScreen extends React.Component {
+  componentDidMount = async() => {
+    subject = this.props.subject;
+
+    // Gunny TODO
+    // this function does not work
+    this.props.navigation.setOptions({ title: subject });
+  }
+
   render() {
     return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', width : '95%', marginLeft : '2.5%' }}>
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', width: '95%', marginLeft: '2.5%' }}>
         <TextInput
           style={styles.TextInputStyle}
           placeholder="여기에 입력"
@@ -21,17 +30,18 @@ export class WritingScreen extends React.Component {
   }
 
   onChangeText(inputText) {
-    contentText = inputText;
+    content = inputText;
   }
 }
 
 function SaveToLocalMachine() {
   var KeyName = String(Date.now());
-  AsyncStorage.setItem(KeyName, contentText, () => { });
+  const saveString = contentText + "{\0}" + subject;
+  AsyncStorage.setItem(KeyName, saveString, () => { });
 };
 
 export function OnDoneButtonClicked(navigation) {
-  console.log(contentText);
+  console.log(content);
   SaveToLocalMachine();
 
   return (

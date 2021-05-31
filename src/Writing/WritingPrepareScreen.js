@@ -11,10 +11,8 @@ export class WritingPrepareScreen extends React.Component {
     }
   }
 
-  // TODO : JIWUNG
-  // Next, Prev writing button
-
   render() {
+    const subject = ProtoWritings[this.state.WritingNum];
     return (
       <ImageBackground
         source={require("./Images/10_PaperBackground.png")}
@@ -22,12 +20,12 @@ export class WritingPrepareScreen extends React.Component {
         <View style={{ height: '15%' }}></View>
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'space-around' }}>
           <View
-            style={{ width : '100%', flexDirection: 'row', alignItems: 'center', justifyContent : 'space-between', paddingLeft : '5%', paddingRight : '5%' }}>
+            style={{ width: '100%', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingLeft: '5%', paddingRight: '5%' }}>
             <TouchableHighlight>
               <Image style={{ width: 25, height: 25 }}
                 source={require('../Main/Images/NextButton-reversed.png')} />
             </TouchableHighlight>
-            <Text style={styles.title}>"{ProtoWritings[this.state.WritingNum]}"</Text>
+            <Text style={styles.title}>"{subject}"</Text>
             <TouchableHighlight>
               <Image style={{ width: 25, height: 25 }}
                 source={require('../Main/Images/NextButton.png')} />
@@ -35,7 +33,7 @@ export class WritingPrepareScreen extends React.Component {
           </View>
           <TouchableOpacity
             style={styles.FacebookStyle} activeOpacity={0.5}
-            onPress={() => OnWritingButtonClicked(this.props.navigation)}>
+            onPress={() => OnWritingButtonClicked(this.props.navigation, subject)}>
             <Image
               style={styles.ImageIconStyle}
               source={require('./Images/1_WritingButton.png')} />
@@ -46,8 +44,9 @@ export class WritingPrepareScreen extends React.Component {
   }
 }
 
-function OnWritingButtonClicked(navigation) {
+function OnWritingButtonClicked(navigation, subject) {
   return (
-    navigation.navigate('WritingScreen')
-  );
+    navigation.navigate('WritingScreen', {
+      subject: subject
+    }));
 }
