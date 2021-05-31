@@ -36,7 +36,7 @@ export class WritingScreen extends React.Component {
 
 function SaveToLocalMachine() {
   var KeyName = String(Date.now());
-  const saveString = contentText + "{\0}" + subject;
+  const saveString = content + "{\0}" + subject;
   AsyncStorage.setItem(KeyName, saveString, () => { });
 };
 
