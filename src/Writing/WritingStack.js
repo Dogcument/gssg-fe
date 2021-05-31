@@ -24,7 +24,7 @@ const WritingStack = ({ navigation }) => {
                 name="WritingPrepareScreen"
                 component={WritingPrepareScreenComponent}
                 options={{
-                    //headerShown: false
+                    headerShown: false
                 }}
             />
             <Stack.Screen
