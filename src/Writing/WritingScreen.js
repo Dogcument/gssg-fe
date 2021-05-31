@@ -9,9 +9,6 @@ var subject = "";
 export class WritingScreen extends React.Component {
   componentDidMount = async() => {
     subject = this.props.subject;
-
-    // Gunny TODO
-    // this function does not work
     this.props.navigation.setOptions({ title: subject });
   }
 

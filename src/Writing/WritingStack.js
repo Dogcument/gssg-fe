@@ -6,16 +6,17 @@ import { Image, TouchableOpacity } from 'react-native';
 import { WritingPrepareScreen } from './WritingPrepareScreen';
 import { WritingScreen, OnDoneButtonClicked } from './WritingScreen';
 import { HeaderButtons } from 'react-navigation-header-buttons';
+import { useNavigation } from '@react-navigation/core';
 
 const Stack = createStackNavigator();
 
-const WritingStack = ({ navigation }) => {
+function WritingStack() {
     const WritingPrepareScreenComponent = () => <WritingPrepareScreen
-        navigation={navigation}
+        navigation={useNavigation()}
     />
     const WritingScreenComponent = ({ route }) => <WritingScreen
         subject={route.params.subject}
-        navigation={navigation}
+        navigation={useNavigation()}
     />
 
     return (
@@ -40,7 +41,7 @@ const WritingStack = ({ navigation }) => {
                     headerRight: () => (
                         <HeaderButtons>
                             <TouchableOpacity
-                                onPress={() => OnDoneButtonClicked(navigation)}>
+                                onPress={() => OnDoneButtonClicked(useNavigation())}>
                                 <Image
                                     source={require('../Common/Images/animal-paw-print.png')}
                                     style={{ width: 20, height: 20, marginRight: 20 }} />
