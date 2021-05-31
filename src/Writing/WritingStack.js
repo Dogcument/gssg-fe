@@ -31,7 +31,7 @@ const WritingStack = ({ navigation }) => {
                 name="WritingScreen"
                 component={WritingScreenComponent}
                 options={{
-                    headerTitle: "Brrraaaah",
+                    title: "Brrraaaah",
                     headerTitleStyle: {
                         fontFamily: 'title',
                         fontSize : 25
