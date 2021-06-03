@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, Modal } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { styles } from './Styles';
+import Modal from 'react-native-simple-modal';
 import AsyncStorage from '@react-native-community/async-storage';
 import { CabinetItem } from './CabinetItem';
 import { IsValidKey } from '../Common/CommonMethod'
@@ -9,11 +10,8 @@ import { Dogs } from '../Common/Dogs'
 
 export class CabinetScreen extends React.Component {
   state = {
-    isVisible: false
+    open: false
   };
-  displayModal(show) {
-    this.setState({ isVisible: show })
-  }
 
   constructor(props) {
     super(props);
@@ -63,48 +61,53 @@ export class CabinetScreen extends React.Component {
     const ItemList = this.state.data.loadedData;
     const navigation = this.props.navigation;
     return (
-      <ScrollView>
-        <View style={[styles.container]}>
-          <Modal
-            animationType={"slide"}
-            transparent={false}
-            visible={this.state.isVisible}
-            onRequestClose={() => {
-              Alert.alert('Modal has now been closed.');
-            }}>
-            <View>
-              <Text style={[styles.text]}>
-                글감 선택화면
-              </Text>
-              <Text
-                style={[styles.closeText]}
-                onPress={() => {
-                  this.displayModal(!this.state.isVisible);
-                }}>
-                  닫기
-                </Text>
-            </View>
+      <View style={{flex : 1, justifyContent : 'center'}}>
+        <TouchableOpacity
+          style={{backgroundColor: '#ae9784', borderRadius: 10,
+          alignItems: 'center', justifyContent: 'center',
+          width : '80%', height: 50, marginTop: 10, marginLeft: '10%'}}
+          onPress={() => this.setState({ open: true })}>
+          <Text style={{fontFamily: 'SpoqaBold', fontSize: 15}}>글감</Text>
+        </TouchableOpacity>
+        
+        <ScrollView>
+          {
+            ItemList.map((value) =>
+              <CabinetItem
+                selectedDog={this.state.selectedDog}
+                key={value.time}
+                navigation={navigation}
+                writingTime={value.time}
+                content={value.content} />)
+          }
+        </ScrollView>
 
-          </Modal>
-
-          <TouchableOpacity
-            style={[styles.button]}
-            onPress={() => {
-              this.displayModal(true);
-            }}>
-            <Text style={[styles.buttonText]}>글감</Text>
-          </TouchableOpacity>
-        </View>
-        {
-          ItemList.map((value) =>
-            <CabinetItem
-              selectedDog={this.state.selectedDog}
-              key={value.time}
-              navigation={navigation}
-              writingTime={value.time}
-              content={value.content} />)
-        }
-      </ScrollView>
+        <Modal
+          offset={this.state.offset}
+          open={this.state.open}
+          modalDidOpen={() => console.log('modal did open')}
+          modalDidClose={() => this.setState({ open: false })}
+          style={{ alignItems: 'center', position: 'absolute' }}>
+          <View>
+            <Text style={{ fontSize: 20, marginBottom: 10 }}>Hello world!</Text>
+            <TouchableOpacity
+              style={{ margin: 5 }}
+              onPress={() => this.setState({ offset: -100 })}>
+              <Text>Move modal up</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={{ margin: 5 }}
+              onPress={() => this.setState({ offset: 0 })}>
+              <Text>Reset modal position</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={{ margin: 5 }}
+              onPress={() => this.setState({ open: true })}>
+              <Text>Close modal</Text>
+            </TouchableOpacity>
+          </View>
+        </Modal>
+      </View>
     )
   }
 };
