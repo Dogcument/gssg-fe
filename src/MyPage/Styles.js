@@ -14,7 +14,8 @@ export const styles = StyleSheet.create({
         shadowColor : '#000000', shadowOpacity : 0.3, shadowOffset : {width : 2, height : 2}, shadowRadius : 3
     },
     profileImageStyle: {
-        width : '60%'
+        height: '60%',
+        width: '60%'
     },
     profileView: {
         flex: 6,
