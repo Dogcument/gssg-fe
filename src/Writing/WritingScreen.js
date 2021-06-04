@@ -38,6 +38,11 @@ function SaveToLocalMachine() {
 };
 
 export function OnDoneButtonClicked(navigation) {
+  if (content == "") {
+    alert("글 내용이 없어요!");
+    return;
+  }
+
   console.log(content);
   SaveToLocalMachine();
 

@@ -10,7 +10,8 @@ import { useNavigation } from '@react-navigation/core';
 
 const Stack = createStackNavigator();
 
-function WritingStack() {
+// The navigation(parameter) must be used in "OnDoneButtonClicked" function only.
+function WritingStack({navigation}) {
     const WritingPrepareScreenComponent = () => <WritingPrepareScreen
         navigation={useNavigation()}
     />
@@ -41,7 +42,7 @@ function WritingStack() {
                     headerRight: () => (
                         <HeaderButtons>
                             <TouchableOpacity
-                                onPress={() => OnDoneButtonClicked(useNavigation())}>
+                                onPress={() => OnDoneButtonClicked(navigation)}>
                                 <Image
                                     source={require('../Common/Images/animal-paw-print.png')}
                                     style={{ width: 20, height: 20, marginRight: 20 }} />
