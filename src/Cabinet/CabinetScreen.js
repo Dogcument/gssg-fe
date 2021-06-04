@@ -1,8 +1,6 @@
-import React, { Component } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import React from 'react';
+import { View, Text, TouchableOpacity, Modal } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import { styles } from './Styles';
-import Modal from 'react-native-simple-modal';
 import AsyncStorage from '@react-native-community/async-storage';
 import { CabinetItem } from './CabinetItem';
 import { IsValidKey } from '../Common/CommonMethod'
