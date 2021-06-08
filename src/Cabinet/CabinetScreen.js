@@ -60,13 +60,7 @@ export class CabinetScreen extends React.Component {
     const navigation = this.props.navigation;
     return (
       <View style={{flex : 1, justifyContent : 'center'}}>
-        <TouchableOpacity
-          style={{backgroundColor: '#ae9784', borderRadius: 10,
-          alignItems: 'center', justifyContent: 'center',
-          width : '80%', height: 50, marginTop: 10, marginLeft: '10%'}}
-          onPress={() => this.setState({ open: true })}>
-          <Text style={{fontFamily: 'SpoqaBold', fontSize: 15}}>글감</Text>
-        </TouchableOpacity>
+
         
         <ScrollView>
           {
@@ -80,31 +74,6 @@ export class CabinetScreen extends React.Component {
           }
         </ScrollView>
 
-        <Modal
-          offset={this.state.offset}
-          open={this.state.open}
-          modalDidOpen={() => console.log('modal did open')}
-          modalDidClose={() => this.setState({ open: false })}
-          style={{ alignItems: 'center', position: 'absolute' }}>
-          <View>
-            <Text style={{ fontSize: 20, marginBottom: 10 }}>Hello world!</Text>
-            <TouchableOpacity
-              style={{ margin: 5 }}
-              onPress={() => this.setState({ offset: -100 })}>
-              <Text>Move modal up</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={{ margin: 5 }}
-              onPress={() => this.setState({ offset: 0 })}>
-              <Text>Reset modal position</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={{ margin: 5 }}
-              onPress={() => this.setState({ open: true })}>
-              <Text>Close modal</Text>
-            </TouchableOpacity>
-          </View>
-        </Modal>
       </View>
     )
   }
