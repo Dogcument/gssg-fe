@@ -1,6 +1,8 @@
-import React from 'react';
-import { View, Text, TouchableOpacity, Modal } from 'react-native';
+import React, {useState} from 'react';
+import {TouchableOpacity, Text, View } from 'react-native';
+import Modal from 'react-native-modal';
 import { ScrollView } from 'react-native-gesture-handler';
+import { styles } from './Styles';
 import AsyncStorage from '@react-native-community/async-storage';
 import { CabinetItem } from './CabinetItem';
 import { IsValidKey } from '../Common/CommonMethod'
@@ -8,8 +10,57 @@ import { Dogs } from '../Common/Dogs'
 
 export class CabinetScreen extends React.Component {
   state = {
-    open: false
+    visibleModal: null,
   };
+
+  _renderButton = (text, onPress) => (
+    <TouchableOpacity 
+      onPress={onPress}
+      style={[styles.modalbutton]}>
+      <View>
+        <Text style={{fontFamily: 'SpoqaBold', fontSize: 20}}>{text}</Text>
+      </View>
+    </TouchableOpacity>
+  );
+
+  _renderModalContent = () => (
+    <View style={[styles.modal]}>
+        <ScrollView>
+          <TouchableOpacity
+            style={{height: 40}}>
+            <Text style={{fontFamily: 'SpoqaMedium'}}>
+              글감 1
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={{height: 40}}>
+            <Text style={{fontFamily: 'SpoqaMedium'}}>
+              글감 2
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={{height: 40}}>
+            <Text style={{fontFamily: 'SpoqaMedium'}}>
+              글감 3
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={{height: 40}}>
+            <Text style={{fontFamily: 'SpoqaMedium'}}>
+              글감 4
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={{height: 40}}>
+            <Text style={{fontFamily: 'SpoqaMedium'}}>
+              글감 5
+            </Text>
+          </TouchableOpacity>
+          
+        </ScrollView>
+        {this._renderButton('닫기', () => this.setState({ visibleModal: null }))}
+    </View>
+  );
 
   constructor(props) {
     super(props);
@@ -60,15 +111,13 @@ export class CabinetScreen extends React.Component {
     const navigation = this.props.navigation;
     return (
       <View style={{flex : 1, justifyContent : 'center'}}>
-        <TouchableOpacity
-          style={{backgroundColor: '#ae9784', borderRadius: 10,
-          alignItems: 'center', justifyContent: 'center',
-          width : '80%', height: 50, marginTop: 10, marginLeft: '10%'}}
-          onPress={() => this.setState({ open: true })}>
-          <Text style={{fontFamily: 'SpoqaBold', fontSize: 15}}>글감</Text>
-        </TouchableOpacity>
-        
+
         <ScrollView>
+          <View>
+            {this._renderButton('글감', () =>
+              this.setState({ visibleModal: 1 })
+            )}
+          </View>
           {
             ItemList.map((value) =>
               <CabinetItem
@@ -80,31 +129,10 @@ export class CabinetScreen extends React.Component {
           }
         </ScrollView>
 
-        <Modal
-          offset={this.state.offset}
-          open={this.state.open}
-          modalDidOpen={() => console.log('modal did open')}
-          modalDidClose={() => this.setState({ open: false })}
-          style={{ alignItems: 'center', position: 'absolute' }}>
-          <View>
-            <Text style={{ fontSize: 20, marginBottom: 10 }}>Hello world!</Text>
-            <TouchableOpacity
-              style={{ margin: 5 }}
-              onPress={() => this.setState({ offset: -100 })}>
-              <Text>Move modal up</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={{ margin: 5 }}
-              onPress={() => this.setState({ offset: 0 })}>
-              <Text>Reset modal position</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={{ margin: 5 }}
-              onPress={() => this.setState({ open: true })}>
-              <Text>Close modal</Text>
-            </TouchableOpacity>
-          </View>
+        <Modal isVisible={this.state.visibleModal === 1}>
+          {this._renderModalContent()}
         </Modal>
+
       </View>
     )
   }

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, TouchableOpacity, Text } from 'react-native';
+import { View, TouchableOpacity, Text, Image } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import { IsValidKey } from '../Common/CommonMethod';
 export class SettingScreen extends React.Component {
@@ -34,17 +34,23 @@ export class SettingScreen extends React.Component {
         return (
             <View style={{ alignItems : 'center', justifyContent : 'center', marginTop : 20}}>
                 <TouchableOpacity
-                    style = {{ width : '90%', height : 50 }}
+                    style = {{ width : '90%', height : 50, flexDirection: 'row', alignItems: 'center' }}
                     onPress={() => this.DeleteNicknameAndComment()}>
-                    <Text style={{ fontFamily : 'SpoqaRegular', fontSize : 15}}>
+                    <Image
+                        source={require('../Writing/Images/1_WritingButton.png')}
+                        style={{width: 25, height: 25}}/>
+                    <Text style={{ marginLeft: 5, fontFamily : 'SpoqaBold', fontSize : 15}}>
                         초기화 Nickname / Comment
                     </Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
-                    style = {{ width : '90%', height : 50 }}
+                    style = {{ width : '90%', height : 50, flexDirection: 'row', alignItems: 'center' }}
                     onPress={() => this.DeleteWritings()}>
-                    <Text style={{ fontFamily : 'SpoqaRegular', fontSize : 15}}>
+                    <Image
+                        source={require('../Writing/Images/1_WritingButton.png')}
+                        style={{width: 25, height: 25}}/>
+                    <Text style={{ marginLeft: 5, fontFamily : 'SpoqaBold', fontSize : 15}}>
                         작성한 글 초기화
                     </Text>
                 </TouchableOpacity>

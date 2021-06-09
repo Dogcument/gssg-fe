@@ -2,7 +2,7 @@ import * as React from 'react'
 import { View, Text, Image } from 'react-native'
 import { UserInfo } from '../Common/CommonMethod'
 import { styles } from './Styles'
-import { DogImages } from '../Common/Dogs'
+import { DogProfileImages } from '../Common/Dogs'
 
 export class MyPageProfile extends React.Component {
     render() {
@@ -13,7 +13,7 @@ export class MyPageProfile extends React.Component {
                 <View
                     style={{ flexDirection: 'row', flex: 7.5, marginLeft : '2.5%', marginRight : '2.5%',
                              alignItems: 'center', justifyContent : 'space-around'}}>
-                    <View style={{ width : '15%', flexDirection: 'column', alignItems : 'center' }}>
+                    <View style={{ flex: 2, flexDirection: 'column', alignItems : 'center' }}>
                         <Text style={{ fontFamily: 'SpoqaRegular', fontSize : 12, marginBottom : 5, color : '#FFFFFF' }}>
                             Writing
                         </Text>
@@ -22,9 +22,9 @@ export class MyPageProfile extends React.Component {
                         </Text>
                     </View>
                     <Image
-                        style={[styles.profileImageStyle]} resizeMode='contain'
-                        source={DogImages[selectedDog]} />
-                    <View style={{ width : '15%', flexDirection: 'column', alignItems : 'center'}}>
+                        style={[styles.profileImageStyle], {flex: 6}} resizeMode='contain'
+                        source={DogProfileImages[selectedDog]} />
+                    <View style={{ flex: 2, flexDirection: 'column', alignItems : 'center'}}>
                         <Text style={{ fontFamily: 'SpoqaRegular', fontSize : 12, marginBottom : 5, color : '#FFFFFF' }}>
                             Follower
                         </Text>

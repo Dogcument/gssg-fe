@@ -59,7 +59,7 @@ function MyPageStack({ navigation }) {
                         fontFamily: 'SpoqaBold'
                     },
                     headerTitleAlign: 'left',
-                    
+                    headerBackTitleVisible: false,
                     headerBackImage: () =>
                     <Image
                         style={{ marginLeft: 20, width: 20, height: 20 }}
