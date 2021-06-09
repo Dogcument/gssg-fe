@@ -116,6 +116,24 @@ export const styles = StyleSheet.create({
     fontSize: 24,
     color: '#00479e',
     textAlign: 'center',
+  },
+  modalbutton: {
+    paddingTop: 5,
+    height: 50,
+    marginLeft: '20%',
+    width: '60%',
+    borderBottomColor: '#ae9784',
+    borderBottomWidth: 5,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  modal: {
+    backgroundColor: '#FFFFFF',
+    width: '80%',
+    marginLeft: '10%',
+    height: '60%',
+    borderRadius: 5,
+    padding: 20
   }
 }
 );
