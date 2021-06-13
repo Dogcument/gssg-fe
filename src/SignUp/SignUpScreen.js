@@ -149,27 +149,27 @@ export class SignUpScreen extends React.Component {
                     style={{ width: '65%', flexDirection: 'column', backgroundColor: '#d4d4d4', borderRadius: 10 }}>
                     <View style={{ flex: 1, flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-around', padding: 5 }}>
                       <TouchableOpacity onPress={() => this.onDogSelected(Dogs.Normal)}>
-                        <Image source={require('../MyPage/Images/기본강아지.png')}
+                        <Image source={DogImages[Dogs.Normal]}
                           style={{ width: 50, height: 50 }} />
                       </TouchableOpacity>
                       <TouchableOpacity onPress={() => this.onDogSelected(Dogs.Buldog)}>
-                        <Image source={require('../MyPage/Images/불독.png')}
+                        <Image source={DogImages[Dogs.Buldog]}
                           style={{ width: 50, height: 50 }} />
                       </TouchableOpacity>
                       <TouchableOpacity onPress={() => this.onDogSelected(Dogs.Samo)}>
-                        <Image source={require('../MyPage/Images/사모예드.png')}
+                        <Image source={DogImages[Dogs.Samo]}
                           style={{ width: 50, height: 50 }} />
                       </TouchableOpacity>
                       <TouchableOpacity onPress={() => this.onDogSelected(Dogs.York)}>
-                        <Image source={require('../MyPage/Images/요크.png')}
+                        <Image source={DogImages[Dogs.York]}
                           style={{ width: 50, height: 50 }} />
                       </TouchableOpacity>
                       <TouchableOpacity onPress={() => this.onDogSelected(Dogs.Corgi)}>
-                        <Image source={require('../MyPage/Images/코기.png')}
+                        <Image source={DogImages[Dogs.Corgi]}
                           style={{ width: 50, height: 50 }} />
                       </TouchableOpacity>
                       <TouchableOpacity onPress={() => this.onDogSelected(Dogs.Hurskey)}>
-                        <Image source={require('../MyPage/Images/허스키.png')}
+                        <Image source={DogImages[Dogs.Hurskey]}
                           style={{ width: 50, height: 50 }} />
                       </TouchableOpacity>
                     </View>

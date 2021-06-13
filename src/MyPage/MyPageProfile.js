@@ -2,7 +2,7 @@ import * as React from 'react'
 import { View, Text, Image } from 'react-native'
 import { UserInfo } from '../Common/CommonMethod'
 import { styles } from './Styles'
-import { DogProfileImages } from '../Common/Dogs'
+import { DogImages } from '../Common/Dogs'
 
 export class MyPageProfile extends React.Component {
     render() {
@@ -23,7 +23,7 @@ export class MyPageProfile extends React.Component {
                     </View>
                     <Image
                         style={[styles.profileImageStyle], {flex: 6}} resizeMode='contain'
-                        source={DogProfileImages[selectedDog]} />
+                        source={DogImages[selectedDog]} />
                     <View style={{ flex: 2, flexDirection: 'column', alignItems : 'center'}}>
                         <Text style={{ fontFamily: 'SpoqaRegular', fontSize : 12, marginBottom : 5, color : '#FFFFFF' }}>
                             Follower
