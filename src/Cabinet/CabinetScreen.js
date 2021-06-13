@@ -5,7 +5,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { styles } from './Styles';
 import AsyncStorage from '@react-native-community/async-storage';
 import { CabinetItem } from './CabinetItem';
-import { IsValidKey } from '../Common/CommonMethod'
+import { IsValidKey, ParseSavedItem } from '../Common/CommonMethod'
 import { Dogs } from '../Common/Dogs'
 
 export class CabinetScreen extends React.Component {
@@ -83,11 +83,14 @@ export class CabinetScreen extends React.Component {
       if (!IsValidKey(keys[i])) {
         continue;
       }
-
+      
       const value = await AsyncStorage.getItem(keys[i]);
+      const parsedItem = ParseSavedItem(value);
+
       loadedData.push({
-        time: keys[i],
-        content: value
+        time: parsedItem[0],
+        subject: parsedItem[1],
+        content: parsedItem[2]
       });
     }
 

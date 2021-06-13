@@ -1,13 +1,12 @@
 export function IsValidKey(key) {
-  if (key == "Nickname") {
-    return false;
-  } else if (key == "Comment") {
-    return false;
-  } else if (key == "SelectedDog") {
-    return false;
-  }
+  return key == "Writing";
+}
 
-  return key != "EXPO_CONSTANTS_INSTALLATION_ID";
+// [0] : Time
+// [1] : Subject
+// [2] : Content
+export function ParseSavedItem(item) {
+  return item.split("</=/>");
 }
 
 export class UserInfo {

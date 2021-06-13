@@ -34,9 +34,14 @@ export class WritingScreen extends React.Component {
 }
 
 function SaveToLocalMachine() {
-  var KeyName = String(Date.now());
-  const saveString = content + "{\0}" + subject;
-  AsyncStorage.setItem(KeyName, saveString, () => { });
+  var key = "Writing";
+
+  const item =
+    String(Date.now()) + "</=/>" +
+    subject + "</=/>" + 
+    content + "</=/>";
+
+  AsyncStorage.setItem(key, item, () => { /* Callback function Null */ });
 };
 
 export function OnDoneButtonClicked(navigation) {
