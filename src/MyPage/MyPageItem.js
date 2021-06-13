@@ -4,22 +4,24 @@ import { styles } from './Styles';
 import moment from 'moment';
 
 export class MyPageItem extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     const writingTimeEpoch = Number(this.props.writingTime);
     const writingTime = moment(writingTimeEpoch).format('YYYY.MM.DD HH:mm');
     const content = this.props.content;
     const navigation = this.props.navigation;
     const selectedDog = this.props.selectedDog;
+    const subject = this.props.subject;
     
     return (
       <TouchableOpacity
         style={[styles.itemContainer]}
         onPress={() => OnMyPageItemClicked(navigation, writingTime, content, selectedDog)}>
-        <Text style={{ fontFamily : 'SpoqaBold', fontSize : 15, marginLeft : '3%' }}>
-          #1
-        </Text>
         <Text style={{ marginLeft : 10, fontFamily : 'SpoqaMedium', flex : 1, fontSize : 20, fontWeight : 'bold' }}>
-          글감
+          {subject}
         </Text>
         <Text style={{ marginLeft : 10, fontFamily: 'SpoqaMedium', fontSize : 10, flex : 1 }}>
           {writingTime || 'WritingTime'}
