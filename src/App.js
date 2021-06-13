@@ -38,11 +38,12 @@ class App extends React.Component {
   GetIsNewbie = async () => {
     const nickname = await AsyncStorage.getItem("Nickname");
     const comment =  await AsyncStorage.getItem("Comment");
+    const selectedDog = await AsyncStorage.getItem("SelectedDog");
 
     let userInfo = new UserInfo();
     userInfo.SetInfo(nickname, comment);
 
-    this.state.isNewbie = nickname == null;
+    this.state.isNewbie = nickname == null || comment == null || selectedDog == null;
     setTimeout(() => { this.setState({ isLoading: false }) }, 3000);
   }
 

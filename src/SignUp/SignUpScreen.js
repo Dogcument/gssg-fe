@@ -185,7 +185,7 @@ export class SignUpScreen extends React.Component {
                     <View style={{ flex: 1, flexDirection: 'column', alignItems: 'center', justifyContent: 'space-around', marginTop: -15 }}>
                       <Image source={DogImages[this.state.selectedDog]}
                         style={{ width: 80, height: 80 }} />
-                      <Text style={{ fontFamily: 'SpoqaBold', fontSize: 15 }}> {this.state.selectedDog} </Text>
+                      <Text style={{ fontFamily: 'SpoqaBold', fontSize: 10 }}> {this.state.selectedDog} </Text>
                     </View>
                   </View>
                 </View>
