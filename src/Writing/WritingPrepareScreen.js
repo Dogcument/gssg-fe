@@ -11,6 +11,22 @@ export class WritingPrepareScreen extends React.Component {
     }
   }
 
+  OnPrevButtonClicked() {
+    if (this.state.WritingNum == 0) {
+      return;
+    }
+
+    this.setState({WritingNum: this.state.WritingNum - 1});
+  }
+
+  OnNextButtonClicked() {
+    if (this.state.WritingNum >= ProtoWritings.length - 1) {
+      return;
+    }
+
+    this.setState({WritingNum: this.state.WritingNum + 1});
+  }
+
   render() {
     const subject = ProtoWritings[this.state.WritingNum];
     return (
@@ -21,12 +37,12 @@ export class WritingPrepareScreen extends React.Component {
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'space-around' }}>
           <View
             style={{ width: '100%', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingLeft: '5%', paddingRight: '5%' }}>
-            <TouchableHighlight>
+            <TouchableHighlight onPress={() => this.OnPrevButtonClicked()}>
               <Image style={{ width: 25, height: 25 }}
                 source={require('../Main/Images/NextButton-reversed.png')} />
             </TouchableHighlight>
             <Text style={styles.title}>"{subject}"</Text>
-            <TouchableHighlight>
+            <TouchableHighlight onPress={() => this.OnNextButtonClicked()}>
               <Image style={{ width: 25, height: 25 }}
                 source={require('../Main/Images/NextButton.png')} />
             </TouchableHighlight>
