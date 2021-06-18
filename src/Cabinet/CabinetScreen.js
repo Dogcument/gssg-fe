@@ -1,7 +1,6 @@
-import React, {useState} from 'react';
-import {TouchableOpacity, Text, View } from 'react-native';
+import React from 'react';
+import {ScrollView, TouchableOpacity, Text, View } from 'react-native';
 import Modal from 'react-native-modal';
-import { ScrollView } from 'react-native-gesture-handler';
 import { styles } from './Styles';
 import AsyncStorage from '@react-native-community/async-storage';
 import { CabinetItem } from './CabinetItem';
@@ -12,6 +11,11 @@ export class CabinetScreen extends React.Component {
   state = {
     visibleModal: null,
   };
+
+  componentDidMount() {
+    const navigation = this.props.navigation;
+    navigation.setOptions({ tabBarVisible: true });
+  }
 
   _renderButton = (text, onPress) => (
     <TouchableOpacity 

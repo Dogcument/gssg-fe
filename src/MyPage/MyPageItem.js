@@ -49,6 +49,7 @@ export class MyPageItem extends React.Component {
 
 function OnMyPageItemClicked(navigation, writingTime, content, selectedDog) {
   navigation.navigate('ItemDetail', {
+    navigation: navigation,
     writingTime: writingTime,
     content: content,
     selectedDog: selectedDog

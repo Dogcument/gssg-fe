@@ -8,6 +8,11 @@ export class ItemDetail extends React.Component {
         super(props);
     }
 
+    componentDidMount() {
+        const navigation = this.props.navigation;
+        navigation.setOptions({ tabBarVisible: false });
+    }
+
     render() {
         const selectedDog = this.props.selectedDog;
         let userInfo = new UserInfo();

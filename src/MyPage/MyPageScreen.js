@@ -17,6 +17,11 @@ export class MyPageScreen extends React.Component {
     this.LoadData();
   }
 
+  componentDidMount() {
+    const navigation = this.props.navigation;
+    navigation.setOptions({ tabBarVisible: true });
+  }
+  
   LoadData = async () => {
     const keys = await AsyncStorage.getAllKeys();
     keys.sort(function (a, b) {
@@ -57,7 +62,7 @@ export class MyPageScreen extends React.Component {
 
     const ItemList = this.state.data.loadedData;
     const navigation = this.props.navigation;
-    
+
     return (
       <View style={{ flex: 1 }}>
         { /* Fixed Line */}

@@ -7,9 +7,10 @@ import { HeaderButtons } from 'react-navigation-header-buttons';
 import { ItemDetail } from '../Common/ItemDetail';
 const Stack = createStackNavigator();
 
-function CabinetStack() {
-    const CabinetComponent = () => <CabinetScreen navigation={useNavigation()} />
+function CabinetStack({navigation}) {
+    const CabinetComponent = () => <CabinetScreen navigation={navigation} />
     const ItemDetailComponent = ({ route }) => <ItemDetail
+        navigation={route.params.navigation}
         writingTime={route.params.writingTime}
         content={route.params.content}
         selectedDog={route.params.selectedDog}

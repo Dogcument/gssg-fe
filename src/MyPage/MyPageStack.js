@@ -12,6 +12,7 @@ const Stack = createStackNavigator();
 function MyPageStack({ navigation }) {
     const MyPageComponent = () => <MyPageScreen navigation={navigation} />;
     const ItemDetailComponent = ({ route }) => <ItemDetail
+        navigation={route.params.navigation}
         writingTime={route.params.writingTime}
         content={route.params.content}
         selectedDog={route.params.selectedDog}
