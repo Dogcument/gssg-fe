@@ -11,6 +11,7 @@ export const styles = StyleSheet.create({
         backgroundColor : '#ae9784',
         borderWidth: 0.5, borderColor: '#ae9784',
         borderRightWidth: 0, borderLeftWidth: 0, borderTopWidth: 0,
+        elevation: 3,
         shadowColor : '#000000', shadowOpacity : 0.3, shadowOffset : {width : 2, height : 2}, shadowRadius : 3
     },
     profileImageStyle: {
@@ -34,6 +35,7 @@ export const styles = StyleSheet.create({
         marginTop: 5,
         marginBottom: 5,
         marginLeft: '2.5%',
+        elevation: 3,
         shadowColor : '#000000', shadowOpacity : 0.3, shadowOffset : {width : 2, height : 2}, shadowRadius : 3
     },
     FacebookStyle: {

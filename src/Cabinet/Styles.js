@@ -73,6 +73,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     width: '100%',
     backgroundColor: '#ae9784',
+    elevation: 3,
     shadowColor: '#000000',
     shadowOpacity: 0.5,
     shadowOffset: {
@@ -88,6 +89,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#FF3974',
+    elevation: 3,
     shadowColor: '#2AC062',
     shadowOpacity: 0.5,
     shadowOffset: {
