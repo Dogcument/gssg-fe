@@ -2,6 +2,7 @@ import * as React from 'react';
 import { View, TextInput, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import { styles } from './Styles';
+import { MagicString } from '../Common/CommonMethod';
 
 var content = "";
 var subject = "";
@@ -34,12 +35,13 @@ export class WritingScreen extends React.Component {
 }
 
 function SaveToLocalMachine() {
-  var key = "Writing";
+  const dateString = String(Date.now());
+  var key = "Writing" + MagicString + dateString;
 
   const item =
-    String(Date.now()) + "</=/>" +
-    subject + "</=/>" + 
-    content + "</=/>";
+    String(Date.now()) + MagicString +
+    subject + MagicString + 
+    content + MagicString;
 
   AsyncStorage.setItem(key, item, () => { /* Callback function Null */ });
 };

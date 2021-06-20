@@ -67,7 +67,7 @@ export class MyPageScreen extends React.Component {
       <View style={{ flex: 1 }}>
         { /* Fixed Line */}
         <View>
-          <MyPageProfile selectedDog={this.state.selectedDog} />
+          <MyPageProfile selectedDog={this.state.selectedDog} writingNum={ ItemList.length} />
         </View>
         { /* Fixed Line */}
         <ScrollView>

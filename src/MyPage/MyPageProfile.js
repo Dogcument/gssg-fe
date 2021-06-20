@@ -7,7 +7,9 @@ import { DogImages } from '../Common/Dogs'
 export class MyPageProfile extends React.Component {
     render() {
         const selectedDog = this.props.selectedDog;
+        const writingNum = this.props.writingNum;
         const userInfo = new UserInfo();
+
         return (
             <View style={[styles.profileContainer]}>
                 <View
@@ -18,7 +20,7 @@ export class MyPageProfile extends React.Component {
                             Writing
                         </Text>
                         <Text style={{fontFamily : 'SpoqaMedium', fontSize : 20, fontWeight : 'bold', color : '#FFFFFF' }}>
-                            0
+                            {writingNum}
                         </Text>
                     </View>
                     <Image
