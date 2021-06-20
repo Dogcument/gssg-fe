@@ -129,7 +129,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
-  modal: {
+  writingContentModal: {
     backgroundColor: '#FFFFFF',
     width: '80%',
     marginLeft: '10%',
