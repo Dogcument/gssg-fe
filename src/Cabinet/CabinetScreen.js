@@ -1,5 +1,5 @@
 import React from 'react';
-import {ScrollView, TouchableOpacity, Text, View } from 'react-native';
+import { ScrollView, TouchableOpacity, Text, View } from 'react-native';
 import Modal from 'react-native-modal';
 import { styles } from './Styles';
 import AsyncStorage from '@react-native-community/async-storage';
@@ -17,52 +17,52 @@ export class CabinetScreen extends React.Component {
     navigation.setOptions({ tabBarVisible: true });
   }
 
-  _renderButton = (text, onPress) => (
-    <TouchableOpacity 
+  RenderCloseButton = (text, onPress) => (
+    <TouchableOpacity
       onPress={onPress}
       style={[styles.modalbutton]}>
       <View>
-        <Text style={{fontFamily: 'SpoqaBold', fontSize: 20}}>{text}</Text>
+        <Text style={{ fontFamily: 'SpoqaBold', fontSize: 20 }}>{text}</Text>
       </View>
     </TouchableOpacity>
   );
 
-  _renderModalContent = () => (
-    <View style={[styles.modal]}>
-        <ScrollView>
-          <TouchableOpacity
-            style={{height: 40}}>
-            <Text style={{fontFamily: 'SpoqaMedium'}}>
-              글감 1
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={{height: 40}}>
-            <Text style={{fontFamily: 'SpoqaMedium'}}>
-              글감 2
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={{height: 40}}>
-            <Text style={{fontFamily: 'SpoqaMedium'}}>
-              글감 3
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={{height: 40}}>
-            <Text style={{fontFamily: 'SpoqaMedium'}}>
-              글감 4
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={{height: 40}}>
-            <Text style={{fontFamily: 'SpoqaMedium'}}>
-              글감 5
-            </Text>
-          </TouchableOpacity>
-          
-        </ScrollView>
-        {this._renderButton('닫기', () => this.setState({ visibleModal: null }))}
+  RenderWritingContent = () => (
+    <View style={[styles.writingContentModal]}>
+      <ScrollView>
+        <TouchableOpacity
+          style={{ height: 40 }}>
+          <Text style={{ fontFamily: 'SpoqaMedium' }}>
+            글감 1
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={{ height: 40 }}>
+          <Text style={{ fontFamily: 'SpoqaMedium' }}>
+            글감 2
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={{ height: 40 }}>
+          <Text style={{ fontFamily: 'SpoqaMedium' }}>
+            글감 3
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={{ height: 40 }}>
+          <Text style={{ fontFamily: 'SpoqaMedium' }}>
+            글감 4
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={{ height: 40 }}>
+          <Text style={{ fontFamily: 'SpoqaMedium' }}>
+            글감 5
+          </Text>
+        </TouchableOpacity>
+
+      </ScrollView>
+      {this.RenderCloseButton('닫기', () => this.setState({ visibleModal: null }))}
     </View>
   );
 
@@ -87,7 +87,7 @@ export class CabinetScreen extends React.Component {
       if (!IsValidKey(keys[i])) {
         continue;
       }
-      
+
       const value = await AsyncStorage.getItem(keys[i]);
       const parsedItem = ParseSavedItem(value);
 
@@ -117,14 +117,16 @@ export class CabinetScreen extends React.Component {
     const ItemList = this.state.data.loadedData;
     const navigation = this.props.navigation;
     return (
-      <View style={{flex : 1, justifyContent : 'center'}}>
+      <View style={{ flex: 1, justifyContent: 'center' }}>
 
         <ScrollView>
-          <View>
-            {this._renderButton('글감', () =>
-              this.setState({ visibleModal: 1 })
-            )}
-          </View>
+          {
+            //<View>
+            //  {this.RenderCloseButton('글감', () =>
+            //    this.setState({ visibleModal: 1 })
+            //  )}
+            //</View>
+          }
           {
             ItemList.map((value) =>
               <CabinetItem
@@ -136,9 +138,9 @@ export class CabinetScreen extends React.Component {
           }
         </ScrollView>
 
-        <Modal isVisible={this.state.visibleModal === 1}>
-          {this._renderModalContent()}
-        </Modal>
+        {/* <Modal isVisible={this.state.visibleModal === 1}>
+          {this.RenderWritingContent()}
+        </Modal> */}
 
       </View>
     )
