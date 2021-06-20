@@ -15,30 +15,33 @@ export class MyPageItem extends React.Component {
     const navigation = this.props.navigation;
     const selectedDog = this.props.selectedDog;
     const subject = this.props.subject;
-    
+
     return (
       <TouchableOpacity
         style={[styles.itemContainer]}
         onPress={() => OnMyPageItemClicked(navigation, writingTime, content, selectedDog)}>
-        <Text style={{ marginLeft : 10, fontFamily : 'SpoqaMedium', flex : 1, fontSize : 20, fontWeight : 'bold' }}>
+        <Image
+          source={require('../Writing/Images/1_WritingButton.png')}
+          style={{ marginLeft: 10, width: 25, height: 25 }} />
+        <Text style={{ marginTop: 3, marginLeft: 10, fontFamily: 'SpoqaMedium', flex: 1, fontSize: 20, fontWeight: 'bold' }}>
           {subject}
         </Text>
-        <Text style={{ marginLeft : 10, fontFamily: 'SpoqaMedium', fontSize : 10, flex : 1 }}>
+        <Text style={{ marginLeft: 10, fontFamily: 'SpoqaMedium', fontSize: 10, flex: 1 }}>
           {writingTime || 'WritingTime'}
         </Text>
-        <Image style={{ height: 15, width: 15, marginLeft : 5, marginRight: 5 }}
+        <Image style={{ height: 15, width: 15, marginLeft: 5, marginRight: 5 }}
           source={require('../Common/Images/Bone.png')}>
         </Image>
-        <View style={{width : '5%'}}>
-          <Text style={{ fontFamily : 'SpoqaMedium', fontSize : 10 }}>
+        <View style={{ width: '5%' }}>
+          <Text style={{ fontFamily: 'SpoqaMedium', fontSize: 10 }}>
             0
           </Text>
         </View>
         <Image style={{ height: 15, width: 15, marginRight: 5 }}
           source={require('../Common/Images/Chat.png')}>
         </Image>
-        <View style={{width : '5%', marginRight : 10}}>
-          <Text style={{ fontFamily : 'SpoqaMedium', fontSize : 10 }}>
+        <View style={{ width: '5%', marginRight: 10 }}>
+          <Text style={{ fontFamily: 'SpoqaMedium', fontSize: 10 }}>
             0
           </Text>
         </View>

@@ -18,7 +18,7 @@ export class MyPageProfile extends React.Component {
                             Writing
                         </Text>
                         <Text style={{fontFamily : 'SpoqaMedium', fontSize : 20, fontWeight : 'bold', color : '#FFFFFF' }}>
-                            32
+                            0
                         </Text>
                     </View>
                     <Image
@@ -29,7 +29,7 @@ export class MyPageProfile extends React.Component {
                             Follower
                         </Text>
                         <Text style={{fontFamily : 'SpoqaMedium', fontSize : 20, fontWeight : 'bold', color : '#FFFFFF' }}>
-                            19k
+                            0
                         </Text>
                     </View>
                 </View>
