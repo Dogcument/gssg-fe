@@ -11,7 +11,7 @@ import {
   ChatImg,
   BackButtonImg,
   AlarmImg,
-  SetUpImg,
+  GearImg,
 } from "../../assets/ImageList";
 
 const Stack = createStackNavigator();
@@ -56,7 +56,7 @@ function MyPageStack({ navigation }) {
                 activeOpacity={0.5}
                 onPress={() => OpenSettingScreen(navigation)}
               >
-                <Image style={styles.StackIconStyle} source={SetUpImg} />
+                <Image style={styles.StackIconStyle} source={GearImg} />
               </TouchableOpacity>
             </HeaderButtons>
           ),

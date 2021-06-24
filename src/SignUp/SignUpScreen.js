@@ -35,7 +35,7 @@ export class SignUpScreen extends React.Component {
     super(props);
     this.state = {
       signUpState: SignUpState.SetNickname,
-      selectedDog: Dogs.Normal,
+      selectedDog: Dogs.Baekgu,
     };
   }
 
@@ -236,26 +236,26 @@ export class SignUpScreen extends React.Component {
                       }}
                     >
                       <TouchableOpacity
-                        onPress={() => this.onDogSelected(Dogs.Normal)}
+                        onPress={() => this.onDogSelected(Dogs.Baekgu)}
                       >
                         <Image
-                          source={DogImages[Dogs.Normal]}
+                          source={DogImages[Dogs.Baekgu]}
                           style={{ width: 50, height: 50 }}
                         />
                       </TouchableOpacity>
                       <TouchableOpacity
-                        onPress={() => this.onDogSelected(Dogs.Buldog)}
+                        onPress={() => this.onDogSelected(Dogs.Janggun)}
                       >
                         <Image
-                          source={DogImages[Dogs.Buldog]}
+                          source={DogImages[Dogs.Janggun]}
                           style={{ width: 50, height: 50 }}
                         />
                       </TouchableOpacity>
                       <TouchableOpacity
-                        onPress={() => this.onDogSelected(Dogs.Samo)}
+                        onPress={() => this.onDogSelected(Dogs.Wuyu)}
                       >
                         <Image
-                          source={DogImages[Dogs.Samo]}
+                          source={DogImages[Dogs.Wuyu]}
                           style={{ width: 50, height: 50 }}
                         />
                       </TouchableOpacity>
@@ -276,10 +276,10 @@ export class SignUpScreen extends React.Component {
                         />
                       </TouchableOpacity>
                       <TouchableOpacity
-                        onPress={() => this.onDogSelected(Dogs.Hurskey)}
+                        onPress={() => this.onDogSelected(Dogs.Silver)}
                       >
                         <Image
-                          source={DogImages[Dogs.Hurskey]}
+                          source={DogImages[Dogs.Silver]}
                           style={{ width: 50, height: 50 }}
                         />
                       </TouchableOpacity>

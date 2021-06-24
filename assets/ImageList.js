@@ -5,7 +5,7 @@ export const BoneBlackImg = require("./images/BoneBlack.png");
 export const ChatImg = require("./images/Chat.png");
 export const BackButtonImg = require("./images/BackButton.png");
 export const AlarmImg = require("./images/Alarm.png");
-export const SetUpImg = require("./images/SetUp.png");
+export const GearImg = require("./images/Gear.png");
 export const WritingButtonImg = require("./images/WritingButton.png");
 export const PaperBackgroundImg = require("./images/PaperBackground.png");
 

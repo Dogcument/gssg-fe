@@ -2,6 +2,7 @@ import * as React from "react";
 import { View, TouchableOpacity, Text, Image } from "react-native";
 import AsyncStorage from "@react-native-community/async-storage";
 import { IsValidKey } from "../Common/CommonMethod";
+import { WritingButtonImg } from "../../assets/ImageList";
 export class SettingScreen extends React.Component {
   DeleteNicknameAndComment = async () => {
     const nicknameKey = await AsyncStorage.getItem("Nickname");

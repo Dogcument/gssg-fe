@@ -10,17 +10,17 @@ import {
 export const navigationIcons = [
   {
     // Writing Icon
-    active: TabBarWritingNormalImg,
-    inactive: TabBarWritingSelectedImg,
+    active: TabBarWritingSelectedImg,
+    inactive: TabBarWritingNormalImg,
   },
   {
     // Cabinet Icon
-    active: TabBarCabinetNormalImg,
-    inactive: TabBarCabinetSelectedImg,
+    active: TabBarCabinetSelectedImg,
+    inactive: TabBarCabinetNormalImg,
   },
   {
     // MyPage Icon
-    active: TabBarMyPageNormalImg,
-    inactive: TabBarMyPageSelectedImg,
+    active: TabBarMyPageSelectedImg,
+    inactive: TabBarMyPageNormalImg,
   },
 ];

@@ -9,7 +9,7 @@ export class MyPageProfile extends React.Component {
     const selectedDog = this.props.selectedDog;
     const writingNum = this.props.writingNum;
     const userInfo = new UserInfo();
-
+    const dogImg = DogImages[selectedDog];
     return (
       <View style={[styles.profileContainer]}>
         <View

@@ -55,7 +55,7 @@ export class CabinetScreen extends React.Component {
     this.state = {
       isLoad: false,
       data: 0,
-      selectedDog: Dogs.Normal,
+      selectedDog: Dogs.Baekgu,
     };
     this.LoadData();
   }
