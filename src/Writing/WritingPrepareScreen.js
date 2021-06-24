@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { View, Text, TouchableOpacity, TouchableHighlight, Image, ImageBackground } from 'react-native';
 import { styles } from './Styles'
-import { ProtoWritings } from "../Common/ProtoWritings"
+import { ProtoWritings } from "../Common/ProtoWritings";
+import { NextButtonImg, PrevButtonImg, WritingButtonImg, PaperBackgroundImg } from '../../assets/Images';
 
 export class WritingPrepareScreen extends React.Component {
   constructor() {
@@ -31,7 +32,7 @@ export class WritingPrepareScreen extends React.Component {
     const subject = ProtoWritings[this.state.WritingNum];
     return (
       <ImageBackground
-        source={require("./Images/10_PaperBackground.png")}
+        source={PaperBackgroundImg}
         style={{ width: "100%", height: "100%" }}>
         <View style={{ height: '15%' }}></View>
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'space-around' }}>
@@ -39,12 +40,12 @@ export class WritingPrepareScreen extends React.Component {
             style={{ width: '100%', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingLeft: '5%', paddingRight: '5%' }}>
             <TouchableHighlight onPress={() => this.OnPrevButtonClicked()}>
               <Image style={{ width: 25, height: 25 }}
-                source={require('../Main/Images/NextButton-reversed.png')} />
+                source={PrevButtonImg} />
             </TouchableHighlight>
             <Text style={styles.title}>"{subject}"</Text>
             <TouchableHighlight onPress={() => this.OnNextButtonClicked()}>
               <Image style={{ width: 25, height: 25 }}
-                source={require('../Main/Images/NextButton.png')} />
+                source={NextButtonImg} />
             </TouchableHighlight>
           </View>
           <TouchableOpacity
@@ -52,7 +53,7 @@ export class WritingPrepareScreen extends React.Component {
             onPress={() => OnWritingButtonClicked(this.props.navigation, subject)}>
             <Image
               style={styles.ImageIconStyle}
-              source={require('./Images/1_WritingButton.png')} />
+              source={WritingButtonImg} />
           </TouchableOpacity>
         </View>
       </ImageBackground>

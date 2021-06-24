@@ -1,17 +1,19 @@
+import { BaekguImg, JanggunImg, WuyuImg, YorkImg, CorgiImg, SilverImg } from "../../assets/Images"
+
 export const Dogs = {
-  Normal: "Normal",
-  Buldog: "Buldog",
-  Samo: "Samo",
+  Baekgu: "Baekgu",
+  Janggun: "Janggun",
+  Wuyu: "Wuyu",
   York: "York",
   Corgi: "Corgi",
-  Hurskey: "Hurskey"
+  Silver: "Silver"
 }
 
 export const DogImages = {
-  Normal: require('../MyPage/Images/H_Baekgu.png'),
-  Buldog: require('../MyPage/Images/H_Janggun.png'),
-  Samo: require('../MyPage/Images/H_Wuyu.png'),
-  York: require('../MyPage/Images/H_York.png'),
-  Corgi: require('../MyPage/Images/H_Wellshi.png'),
-  Hurskey: require('../MyPage/Images/H_Silver.png')
+  Baekgu: BaekguImg,
+  Janggun: JanggunImg,
+  Wuyu: WuyuImg,
+  York: YorkImg,
+  Corgi: CorgiImg,
+  Silver: SilverImg
 }

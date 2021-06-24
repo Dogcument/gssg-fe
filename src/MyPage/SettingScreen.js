@@ -41,7 +41,7 @@ export class SettingScreen extends React.Component {
                     style = {{ width : '90%', height : 50, flexDirection: 'row', alignItems: 'center' }}
                     onPress={() => this.DeleteNicknameAndComment()}>
                     <Image
-                        source={require('../Writing/Images/1_WritingButton.png')}
+                        source={WritingButtonImg}
                         style={{width: 25, height: 25}}/>
                     <Text style={{ marginLeft: 5, fontFamily : 'SpoqaBold', fontSize : 15}}>
                         프로필 초기화
@@ -52,7 +52,7 @@ export class SettingScreen extends React.Component {
                     style = {{ width : '90%', height : 50, flexDirection: 'row', alignItems: 'center' }}
                     onPress={() => this.DeleteWritings()}>
                     <Image
-                        source={require('../Writing/Images/1_WritingButton.png')}
+                        source={WritingButtonImg}
                         style={{width: 25, height: 25}}/>
                     <Text style={{ marginLeft: 5, fontFamily : 'SpoqaBold', fontSize : 15}}>
                         작성한 글 초기화

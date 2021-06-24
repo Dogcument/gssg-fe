@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { TouchableOpacity, Text, View, Image } from 'react-native';
 import { styles } from './Styles';
+import { BoneBlackImg, ChatImg, WritingButtonImg } from '../../assets/Images';
 import moment from 'moment';
 
 export class MyPageItem extends React.Component {
@@ -21,7 +22,7 @@ export class MyPageItem extends React.Component {
         style={[styles.itemContainer]}
         onPress={() => OnMyPageItemClicked(navigation, writingTime, content, selectedDog)}>
         <Image
-          source={require('../Writing/Images/1_WritingButton.png')}
+          source={WritingButtonImg}
           style={{ marginLeft: 10, width: 25, height: 25 }} />
         <Text style={{ marginTop: 3, marginLeft: 10, fontFamily: 'SpoqaMedium', flex: 1, fontSize: 20, fontWeight: 'bold' }}>
           {subject}
@@ -30,7 +31,7 @@ export class MyPageItem extends React.Component {
           {writingTime || 'WritingTime'}
         </Text>
         <Image style={{ height: 15, width: 15, marginLeft: 5, marginRight: 5 }}
-          source={require('../Common/Images/Bone.png')}>
+          source={BoneBlackImg}>
         </Image>
         <View style={{ width: '5%' }}>
           <Text style={{ fontFamily: 'SpoqaMedium', fontSize: 10 }}>
@@ -38,7 +39,7 @@ export class MyPageItem extends React.Component {
           </Text>
         </View>
         <Image style={{ height: 15, width: 15, marginRight: 5 }}
-          source={require('../Common/Images/Chat.png')}>
+          source={ChatImg}>
         </Image>
         <View style={{ width: '5%', marginRight: 10 }}>
           <Text style={{ fontFamily: 'SpoqaMedium', fontSize: 10 }}>

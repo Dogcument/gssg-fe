@@ -2,9 +2,10 @@ import * as React from 'react';
 import { Image, TouchableOpacity } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { CabinetScreen } from './CabinetScreen';
-import { useNavigation } from "@react-navigation/core";
 import { HeaderButtons } from 'react-navigation-header-buttons';
 import { ItemDetail } from '../Common/ItemDetail';
+import { BoneBlackImg, ChatImg, BackButtonImg } from '../../assets/Images';
+
 const Stack = createStackNavigator();
 
 function CabinetStack({navigation}) {
@@ -38,7 +39,7 @@ function CabinetStack({navigation}) {
                     headerBackImage: () => (
                         <Image
                             style={{ marginLeft: 20, width: 20, height: 20 }}
-                            source={require('../Main/Images/BackButton.png')}>
+                            source={BackButtonImg}>
                         </Image>
                     ),
                     headerRight: () => (
@@ -49,7 +50,7 @@ function CabinetStack({navigation}) {
                                 onPress={() => alert("좋아요 표시 화면으로 이동")}>
                                 <Image
                                     style={{ width: 20, height: 20 }}
-                                    source={require('../Common/Images/Bone.png')} />
+                                    source={BoneBlackImg} />
                             </TouchableOpacity>
                             <TouchableOpacity
                                 style={{ width: 20, height: 20, marginRight: 15 }}
@@ -57,7 +58,7 @@ function CabinetStack({navigation}) {
                                 onPress={() => alert("댓글 표시 화면으로 이동")}>
                                 <Image
                                     style={{ width: 20, height: 20 }}
-                                    source={require('../Common/Images/Chat.png')} />
+                                    source={ChatImg} />
                             </TouchableOpacity>
                         </HeaderButtons>
                     )

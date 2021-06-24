@@ -6,15 +6,7 @@ import {
     ImageBackground,
     TouchableOpacity
 } from "react-native";
-
-const Images = [
-    require('./Images/Pop_up_1.png'),
-    require('./Images/Pop_up_2.png'),
-    require('./Images/Pop_up_3.png'),
-    require('./Images/Pop_up_4.png'),
-    require('./Images/Pop_up_5.png'),
-    require('./Images/Pop_up_6.png')
-]
+import { LogoImg, TutorialImgs } from "../../assets/Images"
 
 const MAX_IMAGE_NUM = 5;
 export class TutorialScreen extends React.Component {
@@ -37,14 +29,14 @@ export class TutorialScreen extends React.Component {
     render() {
         return (
             <View style={{ width: '100%', height: '100%' }}>
-                <ImageBackground source={require('../Logo/Images/1_Logo.png')} style={{ position: 'absolute', width: '100%', height: '100%' }} />
+                <ImageBackground source={LogoImg} style={{ position: 'absolute', width: '100%', height: '100%' }} />
                 <View style={{ width: '100%', height: '100%', backgroundColor: '#000000', opacity: 0.5 }} />
                 <View style={styles.tutorialBackground}>
                     <TouchableOpacity
                         style={{ height: '100%', width: '100%' }}
                         onPress={() => this.ShowNextTutorial()}>
                         <Image style={styles.popupImage}
-                            source={Images[this.state.imageIndex]}>
+                            source={TutorialImgs[this.state.imageIndex]}>
                         </Image>
                     </TouchableOpacity>
                 </View>

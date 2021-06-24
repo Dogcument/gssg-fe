@@ -6,6 +6,7 @@ import { SettingScreen } from './SettingScreen';
 import { styles } from './Styles';
 import { TouchableOpacity, Image } from 'react-native';
 import { ItemDetail } from '../Common/ItemDetail';
+import { BoneBlackImg, ChatImg, BackButtonImg, AlarmImg, SetUpImg } from "../../assets/Images";
 
 const Stack = createStackNavigator();
 
@@ -16,7 +17,7 @@ function MyPageStack({ navigation }) {
         writingTime={route.params.writingTime}
         content={route.params.content}
         selectedDog={route.params.selectedDog}
-         />
+    />
 
     return (
         <Stack.Navigator>
@@ -28,8 +29,8 @@ function MyPageStack({ navigation }) {
                     headerTitleStyle: {
                         fontFamily: 'SpoqaBold',
                     },
-                    headerStyle : {
-                        backgroundColor : '#ae9784',
+                    headerStyle: {
+                        backgroundColor: '#ae9784',
                         shadowColor: 'transparent'
                     },
                     headerTitleAlign: 'left',
@@ -40,14 +41,14 @@ function MyPageStack({ navigation }) {
                                 onPress={() => alert("개발중입니다.")}>
                                 <Image
                                     style={styles.StackIconStyle}
-                                    source={require('./Images/1_Alarm.png')} />
+                                    source={AlarmImg} />
                             </TouchableOpacity>
                             <TouchableOpacity
                                 style={[styles.FacebookStyle, { marginRight: 15 }]} activeOpacity={0.5}
                                 onPress={() => OpenSettingScreen(navigation)}>
                                 <Image
                                     style={styles.StackIconStyle}
-                                    source={require('./Images/2_Setup.png')} />
+                                    source={SetUpImg} />
                             </TouchableOpacity>
                         </HeaderButtons>
                     )
@@ -62,11 +63,11 @@ function MyPageStack({ navigation }) {
                     headerTitleAlign: 'left',
                     headerBackTitleVisible: false,
                     headerBackImage: () =>
-                    <Image
-                        style={{ marginLeft: 20, width: 20, height: 20 }}
-                        source={require('../Main/Images/BackButton.png')}>
-                    </Image>
-                
+                        <Image
+                            style={{ marginLeft: 20, width: 20, height: 20 }}
+                            source={BackButtonImg}>
+                        </Image>
+
                 }}>
                 {() => <SettingScreen />}
             </Stack.Screen>
@@ -80,7 +81,7 @@ function MyPageStack({ navigation }) {
                     headerBackImage: () => (
                         <Image
                             style={{ marginLeft: 20, width: 20, height: 20 }}
-                            source={require('../Main/Images/BackButton.png')}>
+                            source={BackButtonImg}>
                         </Image>
                     ),
                     headerRight: () => (
@@ -91,7 +92,7 @@ function MyPageStack({ navigation }) {
                                 onPress={() => alert("좋아요 표시 화면으로 이동")}>
                                 <Image
                                     style={{ width: 20, height: 20 }}
-                                    source={require('../Common/Images/Bone.png')} />
+                                    source={BoneBlackImg} />
                             </TouchableOpacity>
                             <TouchableOpacity
                                 style={{ width: 20, height: 20, marginRight: 15 }}
@@ -99,7 +100,7 @@ function MyPageStack({ navigation }) {
                                 onPress={() => alert("댓글 표시 화면으로 이동")}>
                                 <Image
                                     style={{ width: 20, height: 20 }}
-                                    source={require('../Common/Images/Chat.png')} />
+                                    source={ChatImg} />
                             </TouchableOpacity>
                         </HeaderButtons>
                     )

@@ -1,17 +1,26 @@
+import {
+    TabBarWritingNormalImg,
+    TabBarWritingSelectedImg,
+    TabBarCabinetNormalImg,
+    TabBarCabinetSelectedImg,
+    TabBarMyPageNormalImg,
+    TabBarMyPageSelectedImg,
+} from '../../assets/Images';
+
 export const navigationIcons = [
     {
         // Writing Icon
-        active: require("../Main/Images/WrittingSelected.png"),
-        inactive: require("../Main/Images/WrittingNormal.png")
+        active: TabBarWritingNormalImg,
+        inactive: TabBarWritingSelectedImg
     },
     {
         // Cabinet Icon
-        active: require("../Main/Images/CabinetSelected.png"),
-        inactive: require("../Main/Images/CabinetNormal.png")
+        active: TabBarCabinetNormalImg,
+        inactive: TabBarCabinetSelectedImg
     },
     {
         // MyPage Icon
-        active: require("../Main/Images/MypageSelected.png"),
-        inactive: require("../Main/Images/MypageNormal.png")
+        active: TabBarMyPageNormalImg,
+        inactive: TabBarMyPageSelectedImg
     }
 ];

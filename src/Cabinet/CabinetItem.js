@@ -4,7 +4,7 @@ import { styles } from './Styles';
 import moment from 'moment';
 import { UserInfo } from '../Common/CommonMethod'
 import { DogImages } from '../Common/Dogs'
-
+import { BoneBlackImg, ChatImg } from '../../assets/Images';
 export class CabinetItem extends React.Component {
   render() {
     const writingTimeEpoch = Number(this.props.writingTime);
@@ -43,10 +43,10 @@ export class CabinetItem extends React.Component {
             </View>
             <View style={{alignItems : 'center', flexDirection : 'row'}}>
               <Image style={{ height: 20, width: 20, marginRight: 10, marginBottom : -15 }}
-                source={require('../Common/Images/Bone.png')}>
+                source={BoneBlackImg}>
               </Image>
               <Image style={{ height: 20, width: 20, marginRight: 10, marginBottom : -15 }}
-                source={require('../Common/Images/Chat.png')}>
+                source={ChatImg}>
               </Image>
             </View>
           </View>

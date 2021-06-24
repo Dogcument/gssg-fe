@@ -7,6 +7,7 @@ import { WritingPrepareScreen } from './WritingPrepareScreen';
 import { WritingScreen, OnDoneButtonClicked } from './WritingScreen';
 import { HeaderButtons } from 'react-navigation-header-buttons';
 import { useNavigation } from '@react-navigation/core';
+import { AnimalPawBlackImg, BackButtonImg } from '../../assets/Images';
 
 const Stack = createStackNavigator();
 
@@ -44,7 +45,7 @@ function WritingStack({navigation}) {
                             <TouchableOpacity
                                 onPress={() => OnDoneButtonClicked(navigation)}>
                                 <Image
-                                    source={require('../Common/Images/animal-paw-print.png')}
+                                    source={AnimalPawBlackImg}
                                     style={{ width: 20, height: 20, marginRight: 20 }} />
                             </TouchableOpacity>
                         </HeaderButtons>
@@ -53,7 +54,7 @@ function WritingStack({navigation}) {
                     headerBackImage: () =>
                         <Image
                             style={{ marginLeft: 20, width: 20, height: 20 }}
-                            source={require('../Main/Images/BackButton.png')}>
+                            source={BackButtonImg}>
                         </Image>
                 }}
             />

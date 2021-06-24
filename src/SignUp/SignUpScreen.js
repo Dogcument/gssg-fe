@@ -15,7 +15,8 @@ import {
 import { TutorialScreen } from "./TutorialScreen";
 import AsyncStorage from '@react-native-community/async-storage';
 import { UserInfo } from '../Common/CommonMethod';
-import { Dogs, DogImages } from '../Common/Dogs'
+import { Dogs, DogImages } from '../Common/Dogs';
+import { LogoImg, NextButtonImg, WritingButtonImg } from "../../assets/Images";
 
 export var SignUpState = {
   SetNickname: 1,
@@ -102,18 +103,18 @@ export class SignUpScreen extends React.Component {
             <KeyboardAvoidingView
               behavior={Platform.OS === "web" ? "height" : "position"}
               style={{ width: '100%', height: '100%' }}>
-              <ImageBackground source={require('../Logo/Images/1_Logo.png')} style={{ position: 'absolute', width: '100%', height: '100%' }} />
+              <ImageBackground source={LogoImg} style={{ position: 'absolute', width: '100%', height: '100%' }} />
               <View style={{ width: '100%', height: '100%', backgroundColor: '#000000', opacity: 0.5 }} />
               <View style={styles.modalBackground}>
                 <View style={{ margin: 15, flex: 1 }}>
                   <View style={{ flexDirection: 'row', flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                    <Image source={require('../Writing/Images/1_WritingButton.png')} style={{ height: 25, width: 25 }} />
+                    <Image source={WritingButtonImg} style={{ height: 25, width: 25 }} />
                     <Text style={{ flex: 1, fontFamily: 'SpoqaBold', fontSize: 20, marginLeft: 10 }}>
                       작가 등록증
                       </Text>
                     <TouchableHighlight style={{ alignSelf: 'flex-end' }} onPress={() => this.OnNextButtonClicked()}>
                       <Image style={{ width: 25, height: 25 }}
-                        source={require('../Main/Images/NextButton.png')} />
+                        source={NextButtonImg} />
                     </TouchableHighlight>
                   </View>
 
@@ -141,7 +142,7 @@ export class SignUpScreen extends React.Component {
         case SignUpState.SetDog:
           return (
             <View style={{ width: '100%', height: '100%' }}>
-              <ImageBackground source={require('../Logo/Images/1_Logo.png')} style={{ position: 'absolute', width: '100%', height: '100%' }} />
+              <ImageBackground source={LogoImg} style={{ position: 'absolute', width: '100%', height: '100%' }} />
               <View style={{ width: '100%', height: '100%', backgroundColor: '#000000', opacity: 0.5 }} />
               <View style={styles.modalBackground}>
                 <View style={{ margin: 15, flex: 1, flexDirection: 'row' }}>
@@ -179,7 +180,7 @@ export class SignUpScreen extends React.Component {
                     <View style={{ flexDirection: 'row', justifyContent: 'flex-end', marginLeft: 20, marginBottom: 20 }}>
                       <TouchableHighlight onPress={() => this.OnNextButtonClicked()}>
                         <Image style={{ width: 25, height: 25 }}
-                          source={require('../Main/Images/NextButton.png')} />
+                          source={NextButtonImg} />
                       </TouchableHighlight>
                     </View>
                     <View style={{ flex: 1, flexDirection: 'column', alignItems: 'center', justifyContent: 'space-around', marginTop: -15 }}>
@@ -200,7 +201,7 @@ export class SignUpScreen extends React.Component {
     } else {
       return (
         <ImageBackground
-          source={require("../Logo/Images/1_Logo.png")}
+          source={LogoImg}
           style={{ width: "100%", height: "100%" }}>
         </ImageBackground>
       );
