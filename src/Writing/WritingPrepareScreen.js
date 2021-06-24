@@ -2,7 +2,7 @@ import * as React from 'react';
 import { View, Text, TouchableOpacity, TouchableHighlight, Image, ImageBackground } from 'react-native';
 import { styles } from './Styles'
 import { ProtoWritings } from "../Common/ProtoWritings";
-import { NextButtonImg, PrevButtonImg, WritingButtonImg, PaperBackgroundImg } from '../../assets/Images';
+import { NextButtonImg, PrevButtonImg, WritingButtonImg, PaperBackgroundImg } from '../../assets/ImageList';
 
 export class WritingPrepareScreen extends React.Component {
   constructor() {

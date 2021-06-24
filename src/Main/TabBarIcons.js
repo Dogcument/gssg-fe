@@ -5,7 +5,7 @@ import {
     TabBarCabinetSelectedImg,
     TabBarMyPageNormalImg,
     TabBarMyPageSelectedImg,
-} from '../../assets/Images';
+} from '../../assets/ImageList';
 
 export const navigationIcons = [
     {

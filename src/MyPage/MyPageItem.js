@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { TouchableOpacity, Text, View, Image } from 'react-native';
 import { styles } from './Styles';
-import { BoneBlackImg, ChatImg, WritingButtonImg } from '../../assets/Images';
+import { BoneBlackImg, ChatImg, WritingButtonImg } from '../../assets/ImageList';
 import moment from 'moment';
 
 export class MyPageItem extends React.Component {

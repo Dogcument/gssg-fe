@@ -6,7 +6,7 @@ import { SettingScreen } from './SettingScreen';
 import { styles } from './Styles';
 import { TouchableOpacity, Image } from 'react-native';
 import { ItemDetail } from '../Common/ItemDetail';
-import { BoneBlackImg, ChatImg, BackButtonImg, AlarmImg, SetUpImg } from "../../assets/Images";
+import { BoneBlackImg, ChatImg, BackButtonImg, AlarmImg, SetUpImg } from "../../assets/ImageList";
 
 const Stack = createStackNavigator();
 

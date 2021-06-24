@@ -7,7 +7,7 @@ import { WritingPrepareScreen } from './WritingPrepareScreen';
 import { WritingScreen, OnDoneButtonClicked } from './WritingScreen';
 import { HeaderButtons } from 'react-navigation-header-buttons';
 import { useNavigation } from '@react-navigation/core';
-import { AnimalPawBlackImg, BackButtonImg } from '../../assets/Images';
+import { AnimalPawBlackImg, BackButtonImg } from '../../assets/ImageList';
 
 const Stack = createStackNavigator();
 

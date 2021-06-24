@@ -6,7 +6,7 @@ import {
     ImageBackground,
     TouchableOpacity
 } from "react-native";
-import { LogoImg, TutorialImgs } from "../../assets/Images"
+import { LogoImg, TutorialImgs } from "../../assets/ImageList"
 
 const MAX_IMAGE_NUM = 5;
 export class TutorialScreen extends React.Component {

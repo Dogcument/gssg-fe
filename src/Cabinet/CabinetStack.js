@@ -4,7 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { CabinetScreen } from './CabinetScreen';
 import { HeaderButtons } from 'react-navigation-header-buttons';
 import { ItemDetail } from '../Common/ItemDetail';
-import { BoneBlackImg, ChatImg, BackButtonImg } from '../../assets/Images';
+import { BoneBlackImg, ChatImg, BackButtonImg } from '../../assets/ImageList';
 
 const Stack = createStackNavigator();
 

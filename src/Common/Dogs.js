@@ -1,4 +1,4 @@
-import { BaekguImg, JanggunImg, WuyuImg, YorkImg, CorgiImg, SilverImg } from "../../assets/Images"
+import { BaekguImg, JanggunImg, WuyuImg, YorkImg, CorgiImg, SilverImg } from "../../assets/ImageList"
 
 export const Dogs = {
   Baekgu: "Baekgu",

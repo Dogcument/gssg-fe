@@ -4,7 +4,7 @@ import { styles } from './Styles';
 import moment from 'moment';
 import { UserInfo } from '../Common/CommonMethod'
 import { DogImages } from '../Common/Dogs'
-import { BoneBlackImg, ChatImg } from '../../assets/Images';
+import { BoneBlackImg, ChatImg } from '../../assets/ImageList';
 export class CabinetItem extends React.Component {
   render() {
     const writingTimeEpoch = Number(this.props.writingTime);

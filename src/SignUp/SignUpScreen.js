@@ -16,7 +16,7 @@ import { TutorialScreen } from "./TutorialScreen";
 import AsyncStorage from '@react-native-community/async-storage';
 import { UserInfo } from '../Common/CommonMethod';
 import { Dogs, DogImages } from '../Common/Dogs';
-import { LogoImg, NextButtonImg, WritingButtonImg } from "../../assets/Images";
+import { LogoImg, NextButtonImg, WritingButtonImg } from "../../assets/ImageList";
 
 export var SignUpState = {
   SetNickname: 1,
