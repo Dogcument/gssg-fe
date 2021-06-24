@@ -1,51 +1,55 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from "react-native";
 
 // Dummy Style
 // Jiwung TODO
 export const styles = StyleSheet.create({
   ItemContainer: {
-    backgroundColor: '#FFFFFF',
-    width: '95%',
+    backgroundColor: "#FFFFFF",
+    width: "95%",
     height: 200,
-    flexDirection: 'column',
+    flexDirection: "column",
     borderWidth: 1,
-    borderColor: '#ae9784',
-    justifyContent: 'space-between',
+    borderColor: "#ae9784",
+    justifyContent: "space-between",
     marginTop: 5,
     marginBottom: 5,
-    marginLeft: '2.5%',
-    shadowColor: '#000000', shadowOffset: { width: 2, height: 2 },
-    shadowOpacity: 0.3, shadowRadius: 3,
+    marginLeft: "2.5%",
+    shadowColor: "#000000",
+    shadowOffset: { width: 2, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 3,
   },
   ItemContent: {
-    width: '100%',
-    height: '100%',
-    flexDirection: 'column',
+    width: "100%",
+    height: "100%",
+    flexDirection: "column",
     flex: 3.5,
     marginTop: 5,
-    justifyContent: 'center'
+    justifyContent: "center",
   },
   ItemProfile: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
+    flexDirection: "row",
+    justifyContent: "flex-start",
     flex: 1.5,
-    flexDirection: 'row'
+    flexDirection: "row",
   },
   ItemText: {
-    alignItems: 'flex-end',
-    flexDirection: 'column',
-    fontFamily: 'SpoqaRegular',
-    marginTop: 10, marginLeft: 10,
-    width: '95%', textAlign: 'center'
+    alignItems: "flex-end",
+    flexDirection: "column",
+    fontFamily: "SpoqaRegular",
+    marginTop: 10,
+    marginLeft: 10,
+    width: "95%",
+    textAlign: "center",
   },
   profile: {
     flex: 2,
-    justifyContent: 'flex-end'
+    justifyContent: "flex-end",
   },
   profileView: {
-    alignItems: 'flex-start',
-    flexDirection: 'column',
-    justifyContent: 'space-around'
+    alignItems: "flex-start",
+    flexDirection: "column",
+    justifyContent: "space-around",
   },
   ImageStyle: {
     height: 50,
@@ -56,57 +60,57 @@ export const styles = StyleSheet.create({
     margin: 5,
     height: 40,
     width: 40,
-    marginBottom: -100
+    marginBottom: -100,
     // resizeMode: 'stretch',
   },
   container: {
     padding: 25,
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
   button: {
-    display: 'flex',
+    display: "flex",
     height: 60,
     borderRadius: 6,
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '100%',
-    backgroundColor: '#ae9784',
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
+    backgroundColor: "#ae9784",
     elevation: 3,
-    shadowColor: '#000000',
+    shadowColor: "#000000",
     shadowOpacity: 0.5,
     shadowOffset: {
       height: 10,
-      width: 0
+      width: 0,
     },
     shadowRadius: 25,
   },
   closeButton: {
-    display: 'flex',
+    display: "flex",
     height: 60,
     borderRadius: 6,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#FF3974',
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#FF3974",
     elevation: 3,
-    shadowColor: '#2AC062',
+    shadowColor: "#2AC062",
     shadowOpacity: 0.5,
     shadowOffset: {
       height: 10,
-      width: 0
+      width: 0,
     },
     shadowRadius: 25,
   },
   buttonText: {
-    color: '#FFFFFF',
+    color: "#FFFFFF",
     fontSize: 22,
-    fontFamily: 'SpoqaRegular'
+    fontFamily: "SpoqaRegular",
   },
   image: {
     marginTop: 150,
     marginBottom: 10,
-    width: '100%',
+    width: "100%",
     height: 350,
   },
   text: {
@@ -116,26 +120,25 @@ export const styles = StyleSheet.create({
   },
   closeText: {
     fontSize: 24,
-    color: '#00479e',
-    textAlign: 'center',
+    color: "#00479e",
+    textAlign: "center",
   },
   modalbutton: {
     paddingTop: 5,
     height: 50,
-    marginLeft: '35%',
-    width: '30%',
-    borderBottomColor: '#ae9784',
+    marginLeft: "35%",
+    width: "30%",
+    borderBottomColor: "#ae9784",
     borderBottomWidth: 5,
-    justifyContent: 'center',
-    alignItems: 'center'
+    justifyContent: "center",
+    alignItems: "center",
   },
   writingContentModal: {
-    backgroundColor: '#FFFFFF',
-    width: '80%',
-    marginLeft: '10%',
-    height: '60%',
+    backgroundColor: "#FFFFFF",
+    width: "80%",
+    marginLeft: "10%",
+    height: "60%",
     borderRadius: 5,
-    padding: 20
-  }
-}
-);
+    padding: 20,
+  },
+});

@@ -1,4 +1,11 @@
-import { BaekguImg, JanggunImg, WuyuImg, YorkImg, CorgiImg, SilverImg } from "../../assets/ImageList"
+import {
+  BaekguImg,
+  JanggunImg,
+  WuyuImg,
+  YorkImg,
+  CorgiImg,
+  SilverImg,
+} from "../../assets/ImageList";
 
 export const Dogs = {
   Baekgu: "Baekgu",
@@ -6,8 +13,8 @@ export const Dogs = {
   Wuyu: "Wuyu",
   York: "York",
   Corgi: "Corgi",
-  Silver: "Silver"
-}
+  Silver: "Silver",
+};
 
 export const DogImages = {
   Baekgu: BaekguImg,
@@ -15,5 +22,5 @@ export const DogImages = {
   Wuyu: WuyuImg,
   York: YorkImg,
   Corgi: CorgiImg,
-  Silver: SilverImg
-}
+  Silver: SilverImg,
+};

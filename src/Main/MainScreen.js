@@ -1,13 +1,13 @@
-import * as React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Image, View } from 'react-native';
+import * as React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { Image, View } from "react-native";
 
 // screen component
-import WritingStack from '../Writing/WritingStack';
-import CabinetStack from '../Cabinet/CabinetStack';
-import MyPageStack from '../MyPage/MyPageStack';
-import { navigationIcons } from './TabBarIcons';
+import WritingStack from "../Writing/WritingStack";
+import CabinetStack from "../Cabinet/CabinetStack";
+import MyPageStack from "../MyPage/MyPageStack";
+import { navigationIcons } from "./TabBarIcons";
 
 const Tab = createBottomTabNavigator();
 
@@ -15,18 +15,20 @@ export default class MainScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isNewbie: props.IsNewbie
+      isNewbie: props.IsNewbie,
     };
   }
   render() {
     return (
       <NavigationContainer>
-        <Tab.Navigator tabBarOptions={{
-          showLabel: false,
-          style: {
-            backgroundColor: '#ae9784'
-          }
-        }}>
+        <Tab.Navigator
+          tabBarOptions={{
+            showLabel: false,
+            style: {
+              backgroundColor: "#ae9784",
+            },
+          }}
+        >
           <Tab.Screen
             name="글쓰기"
             component={WritingStack}
@@ -34,12 +36,16 @@ export default class MainScreen extends React.Component {
               tabBarIcon: ({ focused }) => {
                 return (
                   <Image
-                    source={focused ? navigationIcons[0].active : navigationIcons[0].inactive}
+                    source={
+                      focused
+                        ? navigationIcons[0].active
+                        : navigationIcons[0].inactive
+                    }
                     style={{ width: 30, height: 30 }}
                   />
                 );
               },
-              unmountOnBlur: true
+              unmountOnBlur: true,
             }}
           />
           <Tab.Screen
@@ -49,12 +55,16 @@ export default class MainScreen extends React.Component {
               tabBarIcon: ({ focused }) => {
                 return (
                   <Image
-                    source={focused ? navigationIcons[1].active : navigationIcons[1].inactive}
+                    source={
+                      focused
+                        ? navigationIcons[1].active
+                        : navigationIcons[1].inactive
+                    }
                     style={{ width: 30, height: 30 }}
                   />
                 );
               },
-              unmountOnBlur: true
+              unmountOnBlur: true,
             }}
           />
           <Tab.Screen
@@ -64,12 +74,16 @@ export default class MainScreen extends React.Component {
               tabBarIcon: ({ focused }) => {
                 return (
                   <Image
-                    source={focused ? navigationIcons[2].active : navigationIcons[2].inactive}
+                    source={
+                      focused
+                        ? navigationIcons[2].active
+                        : navigationIcons[2].inactive
+                    }
                     style={{ width: 30, height: 30 }}
                   />
                 );
               },
-              unmountOnBlur: true
+              unmountOnBlur: true,
             }}
           />
         </Tab.Navigator>
