@@ -1,11 +1,10 @@
 import React from "react";
 import { ScrollView, TouchableOpacity, Text, View } from "react-native";
-import Modal from "react-native-modal";
 import { styles } from "./Styles";
 import AsyncStorage from "@react-native-community/async-storage";
 import { CabinetItem } from "./CabinetItem";
 import { IsValidKey, ParseSavedItem } from "../Common/CommonMethod";
-import { Dogs } from "../Common/Dogs";
+import UserInfo from "../Common/UserInfo";
 
 export class CabinetScreen extends React.Component {
   state = {
@@ -55,7 +54,6 @@ export class CabinetScreen extends React.Component {
     this.state = {
       isLoad: false,
       data: 0,
-      selectedDog: Dogs.Baekgu,
     };
     this.LoadData();
   }
@@ -82,9 +80,6 @@ export class CabinetScreen extends React.Component {
       });
     }
 
-    const selectedDog = await AsyncStorage.getItem("SelectedDog");
-    this.state.selectedDog = selectedDog;
-
     this.setState({
       isLoad: true,
       data: { loadedData },
@@ -98,6 +93,8 @@ export class CabinetScreen extends React.Component {
 
     const ItemList = this.state.data.loadedData;
     const navigation = this.props.navigation;
+    const userInfo = UserInfo.get();
+
     return (
       <View style={{ flex: 1, justifyContent: "center" }}>
         <ScrollView>
@@ -110,7 +107,7 @@ export class CabinetScreen extends React.Component {
           }
           {ItemList.map((value) => (
             <CabinetItem
-              selectedDog={this.state.selectedDog}
+              selectedDog={userInfo.getDog()}
               key={value.time}
               navigation={navigation}
               writingTime={value.time}

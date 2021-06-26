@@ -6,13 +6,13 @@ import { MyPageProfile } from "./MyPageProfile";
 import { MyPageItem } from "./MyPageItem";
 import { IsValidKey, ParseSavedItem } from "../Common/CommonMethod";
 import { Dogs } from "../Common/Dogs";
+import UserInfo from "../Common/UserInfo";
 export class MyPageScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       isLoad: false,
       data: 0,
-      selectedDog: Dogs.Baekgu,
     };
     this.LoadData();
   }
@@ -44,9 +44,6 @@ export class MyPageScreen extends React.Component {
       });
     }
 
-    const selectedDog = await AsyncStorage.getItem("SelectedDog");
-    this.state.selectedDog = selectedDog;
-
     this.setState({
       isLoad: true,
       data: { loadedData },
@@ -60,13 +57,13 @@ export class MyPageScreen extends React.Component {
 
     const ItemList = this.state.data.loadedData;
     const navigation = this.props.navigation;
+    const userInfo = UserInfo.get();
 
     return (
       <View style={{ flex: 1 }}>
         {/* Fixed Line */}
         <View>
           <MyPageProfile
-            selectedDog={this.state.selectedDog}
             writingNum={ItemList.length}
           />
         </View>
@@ -74,7 +71,7 @@ export class MyPageScreen extends React.Component {
         <ScrollView>
           {ItemList.map((value) => (
             <MyPageItem
-              selectedDog={this.state.selectedDog}
+              selectedDog={userInfo.getDog()}
               key={value.time}
               navigation={navigation}
               subject={value.subject}

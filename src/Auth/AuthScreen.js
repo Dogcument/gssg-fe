@@ -5,6 +5,7 @@ import { SignUpScreen } from "./SignUpScreen";
 import MainScreen from "../Main/MainScreen";
 import AsyncStorage from "@react-native-community/async-storage";
 import { LogoImg } from "../../assets/ImageList";
+import UserInfo from "../Common/UserInfo";
 
 export const SignUpState = {
   SetNickname: 1,
@@ -45,9 +46,15 @@ export default class AuthScreen extends React.Component {
     try {
       // getItem "Key" should be "user_session"
       // value is json
-      const session = await AsyncStorage.getItem("Nickname");
+      const session = await AsyncStorage.getItem("user_session");
       if (session != undefined) {
         this.state.hasSession = true;
+
+        const saved = JSON.parse(session);
+        let userInfo = UserInfo.get();
+        userInfo.setNickName(saved.nickName);
+        userInfo.setComment(saved.comment);
+        userInfo.setDog(saved.dog);
       }
     } catch (error) {
       console.error(error);

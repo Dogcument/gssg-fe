@@ -1,15 +1,15 @@
 import * as React from "react";
 import { View, Text, Image } from "react-native";
-import { UserInfo } from "../Common/CommonMethod";
+import UserInfo from "../Common/UserInfo";
 import { styles } from "./Styles";
 import { DogImages } from "../Common/Dogs";
 
 export class MyPageProfile extends React.Component {
   render() {
-    const selectedDog = this.props.selectedDog;
+    const userInfo = UserInfo.get();
+    const selectedDog = userInfo.getDog();
     const writingNum = this.props.writingNum;
-    const userInfo = new UserInfo();
-    const dogImg = DogImages[selectedDog];
+
     return (
       <View style={[styles.profileContainer]}>
         <View
@@ -94,7 +94,7 @@ export class MyPageProfile extends React.Component {
               color: "#FFFFFF",
             }}
           >
-            {userInfo.GetNickName()}
+            {userInfo.getNickName()}
           </Text>
           <Text
             style={{
@@ -105,7 +105,7 @@ export class MyPageProfile extends React.Component {
               color: "#FFFFFF",
             }}
           >
-            {userInfo.GetComment()}
+            {userInfo.getComment()}
           </Text>
         </View>
       </View>

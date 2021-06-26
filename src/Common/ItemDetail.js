@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Text, View, Image } from "react-native";
 import { styles } from "./Styles";
-import { UserInfo } from "../Common/CommonMethod";
+import UserInfo from "./UserInfo";
 import { DogImages } from "../Common/Dogs";
 export class ItemDetail extends React.Component {
   constructor(props) {
@@ -15,7 +15,7 @@ export class ItemDetail extends React.Component {
 
   render() {
     const selectedDog = this.props.selectedDog;
-    let userInfo = new UserInfo();
+    const userInfo = UserInfo.get();
     return (
       <View
         style={{
@@ -82,10 +82,10 @@ export class ItemDetail extends React.Component {
               }}
             >
               <Text style={{ fontFamily: "SpoqaBold" }}>
-                {userInfo.GetNickName()}
+                {userInfo.getNickName()}
               </Text>
               <Text style={{ fontFamily: "SpoqaRegular", fontSize: 13 }}>
-                {userInfo.GetComment()}
+                {userInfo.getComment()}
               </Text>
             </View>
           </View>

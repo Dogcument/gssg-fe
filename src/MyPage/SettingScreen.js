@@ -4,22 +4,9 @@ import AsyncStorage from "@react-native-community/async-storage";
 import { IsValidKey } from "../Common/CommonMethod";
 import { WritingButtonImg } from "../../assets/ImageList";
 export class SettingScreen extends React.Component {
-  DeleteNicknameAndComment = async () => {
-    const nicknameKey = await AsyncStorage.getItem("Nickname");
-    if (nicknameKey != null) {
-      AsyncStorage.removeItem("Nickname");
-    }
-
-    const commentKey = await AsyncStorage.getItem("Comment");
-    if (commentKey != null) {
-      AsyncStorage.removeItem("Comment");
-    }
-
-    const selectedDog = await AsyncStorage.getItem("SelectedDog");
-    if (selectedDog != null) {
-      AsyncStorage.removeItem("SelectedDog");
-    }
-    alert("프로필이 초기화 되었습니다.");
+  deleteUserInfo = async () => {
+    AsyncStorage.removeItem("user_session");
+    alert("유저 정보가 삭제 되었습니다.");
   };
 
   DeleteWritings = async () => {
@@ -50,7 +37,7 @@ export class SettingScreen extends React.Component {
             flexDirection: "row",
             alignItems: "center",
           }}
-          onPress={() => this.DeleteNicknameAndComment()}
+          onPress={() => this.deleteUserInfo()}
         >
           <Image source={WritingButtonImg} style={{ width: 25, height: 25 }} />
           <Text

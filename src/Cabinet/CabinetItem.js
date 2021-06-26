@@ -2,7 +2,7 @@ import * as React from "react";
 import { TouchableOpacity, Text, View, Image } from "react-native";
 import { styles } from "./Styles";
 import moment from "moment";
-import { UserInfo } from "../Common/CommonMethod";
+import UserInfo from "../Common/UserInfo";
 import { DogImages } from "../Common/Dogs";
 import { BoneBlackImg, ChatImg } from "../../assets/ImageList";
 export class CabinetItem extends React.Component {
@@ -11,7 +11,7 @@ export class CabinetItem extends React.Component {
     const writingTime = moment(writingTimeEpoch).format("YYYY.MM.DD HH:mm");
     const content = this.props.content;
     const navigation = this.props.navigation;
-    const userInfo = new UserInfo();
+    const userInfo = UserInfo.get();
     const selectedDog = this.props.selectedDog;
 
     return (
@@ -55,7 +55,7 @@ export class CabinetItem extends React.Component {
                   fontWeight: "bold",
                 }}
               >
-                {userInfo.GetNickName()}
+                {userInfo.getNickName()}
               </Text>
               <Text style={{ fontFamily: "SpoqaMedium", fontSize: 10 }}>
                 {writingTime || "WritingTime"}

@@ -11,29 +11,3 @@ export function IsValidKey(key) {
 export function ParseSavedItem(item) {
   return item.split(MagicString);
 }
-
-export class UserInfo {
-  constructor() {
-    if (UserInfo.exist) {
-      return UserInfo.instance;
-    }
-
-    UserInfo.instance = this;
-    UserInfo.exist = true;
-
-    return this;
-  }
-
-  SetInfo(nickName, comment) {
-    this.nickName = nickName;
-    this.comment = comment;
-  }
-
-  GetNickName() {
-    return this.nickName;
-  }
-
-  GetComment() {
-    return this.comment;
-  }
-}

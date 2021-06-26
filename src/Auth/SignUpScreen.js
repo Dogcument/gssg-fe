@@ -14,13 +14,13 @@ import {
 } from "react-native";
 import { TutorialScreen } from "./TutorialScreen";
 import AsyncStorage from "@react-native-community/async-storage";
-import { UserInfo } from "../Common/CommonMethod";
 import { Dogs, DogImages } from "../Common/Dogs";
 import {
   LogoImg,
   NextButtonImg,
   WritingButtonImg,
 } from "../../assets/ImageList";
+import UserInfo from "../Common/UserInfo";
 
 export var SignUpState = {
   SetNickname: 1,
@@ -29,6 +29,7 @@ export var SignUpState = {
 };
 
 let nickName = "";
+let pw = "";
 let comment = "";
 export class SignUpScreen extends React.Component {
   constructor(props) {
@@ -42,43 +43,21 @@ export class SignUpScreen extends React.Component {
   OnNextButtonClicked() {
     switch (this.state.signUpState) {
       case SignUpState.SetNickname:
-        if (nickName == "") {
-          alert("닉네임이 비어있어요");
-          return;
-        }
-        if (comment == "") {
-          alert("코멘트가 비어있어요");
-          return;
-        }
-
-        AsyncStorage.setItem("Nickname", nickName, (error) => {
-          if (!error) {
-            return;
-          }
-          alert("이미 Nickname이 있는디? 지운다?");
-          AsyncStorage.removeItem("Nickname");
-        });
-
-        AsyncStorage.setItem("Comment", comment, (error) => {
-          if (!error) {
-            return;
-          }
-          alert("이미 Comment가 있는디? 지운다?");
-          AsyncStorage.removeItem("Comment");
-        });
-
-        let userInfo = new UserInfo();
-        userInfo.SetInfo(nickName, comment);
         this.setState({ signUpState: SignUpState.SetDog });
         break;
       case SignUpState.SetDog:
-        AsyncStorage.setItem("SelectedDog", this.state.selectedDog, (error) => {
-          if (!error) {
-            return;
-          }
-          alert("이미 Dog 있는디? 지운다?");
-          AsyncStorage.removeItem("SelectedDog");
-        });
+        AsyncStorage.setItem("user_session", JSON.stringify({
+          id: null,
+          nickName: nickName,
+          pw: pw,
+          comment: comment,
+          dog: this.state.selectedDog
+        }));
+
+        let userInfo = UserInfo.get();
+        userInfo.setNickName(nickName);
+        userInfo.setComment(comment);
+        userInfo.setDog(this.state.selectedDog);
 
         this.setState({ signUpState: SignUpState.ShowTutorial });
         break;
