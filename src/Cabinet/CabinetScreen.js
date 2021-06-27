@@ -6,6 +6,8 @@ import AsyncStorage from "@react-native-community/async-storage";
 import { CabinetItem } from "./CabinetItem";
 import { IsValidKey, ParseSavedItem } from "../Common/CommonMethod";
 import UserInfo from "../Common/UserInfo";
+import { ProtoWritings } from "../Common/ProtoWritings";
+import { sub } from "react-native-reanimated";
 
 export class CabinetScreen extends React.Component {
   constructor(props) {
@@ -14,6 +16,7 @@ export class CabinetScreen extends React.Component {
       isLoad: false,
       data: 0,
       visibleModal: null,
+      subject: ProtoWritings[0]
     };
     this.LoadData();
   }
@@ -31,30 +34,32 @@ export class CabinetScreen extends React.Component {
     </TouchableOpacity>
   );
 
-  RenderWritingContent = () => (
-    <View style={[styles.writingContentModal]}>
-      <ScrollView>
-        <TouchableOpacity style={{ height: 40 }}>
-          <Text style={{ fontFamily: "SpoqaMedium" }}>글감 1</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={{ height: 40 }}>
-          <Text style={{ fontFamily: "SpoqaMedium" }}>글감 2</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={{ height: 40 }}>
-          <Text style={{ fontFamily: "SpoqaMedium" }}>글감 3</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={{ height: 40 }}>
-          <Text style={{ fontFamily: "SpoqaMedium" }}>글감 4</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={{ height: 40 }}>
-          <Text style={{ fontFamily: "SpoqaMedium" }}>글감 5</Text>
-        </TouchableOpacity>
-      </ScrollView>
-      {this.RenderCloseButton("닫기", () =>
-        this.setState({ visibleModal: null })
-      )}
-    </View>
-  );
+  RenderWritingContent() {
+    return (
+      <View style={[styles.writingContentModal]}>
+        <ScrollView>
+          {ProtoWritings.map((value) => (
+            <TouchableOpacity
+              key={value}
+              style={{ height: 40 }}
+              onPress={() => this.onWritingSubjectClicked(value)}
+            >
+              <Text style={{ fontFamily: "SpoqaMedium" }}>{value}</Text>
+            </TouchableOpacity>
+          ))}
+        </ScrollView>
+        {this.RenderCloseButton("닫기", () =>
+          this.setState({ visibleModal: null })
+        )}
+      </View>
+    );
+  }
+
+  onWritingSubjectClicked(subject) {
+    console.log(subject);
+    this.state.subject = subject;
+    this.setState({visibleModal: subject});
+  }
 
   LoadData = async () => {
     const keys = await AsyncStorage.getAllKeys();
@@ -98,7 +103,7 @@ export class CabinetScreen extends React.Component {
         <ScrollView>
           {
             <View>
-              {this.RenderCloseButton("글감", () =>
+              {this.RenderCloseButton(this.state.subject, () =>
                 this.setState({ visibleModal: 1 })
               )}
             </View>

@@ -44,8 +44,6 @@ export default class AuthScreen extends React.Component {
   // TODO : Tempcode - should be migrated to EncryptedStorage
   retrieveUserSessionByAsyncStorage = async () => {
     try {
-      // getItem "Key" should be "user_session"
-      // value is json
       const session = await AsyncStorage.getItem("user_session");
       if (session != undefined) {
         this.state.hasSession = true;
