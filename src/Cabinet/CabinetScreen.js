@@ -1,5 +1,6 @@
 import React from "react";
 import { ScrollView, TouchableOpacity, Text, View } from "react-native";
+import Modal from "react-native-modal";
 import { styles } from "./Styles";
 import AsyncStorage from "@react-native-community/async-storage";
 import { CabinetItem } from "./CabinetItem";
@@ -7,9 +8,15 @@ import { IsValidKey, ParseSavedItem } from "../Common/CommonMethod";
 import UserInfo from "../Common/UserInfo";
 
 export class CabinetScreen extends React.Component {
-  state = {
-    visibleModal: null,
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoad: false,
+      data: 0,
+      visibleModal: null,
+    };
+    this.LoadData();
+  }
 
   componentDidMount() {
     const navigation = this.props.navigation;
@@ -48,15 +55,6 @@ export class CabinetScreen extends React.Component {
       )}
     </View>
   );
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      isLoad: false,
-      data: 0,
-    };
-    this.LoadData();
-  }
 
   LoadData = async () => {
     const keys = await AsyncStorage.getAllKeys();
@@ -99,11 +97,11 @@ export class CabinetScreen extends React.Component {
       <View style={{ flex: 1, justifyContent: "center" }}>
         <ScrollView>
           {
-            //<View>
-            //  {this.RenderCloseButton('글감', () =>
-            //    this.setState({ visibleModal: 1 })
-            //  )}
-            //</View>
+            <View>
+              {this.RenderCloseButton("글감", () =>
+                this.setState({ visibleModal: 1 })
+              )}
+            </View>
           }
           {ItemList.map((value) => (
             <CabinetItem
@@ -116,9 +114,9 @@ export class CabinetScreen extends React.Component {
           ))}
         </ScrollView>
 
-        {/* <Modal isVisible={this.state.visibleModal === 1}>
+        <Modal isVisible={this.state.visibleModal === 1}>
           {this.RenderWritingContent()}
-        </Modal> */}
+        </Modal>
       </View>
     );
   }
