@@ -16,7 +16,7 @@ export class CabinetScreen extends React.Component {
       isLoad: false,
       data: 0,
       visibleModal: null,
-      subject: ProtoWritings[0]
+      subject: ProtoWritings[0],
     };
     this.LoadData();
   }
@@ -58,7 +58,7 @@ export class CabinetScreen extends React.Component {
   onWritingSubjectClicked(subject) {
     console.log(subject);
     this.state.subject = subject;
-    this.setState({visibleModal: subject});
+    this.setState({ visibleModal: subject });
   }
 
   LoadData = async () => {
@@ -89,6 +89,22 @@ export class CabinetScreen extends React.Component {
     });
   };
 
+  showWritings(value, userInfo, navigation) {
+    if (value.subject != this.state.subject) {
+      return;
+    }
+
+    return (
+      <CabinetItem
+        selectedDog={userInfo.getDog()}
+        key={value.time}
+        navigation={navigation}
+        writingTime={value.time}
+        content={value.content}
+      />
+    );
+  }
+
   render() {
     if (!this.state.isLoad) {
       return <ScrollView></ScrollView>;
@@ -108,15 +124,7 @@ export class CabinetScreen extends React.Component {
               )}
             </View>
           }
-          {ItemList.map((value) => (
-            <CabinetItem
-              selectedDog={userInfo.getDog()}
-              key={value.time}
-              navigation={navigation}
-              writingTime={value.time}
-              content={value.content}
-            />
-          ))}
+          {ItemList.map((value) => this.showWritings(value, userInfo, navigation))}
         </ScrollView>
 
         <Modal isVisible={this.state.visibleModal === 1}>
