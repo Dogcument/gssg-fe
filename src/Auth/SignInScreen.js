@@ -6,6 +6,8 @@ import {
   View,
   TextInput,
 } from "react-native";
+import { Modal } from "react-native-modal";
+import { NextButtonImg } from "../../assets/ImageList";
 import { styles } from "./Styles";
 
 export class SignInScreen extends React.Component {
@@ -17,16 +19,17 @@ export class SignInScreen extends React.Component {
   render() {
     return (
       <View style={[styles.SignInModal]}>
-        <Text>이메일</Text>
+        <Image style={{ width: 25, height: 25 }} source={NextButtonImg} />
+        <Text>아이디</Text>
         <TextInput
-          placeholder="이메일을 입력해주세요!"
+          placeholder="아이디를 입력해주세요!"
           placeholderTextColor="#FFFFFF"
           style={{
             fontSize: 12,
             backgroundColor: "#d4d4d4",
             borderRadius: 5,
-            width: "60%",
-            height: "23%",
+            width: "80%",
+            height: "30%",
             paddingLeft: 5,
           }}
         />
@@ -38,23 +41,11 @@ export class SignInScreen extends React.Component {
             fontSize: 12,
             backgroundColor: "#d4d4d4",
             borderRadius: 5,
-            width: "60%",
-            height: "23%",
+            width: "80%",
+            height: "30%",
             paddingLeft: 5,
           }}
         />
-
-        <TouchableOpacity
-          onPress={this.props.onSubmitButtonClicked}
-          style={[styles.modalbutton]}
-        >
-          <View>
-            <Text style={{ fontFamily: "SpoqaBold", fontSize: 20 }}>
-              {" "}
-              Submit{" "}
-            </Text>
-          </View>
-        </TouchableOpacity>
       </View>
     );
   }
