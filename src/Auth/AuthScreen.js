@@ -1,6 +1,6 @@
 import React from "react";
 import { View, ImageBackground, Text, TouchableOpacity, TextInput } from "react-native";
-import Modal from "react-native-modal";
+import { Modal } from "react-native-modal";
 import * as Font from "expo-font";
 import { SignUpScreen } from "./SignUpScreen";
 import { SignInScreen } from "./SignInScreen";
