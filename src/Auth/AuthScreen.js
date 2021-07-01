@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  View,
-  ImageBackground,
-  Text,
-  TouchableOpacity,
-  TextInput,
-} from "react-native";
+import { View, ImageBackground, Text, TouchableOpacity, TextInput } from "react-native";
 import Modal from "react-native-modal";
 import * as Font from "expo-font";
 import { SignUpScreen } from "./SignUpScreen";
@@ -48,7 +42,7 @@ export default class AuthScreen extends React.Component {
     this.retrieveUserSessionByAsyncStorage();
   };
 
-  gotoMainScreen = (value) => {
+  GotoMainScreen = (value) => {
     this.setState({ goMainScreen: true });
   };
 
@@ -72,15 +66,14 @@ export default class AuthScreen extends React.Component {
     this.setState({ isLoading: false });
   };
 
-  renderCloseButton = (text, onPress) => (
+  RenderCloseButton = (text, onPress) => (
     <TouchableOpacity onPress={onPress} style={[styles.modalbutton]}>
       <View>
-        <Text style={{ fontFamily: "SpoqaBold", fontSize: 20 }}> {text} </Text>
+        <Text style={{ fontFamily: "SpoqaBold", fontSize: 20 }}> Sign in </Text>
       </View>
     </TouchableOpacity>
   );
-
-  renderSignIn() {
+  RenderSignIn() {
     return (
       <View style={[styles.SignInModal]}>
         <Text>이메일</Text>
@@ -109,50 +102,13 @@ export default class AuthScreen extends React.Component {
             paddingLeft: 5,
           }}
         />
-
-        {this.renderCloseButton("Submit", () =>
+        {this.RenderCloseButton("닫기", () =>
           this.setState({ visibleModal: null })
         )}
       </View>
     );
   }
 
-  renderSignUp() {
-    return (
-      <View style={[styles.SignInModal]}>
-        <Text>이메일</Text>
-        <TextInput
-          placeholder="이메일을 입력해주세요!"
-          placeholderTextColor="#FFFFFF"
-          style={{
-            fontSize: 12,
-            backgroundColor: "#d4d4d4",
-            borderRadius: 5,
-            width: "60%",
-            height: "23%",
-            paddingLeft: 5,
-          }}
-        />
-        <Text>비밀번호</Text>
-        <TextInput
-          placeholder="비밀번호를 입력해주세요!"
-          placeholderTextColor="#FFFFFF"
-          style={{
-            fontSize: 12,
-            backgroundColor: "#d4d4d4",
-            borderRadius: 5,
-            width: "60%",
-            height: "23%",
-            paddingLeft: 5,
-          }}
-        />
-
-        {this.renderCloseButton("가입", () =>
-          this.setState({ visibleModal: null })
-        )}
-      </View>
-    );
-  }
   // TODO : EncryptedStorage does not support expo :(
   // retrieveUserSession = async () => {
   //   try {
@@ -204,42 +160,14 @@ export default class AuthScreen extends React.Component {
               style={{ position: "absolute", width: "100%", height: "100%" }}
             />
             <View style={{ height: "70%" }} />
-
-            {/* Sign In */}
             <View>
-              <TouchableOpacity
-                onPress={() => this.setState({ visibleModal: 1 })}
-                style={[styles.modalbutton]}
-              >
-                <View>
-                  <Text style={{ fontFamily: "SpoqaBold", fontSize: 20 }}>
-                    Sign In
-                  </Text>
-                </View>
-              </TouchableOpacity>
+              {this.RenderCloseButton("Sign In", () =>
+                this.setState({ visibleModal: 1 })
+              )}
             </View>
 
-            {/* Sign Up */}
-            <View>
-              <TouchableOpacity
-                onPress={() => this.setState({ visibleModal: 2 })}
-                style={[styles.modalbutton]}
-              >
-                <View>
-                  <Text style={{ fontFamily: "SpoqaBold", fontSize: 20 }}>
-                    Sign Up (임시, 회원가입창 보여야함)
-                  </Text>
-                </View>
-              </TouchableOpacity>
-            </View>
-
-            {/* Sign In 팝업 */}
             <Modal isVisible={this.state.visibleModal === 1}>
-              {this.renderSignIn()}
-            </Modal>
-            {/* Sign Up 팝업 */}
-            <Modal isVisible={this.state.visibleModal === 2}>
-              {this.renderSignUp()}
+              {this.RenderSignIn()}
             </Modal>
           </View>
 
