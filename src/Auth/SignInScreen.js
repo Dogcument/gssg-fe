@@ -7,6 +7,7 @@ import {
   TextInput,
 } from "react-native";
 import { Modal } from "react-native-modal";
+import { NextButtonImg } from "../../assets/ImageList";
 import { styles } from "./Styles";
 
 export class SignInScreen extends React.Component {
@@ -17,7 +18,8 @@ export class SignInScreen extends React.Component {
 
   render() {
     return (
-      <View style={[styles.SignInScreen]}>
+      <View style={[styles.SignInModal]}>
+        <Image style={{ width: 25, height: 25 }} source={NextButtonImg} />
         <Text>아이디</Text>
         <TextInput
           placeholder="아이디를 입력해주세요!"
