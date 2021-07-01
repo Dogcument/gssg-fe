@@ -71,6 +71,10 @@ export default class AuthScreen extends React.Component {
     this.setState({ isLoading: false });
   };
 
+  onSubmitButtonClicked = () => {
+    this.setState({ visibleModal: null });
+  }
+
   renderCloseButton = (text, onPress) => (
     <TouchableOpacity onPress={onPress} style={[styles.modalbutton]}>
       <View>
@@ -79,44 +83,15 @@ export default class AuthScreen extends React.Component {
     </TouchableOpacity>
   );
 
-  renderSignIn() {
-    return (
-      <View style={[styles.SignInModal]}>
-        <Text>이메일</Text>
-        <TextInput
-          placeholder="이메일을 입력해주세요!"
-          placeholderTextColor="#FFFFFF"
-          style={{
-            fontSize: 12,
-            backgroundColor: "#d4d4d4",
-            borderRadius: 5,
-            width: "60%",
-            height: "23%",
-            paddingLeft: 5,
-          }}
-        />
-        <Text>비밀번호</Text>
-        <TextInput
-          placeholder="비밀번호를 입력해주세요!"
-          placeholderTextColor="#FFFFFF"
-          style={{
-            fontSize: 12,
-            backgroundColor: "#d4d4d4",
-            borderRadius: 5,
-            width: "60%",
-            height: "23%",
-            paddingLeft: 5,
-          }}
-        />
-
-        {this.renderCloseButton("Submit", () =>
-          this.setState({ visibleModal: null })
-        )}
-      </View>
-    );
+  openSignInPopup() {
+    return <SignInScreen
+      onSubmitButtonClicked={this.onSubmitButtonClicked}
+     />;
   }
 
-  renderSignUp() {
+  // TODO : Tempcode
+  // "SignUpScreen"
+  openSignUpPopup() {
     return (
       <View style={[styles.SignInModal]}>
         <Text>이메일</Text>
@@ -234,11 +209,11 @@ export default class AuthScreen extends React.Component {
 
             {/* Sign In 팝업 */}
             <Modal isVisible={this.state.visibleModal === 1}>
-              {this.renderSignIn()}
+              {this.openSignInPopup()}
             </Modal>
             {/* Sign Up 팝업 */}
             <Modal isVisible={this.state.visibleModal === 2}>
-              {this.renderSignUp()}
+              {this.openSignUpPopup()}
             </Modal>
           </View>
 
