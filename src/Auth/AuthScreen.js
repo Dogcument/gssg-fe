@@ -1,14 +1,25 @@
 import React from "react";
-import { View, ImageBackground, Text, TouchableOpacity, TextInput } from "react-native";
+import {
+  View,
+  ImageBackground,
+  Text,
+  TouchableOpacity,
+  TextInput,
+  Image,
+} from "react-native";
 import Modal from "react-native-modal";
 import * as Font from "expo-font";
 import { SignUpScreen } from "./SignUpScreen";
 import { SignInScreen } from "./SignInScreen";
 import MainScreen from "../Main/MainScreen";
 import AsyncStorage from "@react-native-community/async-storage";
-import { LogoImg } from "../../assets/ImageList";
 import UserInfo from "../Common/UserInfo";
 import { styles } from "./Styles";
+import {
+  LogoImg,
+  NextButtonImg,
+  WritingButtonImg,
+} from "../../assets/ImageList";
 
 export const SignUpState = {
   SetNickname: 1,
@@ -69,40 +80,75 @@ export default class AuthScreen extends React.Component {
   RenderCloseButton = (text, onPress) => (
     <TouchableOpacity onPress={onPress} style={[styles.modalbutton]}>
       <View>
-        <Text style={{ fontFamily: "SpoqaBold", fontSize: 20 }}> Sign in </Text>
+        <Text style={{ fontFamily: "SpoqaBold", fontSize: 20 }}> {text} </Text>
       </View>
     </TouchableOpacity>
   );
   RenderSignIn() {
     return (
-      <View style={[styles.SignInModal]}>
-        <Text>이메일</Text>
-        <TextInput
-          placeholder="이메일을 입력해주세요!"
-          placeholderTextColor="#FFFFFF"
-          style={{
-            fontSize: 12,
-            backgroundColor: "#d4d4d4",
-            borderRadius: 5,
-            width: "60%",
-            height: "23%",
-            paddingLeft: 5,
-          }}
-        />
-        <Text>비밀번호</Text>
-        <TextInput
-          placeholder="비밀번호를 입력해주세요!"
-          placeholderTextColor="#FFFFFF"
-          style={{
-            fontSize: 12,
-            backgroundColor: "#d4d4d4",
-            borderRadius: 5,
-            width: "60%",
-            height: "23%",
-            paddingLeft: 5,
-          }}
-        />
-        {this.RenderCloseButton("닫기", () =>
+      <View>
+        <View style={[styles.SignInModal]}>
+          <View style={{ width: "100%", flexDirection: "row" }}>
+            <Image
+              source={WritingButtonImg}
+              style={{ height: 25, width: 25 }}
+            />
+            <Text style={{ fontFamily: "SpoqaBold", fontSize: 15 }}>
+              글쑤시개에 오신 것을 환영합니다!
+            </Text>
+          </View>
+          <View style={{ height: "10%" }}></View>
+
+          <View style={{ width: "100%", flexDirection: "row", paddingLeft: 5 }}>
+            <Text
+              style={{ fontFamily: "SpoqaMedium", fontSize: 15, width: "30%" }}
+            >
+              이메일
+            </Text>
+            <TextInput
+              placeholder="이메일을 입력해주세요!"
+              placeholderTextColor="#FFFFFF"
+              style={{
+                fontSize: 12,
+                backgroundColor: "#d4d4d4",
+                borderRadius: 5,
+                width: "60%",
+                height: "100%",
+                paddingLeft: 5,
+              }}
+            />
+          </View>
+          <View style={{ height: "10%" }}></View>
+
+          <View style={{ width: "100%", flexDirection: "row", paddingLeft: 5 }}>
+            <Text
+              style={{ fontFamily: "SpoqaMedium", fontSize: 15, width: "30%" }}
+            >
+              비밀번호
+            </Text>
+            <TextInput
+              placeholder="비밀번호를 입력해주세요!"
+              placeholderTextColor="#FFFFFF"
+              style={{
+                fontSize: 12,
+                backgroundColor: "#d4d4d4",
+                borderRadius: 5,
+                width: "60%",
+                height: "100%",
+                paddingLeft: 5,
+              }}
+            />
+          </View>
+          <View style={{ height: "10%" }}></View>
+
+          <View style={{ width: '100%', flexDirection: 'row', justifyContent:'flex-end'}}>
+            <Text>회원가입</Text>
+            <Text>|</Text>
+            <Text>비밀번호 찾기</Text>
+          </View>
+        </View>
+
+        {this.RenderCloseButton("Log In", () =>
           this.setState({ visibleModal: null })
         )}
       </View>
