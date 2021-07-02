@@ -1,4 +1,5 @@
 import React from "react";
+<<<<<<< HEAD
 import {
   View,
   ImageBackground,
@@ -8,18 +9,23 @@ import {
   Image,
 } from "react-native";
 import Modal from "react-native-modal";
+=======
+import { ImageBackground } from "react-native";
+>>>>>>> 87ac607d3daf2a11afeb481d617da43f441f317d
 import * as Font from "expo-font";
 import { SignUpScreen } from "./SignUpScreen";
-import { SignInScreen } from "./SignInScreen";
 import MainScreen from "../Main/MainScreen";
 import AsyncStorage from "@react-native-community/async-storage";
 import UserInfo from "../Common/UserInfo";
+<<<<<<< HEAD
 import { styles } from "./Styles";
 import {
   LogoImg,
   NextButtonImg,
   WritingButtonImg,
 } from "../../assets/ImageList";
+=======
+>>>>>>> 87ac607d3daf2a11afeb481d617da43f441f317d
 
 export const SignUpState = {
   SetNickname: 1,
@@ -34,8 +40,6 @@ export default class AuthScreen extends React.Component {
       goMainScreen: false,
       isLoading: true,
       hasSession: false,
-      //Modal state
-      visibleModal: null,
 
       // SignUp state
       signUpState: SignUpState.SetNickname,
@@ -77,6 +81,7 @@ export default class AuthScreen extends React.Component {
     this.setState({ isLoading: false });
   };
 
+<<<<<<< HEAD
   RenderCloseButton = (text, onPress) => (
     <TouchableOpacity onPress={onPress} style={[styles.modalbutton]}>
       <View>
@@ -155,6 +160,8 @@ export default class AuthScreen extends React.Component {
     );
   }
 
+=======
+>>>>>>> 87ac607d3daf2a11afeb481d617da43f441f317d
   // TODO : EncryptedStorage does not support expo :(
   // retrieveUserSession = async () => {
   //   try {
@@ -179,12 +186,10 @@ export default class AuthScreen extends React.Component {
 
     if (this.state.isLoading) {
       return (
-        <View style={{ flexDirection: "row", width: "100%", height: "100%" }}>
-          <ImageBackground
-            source={LogoImg}
-            style={{ position: "absolute", width: "100%", height: "100%" }}
-          />
-        </View>
+        <ImageBackground
+          source={LogoImg}
+          style={{ position: "absolute", width: "100%", height: "100%" }}
+        />
       );
     } else {
       if (this.state.hasSession) {
@@ -198,26 +203,7 @@ export default class AuthScreen extends React.Component {
 
         // Tempcode
         return (
-          <View
-            style={{ flexDirection: "column", width: "100%", height: "100%" }}
-          >
-            <ImageBackground
-              source={LogoImg}
-              style={{ position: "absolute", width: "100%", height: "100%" }}
-            />
-            <View style={{ height: "70%" }} />
-            <View>
-              {this.RenderCloseButton("Sign In", () =>
-                this.setState({ visibleModal: 1 })
-              )}
-            </View>
-
-            <Modal isVisible={this.state.visibleModal === 1}>
-              {this.RenderSignIn()}
-            </Modal>
-          </View>
-
-          //<SignUpScreen signUp={true} GotoMainScreen={this.GotoMainScreen} />
+          <SignUpScreen signUp={true} GotoMainScreen={this.GotoMainScreen} />
         );
       }
     }
