@@ -1,25 +1,14 @@
 import React from "react";
-import {
-  View,
-  ImageBackground,
-  Text,
-  TouchableOpacity,
-  TextInput,
-  Image,
-} from "react-native";
+import { View, ImageBackground, Text, TouchableOpacity } from "react-native";
 import Modal from "react-native-modal";
 import * as Font from "expo-font";
-import { SignUpScreen } from "./SignUpScreen";
-import { SignInScreen } from "./SignInScreen";
+import { SignUpPopup } from "./SignUpPopup";
+import { SignInPopup } from "./SignInPopup";
 import MainScreen from "../Main/MainScreen";
 import AsyncStorage from "@react-native-community/async-storage";
 import UserInfo from "../Common/UserInfo";
 import { styles } from "./Styles";
-import {
-  LogoImg,
-  NextButtonImg,
-  WritingButtonImg,
-} from "../../assets/ImageList";
+import { LogoImg } from "../../assets/ImageList";
 
 export const SignUpState = {
   SetNickname: 1,
@@ -93,102 +82,18 @@ export default class AuthScreen extends React.Component {
     </TouchableOpacity>
   );
 
+  onLoginButtonClicked = () => {
+    this.setState({ visibleModal: null });
+  };
+
   onSignUpButtonClicked = () => {
     this.setState({ visibleModal: 2 });
   };
-
-  openSignUpPopup() {
-    return <SignInScreen onSubmitButtonClicked={this.onSubmitButtonClicked} />;
-  }
 
   openFindPwPopup() {
     alert("비밀번호 찾기 기능은 개발중입니다.");
   }
 
-  openSignInPopup() {
-    return (
-      <View>
-        <View style={[styles.SignInModal]}>
-          <View style={{ width: "100%", flexDirection: "row" }}>
-            <Image
-              source={WritingButtonImg}
-              style={{ height: 25, width: 25 }}
-            />
-            <Text style={{ fontFamily: "SpoqaBold", fontSize: 15 }}>
-              글쑤시개에 오신 것을 환영합니다!
-            </Text>
-          </View>
-          <View style={{ height: "10%" }}></View>
-
-          <View style={{ width: "100%", flexDirection: "row", paddingLeft: 5 }}>
-            <Text
-              style={{ fontFamily: "SpoqaMedium", fontSize: 15, width: "30%" }}
-            >
-              이메일
-            </Text>
-            <TextInput
-              placeholder="이메일을 입력해주세요!"
-              placeholderTextColor="#FFFFFF"
-              style={{
-                fontSize: 12,
-                backgroundColor: "#d4d4d4",
-                borderRadius: 5,
-                width: "60%",
-                height: "100%",
-                paddingLeft: 5,
-              }}
-            />
-          </View>
-          <View style={{ height: "10%" }}></View>
-
-          <View style={{ width: "100%", flexDirection: "row", paddingLeft: 5 }}>
-            <Text
-              style={{ fontFamily: "SpoqaMedium", fontSize: 15, width: "30%" }}
-            >
-              비밀번호
-            </Text>
-            <TextInput
-              placeholder="비밀번호를 입력해주세요!"
-              placeholderTextColor="#FFFFFF"
-              style={{
-                fontSize: 12,
-                backgroundColor: "#d4d4d4",
-                borderRadius: 5,
-                width: "60%",
-                height: "100%",
-                paddingLeft: 5,
-              }}
-            />
-          </View>
-          <View style={{ height: "10%" }}></View>
-
-          <View
-            style={{
-              width: "100%",
-              flexDirection: "row",
-              justifyContent: "flex-end",
-            }}
-          >
-            <TouchableOpacity onPress={this.onSignUpButtonClicked}>
-              <Text style={{ fontFamily: "SpoqaBold", fontSize: 20 }}>
-                회원가입
-              </Text>
-            </TouchableOpacity>
-            <Text>|</Text>
-            <TouchableOpacity onPress={this.openFindPwPopup}>
-              <Text style={{ fontFamily: "SpoqaBold", fontSize: 20 }}>
-                비번찾기
-              </Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-
-        {this.renderCloseButton("Log In", () =>
-          this.setState({ visibleModal: null })
-        )}
-      </View>
-    );
-  }
   // TODO : EncryptedStorage does not support expo :(
   // retrieveUserSession = async () => {
   //   try {
@@ -226,11 +131,6 @@ export default class AuthScreen extends React.Component {
         // then goto MainScreen
         return <MainScreen />;
       } else {
-        // TODO : Jiwung
-        // Show SignInScreen
-        //return <SignInScreen />;
-
-        // Tempcode
         return (
           <View
             style={{ flexDirection: "column", width: "100%", height: "100%" }}
@@ -257,15 +157,13 @@ export default class AuthScreen extends React.Component {
 
             {/* Sign In 팝업 */}
             <Modal isVisible={this.state.visibleModal === 1}>
-              {this.openSignInPopup()}
+              <SignInPopup onLoginButtonClicked={this.onLoginButtonClicked} />
             </Modal>
             {/* Sign Up 팝업 */}
             <Modal isVisible={this.state.visibleModal === 2}>
-              {this.openSignUpPopup()}
+              <SignUpPopup onSubmitButtonClicked={this.onSubmitButtonClicked} />
             </Modal>
           </View>
-
-          //<SignUpScreen signUp={true} GotoMainScreen={this.GotoMainScreen} />
         );
       }
     }
