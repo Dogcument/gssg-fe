@@ -73,8 +73,13 @@ export default class AuthScreen extends React.Component {
       console.error(error);
     }
 
-    this.setState({ isLoading: false });
+    setTimeout(this.onRetrieveUserSessionDone, 1500);
   };
+
+  onRetrieveUserSessionDone = () => {
+    this.state.visibleModal = 1;
+    this.setState({ isLoading: false });
+  }
 
   onSubmitButtonClicked = () => {
     this.setState({ visibleModal: null });
@@ -88,7 +93,7 @@ export default class AuthScreen extends React.Component {
     </TouchableOpacity>
   );
 
-  openSignInPopup() {
+  openSignUpPopup() {
     return <SignInScreen
       onSubmitButtonClicked={this.onSubmitButtonClicked}
      />;
@@ -96,7 +101,7 @@ export default class AuthScreen extends React.Component {
 
   // TODO : Tempcode
   // "SignUpScreen"
-  openSignUpPopup() {
+  openSignInPopup() {
     return (
       <View>
         <View style={[styles.SignInModal]}>
@@ -227,20 +232,6 @@ export default class AuthScreen extends React.Component {
                 <View>
                   <Text style={{ fontFamily: "SpoqaBold", fontSize: 20 }}>
                     Sign In
-                  </Text>
-                </View>
-              </TouchableOpacity>
-            </View>
-
-            {/* Sign Up */}
-            <View>
-              <TouchableOpacity
-                onPress={() => this.setState({ visibleModal: 2 })}
-                style={[styles.modalbutton]}
-              >
-                <View>
-                  <Text style={{ fontFamily: "SpoqaBold", fontSize: 20 }}>
-                    Sign Up
                   </Text>
                 </View>
               </TouchableOpacity>
