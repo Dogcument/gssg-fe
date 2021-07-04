@@ -1,31 +1,11 @@
 import React from "react";
-<<<<<<< HEAD
-import {
-  View,
-  ImageBackground,
-  Text,
-  TouchableOpacity,
-  TextInput,
-  Image,
-} from "react-native";
-import Modal from "react-native-modal";
-=======
 import { ImageBackground } from "react-native";
->>>>>>> 87ac607d3daf2a11afeb481d617da43f441f317d
 import * as Font from "expo-font";
 import { SignUpScreen } from "./SignUpScreen";
 import MainScreen from "../Main/MainScreen";
 import AsyncStorage from "@react-native-community/async-storage";
+import { LogoImg } from "../../assets/ImageList";
 import UserInfo from "../Common/UserInfo";
-<<<<<<< HEAD
-import { styles } from "./Styles";
-import {
-  LogoImg,
-  NextButtonImg,
-  WritingButtonImg,
-} from "../../assets/ImageList";
-=======
->>>>>>> 87ac607d3daf2a11afeb481d617da43f441f317d
 
 export const SignUpState = {
   SetNickname: 1,
@@ -81,87 +61,6 @@ export default class AuthScreen extends React.Component {
     this.setState({ isLoading: false });
   };
 
-<<<<<<< HEAD
-  RenderCloseButton = (text, onPress) => (
-    <TouchableOpacity onPress={onPress} style={[styles.modalbutton]}>
-      <View>
-        <Text style={{ fontFamily: "SpoqaBold", fontSize: 20 }}> {text} </Text>
-      </View>
-    </TouchableOpacity>
-  );
-  RenderSignIn() {
-    return (
-      <View>
-        <View style={[styles.SignInModal]}>
-          <View style={{ width: "100%", flexDirection: "row" }}>
-            <Image
-              source={WritingButtonImg}
-              style={{ height: 25, width: 25 }}
-            />
-            <Text style={{ fontFamily: "SpoqaBold", fontSize: 15 }}>
-              글쑤시개에 오신 것을 환영합니다!
-            </Text>
-          </View>
-          <View style={{ height: "10%" }}></View>
-
-          <View style={{ width: "100%", flexDirection: "row", paddingLeft: 5 }}>
-            <Text
-              style={{ fontFamily: "SpoqaMedium", fontSize: 15, width: "30%" }}
-            >
-              이메일
-            </Text>
-            <TextInput
-              placeholder="이메일을 입력해주세요!"
-              placeholderTextColor="#FFFFFF"
-              style={{
-                fontSize: 12,
-                backgroundColor: "#d4d4d4",
-                borderRadius: 5,
-                width: "60%",
-                height: "100%",
-                paddingLeft: 5,
-              }}
-            />
-          </View>
-          <View style={{ height: "10%" }}></View>
-
-          <View style={{ width: "100%", flexDirection: "row", paddingLeft: 5 }}>
-            <Text
-              style={{ fontFamily: "SpoqaMedium", fontSize: 15, width: "30%" }}
-            >
-              비밀번호
-            </Text>
-            <TextInput
-              placeholder="비밀번호를 입력해주세요!"
-              placeholderTextColor="#FFFFFF"
-              style={{
-                fontSize: 12,
-                backgroundColor: "#d4d4d4",
-                borderRadius: 5,
-                width: "60%",
-                height: "100%",
-                paddingLeft: 5,
-              }}
-            />
-          </View>
-          <View style={{ height: "10%" }}></View>
-
-          <View style={{ width: '100%', flexDirection: 'row', justifyContent:'flex-end'}}>
-            <Text>회원가입</Text>
-            <Text>|</Text>
-            <Text>비밀번호 찾기</Text>
-          </View>
-        </View>
-
-        {this.RenderCloseButton("Log In", () =>
-          this.setState({ visibleModal: null })
-        )}
-      </View>
-    );
-  }
-
-=======
->>>>>>> 87ac607d3daf2a11afeb481d617da43f441f317d
   // TODO : EncryptedStorage does not support expo :(
   // retrieveUserSession = async () => {
   //   try {
