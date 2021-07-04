@@ -79,11 +79,11 @@ export default class AuthScreen extends React.Component {
   onRetrieveUserSessionDone = () => {
     this.state.visibleModal = 1;
     this.setState({ isLoading: false });
-  }
+  };
 
   onSubmitButtonClicked = () => {
     this.setState({ visibleModal: null });
-  }
+  };
 
   renderCloseButton = (text, onPress) => (
     <TouchableOpacity onPress={onPress} style={[styles.modalbutton]}>
@@ -93,14 +93,18 @@ export default class AuthScreen extends React.Component {
     </TouchableOpacity>
   );
 
+  onSignUpButtonClicked = () => {
+    this.setState({ visibleModal: 2 });
+  };
+
   openSignUpPopup() {
-    return <SignInScreen
-      onSubmitButtonClicked={this.onSubmitButtonClicked}
-     />;
+    return <SignInScreen onSubmitButtonClicked={this.onSubmitButtonClicked} />;
   }
 
-  // TODO : Tempcode
-  // "SignUpScreen"
+  openFindPwPopup() {
+    alert("비밀번호 찾기 기능은 개발중입니다.");
+  }
+
   openSignInPopup() {
     return (
       <View>
@@ -158,10 +162,24 @@ export default class AuthScreen extends React.Component {
           </View>
           <View style={{ height: "10%" }}></View>
 
-          <View style={{ width: '100%', flexDirection: 'row', justifyContent:'flex-end'}}>
-            <Text>회원가입</Text>
+          <View
+            style={{
+              width: "100%",
+              flexDirection: "row",
+              justifyContent: "flex-end",
+            }}
+          >
+            <TouchableOpacity onPress={this.onSignUpButtonClicked}>
+              <Text style={{ fontFamily: "SpoqaBold", fontSize: 20 }}>
+                회원가입
+              </Text>
+            </TouchableOpacity>
             <Text>|</Text>
-            <Text>비밀번호 찾기</Text>
+            <TouchableOpacity onPress={this.openFindPwPopup}>
+              <Text style={{ fontFamily: "SpoqaBold", fontSize: 20 }}>
+                비번찾기
+              </Text>
+            </TouchableOpacity>
           </View>
         </View>
 
