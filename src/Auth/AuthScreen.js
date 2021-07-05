@@ -87,9 +87,28 @@ export default class AuthScreen extends React.Component {
     </TouchableOpacity>
   );
 
-  onLoginButtonClicked = () => {
-    // TODO : Login server
-    this.setState({ visibleModal: null });
+  onLoginButtonClicked = async () => {
+    try {
+      let resp = await fetch("http://localhost:8080/api/v1/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          loginId: email,
+          password: pw,
+        }),
+      });
+      if (resp != undefined) {
+        let json = await resp.json();
+        console.log(json);
+      } else {
+        console.error("resp is null");
+      }
+    } catch (err) {
+      console.error(err);
+      this.setState({ visibleModal: null });
+    }
   };
 
   onSignUpButtonClicked = () => {
