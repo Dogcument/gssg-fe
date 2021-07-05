@@ -1,5 +1,12 @@
 import React from "react";
-import { Text, TextInput, View, TouchableOpacity, Image, ScrollView } from "react-native";
+import {
+  Text,
+  TextInput,
+  View,
+  TouchableOpacity,
+  Image,
+  ScrollView,
+} from "react-native";
 import AsyncStorage from "@react-native-community/async-storage";
 import {
   WritingButtonImg,
@@ -10,7 +17,7 @@ import {
   CorgiImg,
   SilverImg,
 } from "../../assets/ImageList";
-import { Dogs } from "../Common/Dogs";
+import { Dogs, DogImages } from "../Common/Dogs";
 import UserInfo from "../Common/UserInfo";
 import { styles } from "./Styles";
 
@@ -171,6 +178,7 @@ export class SignUpPopup extends React.Component {
       */
 
       //2nd Screen - Dog Select
+      /*
       <View style={[styles.SignInModal]}>
         <View style={{ width: "100%", flexDirection: "row" }}>
           <Image source={WritingButtonImg} style={{ height: 25, width: 25 }} />
@@ -178,12 +186,12 @@ export class SignUpPopup extends React.Component {
             당신을 표현할 강아지를 선택해주세요!
           </Text>
         </View>
-        <View style={{ height: "10%" }}></View>
-        <View style={{ width: "100%", flexDirection: "row" }}>
+        <View style={{ height: "5%" }}></View>
+        <View style={{ width: "100%", height: "75%", flexDirection: "row" }}>
           <ScrollView
             horizontal={false}
             style={{
-              width: "65%",
+              width: "35%",
               flexDirection: "column",
               backgroundColor: "#d4d4d4",
               borderRadius: 10,
@@ -201,9 +209,7 @@ export class SignUpPopup extends React.Component {
               <TouchableOpacity onPress={() => this.onDogSelected(Dogs.Baekgu)}>
                 <Image source={BaekguImg} style={{ width: 50, height: 50 }} />
               </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => this.onDogSelected(Dogs.Janggun)}
-              >
+              <TouchableOpacity onPress={() => this.onDogSelected(Dogs.Janggun)}>
                 <Image source={JanggunImg} style={{ width: 50, height: 50 }} />
               </TouchableOpacity>
               <TouchableOpacity onPress={() => this.onDogSelected(Dogs.Wuyu)}>
@@ -218,9 +224,106 @@ export class SignUpPopup extends React.Component {
               <TouchableOpacity onPress={() => this.onDogSelected(Dogs.Silver)}>
                 <Image source={SilverImg} style={{ width: 50, height: 50 }} />
               </TouchableOpacity>
+              
             </View>
           </ScrollView>
+          <View
+            style={{
+              marginLeft: 10,
+              flex: 1,
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "space-around",
+              marginTop: -15,
+            }}
+          >
+            <Image
+              source={DogImages[this.state.selectedDog]}
+              style={{ width: 90, height: 90 }}
+            />
+            <Text style={{ fontFamily: "SpoqaBold", fontSize: 15 }}>
+              {" "}
+              {this.state.selectedDog}{" "}
+            </Text>
+          </View>
         </View>
+        <TouchableOpacity
+          onPress={this.props.onSubmitButtonClicked}
+          style={[styles.modalbutton]}
+        >
+          <View>
+            <Text style={{ fontFamily: "SpoqaBold", fontSize: 20 }}>
+              {" "}
+              다음!{" "}
+            </Text>
+          </View>
+        </TouchableOpacity>
+      </View>
+      */
+
+      //3rd Screen - 필명 & 소개
+      <View>
+        <View style={[styles.SignInModal]}>
+        <Image
+              source={DogImages[this.state.selectedDog]}
+              style={{ marginTop: -15, marginLeft: '55%', width: 100, height: 100, position: 'absolute' }}
+            />
+          <View style={{ width: "100%", flexDirection: "row" }}>
+            <Image
+              source={WritingButtonImg}
+              style={{ height: 25, width: 25 }}
+            />
+            <Text style={{ fontFamily: "SpoqaBold", fontSize: 15 }}>
+              작가등록증
+            </Text>
+          </View>
+          <View style={{ height: "5%" }}></View>
+          <Text
+            style={{ fontFamily: "SpoqaMedium", fontSize: 15, width: "30%" }}
+          >
+            필명
+          </Text>
+          <TextInput
+            placeholder="특수문자는 불가능해요!"
+            placeholderTextColor="#FFFFFF"
+            style={{
+              fontSize: 12,
+              backgroundColor: "#d4d4d4",
+              borderRadius: 5,
+              width: "60%",
+              height: "100%",
+              paddingLeft: 5,
+            }}
+          />
+          <Text
+            style={{ fontFamily: "SpoqaMedium", fontSize: 15, width: "30%" }}
+          >
+            한 줄 소개
+          </Text>
+          <TextInput
+            placeholder="자신을 자유롭게 소개해주세요!"
+            placeholderTextColor="#FFFFFF"
+            style={{
+              fontSize: 12,
+              backgroundColor: "#d4d4d4",
+              borderRadius: 5,
+              width: "90%",
+              height: "100%",
+              paddingLeft: 5,
+            }}
+          />
+        </View>
+        <TouchableOpacity
+          onPress={this.props.onSubmitButtonClicked}
+          style={[styles.modalbutton]}
+        >
+          <View>
+            <Text style={{ fontFamily: "SpoqaBold", fontSize: 20 }}>
+              {" "}
+              완료!{" "}
+            </Text>
+          </View>
+        </TouchableOpacity>
       </View>
     );
   }

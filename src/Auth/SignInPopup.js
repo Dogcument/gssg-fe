@@ -20,7 +20,7 @@ export class SignInPopup extends React.Component {
 
   render() {
     return (
-      <View>
+      <View style={{width: '100%', height: '100%'}}>
         <View style={[styles.SignInModal]}>
           <View style={{ width: "100%", flexDirection: "row" }}>
             <Image
