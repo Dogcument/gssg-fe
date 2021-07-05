@@ -74,7 +74,7 @@ export class SignInPopup extends React.Component {
               justifyContent: "flex-end",
             }}
           >
-            <TouchableOpacity onPress={this.onSignUpButtonClicked}>
+            <TouchableOpacity onPress={this.props.onSignUpButtonClicked}>
               <Text style={{ fontFamily: "SpoqaBold", fontSize: 20 }}>
                 회원가입
               </Text>
