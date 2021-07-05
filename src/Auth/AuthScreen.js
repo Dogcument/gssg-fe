@@ -16,6 +16,9 @@ export const SignUpState = {
   ShowTutorial: 3,
 };
 
+var email = "";
+var pw = "";
+
 export default class AuthScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -57,6 +60,8 @@ export default class AuthScreen extends React.Component {
         userInfo.setNickName(saved.nickName);
         userInfo.setComment(saved.comment);
         userInfo.setDog(saved.dog);
+      } else {
+        console.log("Has no session");
       }
     } catch (error) {
       console.error(error);
@@ -83,6 +88,7 @@ export default class AuthScreen extends React.Component {
   );
 
   onLoginButtonClicked = () => {
+    // TODO : Login server
     this.setState({ visibleModal: null });
   };
 
@@ -93,6 +99,14 @@ export default class AuthScreen extends React.Component {
   openFindPwPopup() {
     alert("비밀번호 찾기 기능은 개발중입니다.");
   }
+
+  onEmailTextChanged = (value) => {
+    email = value;
+  };
+
+  onPwTextChanged = (value) => {
+    pw = value;
+  };
 
   // TODO : EncryptedStorage does not support expo :(
   // retrieveUserSession = async () => {
@@ -157,7 +171,12 @@ export default class AuthScreen extends React.Component {
 
             {/* Sign In 팝업 */}
             <Modal isVisible={this.state.visibleModal === 1}>
-              <SignInPopup onLoginButtonClicked={this.onLoginButtonClicked} onSignUpButtonClicked={this.onSignUpButtonClicked} />
+              <SignInPopup
+                onLoginButtonClicked={this.onLoginButtonClicked}
+                onSignUpButtonClicked={this.onSignUpButtonClicked}
+                onEmailTextChanged={this.onEmailTextChanged}
+                onPwTextChanged={this.onPwTextChanged}
+              />
             </Modal>
             {/* Sign Up 팝업 */}
             <Modal isVisible={this.state.visibleModal === 2}>

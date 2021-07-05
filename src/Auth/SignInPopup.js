@@ -10,6 +10,14 @@ export class SignInPopup extends React.Component {
     this.state = {};
   }
 
+  onEmailTextChanged(value) {
+    this.props.onEmailTextChanged(value);
+  }
+
+  onPwTextChanged(value) {
+    this.props.onPwTextChanged(value);
+  }
+
   render() {
     return (
       <View>
@@ -32,6 +40,7 @@ export class SignInPopup extends React.Component {
               이메일
             </Text>
             <TextInput
+              onChangeText={(value) => this.onEmailTextChanged(value)}
               placeholder="이메일을 입력해주세요!"
               placeholderTextColor="#FFFFFF"
               style={{
@@ -53,7 +62,9 @@ export class SignInPopup extends React.Component {
               비밀번호
             </Text>
             <TextInput
+              onChangeText={(value) => this.onPwTextChanged(value)}
               placeholder="비밀번호를 입력해주세요!"
+              secureTextEntry={true}
               placeholderTextColor="#FFFFFF"
               style={{
                 fontSize: 12,
