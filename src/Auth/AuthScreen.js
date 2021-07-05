@@ -88,6 +88,16 @@ export default class AuthScreen extends React.Component {
   );
 
   onLoginButtonClicked = async () => {
+    if (email == "") {
+      alert("이메일을 입력해주세요!");
+      return;
+    }
+
+    if (pw == "") {
+      alert("비밀번호를 입력해주세요!");
+      return;
+    }
+
     try {
       let resp = await fetch("http://localhost:8080/api/v1/auth/login", {
         method: "POST",
