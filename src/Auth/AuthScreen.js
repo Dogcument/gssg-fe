@@ -184,19 +184,6 @@ export default class AuthScreen extends React.Component {
             />
             <View style={{ height: "70%" }} />
 
-            {/* Sign In */}
-            <View>
-              <TouchableOpacity
-                onPress={() => this.setState({ visibleModal: 1 })}
-                style={[styles.modalbutton]}
-              >
-                <View>
-                  <Text style={{ fontFamily: "SpoqaBold", fontSize: 20 }}>
-                    Sign In
-                  </Text>
-                </View>
-              </TouchableOpacity>
-            </View>
 
             {/* Sign In 팝업 */}
             <Modal isVisible={this.state.visibleModal === 1}>

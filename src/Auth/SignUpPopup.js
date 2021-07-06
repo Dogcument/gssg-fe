@@ -6,6 +6,8 @@ import {
   TouchableOpacity,
   Image,
   ScrollView,
+  KeyboardAvoidingView,
+  Platform,
 } from "react-native";
 import AsyncStorage from "@react-native-community/async-storage";
 import {
@@ -83,187 +85,226 @@ export class SignUpPopup extends React.Component {
 
   render() {
     return (
-      //1st Screen - id, pw Select
+      //1st Screen - id, pw Select =======================================================================================
       /*
-      <View style={[styles.SignInModal]}>
-        <View style={{ width: "100%", flexDirection: "row" }}>
-          <Image source={WritingButtonImg} style={{ height: 25, width: 25 }} />
-          <View style={{flexDirection: 'column'}}>
-          <Text style={{ fontFamily: "SpoqaBold", fontSize: 15 }}>
-            새로운 작가님, 환영해요!
-          </Text>
-          <Text style={{ fontFamily: "SpoqaBold", fontSize: 10 }}>
-            로그인에 쓰일 이메일, 비밀번호를 입력해주세요!
-          </Text>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === "web" ? "height" : "position"}
+        style={{ width: "100%", height: "100%" }}
+      >
+        <View style={[styles.SignUpModal]}>
+          <View style={{ width: "100%", flexDirection: "row" }}>
+            <Image
+              source={WritingButtonImg}
+              style={{ height: 25, width: 25, marginRight: 2.5 }}
+            />
+            <View style={{ flexDirection: "column" }}>
+              <Text style={{
+                fontFamily: "SpoqaBold",
+                fontSize: 17.5,
+                paddingTop: 2.5,
+              }}>
+                새로운 작가님, 환영해요!
+              </Text>
+              <Text style={{ fontFamily: "SpoqaBold", fontSize: 12.5 }}>
+                로그인에 쓰일 이메일, 비밀번호를 입력해주세요!
+              </Text>
+            </View>
           </View>
-          
-        </View>
-        <View style={{ height: "10%" }}></View>
+          <View style={{ height: "10%" }}></View>
 
-        <View style={{ width: "100%", flexDirection: "row", paddingLeft: 5 }}>
-          <Text
-            style={{ fontFamily: "SpoqaMedium", fontSize: 15, width: "30%" }}
-          >
-            이메일
-          </Text>
-          <TextInput
-            placeholder="이메일 형식으로 입력해주세요!"
-            placeholderTextColor="#FFFFFF"
-            style={{
-              fontSize: 12,
-              backgroundColor: "#d4d4d4",
-              borderRadius: 5,
-              width: "60%",
-              height: "100%",
-              paddingLeft: 5,
-            }}
-          />
-        </View>
-        <View style={{ height: "10%" }}></View>
+          <View style={{ width: "100%", flexDirection: "row"}}>
+            <Text
+              style={{ fontFamily: "SpoqaMedium", fontSize: 15, flex: 3 }}
+            >
+              이메일
+            </Text>
+            <TextInput
+              placeholder="이메일 형식으로 입력해주세요!"
+              placeholderTextColor="#FFFFFF"
+              style={{
+                fontSize: 12,
+                fontFamily: "SpoqaMedium",
+                backgroundColor: "#d4d4d4",
+                borderRadius: 5,
+                flex: 7,
+                height: "100%",
+                paddingLeft: 5,
+              }}
+            />
+          </View>
+          <View style={{ height: "10%" }}></View>
 
-        <View style={{ width: "100%", flexDirection: "row", paddingLeft: 5 }}>
-          <Text
-            style={{ fontFamily: "SpoqaMedium", fontSize: 15, width: "30%" }}
-          >
-            비밀번호
-          </Text>
-          <TextInput
-            placeholder="8자 이상/문자,숫자,특수문자 포함"
-            placeholderTextColor="#FFFFFF"
-            style={{
-              fontSize: 12,
-              backgroundColor: "#d4d4d4",
-              borderRadius: 5,
-              width: "60%",
-              height: "100%",
-              paddingLeft: 5,
-            }}
-          />
-        </View>
-        <View style={{ height: "10%" }}></View>
+          <View style={{ width: "100%", flexDirection: "row"}}>
+            <Text
+              style={{ fontFamily: "SpoqaMedium", fontSize: 15, flex: 3 }}
+            >
+              비밀번호
+            </Text>
+            <TextInput
+              placeholder="8자 이상/문자,숫자,특수문자 포함"
+              placeholderTextColor="#FFFFFF"
+              secureTextEntry={true}
+              style={{
+                fontSize: 12,
+                fontFamily: "SpoqaMedium",
+                backgroundColor: "#d4d4d4",
+                borderRadius: 5,
+                flex: 7,
+                height: "100%",
+                paddingLeft: 5,
+              }}
+            />
+          </View>
+          <View style={{ height: "10%" }}></View>
 
-        <View style={{ width: "100%", flexDirection: "row", paddingLeft: 5 }}>
-          <Text
-            style={{ fontFamily: "SpoqaMedium", fontSize: 15, width: "30%" }}
-          >
-            비밀번호 확인
-          </Text>
-          <TextInput
-            placeholder="다시 입력해주세요!"
-            placeholderTextColor="#FFFFFF"
-            style={{
-              fontSize: 12,
-              backgroundColor: "#d4d4d4",
-              borderRadius: 5,
-              width: "60%",
-              height: "100%",
-              paddingLeft: 5,
-            }}
-          />
+          <View style={{ width: "100%", flexDirection: "row"}}>
+            <Text
+              style={{ fontFamily: "SpoqaMedium", fontSize: 15, flex: 3 }}
+            >
+              비밀번호확인
+            </Text>
+            <TextInput
+              placeholder="다시 입력해주세요!"
+              placeholderTextColor="#FFFFFF"
+              secureTextEntry={true}
+              style={{
+                fontSize: 12,
+                fontFamily: "SpoqaMedium",
+                backgroundColor: "#d4d4d4",
+                borderRadius: 5,
+                flex: 7,
+                height: "100%",
+                paddingLeft: 5,
+              }}
+            />
+          </View>
         </View>
-        <View style={{ height: "10%" }}></View>
+        <View style={{height: "2.5%"}}></View>
 
         <TouchableOpacity
-          onPress={this.props.onSubmitButtonClicked}
-          style={[styles.modalbutton]}
-        >
-          <View>
-            <Text style={{ fontFamily: "SpoqaBold", fontSize: 20 }}>
-              {" "}
-              다음!{" "}
-            </Text>
-          </View>
-        </TouchableOpacity>
-      </View>
+            onPress={this.props.onSubmitButtonClicked}
+            style={[styles.ModalButton]}
+          >
+            <View>
+              <Text style={{ fontFamily: "SpoqaMedium", fontSize: 15 }}>
+                {" "}
+                다음!{" "}
+              </Text>
+            </View>
+          </TouchableOpacity>
+      </KeyboardAvoidingView>
       */
 
-      //2nd Screen - Dog Select
-      /*
-      <View style={[styles.SignInModal]}>
-        <View style={{ width: "100%", flexDirection: "row" }}>
-          <Image source={WritingButtonImg} style={{ height: 25, width: 25 }} />
-          <Text style={{ fontFamily: "SpoqaBold", fontSize: 15 }}>
-            당신을 표현할 강아지를 선택해주세요!
-          </Text>
-        </View>
-        <View style={{ height: "5%" }}></View>
-        <View style={{ width: "100%", height: "75%", flexDirection: "row" }}>
-          <ScrollView
-            horizontal={false}
-            style={{
-              width: "35%",
-              flexDirection: "column",
-              backgroundColor: "#d4d4d4",
-              borderRadius: 10,
-            }}
-          >
-            <View
+      //2nd Screen - Dog Select ===================================================================================
+      <View style={{ width: "100%", height: "100%" }}>
+        <View style={[styles.SignUpModal]}>
+          <View style={{ width: "100%", flexDirection: "row" }}>
+            <Image
+              source={WritingButtonImg}
+              style={{ height: 25, width: 25, marginRight: 2.5 }}
+            />
+            <Text
               style={{
-                flex: 1,
-                flexDirection: "row",
-                flexWrap: "wrap",
-                justifyContent: "space-around",
-                padding: 5,
+                fontFamily: "SpoqaBold",
+                fontSize: 17.5,
+                paddingTop: 2.5,
               }}
             >
-              <TouchableOpacity onPress={() => this.onDogSelected(Dogs.Baekgu)}>
-                <Image source={BaekguImg} style={{ width: 50, height: 50 }} />
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => this.onDogSelected(Dogs.Janggun)}>
-                <Image source={JanggunImg} style={{ width: 50, height: 50 }} />
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => this.onDogSelected(Dogs.Wuyu)}>
-                <Image source={WuyuImg} style={{ width: 50, height: 50 }} />
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => this.onDogSelected(Dogs.York)}>
-                <Image source={YorkImg} style={{ width: 50, height: 50 }} />
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => this.onDogSelected(Dogs.Corgi)}>
-                <Image source={CorgiImg} style={{ width: 50, height: 50 }} />
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => this.onDogSelected(Dogs.Silver)}>
-                <Image source={SilverImg} style={{ width: 50, height: 50 }} />
-              </TouchableOpacity>
-              
-            </View>
-          </ScrollView>
-          <View
-            style={{
-              marginLeft: 10,
-              flex: 1,
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "space-around",
-              marginTop: -15,
-            }}
-          >
-            <Image
-              source={DogImages[this.state.selectedDog]}
-              style={{ width: 90, height: 90 }}
-            />
-            <Text style={{ fontFamily: "SpoqaBold", fontSize: 15 }}>
-              {" "}
-              {this.state.selectedDog}{" "}
+              당신을 표현할 강아지를 선택하세요!
             </Text>
           </View>
+          <View style={{ height: "10%" }}></View>
+
+          <View style={{ width: "100%", height: "75%", flexDirection: "row" }}>
+            <ScrollView
+              horizontal={false}
+              style={{
+                width: "35%",
+                flexDirection: "column",
+                backgroundColor: "#d4d4d4",
+                borderRadius: 10,
+              }}
+            >
+              <View
+                style={{
+                  flex: 1,
+                  flexDirection: "row",
+                  flexWrap: "wrap",
+                  justifyContent: "space-around",
+                  padding: 5,
+                }}
+              >
+                <TouchableOpacity
+                  onPress={() => this.onDogSelected(Dogs.Baekgu)}
+                >
+                  <Image source={BaekguImg} style={{ width: 50, height: 50 }} />
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => this.onDogSelected(Dogs.Janggun)}
+                >
+                  <Image
+                    source={JanggunImg}
+                    style={{ width: 50, height: 50 }}
+                  />
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => this.onDogSelected(Dogs.Wuyu)}>
+                  <Image source={WuyuImg} style={{ width: 50, height: 50 }} />
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => this.onDogSelected(Dogs.York)}>
+                  <Image source={YorkImg} style={{ width: 50, height: 50 }} />
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => this.onDogSelected(Dogs.Corgi)}
+                >
+                  <Image source={CorgiImg} style={{ width: 50, height: 50 }} />
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => this.onDogSelected(Dogs.Silver)}
+                >
+                  <Image source={SilverImg} style={{ width: 50, height: 50 }} />
+                </TouchableOpacity>
+              </View>
+            </ScrollView>
+            <View
+              style={{
+                marginLeft: 10,
+                flex: 1,
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "space-around",
+                marginTop: -15,
+              }}
+            >
+              <Image
+                source={DogImages[this.state.selectedDog]}
+                style={{ width: 90, height: 90 }}
+              />
+              <Text style={{ fontFamily: "SpoqaBold", fontSize: 15 }}>
+                {" "}
+                {this.state.selectedDog}{" "}
+              </Text>
+            </View>
+          </View>
         </View>
+        <View style={{ height: "2.5%" }}></View>
+
         <TouchableOpacity
           onPress={this.props.onSubmitButtonClicked}
-          style={[styles.modalbutton]}
+          style={[styles.ModalButton]}
         >
           <View>
-            <Text style={{ fontFamily: "SpoqaBold", fontSize: 20 }}>
+            <Text style={{ fontFamily: "SpoqaMedium", fontSize: 15 }}>
               {" "}
               다음!{" "}
             </Text>
           </View>
         </TouchableOpacity>
       </View>
-      */
 
-      //3rd Screen - 필명 & 소개
+      //3rd Screen - 필명 & 소개 =======================================================================================
+      /*
       <View>
-        <View style={[styles.SignInModal]}>
+        <View style={[styles.SignUpModal]}>
         <Image
               source={DogImages[this.state.selectedDog]}
               style={{ marginTop: -15, marginLeft: '55%', width: 100, height: 100, position: 'absolute' }}
@@ -315,16 +356,17 @@ export class SignUpPopup extends React.Component {
         </View>
         <TouchableOpacity
           onPress={this.props.onSubmitButtonClicked}
-          style={[styles.modalbutton]}
+          style={[styles.ModalButton]}
         >
           <View>
-            <Text style={{ fontFamily: "SpoqaBold", fontSize: 20 }}>
+            <Text style={{ fontFamily: "SpoqaMedium", fontSize: 15 }}>
               {" "}
               완료!{" "}
             </Text>
           </View>
         </TouchableOpacity>
       </View>
+      */
     );
   }
 }
