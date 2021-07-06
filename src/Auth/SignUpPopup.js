@@ -196,6 +196,7 @@ export class SignUpPopup extends React.Component {
       */
 
       //2nd Screen - Dog Select ===================================================================================
+      /*
       <View style={{ width: "100%", height: "100%" }}>
         <View style={[styles.SignUpModal]}>
           <View style={{ width: "100%", flexDirection: "row" }}>
@@ -300,60 +301,81 @@ export class SignUpPopup extends React.Component {
           </View>
         </TouchableOpacity>
       </View>
+      */
 
       //3rd Screen - 필명 & 소개 =======================================================================================
-      /*
-      <View>
+
+      <KeyboardAvoidingView
+        behavior={Platform.OS === "web" ? "height" : "position"}
+        style={{ width: "100%", height: "100%" }}
+      >
         <View style={[styles.SignUpModal]}>
-        <Image
-              source={DogImages[this.state.selectedDog]}
-              style={{ marginTop: -15, marginLeft: '55%', width: 100, height: 100, position: 'absolute' }}
-            />
+          <Image
+            source={DogImages[this.state.selectedDog]}
+            style={{
+              marginLeft: "55%",
+              width: 120,
+              height: 120,
+              position: "absolute",
+            }}
+          />
           <View style={{ width: "100%", flexDirection: "row" }}>
             <Image
               source={WritingButtonImg}
-              style={{ height: 25, width: 25 }}
+              style={{ height: 25, width: 25, marginRight: 2.5 }}
             />
-            <Text style={{ fontFamily: "SpoqaBold", fontSize: 15 }}>
+            <Text
+              style={{
+                fontFamily: "SpoqaBold",
+                fontSize: 17.5,
+                paddingTop: 2.5,
+              }}
+            >
               작가등록증
             </Text>
           </View>
-          <View style={{ height: "5%" }}></View>
-          <Text
-            style={{ fontFamily: "SpoqaMedium", fontSize: 15, width: "30%" }}
-          >
-            필명
-          </Text>
-          <TextInput
-            placeholder="특수문자는 불가능해요!"
-            placeholderTextColor="#FFFFFF"
-            style={{
-              fontSize: 12,
-              backgroundColor: "#d4d4d4",
-              borderRadius: 5,
-              width: "60%",
-              height: "100%",
-              paddingLeft: 5,
-            }}
-          />
-          <Text
-            style={{ fontFamily: "SpoqaMedium", fontSize: 15, width: "30%" }}
-          >
-            한 줄 소개
-          </Text>
-          <TextInput
-            placeholder="자신을 자유롭게 소개해주세요!"
-            placeholderTextColor="#FFFFFF"
-            style={{
-              fontSize: 12,
-              backgroundColor: "#d4d4d4",
-              borderRadius: 5,
-              width: "90%",
-              height: "100%",
-              paddingLeft: 5,
-            }}
-          />
+          <View style={{ height: "10%" }}></View>
+
+          <View style={{ width: "100%", height: "70%", justifyContent: 'space-around'}}>
+            <Text
+              style={{ fontFamily: "SpoqaMedium", fontSize: 15, width: "30%" }}
+            >
+              필명
+            </Text>
+            <TextInput
+              placeholder="특수문자는 불가능해요!"
+              placeholderTextColor="#FFFFFF"
+              style={{
+                fontSize: 12,
+                backgroundColor: "#d4d4d4",
+                borderRadius: 5,
+                width: "60%",
+                height: "20%",
+                paddingLeft: 5,
+              }}
+            />
+            <View></View>
+            <Text
+              style={{ fontFamily: "SpoqaMedium", fontSize: 15, width: "30%" }}
+            >
+              한 줄 소개
+            </Text>
+            <TextInput
+              placeholder="자신을 자유롭게 소개해주세요!"
+              placeholderTextColor="#FFFFFF"
+              style={{
+                fontSize: 12,
+                backgroundColor: "#d4d4d4",
+                borderRadius: 5,
+                width: "100%",
+                height: "20%",
+                paddingLeft: 5,
+              }}
+            />
+          </View>
         </View>
+        <View style={{height: "2.5%"}}></View>
+
         <TouchableOpacity
           onPress={this.props.onSubmitButtonClicked}
           style={[styles.ModalButton]}
@@ -365,8 +387,7 @@ export class SignUpPopup extends React.Component {
             </Text>
           </View>
         </TouchableOpacity>
-      </View>
-      */
+      </KeyboardAvoidingView>
     );
   }
 }
