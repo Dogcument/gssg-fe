@@ -196,7 +196,7 @@ export default class AuthScreen extends React.Component {
             </Modal>
             {/* Sign Up 팝업 */}
             <Modal isVisible={this.state.visibleModal === 2}>
-              <SignUpPopup onSubmitButtonClicked={this.onSubmitButtonClicked} />
+              <SignUpPopup gotoMainScreen={this.gotoMainScreen} />
             </Modal>
           </View>
         );

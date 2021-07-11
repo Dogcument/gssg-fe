@@ -24,37 +24,41 @@ import UserInfo from "../Common/UserInfo";
 import { styles } from "./Styles";
 
 export var SignUpState = {
-  SetNickname: 1,
+  SetEmailPw: 1,
   SetDog: 2,
-  ShowTutorial: 3,
+  SetNicknameComment: 3,
 };
 
-let nickName = "";
+let email = "";
 let pw = "";
+let nickName = "";
 let comment = "";
 export class SignUpPopup extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      signUpState: SignUpState.SetNickname,
+      signUpState: SignUpState.SetEmailPw,
       selectedDog: Dogs.Baekgu,
     };
   }
 
   OnNextButtonClicked() {
     switch (this.state.signUpState) {
-      case SignUpState.SetNickname:
+      case SignUpState.SetEmailPw:
         this.setState({ signUpState: SignUpState.SetDog });
         break;
       case SignUpState.SetDog:
+        this.setState({ signUpState: SignUpState.SetNicknameComment });
+        break;
+      case SignUpState.SetNicknameComment:
         AsyncStorage.setItem(
           "user_session",
           JSON.stringify({
-            id: null,
-            nickName: nickName,
+            email: email,
             pw: pw,
-            comment: comment,
             dog: this.state.selectedDog,
+            nickName: nickName,
+            comment: comment,
           })
         );
 
@@ -62,11 +66,7 @@ export class SignUpPopup extends React.Component {
         userInfo.setNickName(nickName);
         userInfo.setComment(comment);
         userInfo.setDog(this.state.selectedDog);
-
-        this.setState({ signUpState: SignUpState.ShowTutorial });
-        break;
-      case SignUpState.ShowTutorial:
-        this.props.GotoMainScreen();
+        this.props.gotoMainScreen();
         break;
     }
   }
@@ -83,10 +83,9 @@ export class SignUpPopup extends React.Component {
     this.setState({ selectedDog: dog });
   }
 
-  render() {
+  /* Rendering Functions */
+  renderSetEmailPw() {
     return (
-      //1st Screen - id, pw Select =======================================================================================
-      /*
       <KeyboardAvoidingView
         behavior={Platform.OS === "web" ? "height" : "position"}
         style={{ width: "100%", height: "100%" }}
@@ -98,11 +97,13 @@ export class SignUpPopup extends React.Component {
               style={{ height: 25, width: 25, marginRight: 2.5 }}
             />
             <View style={{ flexDirection: "column" }}>
-              <Text style={{
-                fontFamily: "SpoqaBold",
-                fontSize: 17.5,
-                paddingTop: 2.5,
-              }}>
+              <Text
+                style={{
+                  fontFamily: "SpoqaBold",
+                  fontSize: 17.5,
+                  paddingTop: 2.5,
+                }}
+              >
                 새로운 작가님, 환영해요!
               </Text>
               <Text style={{ fontFamily: "SpoqaBold", fontSize: 12.5 }}>
@@ -112,10 +113,8 @@ export class SignUpPopup extends React.Component {
           </View>
           <View style={{ height: "10%" }}></View>
 
-          <View style={{ width: "100%", flexDirection: "row"}}>
-            <Text
-              style={{ fontFamily: "SpoqaMedium", fontSize: 15, flex: 3 }}
-            >
+          <View style={{ width: "100%", flexDirection: "row" }}>
+            <Text style={{ fontFamily: "SpoqaMedium", fontSize: 15, flex: 3 }}>
               이메일
             </Text>
             <TextInput
@@ -134,10 +133,8 @@ export class SignUpPopup extends React.Component {
           </View>
           <View style={{ height: "10%" }}></View>
 
-          <View style={{ width: "100%", flexDirection: "row"}}>
-            <Text
-              style={{ fontFamily: "SpoqaMedium", fontSize: 15, flex: 3 }}
-            >
+          <View style={{ width: "100%", flexDirection: "row" }}>
+            <Text style={{ fontFamily: "SpoqaMedium", fontSize: 15, flex: 3 }}>
               비밀번호
             </Text>
             <TextInput
@@ -157,10 +154,8 @@ export class SignUpPopup extends React.Component {
           </View>
           <View style={{ height: "10%" }}></View>
 
-          <View style={{ width: "100%", flexDirection: "row"}}>
-            <Text
-              style={{ fontFamily: "SpoqaMedium", fontSize: 15, flex: 3 }}
-            >
+          <View style={{ width: "100%", flexDirection: "row" }}>
+            <Text style={{ fontFamily: "SpoqaMedium", fontSize: 15, flex: 3 }}>
               비밀번호확인
             </Text>
             <TextInput
@@ -179,24 +174,25 @@ export class SignUpPopup extends React.Component {
             />
           </View>
         </View>
-        <View style={{height: "2.5%"}}></View>
+        <View style={{ height: "2.5%" }}></View>
 
         <TouchableOpacity
-            onPress={this.props.onSubmitButtonClicked}
-            style={[styles.ModalButton]}
-          >
-            <View>
-              <Text style={{ fontFamily: "SpoqaMedium", fontSize: 15 }}>
-                {" "}
-                다음!{" "}
-              </Text>
-            </View>
-          </TouchableOpacity>
+          onPress={() => this.OnNextButtonClicked()}
+          style={[styles.ModalButton]}
+        >
+          <View>
+            <Text style={{ fontFamily: "SpoqaMedium", fontSize: 15 }}>
+              {" "}
+              다음!{" "}
+            </Text>
+          </View>
+        </TouchableOpacity>
       </KeyboardAvoidingView>
-      */
+    );
+  }
 
-      //2nd Screen - Dog Select ===================================================================================
-      /*
+  renderSetDog() {
+    return (
       <View style={{ width: "100%", height: "100%" }}>
         <View style={[styles.SignUpModal]}>
           <View style={{ width: "100%", flexDirection: "row" }}>
@@ -290,7 +286,7 @@ export class SignUpPopup extends React.Component {
         <View style={{ height: "2.5%" }}></View>
 
         <TouchableOpacity
-          onPress={this.props.onSubmitButtonClicked}
+          onPress={() => this.OnNextButtonClicked()}
           style={[styles.ModalButton]}
         >
           <View>
@@ -301,10 +297,11 @@ export class SignUpPopup extends React.Component {
           </View>
         </TouchableOpacity>
       </View>
-      */
+    );
+  }
 
-      //3rd Screen - 필명 & 소개 =======================================================================================
-
+  renderSetNickNameComment() {
+    return (
       <KeyboardAvoidingView
         behavior={Platform.OS === "web" ? "height" : "position"}
         style={{ width: "100%", height: "100%" }}
@@ -336,7 +333,13 @@ export class SignUpPopup extends React.Component {
           </View>
           <View style={{ height: "10%" }}></View>
 
-          <View style={{ width: "100%", height: "70%", justifyContent: 'space-around'}}>
+          <View
+            style={{
+              width: "100%",
+              height: "70%",
+              justifyContent: "space-around",
+            }}
+          >
             <Text
               style={{ fontFamily: "SpoqaMedium", fontSize: 15, width: "30%" }}
             >
@@ -374,10 +377,10 @@ export class SignUpPopup extends React.Component {
             />
           </View>
         </View>
-        <View style={{height: "2.5%"}}></View>
+        <View style={{ height: "2.5%" }}></View>
 
         <TouchableOpacity
-          onPress={this.props.onSubmitButtonClicked}
+          onPress={() => this.OnNextButtonClicked()}
           style={[styles.ModalButton]}
         >
           <View>
@@ -389,5 +392,16 @@ export class SignUpPopup extends React.Component {
         </TouchableOpacity>
       </KeyboardAvoidingView>
     );
+  }
+
+  render() {
+    switch (this.state.signUpState) {
+      case SignUpState.SetEmailPw:
+        return this.renderSetEmailPw();
+      case SignUpState.SetDog:
+        return this.renderSetDog();
+      case SignUpState.SetNicknameComment:
+        return this.renderSetNickNameComment();
+    }
   }
 }
