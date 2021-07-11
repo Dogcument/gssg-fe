@@ -23,6 +23,7 @@ import { Dogs, DogImages } from "../Common/Dogs";
 import UserInfo from "../Common/UserInfo";
 import { styles } from "./Styles";
 import { TutorialScreen } from "./TutorialScreen";
+import { validateEmail, validatePassword } from "../Common/CommonMethod";
 
 export var SignUpState = {
   SetEmailPw: 1,
@@ -33,6 +34,7 @@ export var SignUpState = {
 
 let email = "";
 let pw = "";
+let pwCheck = "";
 let nickName = "";
 let comment = "";
 export class SignUpPopup extends React.Component {
@@ -47,6 +49,36 @@ export class SignUpPopup extends React.Component {
   OnNextButtonClicked() {
     switch (this.state.signUpState) {
       case SignUpState.SetEmailPw:
+        if (!validateEmail(email)) {
+          alert("이메일 형식이 옳지 않아요!");
+          return;
+        }
+
+        if (pw == "") {
+          alert("비밀번호가 없어요!");
+          return;
+        }
+
+        const isValidPw = validatePassword(pw, {
+          length: [8, Infinity],
+          lower: 1,
+          upper: 1,
+          numeric: 1,
+          special: 1,
+          badWords: ["password", "pig"],
+          badSequenceLength: 4,
+        });
+
+        if (!isValidPw) {
+          alert("비밀번호가 형식에 맞지 않아요!");
+          return;
+        }
+
+        if (pw != pwCheck) {
+          alert("비밀번호를 똑같이 입력해주세요!");
+          return;
+        }
+
         this.setState({ signUpState: SignUpState.SetDog });
         break;
       case SignUpState.SetDog:
@@ -83,6 +115,18 @@ export class SignUpPopup extends React.Component {
 
   onDogSelected(dog) {
     this.setState({ selectedDog: dog });
+  }
+
+  onEmailTextChanged(inputText) {
+    email = inputText;
+  }
+
+  onPwTextChanged(inputText) {
+    pw = inputText;
+  }
+
+  onPwCheckTextChanged(inputText) {
+    pwCheck = inputText;
   }
 
   /* Rendering Functions */
@@ -131,6 +175,7 @@ export class SignUpPopup extends React.Component {
                 height: "100%",
                 paddingLeft: 5,
               }}
+              onChangeText={(inputText) => this.onEmailTextChanged(inputText)}
             />
           </View>
           <View style={{ height: "10%" }}></View>
@@ -152,6 +197,7 @@ export class SignUpPopup extends React.Component {
                 height: "100%",
                 paddingLeft: 5,
               }}
+              onChangeText={(inputText) => this.onPwTextChanged(inputText)}
             />
           </View>
           <View style={{ height: "10%" }}></View>
@@ -173,6 +219,7 @@ export class SignUpPopup extends React.Component {
                 height: "100%",
                 paddingLeft: 5,
               }}
+              onChangeText={(inputText) => this.onPwCheckTextChanged(inputText)}
             />
           </View>
         </View>
