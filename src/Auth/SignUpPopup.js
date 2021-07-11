@@ -129,6 +129,12 @@ export class SignUpPopup extends React.Component {
     pwCheck = inputText;
   }
 
+  onEndEditing() {
+    // Gunny TODO
+    // req email valid check
+    console.warn("req email valid check");
+  }
+
   /* Rendering Functions */
   renderSetEmailPw() {
     return (
@@ -176,6 +182,7 @@ export class SignUpPopup extends React.Component {
                 paddingLeft: 5,
               }}
               onChangeText={(inputText) => this.onEmailTextChanged(inputText)}
+              onBlur={() => this.onEndEditing()}
             />
           </View>
           <View style={{ height: "10%" }}></View>
