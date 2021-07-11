@@ -62,10 +62,10 @@ export class SignUpPopup extends React.Component {
         const isValidPw = validatePassword(pw, {
           length: [8, Infinity],
           lower: 1,
-          upper: 1,
+          upper: 0,
           numeric: 1,
           special: 1,
-          badWords: ["password", "pig"],
+          badWords: ["password"],
           badSequenceLength: 4,
         });
 
@@ -85,24 +85,72 @@ export class SignUpPopup extends React.Component {
         this.setState({ signUpState: SignUpState.SetNicknameComment });
         break;
       case SignUpState.SetNicknameComment:
-        AsyncStorage.setItem(
-          "user_session",
-          JSON.stringify({
-            email: email,
-            pw: pw,
-            dog: this.state.selectedDog,
-            nickName: nickName,
-            comment: comment,
-          })
-        );
-
-        let userInfo = UserInfo.get();
-        userInfo.setNickName(nickName);
-        userInfo.setComment(comment);
-        userInfo.setDog(this.state.selectedDog);
-        this.setState({ signUpState: SignUpState.ShowTutorial });
+        this.reqSignUp();
         break;
     }
+  }
+
+  isError(json) {
+    return json.code != "E0201";
+  }
+
+  getErrorMsg(json) {
+    if (json.message != undefined) {
+      return json.message;
+    }
+  }
+
+  reqSignUp = async () => {
+    try {
+      let resp = await fetch("http://localhost:8080/api/v1/members", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email,
+          password: pw,
+          nickName: nickName,
+          profileDogType: this.state.selectedDog,
+        }),
+      });
+
+      if (resp != undefined) {
+        let json = await resp.json();
+
+        if (this.isError(json)) {
+          alert(this.getErrorMsg(json));
+        } else {
+          onSignUpSuccess();
+        }
+
+        console.log(json);
+      } else {
+        console.error("resp is null");
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  onSignUpSuccess() {
+    AsyncStorage.setItem(
+      "user_session",
+      JSON.stringify({
+        email: email,
+        pw: pw,
+        dog: this.state.selectedDog,
+        nickName: nickName,
+        comment: comment,
+      })
+    );
+
+    let userInfo = UserInfo.get();
+    userInfo.setNickName(nickName);
+    userInfo.setComment(comment);
+    userInfo.setDog(this.state.selectedDog);
+
+    this.setState({ signUpState: SignUpState.ShowTutorial });
   }
 
   onNicknameChange(text) {
