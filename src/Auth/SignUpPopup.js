@@ -22,11 +22,13 @@ import {
 import { Dogs, DogImages } from "../Common/Dogs";
 import UserInfo from "../Common/UserInfo";
 import { styles } from "./Styles";
+import { TutorialScreen } from "./TutorialScreen";
 
 export var SignUpState = {
   SetEmailPw: 1,
   SetDog: 2,
   SetNicknameComment: 3,
+  ShowTutorial: 4,
 };
 
 let email = "";
@@ -66,7 +68,7 @@ export class SignUpPopup extends React.Component {
         userInfo.setNickName(nickName);
         userInfo.setComment(comment);
         userInfo.setDog(this.state.selectedDog);
-        this.props.gotoMainScreen();
+        this.setState({ signUpState: SignUpState.ShowTutorial });
         break;
     }
   }
@@ -394,6 +396,10 @@ export class SignUpPopup extends React.Component {
     );
   }
 
+  renderTutorial() {
+    return <TutorialScreen GotoMainScreen={this.props.gotoMainScreen} />;
+  }
+
   render() {
     switch (this.state.signUpState) {
       case SignUpState.SetEmailPw:
@@ -402,6 +408,8 @@ export class SignUpPopup extends React.Component {
         return this.renderSetDog();
       case SignUpState.SetNicknameComment:
         return this.renderSetNickNameComment();
+      case SignUpState.ShowTutorial:
+        return this.renderTutorial();
     }
   }
 }
