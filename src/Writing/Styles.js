@@ -9,10 +9,12 @@ export const styles = StyleSheet.create({
 
   title: {
     fontSize: 40,
-    fontFamily: "title",
+    fontFamily: "Ridi",
+    fontWeight: "bold",
   },
 
   textInput: {
+    fontFamily: "Ridi",
     width: "90%",
     marginLeft: "5%",
     marginRight: "5%",
@@ -38,6 +40,7 @@ export const styles = StyleSheet.create({
   },
 
   TextInputStyle: {
+    fontFamily: "Ridi",
     textAlign: "center",
     alignItems: "center",
     justifyContent: "center",

@@ -34,7 +34,7 @@ export class ItemDetail extends React.Component {
         >
           <Text
             style={{
-              fontFamily: "SpoqaMedium",
+              fontFamily: "Ridi",
               textAlign: "center",
             }}
           >
@@ -45,7 +45,7 @@ export class ItemDetail extends React.Component {
               fontSize: 10,
               textAlign: "center",
               marginTop: 15,
-              fontFamily: "SpoqaMedium",
+              fontFamily: "SCThin",
             }}
           >
             {this.props.writingTime}
@@ -81,10 +81,10 @@ export class ItemDetail extends React.Component {
                 marginLeft: 5,
               }}
             >
-              <Text style={{ fontFamily: "SpoqaBold" }}>
+              <Text style={{ fontFamily: "SCBold" }}>
                 {userInfo.getNickName()}
               </Text>
-              <Text style={{ fontFamily: "SpoqaRegular", fontSize: 13 }}>
+              <Text style={{ fontFamily: "SCRegular", fontSize: 13 }}>
                 {userInfo.getComment()}
               </Text>
             </View>

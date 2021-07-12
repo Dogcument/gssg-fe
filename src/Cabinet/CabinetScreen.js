@@ -29,7 +29,7 @@ export class CabinetScreen extends React.Component {
   RenderCloseButton = (text, onPress) => (
     <TouchableOpacity onPress={onPress} style={[styles.modalbutton]}>
       <View>
-        <Text style={{ fontFamily: "SpoqaBold", fontSize: 20 }}>{text}</Text>
+        <Text style={{ fontFamily: "Ridi", fontSize: 20 }}>{text}</Text>
       </View>
     </TouchableOpacity>
   );
@@ -44,7 +44,7 @@ export class CabinetScreen extends React.Component {
               style={{ height: 40 }}
               onPress={() => this.onWritingSubjectClicked(value)}
             >
-              <Text style={{ fontFamily: "SpoqaMedium" }}>{value}</Text>
+              <Text style={{ fontFamily: "Ridi" }}>{value}</Text>
             </TouchableOpacity>
           ))}
         </ScrollView>

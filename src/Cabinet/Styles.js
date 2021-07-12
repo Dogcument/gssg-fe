@@ -36,7 +36,7 @@ export const styles = StyleSheet.create({
   ItemText: {
     alignItems: "flex-end",
     flexDirection: "column",
-    fontFamily: "SpoqaRegular",
+    fontFamily: "Ridi",
     marginTop: 10,
     marginLeft: 10,
     width: "95%",
@@ -105,7 +105,7 @@ export const styles = StyleSheet.create({
   buttonText: {
     color: "#FFFFFF",
     fontSize: 22,
-    fontFamily: "SpoqaRegular",
+    fontFamily: "SCThin",
   },
   image: {
     marginTop: 150,
@@ -134,6 +134,7 @@ export const styles = StyleSheet.create({
     alignItems: "center",
   },
   writingContentModal: {
+    fontFamily: "Ridi",
     backgroundColor: "#FFFFFF",
     width: "80%",
     marginLeft: "10%",

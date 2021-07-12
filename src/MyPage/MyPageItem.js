@@ -34,9 +34,8 @@ export class MyPageItem extends React.Component {
         />
         <Text
           style={{
-            marginTop: 3,
             marginLeft: 10,
-            fontFamily: "SpoqaMedium",
+            fontFamily: "Ridi",
             flex: 1,
             fontSize: 20,
             fontWeight: "bold",
@@ -47,7 +46,7 @@ export class MyPageItem extends React.Component {
         <Text
           style={{
             marginLeft: 10,
-            fontFamily: "SpoqaMedium",
+            fontFamily: "SCThin",
             fontSize: 10,
             flex: 1,
           }}
@@ -59,14 +58,14 @@ export class MyPageItem extends React.Component {
           source={BoneBlackImg}
         ></Image>
         <View style={{ width: "5%" }}>
-          <Text style={{ fontFamily: "SpoqaMedium", fontSize: 10 }}>0</Text>
+          <Text style={{ fontFamily: "SCThin", fontSize: 10 }}>0</Text>
         </View>
         <Image
           style={{ height: 15, width: 15, marginRight: 5 }}
           source={ChatImg}
         ></Image>
         <View style={{ width: "5%", marginRight: 10 }}>
-          <Text style={{ fontFamily: "SpoqaMedium", fontSize: 10 }}>0</Text>
+          <Text style={{ fontFamily: "SCThin", fontSize: 10 }}>0</Text>
         </View>
       </TouchableOpacity>
     );

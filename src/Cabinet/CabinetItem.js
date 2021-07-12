@@ -50,14 +50,14 @@ export class CabinetItem extends React.Component {
             <View style={{ flexDirection: "column" }}>
               <Text
                 style={{
-                  fontFamily: "SpoqaMedium",
+                  fontFamily: "SCThin",
                   fontSize: 10,
                   fontWeight: "bold",
                 }}
               >
                 {userInfo.getNickName()}
               </Text>
-              <Text style={{ fontFamily: "SpoqaMedium", fontSize: 10 }}>
+              <Text style={{ fontFamily: "SCThin", fontSize: 10 }}>
                 {writingTime || "WritingTime"}
               </Text>
             </View>

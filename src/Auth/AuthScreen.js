@@ -28,10 +28,9 @@ export default class AuthScreen extends React.Component {
 
   componentDidMount = async () => {
     await Font.loadAsync({
-      title: require("../../assets/fonts/BMEULJIROTTF.ttf"),
-      SpoqaBold: require("../../assets/fonts/SpoqaHanSansNeo-Bold.ttf"),
-      SpoqaMedium: require("../../assets/fonts/SpoqaHanSansNeo-Medium.ttf"),
-      SpoqaRegular: require("../../assets/fonts/SpoqaHanSansNeo-Regular.ttf"),
+      Ridi: require("../../assets/fonts/RIDIBatang.otf"),
+      SCBold: require("../../assets/fonts/SCDreamBold.otf"),
+      SCThin: require("../../assets/fonts/SCDreamThin.otf"),
     });
 
     this.retrieveUserSessionByAsyncStorage();

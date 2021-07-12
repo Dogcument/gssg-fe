@@ -18,7 +18,7 @@ export class SignInScreen extends React.Component {
   render() {
     return (
       <View style={[styles.SignInScreen]}>
-        <Text>아이디</Text>
+        <Text style={{fontFamily: "SCBold"}}>아이디</Text>
         <TextInput
           placeholder="아이디를 입력해주세요!"
           placeholderTextColor="#FFFFFF"
@@ -29,9 +29,10 @@ export class SignInScreen extends React.Component {
             width: "80%",
             height: "30%",
             paddingLeft: 5,
+            fontFamily: "SCThin"
           }}
         />
-        <Text>비밀번호</Text>
+        <Text style={{fontFamily: "SCBold"}}>비밀번호</Text>
         <TextInput
           placeholder="비밀번호를 입력해주세요!"
           placeholderTextColor="#FFFFFF"
@@ -42,6 +43,7 @@ export class SignInScreen extends React.Component {
             width: "80%",
             height: "30%",
             paddingLeft: 5,
+            fontFamily: "SCThin"
           }}
         />
       </View>

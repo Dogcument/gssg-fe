@@ -38,7 +38,7 @@ function WritingStack({ navigation }) {
         options={{
           title: "Brrraaaah",
           headerTitleStyle: {
-            fontFamily: "title",
+            fontFamily: "Ridi",
             fontSize: 25,
           },
           headerTitleAlign: "center",

@@ -117,7 +117,7 @@ export class SignUpScreen extends React.Component {
                     <Text
                       style={{
                         flex: 1,
-                        fontFamily: "SpoqaBold",
+                        fontFamily: "SCBold",
                         fontSize: 20,
                         marginLeft: 10,
                       }}
@@ -143,11 +143,12 @@ export class SignUpScreen extends React.Component {
                       marginTop: 10,
                     }}
                   >
-                    <Text style={{ fontFamily: "SpoqaMedium" }}>필명</Text>
+                    <Text style={{ fontFamily: "SCBold" }}>필명</Text>
                     <TextInput
                       placeholder="필명을 입력해주세요!"
                       placeholderTextColor="#FFFFFF"
                       style={{
+                        fontFamily: "SCBold",
                         fontSize: 12,
                         backgroundColor: "#d4d4d4",
                         borderRadius: 5,
@@ -158,13 +159,14 @@ export class SignUpScreen extends React.Component {
                       onChangeText={(text) => this.onNicknameChange(text)}
                     />
                     <View style={{ height: 5 }}></View>
-                    <Text style={{ fontFamily: "SpoqaMedium" }}>
+                    <Text style={{ fontFamily: "SCBold" }}>
                       한 줄 소개
                     </Text>
                     <TextInput
                       placeholder="간단한 설명을 해주세요!"
                       placeholderTextColor="#FFFFFF"
                       style={{
+                        fontFamily: "SCBold",
                         fontSize: 12,
                         backgroundColor: "#d4d4d4",
                         borderRadius: 5,
@@ -296,7 +298,7 @@ export class SignUpScreen extends React.Component {
                         source={DogImages[this.state.selectedDog]}
                         style={{ width: 80, height: 80 }}
                       />
-                      <Text style={{ fontFamily: "SpoqaBold", fontSize: 10 }}>
+                      <Text style={{ fontFamily: "SCBold", fontSize: 10 }}>
                         {" "}
                         {this.state.selectedDog}{" "}
                       </Text>

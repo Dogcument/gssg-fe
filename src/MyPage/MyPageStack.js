@@ -35,7 +35,7 @@ function MyPageStack({ navigation }) {
         options={{
           title: "마이페이지",
           headerTitleStyle: {
-            fontFamily: "SpoqaBold",
+            fontFamily: "SCBold",
           },
           headerStyle: {
             backgroundColor: "#ae9784",
@@ -67,7 +67,7 @@ function MyPageStack({ navigation }) {
         options={{
           title: "세팅",
           headerTitleStyle: {
-            fontFamily: "SpoqaBold",
+            fontFamily: "SCBold",
           },
           headerTitleAlign: "left",
           headerBackTitleVisible: false,

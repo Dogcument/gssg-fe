@@ -27,7 +27,7 @@ export class MyPageProfile extends React.Component {
           >
             <Text
               style={{
-                fontFamily: "SpoqaRegular",
+                fontFamily: "SCThin",
                 fontSize: 12,
                 marginBottom: 5,
                 color: "#FFFFFF",
@@ -37,7 +37,7 @@ export class MyPageProfile extends React.Component {
             </Text>
             <Text
               style={{
-                fontFamily: "SpoqaMedium",
+                fontFamily: "SCThin",
                 fontSize: 20,
                 fontWeight: "bold",
                 color: "#FFFFFF",
@@ -56,7 +56,7 @@ export class MyPageProfile extends React.Component {
           >
             <Text
               style={{
-                fontFamily: "SpoqaRegular",
+                fontFamily: "SCThin",
                 fontSize: 12,
                 marginBottom: 5,
                 color: "#FFFFFF",
@@ -66,7 +66,7 @@ export class MyPageProfile extends React.Component {
             </Text>
             <Text
               style={{
-                fontFamily: "SpoqaMedium",
+                fontFamily: "SCThin",
                 fontSize: 20,
                 fontWeight: "bold",
                 color: "#FFFFFF",
@@ -88,7 +88,7 @@ export class MyPageProfile extends React.Component {
         >
           <Text
             style={{
-              fontFamily: "SpoqaBold",
+              fontFamily: "SCBold",
               marginLeft: 10,
               fontSize: 20,
               color: "#FFFFFF",
@@ -98,7 +98,7 @@ export class MyPageProfile extends React.Component {
           </Text>
           <Text
             style={{
-              fontFamily: "SpoqaRegular",
+              fontFamily: "SCThin",
               marginLeft: 10,
               marginTop: 5,
               fontSize: 15,

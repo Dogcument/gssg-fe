@@ -41,7 +41,7 @@ export class SettingScreen extends React.Component {
         >
           <Image source={WritingButtonImg} style={{ width: 25, height: 25 }} />
           <Text
-            style={{ marginLeft: 5, fontFamily: "SpoqaBold", fontSize: 15 }}
+            style={{ marginLeft: 5, fontFamily: "SCBold", fontSize: 15 }}
           >
             프로필 초기화
           </Text>
@@ -58,7 +58,7 @@ export class SettingScreen extends React.Component {
         >
           <Image source={WritingButtonImg} style={{ width: 25, height: 25 }} />
           <Text
-            style={{ marginLeft: 5, fontFamily: "SpoqaBold", fontSize: 15 }}
+            style={{ marginLeft: 5, fontFamily: "SCBold", fontSize: 15 }}
           >
             작성한 글 초기화
           </Text>

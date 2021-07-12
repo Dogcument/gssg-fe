@@ -27,7 +27,7 @@ function CabinetStack({ navigation }) {
         options={{
           title: "보관함",
           headerTitleStyle: {
-            fontFamily: "SpoqaBold",
+            fontFamily: "SCBold",
           },
           headerTitleAlign: "left",
         }}
