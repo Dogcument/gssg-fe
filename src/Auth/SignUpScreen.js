@@ -36,7 +36,7 @@ export class SignUpScreen extends React.Component {
     super(props);
     this.state = {
       signUpState: SignUpState.SetNickname,
-      selectedDog: Dogs.Baekgu,
+      selectedDogIndex: 0,
     };
   }
 
@@ -46,18 +46,21 @@ export class SignUpScreen extends React.Component {
         this.setState({ signUpState: SignUpState.SetDog });
         break;
       case SignUpState.SetDog:
-        AsyncStorage.setItem("user_session", JSON.stringify({
-          id: null,
-          nickName: nickName,
-          pw: pw,
-          comment: comment,
-          dog: this.state.selectedDog
-        }));
+        AsyncStorage.setItem(
+          "user_session",
+          JSON.stringify({
+            id: null,
+            nickName: nickName,
+            pw: pw,
+            comment: comment,
+            dog: this.state.selectedDogIndex,
+          })
+        );
 
         let userInfo = UserInfo.get();
         userInfo.setNickName(nickName);
         userInfo.setComment(comment);
-        userInfo.setDog(this.state.selectedDog);
+        userInfo.setDog(this.state.selectedDogIndex);
 
         this.setState({ signUpState: SignUpState.ShowTutorial });
         break;
@@ -76,7 +79,7 @@ export class SignUpScreen extends React.Component {
   }
 
   onDogSelected(dog) {
-    this.setState({ selectedDog: dog });
+    this.setState({ selectedDogIndex: dog });
   }
 
   render() {
@@ -159,9 +162,7 @@ export class SignUpScreen extends React.Component {
                       onChangeText={(text) => this.onNicknameChange(text)}
                     />
                     <View style={{ height: 5 }}></View>
-                    <Text style={{ fontFamily: "SCBold" }}>
-                      한 줄 소개
-                    </Text>
+                    <Text style={{ fontFamily: "SCBold" }}>한 줄 소개</Text>
                     <TextInput
                       placeholder="간단한 설명을 해주세요!"
                       placeholderTextColor="#FFFFFF"
@@ -216,54 +217,17 @@ export class SignUpScreen extends React.Component {
                         padding: 5,
                       }}
                     >
-                      <TouchableOpacity
-                        onPress={() => this.onDogSelected(Dogs.Baekgu)}
-                      >
-                        <Image
-                          source={DogImages[Dogs.Baekgu]}
-                          style={{ width: 50, height: 50 }}
-                        />
-                      </TouchableOpacity>
-                      <TouchableOpacity
-                        onPress={() => this.onDogSelected(Dogs.Janggun)}
-                      >
-                        <Image
-                          source={DogImages[Dogs.Janggun]}
-                          style={{ width: 50, height: 50 }}
-                        />
-                      </TouchableOpacity>
-                      <TouchableOpacity
-                        onPress={() => this.onDogSelected(Dogs.Wuyu)}
-                      >
-                        <Image
-                          source={DogImages[Dogs.Wuyu]}
-                          style={{ width: 50, height: 50 }}
-                        />
-                      </TouchableOpacity>
-                      <TouchableOpacity
-                        onPress={() => this.onDogSelected(Dogs.York)}
-                      >
-                        <Image
-                          source={DogImages[Dogs.York]}
-                          style={{ width: 50, height: 50 }}
-                        />
-                      </TouchableOpacity>
-                      <TouchableOpacity
-                        onPress={() => this.onDogSelected(Dogs.Corgi)}
-                      >
-                        <Image
-                          source={DogImages[Dogs.Corgi]}
-                          style={{ width: 50, height: 50 }}
-                        />
-                      </TouchableOpacity>
-                      <TouchableOpacity
-                        onPress={() => this.onDogSelected(Dogs.Silver)}
-                      >
-                        <Image
-                          source={DogImages[Dogs.Silver]}
-                          style={{ width: 50, height: 50 }}
-                        />
-                      </TouchableOpacity>
+                      {Dogs.map((value, index) => (
+                        <TouchableOpacity
+                          key={index}
+                          onPress={() => this.onDogSelected(index)}
+                        >
+                          <Image
+                            source={DogImages[index]}
+                            style={{ width: 50, height: 50 }}
+                          />
+                        </TouchableOpacity>
+                      ))}
                     </View>
                   </ScrollView>
 
@@ -295,12 +259,12 @@ export class SignUpScreen extends React.Component {
                       }}
                     >
                       <Image
-                        source={DogImages[this.state.selectedDog]}
+                        source={DogImages[this.state.selectedDogIndex]}
                         style={{ width: 80, height: 80 }}
                       />
                       <Text style={{ fontFamily: "SCBold", fontSize: 10 }}>
                         {" "}
-                        {this.state.selectedDog}{" "}
+                        {Dogs[this.state.selectedDogIndex]}{" "}
                       </Text>
                     </View>
                   </View>

@@ -27,6 +27,8 @@ export const WuyuImg = require("./images/Wuyu.png");
 export const YorkImg = require("./images/York.png");
 export const CorgiImg = require("./images/Corgi.png");
 export const SilverImg = require("./images/Silver.png");
+export const AlexImg = require("./images/Alex.png");
+export const DonggyungImg = require("./images/Donggyoung.png");
 
 export const TutorialImgs = [
   require("./images/Tutorial_1.png"),
