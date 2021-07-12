@@ -217,7 +217,7 @@ export class SignUpScreen extends React.Component {
                         padding: 5,
                       }}
                     >
-                      {Dogs.map((value, index) => (
+                      {Dogs.map((_value, index) => (
                         <TouchableOpacity
                           key={index}
                           onPress={() => this.onDogSelected(index)}
