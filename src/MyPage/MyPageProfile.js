@@ -27,7 +27,7 @@ export class MyPageProfile extends React.Component {
           >
             <Text
               style={{
-                fontFamily: "SCThin",
+                fontFamily: "SCBold",
                 fontSize: 12,
                 marginBottom: 5,
                 color: "#FFFFFF",
@@ -56,7 +56,7 @@ export class MyPageProfile extends React.Component {
           >
             <Text
               style={{
-                fontFamily: "SCThin",
+                fontFamily: "SCBold",
                 fontSize: 12,
                 marginBottom: 5,
                 color: "#FFFFFF",
