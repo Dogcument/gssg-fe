@@ -7,7 +7,6 @@ import { CabinetItem } from "./CabinetItem";
 import { IsValidKey, ParseSavedItem } from "../Common/CommonMethod";
 import UserInfo from "../Common/UserInfo";
 import { ProtoWritings } from "../Common/ProtoWritings";
-import { sub } from "react-native-reanimated";
 
 export class CabinetScreen extends React.Component {
   constructor(props) {
@@ -15,8 +14,8 @@ export class CabinetScreen extends React.Component {
     this.state = {
       isLoad: false,
       data: 0,
-      visibleModal: null,
       subject: ProtoWritings[0],
+      visibleModal: null,
     };
     this.LoadData();
   }

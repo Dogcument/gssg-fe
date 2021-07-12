@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Image, TouchableOpacity } from "react-native";
+import { Image, TouchableOpacity, Text } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { CabinetScreen } from "./CabinetScreen";
 import { HeaderButtons } from "react-navigation-header-buttons";
@@ -18,7 +18,7 @@ function CabinetStack({ navigation }) {
       selectedDog={route.params.selectedDog}
     />
   );
-
+  
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -29,7 +29,19 @@ function CabinetStack({ navigation }) {
           headerTitleStyle: {
             fontFamily: "SCBold",
           },
-          headerTitleAlign: "left",
+          headerTitleAlign: "center",
+          headerTitle: () => (
+            <TouchableOpacity>
+              <Text style={{fontFamily: 'Spoqabold'}}>
+                Temp
+              </Text>
+            </TouchableOpacity>
+          ),
+          headerLeft: () => (
+            <Text style={{ fontFamily: 'SpoqaBold', fontSize: 18.5 }}>
+              {"   "}보관함
+            </Text>
+          )
         }}
       />
       <Stack.Screen

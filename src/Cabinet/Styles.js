@@ -125,7 +125,6 @@ export const styles = StyleSheet.create({
   },
   modalbutton: {
     paddingTop: 5,
-    height: 50,
     marginLeft: "35%",
     width: "30%",
     borderBottomColor: "#ae9784",
