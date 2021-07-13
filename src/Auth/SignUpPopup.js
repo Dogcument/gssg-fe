@@ -90,8 +90,8 @@ export class SignUpPopup extends React.Component {
     }
   }
 
-  isError(json) {
-    return json.code != "E0201";
+  isError(resp) {
+    return resp.status != 201;
   }
 
   getErrorMsg(json) {
@@ -111,17 +111,18 @@ export class SignUpPopup extends React.Component {
           email: email,
           password: pw,
           nickName: nickName,
-          profileDogType: this.state.selectedDog,
+          // server is using uppercase
+          profileDogType: this.state.selectedDog.toUpperCase(),
         }),
       });
 
       if (resp != undefined) {
         let json = await resp.json();
 
-        if (this.isError(json)) {
+        if (this.isError(resp)) {
           alert(this.getErrorMsg(json));
         } else {
-          onSignUpSuccess();
+          this.onSignUpSuccess();
         }
 
         console.log(json);
@@ -460,6 +461,7 @@ export class SignUpPopup extends React.Component {
                 height: "20%",
                 paddingLeft: 5,
               }}
+              onChangeText={(inputText) => this.onNicknameChange(inputText)}
             />
             <View></View>
             <Text
@@ -478,6 +480,7 @@ export class SignUpPopup extends React.Component {
                 height: "20%",
                 paddingLeft: 5,
               }}
+              onChangeText={(inputText) => this.onCommentChange(inputText)}
             />
           </View>
         </View>
