@@ -8,8 +8,16 @@ import { BoneBlackImg, ChatImg, BackButtonImg } from "../../assets/ImageList";
 
 const Stack = createStackNavigator();
 
+function onWritingsClicked() {
+  CabinetScreen.onWritingsClicked();
+}
+
 function CabinetStack({ navigation }) {
-  const CabinetComponent = () => <CabinetScreen navigation={navigation} />;
+  const CabinetComponent = () => (
+    <CabinetScreen
+      navigation={navigation}
+    />
+  );
   const ItemDetailComponent = ({ route }) => (
     <ItemDetail
       navigation={route.params.navigation}
@@ -18,7 +26,7 @@ function CabinetStack({ navigation }) {
       selectedDog={route.params.selectedDog}
     />
   );
-  
+
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -31,17 +39,15 @@ function CabinetStack({ navigation }) {
           },
           headerTitleAlign: "center",
           headerTitle: () => (
-            <TouchableOpacity>
-              <Text style={{fontFamily: 'Spoqabold'}}>
-                Temp
-              </Text>
+            <TouchableOpacity onPress={() => onWritingsClicked()}>
+              <Text style={{ fontFamily: "Spoqabold" }}>Temp</Text>
             </TouchableOpacity>
           ),
           headerLeft: () => (
-            <Text style={{ fontFamily: 'SpoqaBold', fontSize: 18.5 }}>
+            <Text style={{ fontFamily: "SpoqaBold", fontSize: 18.5 }}>
               {"   "}보관함
             </Text>
-          )
+          ),
         }}
       />
       <Stack.Screen

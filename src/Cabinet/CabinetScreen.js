@@ -20,6 +20,10 @@ export class CabinetScreen extends React.Component {
     this.LoadData();
   }
 
+  static onWritingsClicked() {
+    alert("헐");
+  }
+
   componentDidMount() {
     const navigation = this.props.navigation;
     navigation.setOptions({ tabBarVisible: true });
