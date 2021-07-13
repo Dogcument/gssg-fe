@@ -84,7 +84,7 @@ export class ItemDetail extends React.Component {
               <Text style={{ fontFamily: "SCBold" }}>
                 {userInfo.getNickName()}
               </Text>
-              <Text style={{ fontFamily: "SCRegular", fontSize: 13 }}>
+              <Text style={{ fontFamily: "SCThin", fontSize: 13 }}>
                 {userInfo.getComment()}
               </Text>
             </View>
