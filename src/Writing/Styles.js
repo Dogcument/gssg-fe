@@ -9,8 +9,7 @@ export const styles = StyleSheet.create({
 
   title: {
     fontSize: 40,
-    fontFamily: "Ridi",
-    fontWeight: "bold",
+    fontFamily: "SCBold",
   },
 
   textInput: {

@@ -35,10 +35,9 @@ export class MyPageItem extends React.Component {
         <Text
           style={{
             marginLeft: 10,
-            fontFamily: "Ridi",
+            fontFamily: "SCBold",
             flex: 1,
             fontSize: 20,
-            fontWeight: "bold",
           }}
         >
           {subject}
