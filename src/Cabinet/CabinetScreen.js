@@ -20,8 +20,8 @@ export class CabinetScreen extends React.Component {
     this.LoadData();
   }
 
-  static onWritingsClicked() {
-    alert("헐");
+  static onWritingsClicked = async () => {
+    this.setState({ visibleModal: 1 });
   }
 
   componentDidMount() {

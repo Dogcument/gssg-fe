@@ -8,7 +8,7 @@ import { BoneBlackImg, ChatImg, BackButtonImg } from "../../assets/ImageList";
 
 const Stack = createStackNavigator();
 
-function onWritingsClicked() {
+function onHeaderClicked() {
   CabinetScreen.onWritingsClicked();
 }
 
@@ -39,7 +39,7 @@ function CabinetStack({ navigation }) {
           },
           headerTitleAlign: "center",
           headerTitle: () => (
-            <TouchableOpacity onPress={() => onWritingsClicked()}>
+            <TouchableOpacity onPress={() => onHeaderClicked()}>
               <Text style={{ fontFamily: "Spoqabold" }}>Temp</Text>
             </TouchableOpacity>
           ),
