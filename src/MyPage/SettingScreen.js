@@ -43,7 +43,7 @@ export class SettingScreen extends React.Component {
           <Text
             style={{ marginLeft: 5, fontFamily: "SCBold", fontSize: 15 }}
           >
-            프로필 초기화
+            로그아웃
           </Text>
         </TouchableOpacity>
 

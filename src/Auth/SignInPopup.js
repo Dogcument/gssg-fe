@@ -9,24 +9,91 @@ import {
   Platform,
 } from "react-native";
 import { WritingButtonImg } from "../../assets/ImageList";
-
+import MainScreen from "../Main/MainScreen";
+import UserInfo from "../Common/UserInfo";
+import { getErrorMsg } from "../Common/CommonMethod";
+import { Dogs } from "../Common/Dogs";
 import { styles } from "./Styles";
+
+let email = "";
+let pw = "";
 
 export class SignInPopup extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      goMainScreen: false,
+    };
   }
 
   onEmailTextChanged(value) {
-    this.props.onEmailTextChanged(value);
+    email = value;
   }
 
   onPwTextChanged(value) {
-    this.props.onPwTextChanged(value);
+    pw = value;
+  }
+
+  onSignInSuccess(resp) {
+    // Gunny TODO
+    // nickname, comment, dog are not implemented yet
+
+    // AsyncStorage.setItem(
+    //   "user_session",
+    //   JSON.stringify({
+    //     email: email,
+    //     pw: pw,
+    //     dog: this.state.selectedDog,
+    //     nickName: nickName,
+    //     comment: comment,
+    //   })
+    // );
+
+    // Gunny Tempcode
+    let userInfo = UserInfo.get();
+    userInfo.setNickName("nickName");
+    userInfo.setComment("comment");
+    userInfo.setDog(Dogs.Baekgu);
+    this.setState({ goMainScreen: true });
+  }
+
+  reqSignIn = async () => {
+    try {
+      let resp = await fetch("http://localhost:8080/api/v1/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          loginId: email,
+          password: pw,
+        }),
+      });
+
+      if (resp != undefined) {
+        let json = await resp.json();
+        if (resp.status != 200) {
+          alert(getErrorMsg(json));
+        } else {
+          this.onSignInSuccess(resp);
+        }
+      } else {
+        console.error("resp is null");
+      }
+    } catch (err) {
+      console.err(err);
+    }
+  };
+
+  onLoginButtonClicked() {
+    this.reqSignIn();
   }
 
   render() {
+    if (this.state.goMainScreen) {
+      return <MainScreen />;
+    }
+
     return (
       <KeyboardAvoidingView
         behavior={Platform.OS === "web" ? "height" : "position"}
@@ -57,7 +124,7 @@ export class SignInPopup extends React.Component {
               paddingLeft: 5,
               height: "15%",
               alignItems: "center",
-              justifyContent: 'center'
+              justifyContent: "center",
             }}
           >
             <Text style={{ fontFamily: "SpoqaMedium", fontSize: 15, flex: 3 }}>
@@ -87,7 +154,7 @@ export class SignInPopup extends React.Component {
               paddingLeft: 5,
               height: "15%",
               alignItems: "center",
-              justifyContent: 'center'
+              justifyContent: "center",
             }}
           >
             <Text style={{ fontFamily: "SpoqaMedium", fontSize: 15, flex: 3 }}>
@@ -123,7 +190,7 @@ export class SignInPopup extends React.Component {
                 회원가입
               </Text>
             </TouchableOpacity>
-            <Text style={{ fontFamily: "SpoqaMedium", fontSize: 15 }}>   |   </Text>
+            <Text style={{ fontFamily: "SpoqaMedium", fontSize: 15 }}> | </Text>
             <TouchableOpacity onPress={this.openFindPwPopup}>
               <Text style={{ fontFamily: "SpoqaMedium", fontSize: 15 }}>
                 비번찾기
@@ -131,10 +198,10 @@ export class SignInPopup extends React.Component {
             </TouchableOpacity>
           </View>
         </View>
-        <View style={{height: "2.5%"}}></View>
+        <View style={{ height: "2.5%" }}></View>
 
         <TouchableOpacity
-          onPress={this.props.onLoginButtonClicked}
+          onPress={() => this.onLoginButtonClicked()}
           style={[styles.ModalButton]}
         >
           <View>

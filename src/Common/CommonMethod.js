@@ -5,6 +5,12 @@ export function IsValidKey(key) {
   return keys[0] == "Writing";
 }
 
+export function getErrorMsg(json) {
+  if (json.message != undefined) {
+    return json.message;
+  }
+}
+
 // [0] : Time
 // [1] : Subject
 // [2] : Content

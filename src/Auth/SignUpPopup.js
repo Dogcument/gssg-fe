@@ -23,7 +23,7 @@ import { Dogs, DogImages } from "../Common/Dogs";
 import UserInfo from "../Common/UserInfo";
 import { styles } from "./Styles";
 import { TutorialScreen } from "./TutorialScreen";
-import { validateEmail, validatePassword } from "../Common/CommonMethod";
+import { validateEmail, validatePassword, getErrorMsg } from "../Common/CommonMethod";
 
 export var SignUpState = {
   SetEmailPw: 1,
@@ -90,16 +90,6 @@ export class SignUpPopup extends React.Component {
     }
   }
 
-  isError(resp) {
-    return resp.status != 201;
-  }
-
-  getErrorMsg(json) {
-    if (json.message != undefined) {
-      return json.message;
-    }
-  }
-
   reqSignUp = async () => {
     try {
       let resp = await fetch("http://localhost:8080/api/v1/members", {
@@ -119,13 +109,11 @@ export class SignUpPopup extends React.Component {
       if (resp != undefined) {
         let json = await resp.json();
 
-        if (this.isError(resp)) {
-          alert(this.getErrorMsg(json));
+        if (resp.status != 201) {
+          alert(getErrorMsg(json));
         } else {
           this.onSignUpSuccess();
         }
-
-        console.log(json);
       } else {
         console.error("resp is null");
       }

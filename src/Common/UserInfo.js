@@ -43,4 +43,8 @@ export default class UserInfo {
   getDog() {
     return this._dog;
   }
+
+  isValid() {
+    return this._id != null;
+  }
 }

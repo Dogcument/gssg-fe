@@ -16,9 +16,6 @@ export const SignUpState = {
   ShowTutorial: 3,
 };
 
-var email = "";
-var pw = "";
-
 export default class AuthScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -87,40 +84,6 @@ export default class AuthScreen extends React.Component {
     </TouchableOpacity>
   );
 
-  onLoginButtonClicked = async () => {
-    if (email == "") {
-      alert("이메일을 입력해주세요!");
-      return;
-    }
-
-    if (pw == "") {
-      alert("비밀번호를 입력해주세요!");
-      return;
-    }
-
-    try {
-      let resp = await fetch("http://localhost:8080/api/v1/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          loginId: email,
-          password: pw,
-        }),
-      });
-      if (resp != undefined) {
-        let json = await resp.json();
-        console.log(json);
-      } else {
-        console.error("resp is null");
-      }
-    } catch (err) {
-      console.error(err);
-      this.setState({ visibleModal: null });
-    }
-  };
-
   onSignUpButtonClicked = () => {
     this.setState({ visibleModal: 2 });
   };
@@ -128,14 +91,6 @@ export default class AuthScreen extends React.Component {
   openFindPwPopup() {
     alert("비밀번호 찾기 기능은 개발중입니다.");
   }
-
-  onEmailTextChanged = (value) => {
-    email = value;
-  };
-
-  onPwTextChanged = (value) => {
-    pw = value;
-  };
 
   // TODO : EncryptedStorage does not support expo :(
   // retrieveUserSession = async () => {
@@ -184,15 +139,9 @@ export default class AuthScreen extends React.Component {
             />
             <View style={{ height: "70%" }} />
 
-
             {/* Sign In 팝업 */}
             <Modal isVisible={this.state.visibleModal === 1}>
-              <SignInPopup
-                onLoginButtonClicked={this.onLoginButtonClicked}
-                onSignUpButtonClicked={this.onSignUpButtonClicked}
-                onEmailTextChanged={this.onEmailTextChanged}
-                onPwTextChanged={this.onPwTextChanged}
-              />
+              <SignInPopup onSignUpButtonClicked={this.onSignUpButtonClicked} />
             </Modal>
             {/* Sign Up 팝업 */}
             <Modal isVisible={this.state.visibleModal === 2}>
