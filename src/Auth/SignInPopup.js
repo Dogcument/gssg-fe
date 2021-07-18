@@ -22,9 +22,6 @@ let pw = "";
 export class SignInPopup extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      goMainScreen: false,
-    };
   }
 
   onEmailTextChanged(value) {
@@ -35,7 +32,7 @@ export class SignInPopup extends React.Component {
     pw = value;
   }
 
-  onSignInSuccess(resp) {
+  onSignInSuccess() {
     // Gunny TODO
     // nickname, comment, dog are not implemented yet
 
@@ -44,7 +41,7 @@ export class SignInPopup extends React.Component {
     userInfo.setNickName("nickName");
     userInfo.setComment("comment");
     userInfo.setDog(Dogs.Baekgu);
-    this.setState({ goMainScreen: true });
+    this.props.gotoMainScreen();
   }
 
   reqSignIn = async () => {
@@ -81,10 +78,6 @@ export class SignInPopup extends React.Component {
   }
 
   render() {
-    if (this.state.goMainScreen) {
-      return <MainScreen />;
-    }
-
     return (
       <KeyboardAvoidingView
         behavior={Platform.OS === "web" ? "height" : "position"}

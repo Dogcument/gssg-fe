@@ -41,7 +41,7 @@ export default class AuthScreen extends React.Component {
     this.retrieveUserSessionByAsyncStorage();
   };
 
-  gotoMainScreen = (value) => {
+  gotoMainScreen = () => {
     this.setState({ goMainScreen: true });
   };
 
@@ -129,7 +129,7 @@ export default class AuthScreen extends React.Component {
 
             {/* Sign In 팝업 */}
             <Modal isVisible={this.state.visibleModal === 1}>
-              <SignInPopup onSignUpButtonClicked={this.onSignUpButtonClicked} />
+              <SignInPopup gotoMainScreen={this.gotoMainScreen} onSignUpButtonClicked={this.onSignUpButtonClicked} />
             </Modal>
             {/* Sign Up 팝업 */}
             <Modal isVisible={this.state.visibleModal === 2}>

@@ -3,7 +3,6 @@ import { View, TouchableOpacity, Text, Image } from "react-native";
 import AsyncStorage from "@react-native-community/async-storage";
 import { IsValidKey } from "../Common/CommonMethod";
 import { WritingButtonImg } from "../../assets/ImageList";
-import AuthScreen from "../Auth/AuthScreen";
 export class SettingScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -15,7 +14,7 @@ export class SettingScreen extends React.Component {
   deleteAccountInfo = async () => {
     AsyncStorage.removeItem("account_info");
     alert("로그아웃 되었습니다. ");
-    this.setState({gotoAuthScreen: true});
+    this.setState({ gotoAuthScreen: true });
   };
 
   DeleteWritings = async () => {
@@ -31,8 +30,8 @@ export class SettingScreen extends React.Component {
   };
 
   render() {
-    if(this.state.gotoAuthScreen) {
-      return <AuthScreen/>;
+    if (this.state.gotoAuthScreen) {
+      // TODO
     }
 
     return (

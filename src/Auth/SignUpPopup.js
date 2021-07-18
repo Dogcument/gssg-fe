@@ -41,6 +41,7 @@ let pw = "";
 let pwCheck = "";
 let nickName = "";
 let comment = "";
+let isOverllapedEmail = false;
 export class SignUpPopup extends React.Component {
   constructor(props) {
     super(props);
@@ -53,6 +54,11 @@ export class SignUpPopup extends React.Component {
   OnNextButtonClicked() {
     switch (this.state.signUpState) {
       case SignUpState.SetEmailPw:
+        if (isOverllapedEmail) {
+          alert("이미 존재하는 이메일 입니다.");
+          return;
+        }
+
         if (!validateEmail(email)) {
           alert("이메일 형식이 옳지 않아요!");
           return;
@@ -158,11 +164,32 @@ export class SignUpPopup extends React.Component {
     pwCheck = inputText;
   }
 
-  onEndEditing() {
-    // Gunny TODO
-    // req email valid check
-    console.warn("req email valid check");
-  }
+  onEndEditing = async () => {
+    try {
+      let resp = await fetch(
+        "http://localhost:8080/api/v1/members/email/exists?email=" + email,
+        {
+          method: "GET",
+          headers: { accept: "*/*" },
+        }
+      );
+
+      if (resp != undefined) {
+        let json = await resp.json();
+        if (json) {
+          isOverllapedEmail = true;
+          alert("이미 존재하는 이메일 입니다.");
+        } else {
+          console.log("New Eamil");
+          return;
+        }
+      } else {
+        console.error("resp is null");
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   /* Rendering Functions */
   renderSetEmailPw() {
