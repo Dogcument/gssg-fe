@@ -9,16 +9,8 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from "react-native";
-import {
-  WritingButtonImg,
-  BaekguImg,
-  JanggunImg,
-  WuyuImg,
-  YorkImg,
-  CorgiImg,
-  SilverImg,
-} from "../../assets/ImageList";
-import { Dogs, DogImages } from "../Common/Dogs";
+import { WritingButtonImg } from "../../assets/ImageList";
+import { Dogs, DogImages, ServerDogs } from "../Common/Dogs";
 import UserInfo from "../Common/UserInfo";
 import { styles } from "./Styles";
 import { TutorialScreen } from "./TutorialScreen";
@@ -47,7 +39,7 @@ export class SignUpPopup extends React.Component {
     super(props);
     this.state = {
       signUpState: SignUpState.SetEmailPw,
-      selectedDog: Dogs.Baekgu,
+      selectedDog: 0,
     };
   }
 
@@ -88,14 +80,13 @@ export class SignUpPopup extends React.Component {
           alert("비밀번호를 똑같이 입력해주세요!");
           return;
         }
-
-        this.setState({ signUpState: SignUpState.SetDog });
+        this.reqSignUp();
         break;
       case SignUpState.SetDog:
         this.setState({ signUpState: SignUpState.SetNicknameComment });
         break;
       case SignUpState.SetNicknameComment:
-        this.reqSignUp();
+        this.reqUpdateUserInfo();
         break;
     }
   }
@@ -129,15 +120,87 @@ export class SignUpPopup extends React.Component {
     }
   };
 
+  // Gunny TODO
+  reqUpdateUserInfo = async () => {
+    const userInfo = UserInfo.get();
+    try {
+      let resp = await fetch("http://localhost:8080/api/v1/my", {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": userInfo.getToken()
+        },
+        body: JSON.stringify({
+          request: {
+            nickName: nickName,
+            profileDogType: ServerDogs[this.props.selectedDog],
+            introduce: comment,
+          },
+        }),
+      });
+
+      if (resp != undefined) {
+        let json = await resp.json();
+        if (resp.status != 200) {
+          alert(getErrorMsg(json));
+        } else {
+          this.onUpdateUserInfoSuccess();
+        }
+      } else {
+        console.error("임시로 넘어가드립니다 :) ");
+        this.onUpdateUserInfoSuccess();
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  reqSignIn = async () => {
+    try {
+      let resp = await fetch("http://localhost:8080/api/v1/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          loginId: email,
+          password: pw,
+        }),
+      });
+
+      if (resp != undefined) {
+        let json = await resp.json();
+        if (resp.status != 200) {
+          alert(getErrorMsg(json));
+        } else {
+          this.onSignInSuccess(json);
+        }
+      } else {
+        console.error("resp is null");
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   onSignUpSuccess() {
     setAccountInfoToStorage(email, pw);
+    this.reqSignIn();
+  }
 
+  onUpdateUserInfoSuccess() {
     let userInfo = UserInfo.get();
     userInfo.setNickName(nickName);
     userInfo.setComment(comment);
     userInfo.setDog(this.state.selectedDog);
-
     this.setState({ signUpState: SignUpState.ShowTutorial });
+  }
+
+  onSignInSuccess(json) {
+    let userInfo = UserInfo.get();
+    userInfo.setRefreshToken(json.refreshToken);
+    userInfo.setToken(json.jwt);
+    this.setState({ signUpState: SignUpState.SetDog });
   }
 
   onNicknameChange(text) {
@@ -180,6 +243,7 @@ export class SignUpPopup extends React.Component {
           isOverllapedEmail = true;
           alert("이미 존재하는 이메일 입니다.");
         } else {
+          isOverllapedEmail = false;
           console.log("New Eamil");
           return;
         }
@@ -343,35 +407,14 @@ export class SignUpPopup extends React.Component {
                   padding: 5,
                 }}
               >
-                <TouchableOpacity
-                  onPress={() => this.onDogSelected(Dogs.Baekgu)}
-                >
-                  <Image source={BaekguImg} style={{ width: 50, height: 50 }} />
-                </TouchableOpacity>
-                <TouchableOpacity
-                  onPress={() => this.onDogSelected(Dogs.Janggun)}
-                >
-                  <Image
-                    source={JanggunImg}
-                    style={{ width: 50, height: 50 }}
-                  />
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => this.onDogSelected(Dogs.Wuyu)}>
-                  <Image source={WuyuImg} style={{ width: 50, height: 50 }} />
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => this.onDogSelected(Dogs.York)}>
-                  <Image source={YorkImg} style={{ width: 50, height: 50 }} />
-                </TouchableOpacity>
-                <TouchableOpacity
-                  onPress={() => this.onDogSelected(Dogs.Corgi)}
-                >
-                  <Image source={CorgiImg} style={{ width: 50, height: 50 }} />
-                </TouchableOpacity>
-                <TouchableOpacity
-                  onPress={() => this.onDogSelected(Dogs.Silver)}
-                >
-                  <Image source={SilverImg} style={{ width: 50, height: 50 }} />
-                </TouchableOpacity>
+                {Dogs.map((_value, index) => (
+                  <TouchableOpacity key={index} onPress={() => this.onDogSelected(index)}>
+                    <Image
+                      source={DogImages[index]}
+                      style={{ width: 50, height: 50 }}
+                    />
+                  </TouchableOpacity>
+                ))}
               </View>
             </ScrollView>
             <View
@@ -390,7 +433,7 @@ export class SignUpPopup extends React.Component {
               />
               <Text style={{ fontFamily: "SpoqaBold", fontSize: 15 }}>
                 {" "}
-                {this.state.selectedDog}{" "}
+                {Dogs[this.state.selectedDog]}{" "}
               </Text>
             </View>
           </View>

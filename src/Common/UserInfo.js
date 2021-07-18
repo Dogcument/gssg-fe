@@ -13,6 +13,7 @@ export default class UserInfo {
 
   // Data
   _token = null;
+  _refreshToken = null;
 
   // User Info
   _nickName = null;
@@ -27,26 +28,32 @@ export default class UserInfo {
   getToken() {
     return this._token;
   }
+  getRefreshToken() {
+    return this._refreshToken;
+  }
   getNickName() {
     return this._nickName;
   }
   getComment() {
-    return this._comment
+    return this._comment;
   }
   getDog() {
     return this._dog;
   }
 
   // Setter
-  setToken(token) {
-    this._token = token;
+  setToken(jwt) {
+    this._token = jwt;
+  }
+  setRefreshToken(token) {
+    this._refreshToken = token;
   }
   setNickName(nickName) {
     this._nickName = nickName;
   }
   setComment(comment) {
     this._comment = comment;
-  }  
+  }
   setDog(dog) {
     this._dog = dog;
   }
