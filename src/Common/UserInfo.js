@@ -1,6 +1,6 @@
 // Singleton
 // Caution
-// UserInfo is set only in "AuthScreen" or SignUpScreen 
+// UserInfo is set only in "AuthScreen" or "SignUpPopup"
 export default class UserInfo {
   // Instance
   static instance = null;
@@ -12,39 +12,42 @@ export default class UserInfo {
   }
 
   // Data
-  _id = null;
-  setId(id) {
-    this._id = id;
-  }
-  getId() {
-    return this._id;
+  _token = null;
+
+  // User Info
+  _nickName = null;
+  _comment = null;
+  _dog = null;
+
+  // Getter
+  isValid() {
+    return this._email != null;
   }
 
-  _nickName = null;
-  setNickName(nickName) {
-    this._nickName = nickName;
+  getToken() {
+    return this._token;
   }
   getNickName() {
     return this._nickName;
   }
-
-  _comment = null;
-  setComment(comment) {
-    this._comment = comment;
-  }  
   getComment() {
     return this._comment
-  }
-
-  _dog = null;
-  setDog(dog) {
-    this._dog = dog;
   }
   getDog() {
     return this._dog;
   }
 
-  isValid() {
-    return this._id != null;
+  // Setter
+  setToken(token) {
+    this._token = token;
+  }
+  setNickName(nickName) {
+    this._nickName = nickName;
+  }
+  setComment(comment) {
+    this._comment = comment;
+  }  
+  setDog(dog) {
+    this._dog = dog;
   }
 }

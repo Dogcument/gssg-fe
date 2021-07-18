@@ -14,6 +14,7 @@ import UserInfo from "../Common/UserInfo";
 import { getErrorMsg } from "../Common/CommonMethod";
 import { Dogs } from "../Common/Dogs";
 import { styles } from "./Styles";
+import { setAccountInfoToStorage } from "../Common/StorageHelper";
 
 let email = "";
 let pw = "";
@@ -37,17 +38,6 @@ export class SignInPopup extends React.Component {
   onSignInSuccess(resp) {
     // Gunny TODO
     // nickname, comment, dog are not implemented yet
-
-    // AsyncStorage.setItem(
-    //   "user_session",
-    //   JSON.stringify({
-    //     email: email,
-    //     pw: pw,
-    //     dog: this.state.selectedDog,
-    //     nickName: nickName,
-    //     comment: comment,
-    //   })
-    // );
 
     // Gunny Tempcode
     let userInfo = UserInfo.get();
@@ -75,13 +65,14 @@ export class SignInPopup extends React.Component {
         if (resp.status != 200) {
           alert(getErrorMsg(json));
         } else {
+          setAccountInfoToStorage(email, pw);
           this.onSignInSuccess(resp);
         }
       } else {
         console.error("resp is null");
       }
     } catch (err) {
-      console.err(err);
+      console.error(err);
     }
   };
 

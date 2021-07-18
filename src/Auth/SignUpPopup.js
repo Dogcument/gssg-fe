@@ -9,7 +9,6 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from "react-native";
-import AsyncStorage from "@react-native-community/async-storage";
 import {
   WritingButtonImg,
   BaekguImg,
@@ -23,7 +22,12 @@ import { Dogs, DogImages } from "../Common/Dogs";
 import UserInfo from "../Common/UserInfo";
 import { styles } from "./Styles";
 import { TutorialScreen } from "./TutorialScreen";
-import { validateEmail, validatePassword, getErrorMsg } from "../Common/CommonMethod";
+import {
+  validateEmail,
+  validatePassword,
+  getErrorMsg,
+} from "../Common/CommonMethod";
+import { setAccountInfoToStorage } from "../Common/StorageHelper";
 
 export var SignUpState = {
   SetEmailPw: 1,
@@ -99,7 +103,7 @@ export class SignUpPopup extends React.Component {
         },
         body: JSON.stringify({
           email: email,
-          password: pw
+          password: pw,
         }),
       });
 
@@ -120,16 +124,7 @@ export class SignUpPopup extends React.Component {
   };
 
   onSignUpSuccess() {
-    AsyncStorage.setItem(
-      "user_session",
-      JSON.stringify({
-        email: email,
-        pw: pw,
-        dog: this.state.selectedDog,
-        nickName: nickName,
-        comment: comment,
-      })
-    );
+    setAccountInfoToStorage(email, pw);
 
     let userInfo = UserInfo.get();
     userInfo.setNickName(nickName);

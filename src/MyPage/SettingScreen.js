@@ -3,10 +3,19 @@ import { View, TouchableOpacity, Text, Image } from "react-native";
 import AsyncStorage from "@react-native-community/async-storage";
 import { IsValidKey } from "../Common/CommonMethod";
 import { WritingButtonImg } from "../../assets/ImageList";
+import AuthScreen from "../Auth/AuthScreen";
 export class SettingScreen extends React.Component {
-  deleteUserInfo = async () => {
-    AsyncStorage.removeItem("user_session");
-    alert("유저 정보가 삭제 되었습니다.");
+  constructor(props) {
+    super(props);
+    this.state = {
+      gotoAuthScreen: false,
+    };
+  }
+
+  deleteAccountInfo = async () => {
+    AsyncStorage.removeItem("account_info");
+    alert("로그아웃 되었습니다. ");
+    this.setState({gotoAuthScreen: true});
   };
 
   DeleteWritings = async () => {
@@ -22,6 +31,10 @@ export class SettingScreen extends React.Component {
   };
 
   render() {
+    if(this.state.gotoAuthScreen) {
+      return <AuthScreen/>;
+    }
+
     return (
       <View
         style={{
@@ -37,12 +50,10 @@ export class SettingScreen extends React.Component {
             flexDirection: "row",
             alignItems: "center",
           }}
-          onPress={() => this.deleteUserInfo()}
+          onPress={() => this.deleteAccountInfo()}
         >
           <Image source={WritingButtonImg} style={{ width: 25, height: 25 }} />
-          <Text
-            style={{ marginLeft: 5, fontFamily: "SCBold", fontSize: 15 }}
-          >
+          <Text style={{ marginLeft: 5, fontFamily: "SCBold", fontSize: 15 }}>
             로그아웃
           </Text>
         </TouchableOpacity>
@@ -57,9 +68,7 @@ export class SettingScreen extends React.Component {
           onPress={() => this.DeleteWritings()}
         >
           <Image source={WritingButtonImg} style={{ width: 25, height: 25 }} />
-          <Text
-            style={{ marginLeft: 5, fontFamily: "SCBold", fontSize: 15 }}
-          >
+          <Text style={{ marginLeft: 5, fontFamily: "SCBold", fontSize: 15 }}>
             작성한 글 초기화
           </Text>
         </TouchableOpacity>

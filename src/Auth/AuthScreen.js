@@ -5,10 +5,9 @@ import * as Font from "expo-font";
 import { SignUpPopup } from "./SignUpPopup";
 import { SignInPopup } from "./SignInPopup";
 import MainScreen from "../Main/MainScreen";
-import AsyncStorage from "@react-native-community/async-storage";
-import UserInfo from "../Common/UserInfo";
 import { styles } from "./Styles";
 import { LogoImg } from "../../assets/ImageList";
+import { getAccountInfoFromStorage } from "../Common/StorageHelper";
 
 export const SignUpState = {
   SetNickname: 1,
@@ -16,6 +15,7 @@ export const SignUpState = {
   ShowTutorial: 3,
 };
 
+let accountInfo = null;
 export default class AuthScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -47,21 +47,9 @@ export default class AuthScreen extends React.Component {
 
   // TODO : Tempcode - should be migrated to EncryptedStorage
   retrieveUserSessionByAsyncStorage = async () => {
-    try {
-      const session = await AsyncStorage.getItem("user_session");
-      if (session != undefined) {
-        this.state.hasSession = true;
-
-        const saved = JSON.parse(session);
-        let userInfo = UserInfo.get();
-        userInfo.setNickName(saved.nickName);
-        userInfo.setComment(saved.comment);
-        userInfo.setDog(saved.dog);
-      } else {
-        console.log("Has no session");
-      }
-    } catch (error) {
-      console.error(error);
+    accountInfo = getAccountInfoFromStorage();
+    if (accountInfo != null) {
+      this.state.hasSession = true;
     }
 
     setTimeout(this.onRetrieveUserSessionDone, 1500);
@@ -95,7 +83,7 @@ export default class AuthScreen extends React.Component {
   // TODO : EncryptedStorage does not support expo :(
   // retrieveUserSession = async () => {
   //   try {
-  //     const session = await EncryptedStorage.getItem("user_session");
+  //     const session = await EncryptedStorage.getItem("user_info");
   //     if (session == undefined) {
   //       console.error("로그인 정보가 없음");
   //       this.state.isNewbie = true;
