@@ -99,10 +99,7 @@ export class SignUpPopup extends React.Component {
         },
         body: JSON.stringify({
           email: email,
-          password: pw,
-          nickName: nickName,
-          // server is using uppercase
-          profileDogType: this.state.selectedDog.toUpperCase(),
+          password: pw
         }),
       });
 
