@@ -13,6 +13,27 @@
 <br>
 <br>
 
+## [프로그램 소개]
+글쑤시개는 React Native로 제작된 Cross platform 프로그램 입니다. 
+패키지는 npm, 개발 환경은 expo를 이용하고 있습니다. 
+
+## [실행 방법]
+
+```shell
+* npm 이 설치되어 있어야 합니다. 
+
+# 1. expo 전역 설치
+> npm install -g expo-cli 
+
+# 2. 패키지들 설치
+> npm install
+
+# 3. expo start
+> npm start
+
+# 4. 좌측에 Run in web browser
+```
+
 ## [Function]
 - 로그인/회원가입 화면
 - 메인 화면
