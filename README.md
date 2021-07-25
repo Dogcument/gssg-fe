@@ -34,6 +34,9 @@
 # 4. 좌측에 Run in web browser
 ```
 
+## [커밋 컨벤션]
+- GSSG-일감번호 (예 : GSSG-1 블라블라)
+
 ## [Function]
 - 로그인/회원가입 화면
 - 메인 화면
