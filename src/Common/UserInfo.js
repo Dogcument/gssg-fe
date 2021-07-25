@@ -1,18 +1,33 @@
 // Singleton
 // Caution
 // UserInfo is set only in "AuthScreen" or "SignUpPopup"
+
+import AsyncStorage from "@react-native-community/async-storage";
 export default class UserInfo {
   // Instance
   static instance = null;
   static get() {
     if (UserInfo.instance == null) {
       UserInfo.instance = new UserInfo();
+
+      // get token from async storage
+      let refresh_token = undefined;
+      AsyncStorage.getItem("refresh_token").then(refresh_token);
+      if (refresh_token != undefined) {
+        _refreshToken = refresh_token;
+      }
+
+      let jwt = undefined;
+      AsyncStorage.getItem("jwt").then(jwt);
+      if (jwt != undefined) {
+        _jwt = jwt;
+      }
     }
     return this.instance;
   }
 
   // Data
-  _token = null;
+  _jwt = null;
   _refreshToken = null;
 
   // User Info
@@ -22,11 +37,11 @@ export default class UserInfo {
 
   // Getter
   isValid() {
-    return this._email != null;
+    return this._refreshToken != null;
   }
 
-  getToken() {
-    return this._token;
+  getJwt() {
+    return this._jwt;
   }
   getRefreshToken() {
     return this._refreshToken;
@@ -42,10 +57,12 @@ export default class UserInfo {
   }
 
   // Setter
-  setToken(jwt) {
-    this._token = jwt;
+  setJwt(jwt) {
+    AsyncStorage.setItem("jwt", jwt);
+    this._jwt = jwt;
   }
   setRefreshToken(token) {
+    AsyncStorage.setItem("refresh_token", token);
     this._refreshToken = token;
   }
   setNickName(nickName) {

@@ -9,12 +9,10 @@ import {
   Platform,
 } from "react-native";
 import { WritingButtonImg } from "../../assets/ImageList";
-import MainScreen from "../Main/MainScreen";
 import UserInfo from "../Common/UserInfo";
 import { getErrorMsg } from "../Common/CommonMethod";
 import { Dogs } from "../Common/Dogs";
 import { styles } from "./Styles";
-import { setAccountInfoToStorage } from "../Common/StorageHelper";
 
 let email = "";
 let pw = "";
@@ -32,15 +30,20 @@ export class SignInPopup extends React.Component {
     pw = value;
   }
 
-  onSignInSuccess() {
-    // Gunny TODO
-    // nickname, comment, dog are not implemented yet
-
-    // Gunny Tempcode
+  onSignInSuccess(json) {
     let userInfo = UserInfo.get();
-    userInfo.setNickName("nickName");
-    userInfo.setComment("comment");
-    userInfo.setDog(Dogs.Baekgu);
+    userInfo.setRefreshToken(json.refreshToken);
+    userInfo.setJwt(json.jwt);
+
+    this.reqUserInfo();
+  }
+
+  onReqUserInfoSuccess(json) {
+    let userInfo = UserInfo.get();
+    userInfo.setNickName(json.nickName);
+    userInfo.setComment(json.introduce);
+    userInfo.setDog(json.profileDog);
+
     this.props.gotoMainScreen();
   }
 
@@ -62,8 +65,33 @@ export class SignInPopup extends React.Component {
         if (resp.status != 200) {
           alert(getErrorMsg(json));
         } else {
-          setAccountInfoToStorage(email, pw);
-          this.onSignInSuccess(resp);
+          this.onSignInSuccess(json);
+        }
+      } else {
+        console.error("resp is null");
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  reqUserInfo = async () => {
+    const userInfo = UserInfo.get();
+    try {
+      let resp = await fetch("http://localhost:8080/api/v1/my", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "bearer" + userInfo.getJwt(),
+        },
+      });
+
+      if (resp != undefined) {
+        let json = await resp.json();
+        if (resp.status != 200) {
+          alert(getErrorMsg(json));
+        } else {
+          this.onReqUserInfoSuccess(json);
         }
       } else {
         console.error("resp is null");

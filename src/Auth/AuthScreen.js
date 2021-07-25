@@ -7,7 +7,7 @@ import { SignInPopup } from "./SignInPopup";
 import MainScreen from "../Main/MainScreen";
 import { styles } from "./Styles";
 import { LogoImg } from "../../assets/ImageList";
-import { getAccountInfoFromStorage } from "../Common/StorageHelper";
+import UserInfo from "../Common/UserInfo";
 
 export const SignUpState = {
   SetNickname: 1,
@@ -22,7 +22,7 @@ export default class AuthScreen extends React.Component {
     this.state = {
       goMainScreen: false,
       isLoading: true,
-      hasSession: false,
+      hasRefreshToken: false,
       //Modal state
       visibleModal: null,
 
@@ -38,7 +38,7 @@ export default class AuthScreen extends React.Component {
       SCThin: require("../../assets/fonts/SCDreamThin.otf"),
     });
 
-    this.retrieveUserSessionByAsyncStorage();
+    this.getRefreshToken();
   };
 
   gotoMainScreen = () => {
@@ -46,10 +46,10 @@ export default class AuthScreen extends React.Component {
   };
 
   // TODO : Tempcode - should be migrated to EncryptedStorage
-  retrieveUserSessionByAsyncStorage = async () => {
-    accountInfo = getAccountInfoFromStorage();
-    if (accountInfo != null) {
-      this.state.hasSession = true;
+  getRefreshToken = async () => {
+    const userInfo = UserInfo.get();
+    if (userInfo.isValid()) {
+      this.state.hasRefreshToken = true;
     }
 
     setTimeout(this.onRetrieveUserSessionDone, 1500);
@@ -112,7 +112,7 @@ export default class AuthScreen extends React.Component {
         </View>
       );
     } else {
-      if (this.state.hasSession) {
+      if (this.state.hasRefreshToken) {
         // TODO : Req login by session data
         // then goto MainScreen
         return <MainScreen />;

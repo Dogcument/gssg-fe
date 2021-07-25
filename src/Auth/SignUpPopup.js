@@ -19,7 +19,6 @@ import {
   validatePassword,
   getErrorMsg,
 } from "../Common/CommonMethod";
-import { setAccountInfoToStorage } from "../Common/StorageHelper";
 
 export var SignUpState = {
   SetEmailPw: 1,
@@ -120,7 +119,6 @@ export class SignUpPopup extends React.Component {
     }
   };
 
-  // Gunny TODO
   reqUpdateUserInfo = async () => {
     const userInfo = UserInfo.get();
     try {
@@ -128,7 +126,7 @@ export class SignUpPopup extends React.Component {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": userInfo.getToken()
+          "Authorization": "bearer" + userInfo.getJwt()
         },
         body: JSON.stringify({
           request: {
@@ -144,11 +142,10 @@ export class SignUpPopup extends React.Component {
         if (resp.status != 200) {
           alert(getErrorMsg(json));
         } else {
-          this.onUpdateUserInfoSuccess();
+          this.onUpdateUserInfoSuccess(json);
         }
       } else {
-        console.error("임시로 넘어가드립니다 :) ");
-        this.onUpdateUserInfoSuccess();
+        console.error("resp is null");
       }
     } catch (err) {
       console.error(err);
@@ -184,22 +181,22 @@ export class SignUpPopup extends React.Component {
   };
 
   onSignUpSuccess() {
-    setAccountInfoToStorage(email, pw);
     this.reqSignIn();
   }
 
-  onUpdateUserInfoSuccess() {
+  onUpdateUserInfoSuccess(json) {
     let userInfo = UserInfo.get();
-    userInfo.setNickName(nickName);
-    userInfo.setComment(comment);
-    userInfo.setDog(this.state.selectedDog);
+    userInfo.setNickName(json.nickName);
+    userInfo.setComment(json.introduce);
+    userInfo.setDog(json.profileDog);
+
     this.setState({ signUpState: SignUpState.ShowTutorial });
   }
 
   onSignInSuccess(json) {
     let userInfo = UserInfo.get();
     userInfo.setRefreshToken(json.refreshToken);
-    userInfo.setToken(json.jwt);
+    userInfo.setJwt(json.jwt);
     this.setState({ signUpState: SignUpState.SetDog });
   }
 
