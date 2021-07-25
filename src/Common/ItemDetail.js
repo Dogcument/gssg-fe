@@ -39,6 +39,7 @@ export class ItemDetail extends React.Component {
             style={{
               fontFamily: "Ridi",
               textAlign: "center",
+              lineHeight: 20,
             }}
           >
             {post.content}

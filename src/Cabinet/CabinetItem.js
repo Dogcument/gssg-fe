@@ -4,7 +4,15 @@ import { styles } from "./Styles";
 import moment from "moment";
 import { DogImages, getDogIndexByServerDogName } from "../Common/Dogs";
 import { BoneBlackImg, ChatImg } from "../../assets/ImageList";
+
+var subject = "";
+
 export class CabinetItem extends React.Component {
+  componentDidMount = async () => {
+    subject = this.props.subject;
+    this.props.navigation.setOptions({ title: subject });
+  };
+
   render() {
     const post = this.props.post;
     const navigation = this.props.navigation;

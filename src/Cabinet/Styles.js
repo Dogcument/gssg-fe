@@ -41,6 +41,7 @@ export const styles = StyleSheet.create({
     marginLeft: 10,
     width: "95%",
     textAlign: "center",
+    lineHeight: 20,
   },
   profile: {
     flex: 2,

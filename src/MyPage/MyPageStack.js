@@ -31,6 +31,7 @@ function MyPageStack({ navigation }) {
           title: "마이페이지",
           headerTitleStyle: {
             fontFamily: "SCBold",
+            color: "#FFFFFF"
           },
           headerStyle: {
             backgroundColor: "#ae9784",
