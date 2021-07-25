@@ -91,7 +91,7 @@ export class SignInPopup extends React.Component {
             />
             <Text
               style={{
-                fontFamily: "SpoqaBold",
+                fontFamily: "SCBold",
                 fontSize: 17.5,
                 paddingTop: 2.5,
               }}
@@ -111,7 +111,7 @@ export class SignInPopup extends React.Component {
               justifyContent: "center",
             }}
           >
-            <Text style={{ fontFamily: "SpoqaMedium", fontSize: 15, flex: 3 }}>
+            <Text style={{ fontFamily: "SCThin", fontSize: 15, flex: 3 }}>
               이메일
             </Text>
             <TextInput
@@ -119,7 +119,7 @@ export class SignInPopup extends React.Component {
               placeholder="이메일을 입력해주세요!"
               placeholderTextColor="#FFFFFF"
               style={{
-                fontFamily: "SpoqaMedium",
+                fontFamily: "SCThin",
                 fontSize: 12,
                 backgroundColor: "#d4d4d4",
                 borderRadius: 5,
@@ -141,7 +141,7 @@ export class SignInPopup extends React.Component {
               justifyContent: "center",
             }}
           >
-            <Text style={{ fontFamily: "SpoqaMedium", fontSize: 15, flex: 3 }}>
+            <Text style={{ fontFamily: "SCThin", fontSize: 15, flex: 3 }}>
               비밀번호
             </Text>
             <TextInput
@@ -150,7 +150,7 @@ export class SignInPopup extends React.Component {
               secureTextEntry={true}
               placeholderTextColor="#FFFFFF"
               style={{
-                fontFamily: "SpoqaMedium",
+                fontFamily: "SCThin",
                 fontSize: 12,
                 backgroundColor: "#d4d4d4",
                 borderRadius: 5,
@@ -170,13 +170,13 @@ export class SignInPopup extends React.Component {
             }}
           >
             <TouchableOpacity onPress={this.props.onSignUpButtonClicked}>
-              <Text style={{ fontFamily: "SpoqaMedium", fontSize: 15 }}>
+              <Text style={{ fontFamily: "SCThin", fontSize: 15 }}>
                 회원가입
               </Text>
             </TouchableOpacity>
-            <Text style={{ fontFamily: "SpoqaMedium", fontSize: 15 }}> | </Text>
+            <Text style={{ fontFamily: "SCThin", fontSize: 15 }}> | </Text>
             <TouchableOpacity onPress={this.openFindPwPopup}>
-              <Text style={{ fontFamily: "SpoqaMedium", fontSize: 15 }}>
+              <Text style={{ fontFamily: "SCThin", fontSize: 15 }}>
                 비번찾기
               </Text>
             </TouchableOpacity>
@@ -189,7 +189,7 @@ export class SignInPopup extends React.Component {
           style={[styles.ModalButton]}
         >
           <View>
-            <Text style={{ fontFamily: "SpoqaMedium", fontSize: 15 }}>
+            <Text style={{ fontFamily: "SCThin", fontSize: 15 }}>
               로그인
             </Text>
           </View>

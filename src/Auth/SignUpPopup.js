@@ -271,14 +271,14 @@ export class SignUpPopup extends React.Component {
             <View style={{ flexDirection: "column" }}>
               <Text
                 style={{
-                  fontFamily: "SpoqaBold",
+                  fontFamily: "SCBold",
                   fontSize: 17.5,
                   paddingTop: 2.5,
                 }}
               >
                 새로운 작가님, 환영해요!
               </Text>
-              <Text style={{ fontFamily: "SpoqaBold", fontSize: 12.5 }}>
+              <Text style={{ fontFamily: "SCBold", fontSize: 12.5 }}>
                 로그인에 쓰일 이메일, 비밀번호를 입력해주세요!
               </Text>
             </View>
@@ -286,7 +286,7 @@ export class SignUpPopup extends React.Component {
           <View style={{ height: "10%" }}></View>
 
           <View style={{ width: "100%", flexDirection: "row" }}>
-            <Text style={{ fontFamily: "SpoqaMedium", fontSize: 15, flex: 3 }}>
+            <Text style={{ fontFamily: "SCThin", fontSize: 15, flex: 3 }}>
               이메일
             </Text>
             <TextInput
@@ -294,7 +294,7 @@ export class SignUpPopup extends React.Component {
               placeholderTextColor="#FFFFFF"
               style={{
                 fontSize: 12,
-                fontFamily: "SpoqaMedium",
+                fontFamily: "SCThin",
                 backgroundColor: "#d4d4d4",
                 borderRadius: 5,
                 flex: 7,
@@ -308,7 +308,7 @@ export class SignUpPopup extends React.Component {
           <View style={{ height: "10%" }}></View>
 
           <View style={{ width: "100%", flexDirection: "row" }}>
-            <Text style={{ fontFamily: "SpoqaMedium", fontSize: 15, flex: 3 }}>
+            <Text style={{ fontFamily: "SCThin", fontSize: 15, flex: 3 }}>
               비밀번호
             </Text>
             <TextInput
@@ -317,7 +317,7 @@ export class SignUpPopup extends React.Component {
               secureTextEntry={true}
               style={{
                 fontSize: 12,
-                fontFamily: "SpoqaMedium",
+                fontFamily: "SCThin",
                 backgroundColor: "#d4d4d4",
                 borderRadius: 5,
                 flex: 7,
@@ -330,7 +330,7 @@ export class SignUpPopup extends React.Component {
           <View style={{ height: "10%" }}></View>
 
           <View style={{ width: "100%", flexDirection: "row" }}>
-            <Text style={{ fontFamily: "SpoqaMedium", fontSize: 15, flex: 3 }}>
+            <Text style={{ fontFamily: "SCThin", fontSize: 15, flex: 3 }}>
               비밀번호확인
             </Text>
             <TextInput
@@ -339,7 +339,7 @@ export class SignUpPopup extends React.Component {
               secureTextEntry={true}
               style={{
                 fontSize: 12,
-                fontFamily: "SpoqaMedium",
+                fontFamily: "SCThin",
                 backgroundColor: "#d4d4d4",
                 borderRadius: 5,
                 flex: 7,
@@ -357,7 +357,7 @@ export class SignUpPopup extends React.Component {
           style={[styles.ModalButton]}
         >
           <View>
-            <Text style={{ fontFamily: "SpoqaMedium", fontSize: 15 }}>
+            <Text style={{ fontFamily: "SCThin", fontSize: 15 }}>
               {" "}
               다음!{" "}
             </Text>
@@ -378,7 +378,7 @@ export class SignUpPopup extends React.Component {
             />
             <Text
               style={{
-                fontFamily: "SpoqaBold",
+                fontFamily: "SCBold",
                 fontSize: 17.5,
                 paddingTop: 2.5,
               }}
@@ -431,7 +431,7 @@ export class SignUpPopup extends React.Component {
                 source={DogImages[this.state.selectedDog]}
                 style={{ width: 90, height: 90 }}
               />
-              <Text style={{ fontFamily: "SpoqaBold", fontSize: 15 }}>
+              <Text style={{ fontFamily: "SCBold", fontSize: 15 }}>
                 {" "}
                 {Dogs[this.state.selectedDog]}{" "}
               </Text>
@@ -445,7 +445,7 @@ export class SignUpPopup extends React.Component {
           style={[styles.ModalButton]}
         >
           <View>
-            <Text style={{ fontFamily: "SpoqaMedium", fontSize: 15 }}>
+            <Text style={{ fontFamily: "SCThin", fontSize: 15 }}>
               {" "}
               다음!{" "}
             </Text>
@@ -478,7 +478,7 @@ export class SignUpPopup extends React.Component {
             />
             <Text
               style={{
-                fontFamily: "SpoqaBold",
+                fontFamily: "SCBold",
                 fontSize: 17.5,
                 paddingTop: 2.5,
               }}
@@ -496,7 +496,7 @@ export class SignUpPopup extends React.Component {
             }}
           >
             <Text
-              style={{ fontFamily: "SpoqaMedium", fontSize: 15, width: "30%" }}
+              style={{ fontFamily: "SCThin", fontSize: 15, width: "30%" }}
             >
               필명
             </Text>
@@ -515,7 +515,7 @@ export class SignUpPopup extends React.Component {
             />
             <View></View>
             <Text
-              style={{ fontFamily: "SpoqaMedium", fontSize: 15, width: "30%" }}
+              style={{ fontFamily: "SCThin", fontSize: 15, width: "30%" }}
             >
               한 줄 소개
             </Text>
@@ -541,7 +541,7 @@ export class SignUpPopup extends React.Component {
           style={[styles.ModalButton]}
         >
           <View>
-            <Text style={{ fontFamily: "SpoqaMedium", fontSize: 15 }}>
+            <Text style={{ fontFamily: "SCThin", fontSize: 15 }}>
               {" "}
               완료!{" "}
             </Text>

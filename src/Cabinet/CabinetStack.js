@@ -40,11 +40,11 @@ function CabinetStack({ navigation }) {
           headerTitleAlign: "center",
           headerTitle: () => (
             <TouchableOpacity onPress={() => onHeaderClicked()}>
-              <Text style={{ fontFamily: "Spoqabold" }}>Temp</Text>
+              <Text style={{ fontFamily: "SCbold" }}>Temp</Text>
             </TouchableOpacity>
           ),
           headerLeft: () => (
-            <Text style={{ fontFamily: "SpoqaBold", fontSize: 18.5 }}>
+            <Text style={{ fontFamily: "SCBold", fontSize: 18.5 }}>
               {"   "}보관함
             </Text>
           ),

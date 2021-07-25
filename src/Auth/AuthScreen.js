@@ -67,7 +67,7 @@ export default class AuthScreen extends React.Component {
   renderCloseButton = (text, onPress) => (
     <TouchableOpacity onPress={onPress} style={[styles.modalbutton]}>
       <View>
-        <Text style={{ fontFamily: "SpoqaBold", fontSize: 20 }}> {text} </Text>
+        <Text style={{ fontFamily: "SCBold", fontSize: 20 }}> {text} </Text>
       </View>
     </TouchableOpacity>
   );
