@@ -17,7 +17,7 @@ import { TutorialScreen } from "./TutorialScreen";
 import {
   validateEmail,
   validatePassword,
-  getErrorMsg,
+  errorHandle,
 } from "../Common/CommonMethod";
 
 export var SignUpState = {
@@ -107,7 +107,7 @@ export class SignUpPopup extends React.Component {
         let json = await resp.json();
 
         if (resp.status != 201) {
-          alert(getErrorMsg(json));
+          errorHandle(json);
         } else {
           this.onSignUpSuccess();
         }
@@ -140,7 +140,7 @@ export class SignUpPopup extends React.Component {
       if (resp != undefined) {
         let json = await resp.json();
         if (resp.status != 200) {
-          alert(getErrorMsg(json));
+          errorHandle(json);
         } else {
           this.onUpdateUserInfoSuccess(json);
         }
@@ -168,7 +168,7 @@ export class SignUpPopup extends React.Component {
       if (resp != undefined) {
         let json = await resp.json();
         if (resp.status != 200) {
-          alert(getErrorMsg(json));
+          errorHandle(json);
         } else {
           this.onSignInSuccess(json);
         }

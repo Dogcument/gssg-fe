@@ -10,8 +10,7 @@ import {
 } from "react-native";
 import { WritingButtonImg } from "../../assets/ImageList";
 import UserInfo from "../Common/UserInfo";
-import { getErrorMsg } from "../Common/CommonMethod";
-import { Dogs } from "../Common/Dogs";
+import { errorHandle } from "../Common/CommonMethod";
 import { styles } from "./Styles";
 
 let email = "";
@@ -89,7 +88,7 @@ export class SignInPopup extends React.Component {
       if (resp != undefined) {
         let json = await resp.json();
         if (resp.status != 200) {
-          alert(getErrorMsg(json));
+          errorHandle(json);
         } else {
           this.onReqUserInfoSuccess(json);
         }
@@ -217,9 +216,7 @@ export class SignInPopup extends React.Component {
           style={[styles.ModalButton]}
         >
           <View>
-            <Text style={{ fontFamily: "SCThin", fontSize: 15 }}>
-              로그인
-            </Text>
+            <Text style={{ fontFamily: "SCThin", fontSize: 15 }}>로그인</Text>
           </View>
         </TouchableOpacity>
       </KeyboardAvoidingView>

@@ -1,7 +1,7 @@
 // Singleton
 // Caution
 // UserInfo is set only in "AuthScreen" or "SignUpPopup"
-
+import { errorHandle } from "./CommonMethod";
 import AsyncStorage from "@react-native-community/async-storage";
 export default class UserInfo {
   // Instance
@@ -74,4 +74,40 @@ export default class UserInfo {
   setDog(dog) {
     this._dog = dog;
   }
+
+  // Jwt Refresher
+  refreshJwt = async () => {
+    try {
+      let resp = await fetch("http://localhost:8080/api/v1/auth/refresh", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          refreshToken: this._refreshToken,
+        }),
+      });
+
+      if (resp != undefined) {
+        let json = await resp.json();
+        if (resp.status != 200) {
+          if (json.code == "E1011") {
+            alert(
+              "토큰 갱신했는데 또 올바르지 않는 토큰이 왔다. (데드락에 빠지기 위해 분기처리)"
+            );
+          } else {
+            errorHandle(json);
+          }
+        } else {
+          // refresh success
+          this._jwt = json.jwt;
+          this._refreshToken = json.refreshToken;
+        }
+      } else {
+        console.error("resp is null");
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
 }
