@@ -5,7 +5,6 @@ import AsyncStorage from "@react-native-community/async-storage";
 import { MyPageProfile } from "./MyPageProfile";
 import { MyPageItem } from "./MyPageItem";
 import { IsValidKey, ParseSavedItem } from "../Common/CommonMethod";
-import { Dogs } from "../Common/Dogs";
 import UserInfo from "../Common/UserInfo";
 export class MyPageScreen extends React.Component {
   constructor(props) {

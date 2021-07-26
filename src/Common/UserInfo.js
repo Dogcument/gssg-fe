@@ -4,6 +4,7 @@
 import { errorHandle } from "./CommonMethod";
 import AsyncStorage from "@react-native-community/async-storage";
 import { callApi } from "./ApiHelper";
+import { ServerDogs } from "./Dogs";
 export default class UserInfo {
   // Instance
   static instance = null;
@@ -73,7 +74,12 @@ export default class UserInfo {
     this._comment = comment;
   }
   setDog(dog) {
-    this._dog = dog;
+    const dogIndex = ServerDogs.findIndex((str, index, arr) => str == dog);
+    if (dogIndex == -1) {
+      console.error("setDog error. dog is not exist. input dog : " + dog);
+      dogIndex = 0;
+    }
+    this._dog = dogIndex;
   }
 
   // Jwt Refresher
