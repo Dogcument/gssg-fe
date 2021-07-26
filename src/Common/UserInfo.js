@@ -1,18 +1,15 @@
-// Singleton
-// Caution
-// UserInfo is set only in "AuthScreen" or "SignUpPopup"
-import { errorHandle } from "./CommonMethod";
 import AsyncStorage from "@react-native-community/async-storage";
 import { callApi } from "./ApiHelper";
 import { ServerDogs } from "./Dogs";
 export default class UserInfo {
-  // Instance
   static instance = null;
+
+  // Caution
+  // call init only `AuthScreen`
   static init = async () => {
     if (UserInfo.instance == null) {
       UserInfo.instance = new UserInfo();
 
-      // get token from async storage
       const refresh_token = await AsyncStorage.getItem("refresh_token");
       if (refresh_token != undefined) {
         UserInfo.instance._refreshToken = refresh_token;
@@ -78,7 +75,6 @@ export default class UserInfo {
     this._dog = dogIndex;
   }
 
-  // Jwt Refresher
   refreshJwt = async () => {
     const resp = await callApi(
       "auth/refresh",
@@ -91,10 +87,7 @@ export default class UserInfo {
       return;
     }
 
-    if (resp.code == "E1011") {
-      alert(
-        "토큰 갱신했는데 또 올바르지 않는 토큰이 왔다. (데드락에 빠지기 위해 분기처리)"
-      );
-    }
+    this.setJwt(resp.jwt);
+    this.setRefreshToken(resp.refreshToken);
   };
 }

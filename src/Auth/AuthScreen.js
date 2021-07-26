@@ -23,11 +23,8 @@ export default class AuthScreen extends React.Component {
     this.state = {
       goMainScreen: false,
       isLoading: true,
-      isLoadInfo: false,
-      //Modal state
+      isLoadedInfo: false,
       visibleModal: null,
-
-      // SignUp state
       signUpState: SignUpState.SetNickname,
     };
   }
@@ -68,7 +65,7 @@ export default class AuthScreen extends React.Component {
     userInfo.setComment(resp.introduce);
     userInfo.setDog(resp.profileDog);
 
-    this.state.isLoadInfo = true;
+    this.state.isLoadedInfo = true;
   }
 
   // TODO : Tempcode - should be migrated to EncryptedStorage
@@ -139,9 +136,7 @@ export default class AuthScreen extends React.Component {
         </View>
       );
     } else {
-      if (this.state.isLoadInfo) {
-        // TODO : Req login by session data
-        // then goto MainScreen
+      if (this.state.isLoadedInfo) {
         return <MainScreen />;
       } else {
         return (

@@ -7,19 +7,6 @@ export function IsValidKey(key) {
   return keys[0] == "Writing";
 }
 
-export function errorHandle(json) {
-  if (json.code != undefined) {
-    if (json.code == "E1011") {
-      // expired token
-      let userInfo = UserInfo.get();
-      userInfo.refreshJwt();
-      alert("유요하지 않는 토큰이라 재갱신합니다.");
-    } else {
-      alert(json.code);
-    }
-  }
-}
-
 // [0] : Time
 // [1] : Subject
 // [2] : Content

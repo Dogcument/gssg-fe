@@ -31,7 +31,7 @@ export async function callApiToken(api, method, token, body) {
       method: method,
       headers: {
         "Content-Type": "application/json",
-        Authorization: "bearer" + token,
+        "Authorization": "bearer" + token,
       },
       body: body,
     });
@@ -59,7 +59,7 @@ export function errorHandle(json) {
       // expired token
       let userInfo = UserInfo.get();
       userInfo.refreshJwt();
-      alert("유요하지 않는 토큰이라 재갱신합니다.");
+      console.log("refresh jwt");
     } else {
       alert(json.code);
     }
