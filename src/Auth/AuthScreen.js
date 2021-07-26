@@ -8,6 +8,7 @@ import MainScreen from "../Main/MainScreen";
 import { styles } from "./Styles";
 import { LogoImg } from "../../assets/ImageList";
 import UserInfo from "../Common/UserInfo";
+import { callApiToken } from "../Common/ApiHelper";
 
 export const SignUpState = {
   SetNickname: 1,
@@ -22,7 +23,7 @@ export default class AuthScreen extends React.Component {
     this.state = {
       goMainScreen: false,
       isLoading: true,
-      hasRefreshToken: false,
+      isLoadInfo: false,
       //Modal state
       visibleModal: null,
 
@@ -38,6 +39,7 @@ export default class AuthScreen extends React.Component {
       SCThin: require("../../assets/fonts/SCDreamThin.otf"),
     });
 
+    await UserInfo.init();
     this.getRefreshToken();
   };
 
@@ -45,11 +47,36 @@ export default class AuthScreen extends React.Component {
     this.setState({ goMainScreen: true });
   };
 
+  reqLoadInfo = async (userInfo) => {
+    const resp = await callApiToken(
+      "my",
+      "GET",
+      userInfo.getJwt(),
+      null
+    );
+
+    if (resp == null) {
+      return;
+    }
+
+    this.onLoadInfoSuccess(resp);
+  }
+
+  onLoadInfoSuccess(resp) {
+    let userInfo = UserInfo.get();
+    userInfo.setNickName(resp.nickName);
+    userInfo.setComment(resp.introduce);
+    userInfo.setDog(resp.profileDog);
+
+    this.state.isLoadInfo = true;
+  }
+
   // TODO : Tempcode - should be migrated to EncryptedStorage
   getRefreshToken = async () => {
     const userInfo = UserInfo.get();
-    if (userInfo.isValid()) {
-      this.state.hasRefreshToken = true;
+    const jwt = userInfo.getJwt();
+    if (jwt != null) {
+      this.reqLoadInfo(userInfo);
     }
 
     setTimeout(this.onRetrieveUserSessionDone, 1500);
@@ -112,7 +139,7 @@ export default class AuthScreen extends React.Component {
         </View>
       );
     } else {
-      if (this.state.hasRefreshToken) {
+      if (this.state.isLoadInfo) {
         // TODO : Req login by session data
         // then goto MainScreen
         return <MainScreen />;

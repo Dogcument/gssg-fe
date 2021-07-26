@@ -8,23 +8,23 @@ import { ServerDogs } from "./Dogs";
 export default class UserInfo {
   // Instance
   static instance = null;
-  static get() {
+  static init = async () => {
     if (UserInfo.instance == null) {
       UserInfo.instance = new UserInfo();
 
       // get token from async storage
-      let refresh_token = undefined;
-      AsyncStorage.getItem("refresh_token").then(refresh_token);
+      const refresh_token = await AsyncStorage.getItem("refresh_token");
       if (refresh_token != undefined) {
-        _refreshToken = refresh_token;
+        UserInfo.instance._refreshToken = refresh_token;
       }
 
-      let jwt = undefined;
-      AsyncStorage.getItem("jwt").then(jwt);
+      const jwt = await AsyncStorage.getItem("jwt");
       if (jwt != undefined) {
-        _jwt = jwt;
+        UserInfo.instance._jwt = jwt;
       }
     }
+  }
+  static get() {
     return this.instance;
   }
 
@@ -38,10 +38,6 @@ export default class UserInfo {
   _dog = null;
 
   // Getter
-  isValid() {
-    return this._refreshToken != null;
-  }
-
   getJwt() {
     return this._jwt;
   }
