@@ -11,7 +11,7 @@ export async function callApi(api, method, body) {
     if (resp != undefined) {
       let json = await resp.json();
 
-      if(resp.status != 200 && resp.status != 201) {
+      if (resp.status != 200 && resp.status != 201) {
         errorHandle(json);
         return null;
       } else {
@@ -31,15 +31,15 @@ export async function callApiToken(api, method, token, body) {
       method: method,
       headers: {
         "Content-Type": "application/json",
-        "Authorization": "bearer" + token,
+        Authorization: "bearer" + token,
       },
       body: body,
     });
 
     if (resp != undefined) {
       let json = await resp.json();
-      
-      if(resp.status != 200 && resp.status != 201) {
+
+      if (resp.status != 200 && resp.status != 201) {
         errorHandle(json);
         return null;
       } else {
