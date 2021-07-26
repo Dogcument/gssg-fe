@@ -111,7 +111,7 @@ export class SignUpPopup extends React.Component {
       userInfo.getJwt(),
       JSON.stringify({
           nickName: nickName,
-          profileDogType: ServerDogs[this.props.selectedDog],
+          profileDogType: ServerDogs[this.state.selectedDog],
           introduce: comment,
       })
     );

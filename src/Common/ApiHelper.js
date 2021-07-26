@@ -31,7 +31,7 @@ export async function callApiToken(api, method, token, body) {
       method: method,
       headers: {
         "Content-Type": "application/json",
-        Authorization: "bearer" + token,
+        "Authorization": "bearer" + token,
       },
       body: body,
     });
