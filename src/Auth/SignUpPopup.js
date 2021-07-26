@@ -14,11 +14,8 @@ import { Dogs, DogImages, ServerDogs } from "../Common/Dogs";
 import UserInfo from "../Common/UserInfo";
 import { styles } from "./Styles";
 import { TutorialScreen } from "./TutorialScreen";
-import {
-  validateEmail,
-  validatePassword,
-  errorHandle,
-} from "../Common/CommonMethod";
+import { validateEmail, validatePassword } from "../Common/CommonMethod";
+import { callApi, callApiToken } from "../Common/ApiHelper";
 
 export var SignUpState = {
   SetEmailPw: 1,
@@ -91,93 +88,56 @@ export class SignUpPopup extends React.Component {
   }
 
   reqSignUp = async () => {
-    try {
-      let resp = await fetch("http://localhost:8080/api/v1/members", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: email,
-          password: pw,
-        }),
-      });
+    const resp = await callApi(
+      "members",
+      "POST",
+      JSON.stringify({
+        email: email,
+        password: pw,
+      })
+    );
 
-      if (resp != undefined) {
-        let json = await resp.json();
-
-        if (resp.status != 201) {
-          errorHandle(json);
-        } else {
-          this.onSignUpSuccess();
-        }
-      } else {
-        console.error("resp is null");
-      }
-    } catch (err) {
-      console.error(err);
+    if (resp == null) {
+      return;
     }
+    this.onSignUpSuccess();
   };
 
   reqUpdateUserInfo = async () => {
     const userInfo = UserInfo.get();
-    try {
-      let resp = await fetch("http://localhost:8080/api/v1/my", {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": "bearer" + userInfo.getJwt()
+    const resp = await callApiToken(
+      "my",
+      "PATCH",
+      userInfo.getJwt(),
+      JSON.stringify({
+        request: {
+          nickName: nickName,
+          profileDogType: ServerDogs[this.props.selectedDog],
+          introduce: comment,
         },
-        body: JSON.stringify({
-          request: {
-            nickName: nickName,
-            profileDogType: ServerDogs[this.props.selectedDog],
-            introduce: comment,
-          },
-        }),
-      });
+      })
+    );
 
-      if (resp != undefined) {
-        let json = await resp.json();
-        if (resp.status != 200) {
-          errorHandle(json);
-        } else {
-          this.onUpdateUserInfoSuccess(json);
-        }
-      } else {
-        console.error("resp is null");
-      }
-    } catch (err) {
-      console.error(err);
+    if (resp == null) {
+      return;
     }
+    this.onUpdateUserInfoSuccess(resp);
   };
 
   reqSignIn = async () => {
-    try {
-      let resp = await fetch("http://localhost:8080/api/v1/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          loginId: email,
-          password: pw,
-        }),
-      });
+    let result = await callApi(
+      "auth/login",
+      "POST",
+      JSON.stringify({
+        loginId: email,
+        password: pw,
+      })
+    );
 
-      if (resp != undefined) {
-        let json = await resp.json();
-        if (resp.status != 200) {
-          errorHandle(json);
-        } else {
-          this.onSignInSuccess(json);
-        }
-      } else {
-        console.error("resp is null");
-      }
-    } catch (err) {
-      console.error(err);
+    if (result == null) {
+      return;
     }
+    this.onSignInSuccess(result);
   };
 
   onSignUpSuccess() {
@@ -225,30 +185,23 @@ export class SignUpPopup extends React.Component {
   }
 
   onEndEditing = async () => {
-    try {
-      let resp = await fetch(
-        "http://localhost:8080/api/v1/members/email/exists?email=" + email,
-        {
-          method: "GET",
-          headers: { accept: "*/*" },
-        }
-      );
+    const resp = await callApi(
+      "members/email/exists?email=" + email,
+      "GET",
+      null
+    );
 
-      if (resp != undefined) {
-        let json = await resp.json();
-        if (json) {
-          isOverllapedEmail = true;
-          alert("이미 존재하는 이메일 입니다.");
-        } else {
-          isOverllapedEmail = false;
-          console.log("New Eamil");
-          return;
-        }
-      } else {
-        console.error("resp is null");
-      }
-    } catch (err) {
-      console.error(err);
+    if(resp == null) {
+      return;
+    }
+
+    if (resp == true) {
+      isOverllapedEmail = true;
+      alert("이미 존재하는 이메일 입니다.");
+    } else {
+      isOverllapedEmail = false;
+      console.log("New Eamil");
+      return;
     }
   };
 
@@ -354,10 +307,7 @@ export class SignUpPopup extends React.Component {
           style={[styles.ModalButton]}
         >
           <View>
-            <Text style={{ fontFamily: "SCThin", fontSize: 15 }}>
-              {" "}
-              다음!{" "}
-            </Text>
+            <Text style={{ fontFamily: "SCThin", fontSize: 15 }}> 다음! </Text>
           </View>
         </TouchableOpacity>
       </KeyboardAvoidingView>
@@ -405,7 +355,10 @@ export class SignUpPopup extends React.Component {
                 }}
               >
                 {Dogs.map((_value, index) => (
-                  <TouchableOpacity key={index} onPress={() => this.onDogSelected(index)}>
+                  <TouchableOpacity
+                    key={index}
+                    onPress={() => this.onDogSelected(index)}
+                  >
                     <Image
                       source={DogImages[index]}
                       style={{ width: 50, height: 50 }}
@@ -442,10 +395,7 @@ export class SignUpPopup extends React.Component {
           style={[styles.ModalButton]}
         >
           <View>
-            <Text style={{ fontFamily: "SCThin", fontSize: 15 }}>
-              {" "}
-              다음!{" "}
-            </Text>
+            <Text style={{ fontFamily: "SCThin", fontSize: 15 }}> 다음! </Text>
           </View>
         </TouchableOpacity>
       </View>
@@ -492,9 +442,7 @@ export class SignUpPopup extends React.Component {
               justifyContent: "space-around",
             }}
           >
-            <Text
-              style={{ fontFamily: "SCThin", fontSize: 15, width: "30%" }}
-            >
+            <Text style={{ fontFamily: "SCThin", fontSize: 15, width: "30%" }}>
               필명
             </Text>
             <TextInput
@@ -511,9 +459,7 @@ export class SignUpPopup extends React.Component {
               onChangeText={(inputText) => this.onNicknameChange(inputText)}
             />
             <View></View>
-            <Text
-              style={{ fontFamily: "SCThin", fontSize: 15, width: "30%" }}
-            >
+            <Text style={{ fontFamily: "SCThin", fontSize: 15, width: "30%" }}>
               한 줄 소개
             </Text>
             <TextInput
@@ -538,10 +484,7 @@ export class SignUpPopup extends React.Component {
           style={[styles.ModalButton]}
         >
           <View>
-            <Text style={{ fontFamily: "SCThin", fontSize: 15 }}>
-              {" "}
-              완료!{" "}
-            </Text>
+            <Text style={{ fontFamily: "SCThin", fontSize: 15 }}> 완료! </Text>
           </View>
         </TouchableOpacity>
       </KeyboardAvoidingView>

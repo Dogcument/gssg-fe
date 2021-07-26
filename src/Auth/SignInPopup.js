@@ -10,8 +10,8 @@ import {
 } from "react-native";
 import { WritingButtonImg } from "../../assets/ImageList";
 import UserInfo from "../Common/UserInfo";
-import { errorHandle } from "../Common/CommonMethod";
 import { styles } from "./Styles";
+import { callApi, callApiToken } from "../Common/ApiHelper";
 
 let email = "";
 let pw = "";
@@ -47,57 +47,35 @@ export class SignInPopup extends React.Component {
   }
 
   reqSignIn = async () => {
-    try {
-      let resp = await fetch("http://localhost:8080/api/v1/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          loginId: email,
-          password: pw,
-        }),
-      });
-
-      if (resp != undefined) {
-        let json = await resp.json();
-        if (resp.status != 200) {
-          alert(getErrorMsg(json));
-        } else {
-          this.onSignInSuccess(json);
-        }
-      } else {
-        console.error("resp is null");
-      }
-    } catch (err) {
-      console.error(err);
+    const resp = await callApi(
+      "auth/login",
+      "POST",
+      JSON.stringify({
+        loginId: email,
+        password: pw,
+      })
+    );
+    if (resp == null) {
+      return;
     }
+
+    this.onSignInSuccess(resp);
   };
 
   reqUserInfo = async () => {
     const userInfo = UserInfo.get();
-    try {
-      let resp = await fetch("http://localhost:8080/api/v1/my", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "bearer" + userInfo.getJwt(),
-        },
-      });
+    const resp = await callApiToken(
+      "my",
+      "GET",
+      userInfo.getJwt(),
+      null
+    );
 
-      if (resp != undefined) {
-        let json = await resp.json();
-        if (resp.status != 200) {
-          errorHandle(json);
-        } else {
-          this.onReqUserInfoSuccess(json);
-        }
-      } else {
-        console.error("resp is null");
-      }
-    } catch (err) {
-      console.error(err);
+    if(resp == null) {
+      return;
     }
+
+    this.onReqUserInfoSuccess(resp);
   };
 
   onLoginButtonClicked() {
