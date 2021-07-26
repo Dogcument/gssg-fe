@@ -110,11 +110,9 @@ export class SignUpPopup extends React.Component {
       "PATCH",
       userInfo.getJwt(),
       JSON.stringify({
-        request: {
           nickName: nickName,
           profileDogType: ServerDogs[this.props.selectedDog],
           introduce: comment,
-        },
       })
     );
 
