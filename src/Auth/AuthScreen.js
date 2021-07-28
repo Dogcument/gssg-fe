@@ -23,7 +23,7 @@ export default class AuthScreen extends React.Component {
     this.state = {
       goMainScreen: false,
       isLoading: true,
-      isLoadedInfo: false,
+      loadInfoSuccess: false,
       visibleModal: null,
       signUpState: SignUpState.SetNickname,
     };
@@ -37,7 +37,7 @@ export default class AuthScreen extends React.Component {
     });
 
     await UserInfo.init();
-    this.getRefreshToken();
+    this.tryLoadInfo();
   };
 
   gotoMainScreen = () => {
@@ -65,11 +65,11 @@ export default class AuthScreen extends React.Component {
     userInfo.setComment(resp.introduce);
     userInfo.setDog(resp.profileDog);
 
-    this.state.isLoadedInfo = true;
+    this.state.loadInfoSuccess = true;
   }
 
   // TODO : Tempcode - should be migrated to EncryptedStorage
-  getRefreshToken = async () => {
+  tryLoadInfo = async () => {
     const userInfo = UserInfo.get();
     const jwt = userInfo.getJwt();
     if (jwt != null) {
@@ -136,7 +136,7 @@ export default class AuthScreen extends React.Component {
         </View>
       );
     } else {
-      if (this.state.isLoadedInfo) {
+      if (this.state.loadInfoSuccess) {
         return <MainScreen />;
       } else {
         return (

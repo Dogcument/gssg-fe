@@ -144,9 +144,9 @@ export class SignUpPopup extends React.Component {
 
   onUpdateUserInfoSuccess(json) {
     let userInfo = UserInfo.get();
-    userInfo.setNickName(json.nickName);
-    userInfo.setComment(json.introduce);
-    userInfo.setDog(json.profileDog);
+    userInfo.setNickName(nickName);
+    userInfo.setComment(comment);
+    userInfo.setDogByIndex(this.state.selectedDog);
 
     this.setState({ signUpState: SignUpState.ShowTutorial });
   }

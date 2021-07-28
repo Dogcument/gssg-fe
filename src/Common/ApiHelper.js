@@ -1,3 +1,5 @@
+import UserInfo from "../Common/UserInfo";
+
 export async function callApi(api, method, body) {
   try {
     let resp = await fetch("http://localhost:8080/api/v1/" + api, {

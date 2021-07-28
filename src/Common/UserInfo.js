@@ -74,6 +74,9 @@ export default class UserInfo {
     }
     this._dog = dogIndex;
   }
+  setDogByIndex(index) {
+    this._dog = index;
+  }
 
   refreshJwt = async () => {
     const resp = await callApi(
