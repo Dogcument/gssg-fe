@@ -8,6 +8,8 @@ import {
 import AsyncStorage from "@react-native-community/async-storage";
 import { styles } from "./Styles";
 import { MagicString } from "../Common/CommonMethod";
+import { callApiToken } from "../Common/ApiHelper";
+import UserInfo from "../Common/UserInfo";
 
 var content = "";
 var subject = "";
@@ -47,6 +49,7 @@ export class WritingScreen extends React.Component {
   }
 }
 
+// This would be deprecated.
 function SaveToLocalMachine() {
   const dateString = String(Date.now());
   var key = "Writing" + MagicString + dateString;
@@ -64,6 +67,24 @@ function SaveToLocalMachine() {
   });
 }
 
+async function RequestPost() {
+  const userInfo = UserInfo.get();
+  const resp = await callApiToken(
+    "posts",
+    "POST",
+    userInfo.getJwt(),
+    JSON.stringify({
+      subjectName: subject,
+      content: content,
+    })
+  );
+
+  if (resp == null) {
+    alert("post 실패!");
+    return;
+  }
+}
+
 export function OnDoneButtonClicked(navigation) {
   if (content == "") {
     alert("글 내용이 없어요!");
@@ -71,7 +92,7 @@ export function OnDoneButtonClicked(navigation) {
   }
 
   console.log(content);
-  SaveToLocalMachine();
+  RequestPost();
 
   return navigation.navigate("보관함", { screen: "Cabinet" });
 }
