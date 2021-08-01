@@ -78,12 +78,12 @@ export class CabinetScreen extends React.Component {
   };
 
   onGetPostsSuccess(resp) {
-    posts = resp.postResponses.content;
+    posts = resp.posts.content;
     this.setState({ isLoad: true });
   }
 
   showWritings(post) {
-    const subject = post.subjectResponse.name;
+    const subject = post.subject.name;
     if (subject != this.state.subject) {
       return;
     }

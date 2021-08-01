@@ -41,7 +41,7 @@ export class ItemDetail extends React.Component {
               textAlign: "center",
             }}
           >
-            {post.content}^
+            {post.content}
           </Text>
           <Text
             style={{
