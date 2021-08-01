@@ -42,3 +42,7 @@ export const DogImages = [
   AlexImg,
   DonggyungImg,
 ];
+
+export function getDogIndexByServerDogName(name) {
+  return ServerDogs.findIndex((str, index, arr) => str == name);
+}

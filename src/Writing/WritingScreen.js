@@ -80,7 +80,7 @@ async function RequestPost() {
   );
 
   if (resp == null) {
-    alert("post 실패!");
+    alert("posts POST 실패!");
     return;
   }
 }

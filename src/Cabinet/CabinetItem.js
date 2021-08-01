@@ -2,24 +2,22 @@ import * as React from "react";
 import { TouchableOpacity, Text, View, Image } from "react-native";
 import { styles } from "./Styles";
 import moment from "moment";
-import UserInfo from "../Common/UserInfo";
-import { DogImages } from "../Common/Dogs";
+import { DogImages, getDogIndexByServerDogName } from "../Common/Dogs";
 import { BoneBlackImg, ChatImg } from "../../assets/ImageList";
 export class CabinetItem extends React.Component {
   render() {
-    const writingTimeEpoch = Number(this.props.writingTime);
-    const writingTime = moment(writingTimeEpoch).format("YYYY.MM.DD HH:mm");
-    const content = this.props.content;
+    const post = this.props.post;
     const navigation = this.props.navigation;
-    const userInfo = UserInfo.get();
-    const selectedDog = this.props.selectedDog;
+
+    const writingTime = moment(post.createdAt).format("YYYY.MM.DD HH:mm");
+    const content = post.content;
+    const writer = post.writer;
+    const dogIndex = getDogIndexByServerDogName(writer.profileDog);
 
     return (
       <TouchableOpacity
         style={[styles.ItemContainer]}
-        onPress={() =>
-          OnCabinetItemClicked(navigation, writingTime, content, selectedDog)
-        }
+        onPress={() => OnCabinetItemClicked(navigation, post)}
       >
         <View style={[styles.ItemContent]}>
           <Text
@@ -36,7 +34,7 @@ export class CabinetItem extends React.Component {
         <View style={[styles.ItemProfile]}>
           <Image
             style={[styles.ImageIconStyle]}
-            source={DogImages[selectedDog]}
+            source={DogImages[dogIndex]}
           ></Image>
           <View style={{ flexDirection: "row", alignItems: "center", flex: 1 }}>
             <View
@@ -55,7 +53,7 @@ export class CabinetItem extends React.Component {
                   fontWeight: "bold",
                 }}
               >
-                {userInfo.getNickName()}
+                {writer.nickName}
               </Text>
               <Text style={{ fontFamily: "SCThin", fontSize: 10 }}>
                 {writingTime || "WritingTime"}
@@ -88,11 +86,9 @@ export class CabinetItem extends React.Component {
   }
 }
 
-function OnCabinetItemClicked(navigation, writingTime, content, selectedDog) {
+function OnCabinetItemClicked(navigation, post) {
   navigation.navigate("ItemDetail", {
     navigation: navigation,
-    writingTime: writingTime,
-    content: content,
-    selectedDog: selectedDog,
+    post: post,
   });
 }

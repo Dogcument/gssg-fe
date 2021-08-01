@@ -12,7 +12,9 @@ export class SettingScreen extends React.Component {
   }
 
   deleteAccountInfo = async () => {
-    AsyncStorage.removeItem("account_info");
+    AsyncStorage.removeItem("refresh_token");
+    AsyncStorage.removeItem("jwt");
+
     alert("로그아웃 되었습니다. ");
     this.setState({ gotoAuthScreen: true });
   };

@@ -21,9 +21,7 @@ function CabinetStack({ navigation }) {
   const ItemDetailComponent = ({ route }) => (
     <ItemDetail
       navigation={route.params.navigation}
-      writingTime={route.params.writingTime}
-      content={route.params.content}
-      selectedDog={route.params.selectedDog}
+      post={route.params.post}
     />
   );
 

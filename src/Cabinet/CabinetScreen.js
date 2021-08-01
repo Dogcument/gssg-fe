@@ -2,27 +2,26 @@ import React from "react";
 import { ScrollView, TouchableOpacity, Text, View } from "react-native";
 import Modal from "react-native-modal";
 import { styles } from "./Styles";
-import AsyncStorage from "@react-native-community/async-storage";
 import { CabinetItem } from "./CabinetItem";
-import { IsValidKey, ParseSavedItem } from "../Common/CommonMethod";
-import UserInfo from "../Common/UserInfo";
 import { ProtoWritings } from "../Common/ProtoWritings";
+import { callApi } from "../Common/ApiHelper";
 
+let posts = null;
 export class CabinetScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       isLoad: false,
-      data: 0,
       subject: ProtoWritings[0],
       visibleModal: null,
     };
-    this.LoadData();
+
+    this.ReqGetPosts();
   }
 
   static onWritingsClicked = async () => {
     this.setState({ visibleModal: 1 });
-  }
+  };
 
   componentDidMount() {
     const navigation = this.props.navigation;
@@ -64,46 +63,35 @@ export class CabinetScreen extends React.Component {
     this.setState({ visibleModal: subject });
   }
 
-  LoadData = async () => {
-    const keys = await AsyncStorage.getAllKeys();
-    keys.sort(function (a, b) {
-      return b - a;
-    });
-
-    let loadedData = [];
-    for (let i = 0; i < keys.length; i++) {
-      if (!IsValidKey(keys[i])) {
-        continue;
-      }
-
-      const value = await AsyncStorage.getItem(keys[i]);
-      const parsedItem = ParseSavedItem(value);
-
-      loadedData.push({
-        time: parsedItem[0],
-        subject: parsedItem[1],
-        content: parsedItem[2],
-      });
-    }
-
-    this.setState({
-      isLoad: true,
-      data: { loadedData },
-    });
-  };
-
-  showWritings(value, userInfo, navigation) {
-    if (value.subject != this.state.subject) {
+  ReqGetPosts = async () => {
+    const resp = await callApi(
+      "posts" + "?" + "page=" + 0 + "&" + "size=" + 100,
+      "GET",
+      null
+    );
+    if (resp == null) {
+      alert("posts GET 실패!");
       return;
     }
 
+    this.onGetPostsSuccess(resp);
+  };
+
+  onGetPostsSuccess(resp) {
+    posts = resp.postResponses.content;
+    this.setState({ isLoad: true });
+  }
+
+  showWritings(post) {
+    const subject = post.subjectResponse.name;
+    if (subject != this.state.subject) {
+      return;
+    }
     return (
       <CabinetItem
-        selectedDog={userInfo.getDog()}
-        key={value.time}
-        navigation={navigation}
-        writingTime={value.time}
-        content={value.content}
+        post={post}
+        key={post.createdAt}
+        navigation={this.props.navigation}
       />
     );
   }
@@ -112,10 +100,6 @@ export class CabinetScreen extends React.Component {
     if (!this.state.isLoad) {
       return <ScrollView></ScrollView>;
     }
-
-    const ItemList = this.state.data.loadedData;
-    const navigation = this.props.navigation;
-    const userInfo = UserInfo.get();
 
     return (
       <View style={{ flex: 1, justifyContent: "center" }}>
@@ -127,7 +111,7 @@ export class CabinetScreen extends React.Component {
               )}
             </View>
           }
-          {ItemList.map((value) => this.showWritings(value, userInfo, navigation))}
+          {posts.map((value) => this.showWritings(value))}
         </ScrollView>
 
         <Modal isVisible={this.state.visibleModal === 1}>

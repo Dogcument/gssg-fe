@@ -1,8 +1,8 @@
 import * as React from "react";
 import { Text, View, Image } from "react-native";
 import { styles } from "./Styles";
-import UserInfo from "./UserInfo";
-import { DogImages } from "../Common/Dogs";
+import { DogImages, getDogIndexByServerDogName } from "../Common/Dogs";
+import moment from "moment";
 export class ItemDetail extends React.Component {
   constructor(props) {
     super(props);
@@ -14,8 +14,11 @@ export class ItemDetail extends React.Component {
   }
 
   render() {
-    const selectedDog = this.props.selectedDog;
-    const userInfo = UserInfo.get();
+    const post = this.props.post;
+    const writingTime = moment(post.createdAt).format("YYYY.MM.DD HH:mm");
+    const writer = post.writer;
+    const dogIndex = getDogIndexByServerDogName(writer.profileDog);
+
     return (
       <View
         style={{
@@ -38,7 +41,7 @@ export class ItemDetail extends React.Component {
               textAlign: "center",
             }}
           >
-            {this.props.content}
+            {post.content}^
           </Text>
           <Text
             style={{
@@ -48,7 +51,7 @@ export class ItemDetail extends React.Component {
               fontFamily: "SCThin",
             }}
           >
-            {this.props.writingTime}
+            {writingTime}
           </Text>
         </View>
 
@@ -61,7 +64,7 @@ export class ItemDetail extends React.Component {
         >
           <Image
             style={[styles.ImageStyle, { marginLeft: 15, marginRight: 15 }]}
-            source={DogImages[selectedDog]}
+            source={DogImages[dogIndex]}
           />
           <View
             style={([styles.profileView], { flexDirection: "row", flex: 1 })}
@@ -81,11 +84,9 @@ export class ItemDetail extends React.Component {
                 marginLeft: 5,
               }}
             >
-              <Text style={{ fontFamily: "SCBold" }}>
-                {userInfo.getNickName()}
-              </Text>
+              <Text style={{ fontFamily: "SCBold" }}>{writer.nickName}</Text>
               <Text style={{ fontFamily: "SCThin", fontSize: 13 }}>
-                {userInfo.getComment()}
+                {writer.introduce}
               </Text>
             </View>
           </View>
