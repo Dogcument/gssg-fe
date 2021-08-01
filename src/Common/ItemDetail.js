@@ -16,7 +16,7 @@ export class ItemDetail extends React.Component {
   render() {
     const post = this.props.post;
     const writingTime = moment(post.createdAt).format("YYYY.MM.DD HH:mm");
-    const writer = post.writer;
+    const writer = post.member;
     const dogIndex = getDogIndexByServerDogName(writer.profileDog);
 
     return (

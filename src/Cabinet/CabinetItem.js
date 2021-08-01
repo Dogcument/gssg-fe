@@ -11,7 +11,7 @@ export class CabinetItem extends React.Component {
 
     const writingTime = moment(post.createdAt).format("YYYY.MM.DD HH:mm");
     const content = post.content;
-    const writer = post.writer;
+    const writer = post.member;
     const dogIndex = getDogIndexByServerDogName(writer.profileDog);
 
     return (
