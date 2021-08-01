@@ -67,7 +67,7 @@ function SaveToLocalMachine() {
   });
 }
 
-async function RequestPost() {
+async function RequestPost(navigation) {
   const userInfo = UserInfo.get();
   const resp = await callApiToken(
     "posts",
@@ -83,6 +83,12 @@ async function RequestPost() {
     alert("posts POST 실패!");
     return;
   }
+
+  onRequestPostSuccess(navigation);
+}
+
+function onRequestPostSuccess(navigation) {
+  return navigation.navigate("보관함", { screen: "Cabinet" });
 }
 
 export function OnDoneButtonClicked(navigation) {
@@ -92,7 +98,5 @@ export function OnDoneButtonClicked(navigation) {
   }
 
   console.log(content);
-  RequestPost();
-
-  return navigation.navigate("보관함", { screen: "Cabinet" });
+  RequestPost(navigation);
 }
