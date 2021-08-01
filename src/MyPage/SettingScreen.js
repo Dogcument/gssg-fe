@@ -19,18 +19,6 @@ export class SettingScreen extends React.Component {
     this.setState({ gotoAuthScreen: true });
   };
 
-  DeleteWritings = async () => {
-    const keys = await AsyncStorage.getAllKeys();
-    for (let i = 0; i < keys.length; i++) {
-      if (!IsValidKey(keys[i])) {
-        continue;
-      }
-      AsyncStorage.removeItem(keys[i]);
-    }
-
-    alert("작성한 글 들이 초기화 되었습니다.");
-  };
-
   render() {
     if (this.state.gotoAuthScreen) {
       // TODO
@@ -56,21 +44,6 @@ export class SettingScreen extends React.Component {
           <Image source={WritingButtonImg} style={{ width: 25, height: 25 }} />
           <Text style={{ marginLeft: 5, fontFamily: "SCBold", fontSize: 15 }}>
             로그아웃
-          </Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={{
-            width: "90%",
-            height: 50,
-            flexDirection: "row",
-            alignItems: "center",
-          }}
-          onPress={() => this.DeleteWritings()}
-        >
-          <Image source={WritingButtonImg} style={{ width: 25, height: 25 }} />
-          <Text style={{ marginLeft: 5, fontFamily: "SCBold", fontSize: 15 }}>
-            작성한 글 초기화
           </Text>
         </TouchableOpacity>
       </View>
