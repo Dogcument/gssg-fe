@@ -1,19 +1,19 @@
 import * as React from "react";
 import { View, ScrollView } from "react-native";
-import AsyncStorage from "@react-native-community/async-storage";
-
 import { MyPageProfile } from "./MyPageProfile";
 import { MyPageItem } from "./MyPageItem";
-import { IsValidKey, ParseSavedItem } from "../Common/CommonMethod";
+import { callApiToken } from "../Common/ApiHelper";
 import UserInfo from "../Common/UserInfo";
+
+let posts = null;
 export class MyPageScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       isLoad: false,
-      data: 0,
     };
-    this.LoadData();
+
+    this.reqGetMyPosts();
   }
 
   componentDidMount() {
@@ -21,64 +21,50 @@ export class MyPageScreen extends React.Component {
     navigation.setOptions({ tabBarVisible: true });
   }
 
-  LoadData = async () => {
-    const keys = await AsyncStorage.getAllKeys();
-    keys.sort(function (a, b) {
-      return b - a;
-    });
-
-    let loadedData = [];
-    for (let i = 0; i < keys.length; i++) {
-      if (!IsValidKey(keys[i])) {
-        continue;
-      }
-
-      const value = await AsyncStorage.getItem(keys[i]);
-      const parsedItem = ParseSavedItem(value);
-
-      loadedData.push({
-        time: parsedItem[0],
-        subject: parsedItem[1],
-        content: parsedItem[2],
-      });
+  reqGetMyPosts = async () => {
+    const userInfo = UserInfo.get();
+    const resp = await callApiToken(
+      "my/posts" + "?" + "page=" + 0 + "&" + "size=" + 100,
+      "GET",
+      userInfo.getJwt(),
+      null
+    );
+    if (resp == null) {
+      alert("posts GET 실패!");
+      return;
     }
 
-    this.setState({
-      isLoad: true,
-      data: { loadedData },
-    });
+    this.onGetMyPostsSuccess(resp);
   };
+
+  onGetMyPostsSuccess(resp) {
+    posts = resp.posts.content;
+    this.setState({ isLoad: true });
+  }
+
+  showPosts(post) {
+    return (
+      <MyPageItem
+        post={post}
+        key={post.createdAt}
+        navigation={this.props.navigation}
+      />
+    );
+  }
 
   render() {
     if (!this.state.isLoad) {
       return <ScrollView></ScrollView>;
     }
 
-    const ItemList = this.state.data.loadedData;
-    const navigation = this.props.navigation;
-    const userInfo = UserInfo.get();
-
     return (
       <View style={{ flex: 1 }}>
         {/* Fixed Line */}
         <View>
-          <MyPageProfile
-            writingNum={ItemList.length}
-          />
+          <MyPageProfile writingNum={posts.length} />
         </View>
         {/* Fixed Line */}
-        <ScrollView>
-          {ItemList.map((value) => (
-            <MyPageItem
-              selectedDog={userInfo.getDog()}
-              key={value.time}
-              navigation={navigation}
-              subject={value.subject}
-              writingTime={value.time}
-              content={value.content}
-            />
-          ))}
-        </ScrollView>
+        <ScrollView>{posts.map((value) => this.showPosts(value))}</ScrollView>
       </View>
     );
   }

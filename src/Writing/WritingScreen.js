@@ -5,9 +5,7 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
 } from "react-native";
-import AsyncStorage from "@react-native-community/async-storage";
 import { styles } from "./Styles";
-import { MagicString } from "../Common/CommonMethod";
 import { callApiToken } from "../Common/ApiHelper";
 import UserInfo from "../Common/UserInfo";
 
@@ -47,24 +45,6 @@ export class WritingScreen extends React.Component {
   onChangeText(inputText) {
     content = inputText;
   }
-}
-
-// This would be deprecated.
-function SaveToLocalMachine() {
-  const dateString = String(Date.now());
-  var key = "Writing" + MagicString + dateString;
-
-  const item =
-    String(Date.now()) +
-    MagicString +
-    subject +
-    MagicString +
-    content +
-    MagicString;
-
-  AsyncStorage.setItem(key, item, () => {
-    /* Callback function Null */
-  });
 }
 
 async function RequestPost(navigation) {

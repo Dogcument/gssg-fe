@@ -7,6 +7,7 @@ import {
   WritingButtonImg,
 } from "../../assets/ImageList";
 import moment from "moment";
+import { getDogIndexByServerDogName } from "../Common/Dogs";
 
 export class MyPageItem extends React.Component {
   constructor(props) {
@@ -14,18 +15,15 @@ export class MyPageItem extends React.Component {
   }
 
   render() {
-    const writingTimeEpoch = Number(this.props.writingTime);
-    const writingTime = moment(writingTimeEpoch).format("YYYY.MM.DD HH:mm");
-    const content = this.props.content;
+    const post = this.props.post;
     const navigation = this.props.navigation;
-    const selectedDog = this.props.selectedDog;
-    const subject = this.props.subject;
+    const writingTime = moment(post.createdAt).format("YYYY.MM.DD HH:mm");
 
     return (
       <TouchableOpacity
         style={[styles.itemContainer]}
         onPress={() =>
-          OnMyPageItemClicked(navigation, writingTime, content, selectedDog)
+          OnMyPageItemClicked(navigation, post)
         }
       >
         <Image
@@ -40,7 +38,7 @@ export class MyPageItem extends React.Component {
             fontSize: 20,
           }}
         >
-          {subject}
+          {post.subject.name}
         </Text>
         <Text
           style={{
@@ -71,11 +69,9 @@ export class MyPageItem extends React.Component {
   }
 }
 
-function OnMyPageItemClicked(navigation, writingTime, content, selectedDog) {
+function OnMyPageItemClicked(navigation, post) {
   navigation.navigate("ItemDetail", {
     navigation: navigation,
-    writingTime: writingTime,
-    content: content,
-    selectedDog: selectedDog,
+    post: post,
   });
 }

@@ -16,7 +16,7 @@ export class CabinetScreen extends React.Component {
       visibleModal: null,
     };
 
-    this.ReqGetPosts();
+    this.reqGetPosts();
   }
 
   static onWritingsClicked = async () => {
@@ -28,7 +28,7 @@ export class CabinetScreen extends React.Component {
     navigation.setOptions({ tabBarVisible: true });
   }
 
-  RenderCloseButton = (text, onPress) => (
+  renderCloseButton = (text, onPress) => (
     <TouchableOpacity onPress={onPress} style={[styles.modalbutton]}>
       <View>
         <Text style={{ fontFamily: "SCBold", fontSize: 20 }}>{text}</Text>
@@ -36,7 +36,7 @@ export class CabinetScreen extends React.Component {
     </TouchableOpacity>
   );
 
-  RenderWritingContent() {
+  renderWritingContent() {
     return (
       <View style={[styles.writingContentModal]}>
         <ScrollView>
@@ -50,7 +50,7 @@ export class CabinetScreen extends React.Component {
             </TouchableOpacity>
           ))}
         </ScrollView>
-        {this.RenderCloseButton("닫기", () =>
+        {this.renderCloseButton("닫기", () =>
           this.setState({ visibleModal: null })
         )}
       </View>
@@ -63,7 +63,7 @@ export class CabinetScreen extends React.Component {
     this.setState({ visibleModal: subject });
   }
 
-  ReqGetPosts = async () => {
+  reqGetPosts = async () => {
     const resp = await callApi(
       "posts" + "?" + "page=" + 0 + "&" + "size=" + 100,
       "GET",
@@ -82,7 +82,7 @@ export class CabinetScreen extends React.Component {
     this.setState({ isLoad: true });
   }
 
-  showWritings(post) {
+  showPosts(post) {
     const subject = post.subject.name;
     if (subject != this.state.subject) {
       return;
@@ -106,16 +106,16 @@ export class CabinetScreen extends React.Component {
         <ScrollView>
           {
             <View>
-              {this.RenderCloseButton(this.state.subject, () =>
+              {this.renderCloseButton(this.state.subject, () =>
                 this.setState({ visibleModal: 1 })
               )}
             </View>
           }
-          {posts.map((value) => this.showWritings(value))}
+          {posts.map((value) => this.showPosts(value))}
         </ScrollView>
 
         <Modal isVisible={this.state.visibleModal === 1}>
-          {this.RenderWritingContent()}
+          {this.renderWritingContent()}
         </Modal>
       </View>
     );

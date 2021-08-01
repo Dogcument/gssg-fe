@@ -13,16 +13,9 @@ function onHeaderClicked() {
 }
 
 function CabinetStack({ navigation }) {
-  const CabinetComponent = () => (
-    <CabinetScreen
-      navigation={navigation}
-    />
-  );
+  const CabinetComponent = () => <CabinetScreen navigation={navigation} />;
   const ItemDetailComponent = ({ route }) => (
-    <ItemDetail
-      navigation={route.params.navigation}
-      post={route.params.post}
-    />
+    <ItemDetail navigation={route.params.navigation} post={route.params.post} />
   );
 
   return (
