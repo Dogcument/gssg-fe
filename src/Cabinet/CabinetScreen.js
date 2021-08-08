@@ -1,5 +1,5 @@
 import React from "react";
-import { ScrollView, TouchableOpacity, Text, View } from "react-native";
+import { ScrollView, TouchableOpacity, Text, View, Image } from "react-native";
 import Modal from "react-native-modal";
 import { styles } from "./Styles";
 import { CabinetItem } from "./CabinetItem";
@@ -30,9 +30,13 @@ export class CabinetScreen extends React.Component {
 
   renderSubjectButton = (text, onPress) => (
     <TouchableOpacity onPress={onPress} style={[styles.modalbutton]}>
-      <View>
-        <Text style={{ fontFamily: "SCBold", fontSize: 20 }}>{text}</Text>
-      </View>
+      <Image
+        style={{ height: 12.5, width: 12.5, paddingRignt: 5 }}
+        source={{
+          uri: "https://image.flaticon.com/icons/png/512/58/58979.png",
+        }}
+      />
+      <Text style={{ fontFamily: "SCBold", fontSize: 17.5, paddingLeft: 10, textAlign: 'center' }}>{text}</Text>
     </TouchableOpacity>
   );
 
@@ -111,16 +115,30 @@ export class CabinetScreen extends React.Component {
 
     return (
       <View style={{ flex: 1, justifyContent: "center" }}>
-        <ScrollView>
-          {
-            <View>
-              {this.renderSubjectButton(this.state.subject, () =>
-                this.setState({ visibleModal: 1 })
-              )}
-            </View>
-          }
-          {posts.map((value) => this.showPosts(value))}
-        </ScrollView>
+        <View
+          style={{
+            backgroundColor: "#FFFFFF",
+            width: "100%",
+            height: "8.5%",
+            borderBottomWidth: 1,
+            borderBottomColor: "#CCCCCC",
+            justifyContent: "space-between",
+            alignItems: "center",
+            flexDirection: "row",
+          }}
+        >
+          <Text
+            style={{ fontFamily: "SCBold", fontSize: 18.5, paddingLeft: 15 }}
+          >
+            보관함
+          </Text>
+          <View style={{ paddingRight: 15 }}>
+            {this.renderSubjectButton(this.state.subject, () =>
+              this.setState({ visibleModal: 1 })
+            )}
+          </View>
+        </View>
+        <ScrollView>{posts.map((value) => this.showPosts(value))}</ScrollView>
 
         <Modal isVisible={this.state.visibleModal === 1}>
           {this.renderWritingContent()}

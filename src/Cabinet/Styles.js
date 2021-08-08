@@ -126,12 +126,9 @@ export const styles = StyleSheet.create({
   },
   modalbutton: {
     paddingTop: 5,
-    marginLeft: "35%",
-    width: "30%",
-    borderBottomColor: "#ae9784",
-    borderBottomWidth: 5,
     justifyContent: "center",
     alignItems: "center",
+    flexDirection: 'row',
   },
   closeModalButton: {
     paddingTop: 1,

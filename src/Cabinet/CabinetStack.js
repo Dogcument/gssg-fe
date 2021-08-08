@@ -25,6 +25,7 @@ function CabinetStack({ navigation }) {
         component={CabinetComponent}
         options={{
           title: "",
+          headerShown: false,
           headerTitleStyle: {
             fontFamily: "SCBold",
           },

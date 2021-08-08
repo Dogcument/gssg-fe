@@ -64,6 +64,7 @@ export class WritingPrepareScreen extends React.Component {
                 alignItems: "center",
                 justifyContent: "space-between",
                 paddingTop: "15%",
+                paddingBottom: "15%",
                 paddingLeft: "5%",
                 paddingRight: "5%",
               }}
@@ -82,6 +83,7 @@ export class WritingPrepareScreen extends React.Component {
                 />
               </TouchableHighlight>
             </View>
+            <Text style={{ fontFamily: "Ridi" }}>2021년 8월 8일</Text>
           </View>
 
           <TouchableOpacity
