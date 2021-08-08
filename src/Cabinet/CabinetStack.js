@@ -24,21 +24,28 @@ function CabinetStack({ navigation }) {
         name="Cabinet"
         component={CabinetComponent}
         options={{
-          title: "보관함",
+          title: "",
           headerTitleStyle: {
             fontFamily: "SCBold",
           },
           headerTitleAlign: "center",
-          headerTitle: () => (
-            <TouchableOpacity onPress={() => onHeaderClicked()}>
-              <Text style={{ fontFamily: "SCbold" }}>Temp</Text>
-            </TouchableOpacity>
-          ),
           headerLeft: () => (
             <Text style={{ fontFamily: "SCBold", fontSize: 18.5 }}>
               {"   "}보관함
             </Text>
           ),
+          headerRight: () => (
+            <HeaderButtons>
+              <TouchableOpacity style={{paddingRight: 10, flexDirection: 'row', alignItems:'center'}}>
+                <Image
+                  style={{height: 12.5, width: 12.5, paddingRignt: 5}}
+                  source={{uri:'https://image.flaticon.com/icons/png/512/156/156319.png'}}/>
+                <Text style={{fontFamily: 'SCBold', fontSize: 17.5}}>
+                  글감
+                </Text>
+              </TouchableOpacity>
+            </HeaderButtons>
+          )
         }}
       />
       <Stack.Screen

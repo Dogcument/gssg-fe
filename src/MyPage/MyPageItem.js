@@ -35,7 +35,7 @@ export class MyPageItem extends React.Component {
             marginLeft: 10,
             fontFamily: "SCBold",
             flex: 1,
-            fontSize: 20,
+            fontSize: 17.5,
           }}
         >
           {post.subject.name}

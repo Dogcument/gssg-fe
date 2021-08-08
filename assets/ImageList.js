@@ -9,6 +9,7 @@ export const GearImg = require("./images/GearWhite.png");
 export const WritingButtonImg = require("./images/WritingButton.png");
 export const PaperBackgroundImg = require("./images/PaperBackground.png");
 
+export const WritingButtonBlackImg = require("./images/WritingSelectedBlack.png");
 export const NextButtonImg = require("./images/NextButton.png");
 export const PrevButtonImg = require("./images/PrevButton.png");
 

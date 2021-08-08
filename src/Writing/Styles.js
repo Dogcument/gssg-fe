@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
   },
 
   title: {
-    fontSize: 40,
+    fontSize: 30,
     fontFamily: "SCBold",
   },
 

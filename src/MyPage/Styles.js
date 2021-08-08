@@ -16,13 +16,13 @@ export const styles = StyleSheet.create({
     borderTopWidth: 0,
     elevation: 3,
     shadowColor: "#000000",
-    shadowOpacity: 0.3,
-    shadowOffset: { width: 2, height: 2 },
+    shadowOpacity: 0.4,
+    shadowOffset: { width: 3, height: 3 },
     shadowRadius: 3,
   },
   profileImageStyle: {
-    height: "100%",
-    width: "100%",
+    height: "90%",
+    width: "90%",
   },
   profileView: {
     flex: 6,

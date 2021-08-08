@@ -55,24 +55,35 @@ export class WritingPrepareScreen extends React.Component {
             justifyContent: "space-around",
           }}
         >
-          <View
-            style={{
-              width: "100%",
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "space-between",
-              paddingLeft: "5%",
-              paddingRight: "5%",
-            }}
-          >
-            <TouchableHighlight onPress={() => this.OnPrevButtonClicked()}>
-              <Image style={{ width: 25, height: 25 }} source={PrevButtonImg} />
-            </TouchableHighlight>
-            <Text style={styles.title}>"{subject}"</Text>
-            <TouchableHighlight onPress={() => this.OnNextButtonClicked()}>
-              <Image style={{ width: 25, height: 25 }} source={NextButtonImg} />
-            </TouchableHighlight>
+          <View style={{width: "100%", justifyContent: 'center', alignItems: "center"}}>
+            <Text style={{ fontFamily: "Ridi" }}>오늘의 글감</Text>
+            <View
+              style={{
+                width: "100%",
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "space-between",
+                paddingTop: "15%",
+                paddingLeft: "5%",
+                paddingRight: "5%",
+              }}
+            >
+              <TouchableHighlight onPress={() => this.OnPrevButtonClicked()}>
+                <Image
+                  style={{ width: 25, height: 25 }}
+                  source={PrevButtonImg}
+                />
+              </TouchableHighlight>
+              <Text style={styles.title}>{subject}</Text>
+              <TouchableHighlight onPress={() => this.OnNextButtonClicked()}>
+                <Image
+                  style={{ width: 25, height: 25 }}
+                  source={NextButtonImg}
+                />
+              </TouchableHighlight>
+            </View>
           </View>
+
           <TouchableOpacity
             style={styles.FacebookStyle}
             activeOpacity={0.5}

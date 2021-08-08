@@ -15,7 +15,7 @@ export class MyPageProfile extends React.Component {
         <View
           style={{
             flexDirection: "row",
-            flex: 7.5,
+            flex: 7,
             marginLeft: "2.5%",
             marginRight: "2.5%",
             alignItems: "center",
@@ -82,7 +82,7 @@ export class MyPageProfile extends React.Component {
             marginLeft: "5%",
             marginTop: "7.5%",
             flexDirection: "column",
-            flex: 2.5,
+            flex: 3,
             alignItems: "center",
           }}
         >

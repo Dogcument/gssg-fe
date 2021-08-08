@@ -15,8 +15,8 @@ export const styles = StyleSheet.create({
     marginBottom: 5,
     marginLeft: "2.5%",
     shadowColor: "#000000",
-    shadowOffset: { width: 2, height: 2 },
-    shadowOpacity: 0.3,
+    shadowOffset: { width: 3, height: 3 },
+    shadowOpacity: 0.4,
     shadowRadius: 3,
   },
   ItemContent: {
