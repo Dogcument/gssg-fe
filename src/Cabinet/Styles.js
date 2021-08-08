@@ -133,6 +133,10 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  closeModalButton: {
+    paddingTop: 1,
+    marginLeft: "95%",
+  },
   writingContentModal: {
     fontFamily: "Ridi",
     backgroundColor: "#FFFFFF",

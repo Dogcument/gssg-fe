@@ -28,7 +28,7 @@ export class CabinetScreen extends React.Component {
     navigation.setOptions({ tabBarVisible: true });
   }
 
-  renderCloseButton = (text, onPress) => (
+  renderSubjectButton = (text, onPress) => (
     <TouchableOpacity onPress={onPress} style={[styles.modalbutton]}>
       <View>
         <Text style={{ fontFamily: "SCBold", fontSize: 20 }}>{text}</Text>
@@ -39,20 +39,28 @@ export class CabinetScreen extends React.Component {
   renderWritingContent() {
     return (
       <View style={[styles.writingContentModal]}>
-        <ScrollView>
+        <TouchableOpacity
+          onPress={() => this.setState({ visibleModal: null })}
+          style={[styles.closeModalButton]}
+        >
+          <View>
+            <Text style={{ fontFamily: "SCBold", fontSize: 20 }}>X</Text>
+          </View>
+        </TouchableOpacity>
+
+        <ScrollView showsVerticalScrollIndicator={false}>
           {ProtoWritings.map((value) => (
             <TouchableOpacity
               key={value}
               style={{ height: 40 }}
               onPress={() => this.onWritingSubjectClicked(value)}
             >
-              <Text style={{ fontFamily: "SCBold" }}>{value}</Text>
+              <Text style={{ fontFamily: "SCBold", textAlign: "center" }}>
+                {value}
+              </Text>
             </TouchableOpacity>
           ))}
         </ScrollView>
-        {this.renderCloseButton("닫기", () =>
-          this.setState({ visibleModal: null })
-        )}
       </View>
     );
   }
@@ -106,7 +114,7 @@ export class CabinetScreen extends React.Component {
         <ScrollView>
           {
             <View>
-              {this.renderCloseButton(this.state.subject, () =>
+              {this.renderSubjectButton(this.state.subject, () =>
                 this.setState({ visibleModal: 1 })
               )}
             </View>
