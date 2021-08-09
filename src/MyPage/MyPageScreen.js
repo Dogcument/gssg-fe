@@ -1,9 +1,15 @@
 import * as React from "react";
-import { View, ScrollView } from "react-native";
+import { View, ScrollView, Text, TouchableOpacity, Image } from "react-native";
 import { MyPageProfile } from "./MyPageProfile";
 import { MyPageItem } from "./MyPageItem";
+import { SettingScreen } from "./SettingScreen";
+import { styles } from "./Styles";
 import { callApiToken } from "../Common/ApiHelper";
 import UserInfo from "../Common/UserInfo";
+import {
+  AlarmImg,
+  GearImg,
+} from "../../assets/ImageList";
 
 let posts = null;
 export class MyPageScreen extends React.Component {
@@ -59,12 +65,49 @@ export class MyPageScreen extends React.Component {
 
     return (
       <View style={{ flex: 1 }}>
+        <View
+          style={{
+            backgroundColor: "#ae9784",
+            width: "100%",
+            height: "8.5%",
+            borderBottomWidth: 1,
+            borderBottomColor: "#ae9784",
+            justifyContent: "space-between",
+            alignItems: "center",
+            flexDirection: "row",
+          }}
+        >
+          <Text
+            style={{ fontFamily: "SCBold", fontSize: 18.5, paddingLeft: 15, color: "#FFFFFF" }}
+          >
+            마이페이지
+          </Text>
+          <View style={{flexDirection: 'row'}}>
+          <TouchableOpacity
+                style={[styles.FacebookStyle, { marginRight: 5 }]}
+                activeOpacity={0.5}
+                onPress={() => alert("개발중입니다.")}
+              >
+                <Image style={{width: 20, height: 20}} source={AlarmImg} />
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={[styles.FacebookStyle, { marginRight: 20 }]}
+                activeOpacity={0.5}
+                onPress={() => alert("Setting으로 이동")}
+              >
+                <Image style={{width: 20, height: 20}} source={GearImg} />
+              </TouchableOpacity>
+          </View>
+        </View>
+
         {/* Fixed Line */}
         <View>
           <MyPageProfile writingNum={posts.length} />
         </View>
         {/* Fixed Line */}
-        <ScrollView>{posts.map((value) => this.showPosts(value))}</ScrollView>
+        <ScrollView showsVerticalScrollIndicator={false}>
+          {posts.map((value) => this.showPosts(value))}
+        </ScrollView>
       </View>
     );
   }

@@ -29,6 +29,7 @@ function MyPageStack({ navigation }) {
         component={MyPageComponent}
         options={{
           title: "마이페이지",
+          headerShown: false,
           headerTitleStyle: {
             fontFamily: "SCBold",
             color: "#FFFFFF"
