@@ -131,8 +131,9 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   closeModalButton: {
-    paddingTop: 1,
-    marginLeft: "95%",
+    width: "100%",
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
   },
   writingContentModal: {
     fontFamily: "Ridi",

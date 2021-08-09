@@ -21,7 +21,7 @@ export const styles = StyleSheet.create({
     shadowRadius: 3,
   },
   profileImageStyle: {
-    height: "90%",
+    height: "80%",
     width: "90%",
   },
   profileView: {

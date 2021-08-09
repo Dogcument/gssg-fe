@@ -12,6 +12,8 @@ export const PaperBackgroundImg = require("./images/PaperBackground.png");
 export const WritingButtonBlackImg = require("./images/WritingSelectedBlack.png");
 export const NextButtonImg = require("./images/NextButton.png");
 export const PrevButtonImg = require("./images/PrevButton.png");
+export const ArrowDownImg = require("./images/ArrowDown.png");
+export const CloseCircleImg = require("./images/CloseCircle.png");
 
 // Tab bar icons
 export const TabBarWritingNormalImg = require("./images/WritingNormal.png");

@@ -5,6 +5,7 @@ import { styles } from "./Styles";
 import { CabinetItem } from "./CabinetItem";
 import { ProtoWritings } from "../Common/ProtoWritings";
 import { callApi } from "../Common/ApiHelper";
+import { ArrowDownImg, CloseCircleImg } from "../../assets/ImageList";
 
 let posts = null;
 export class CabinetScreen extends React.Component {
@@ -32,25 +33,35 @@ export class CabinetScreen extends React.Component {
     <TouchableOpacity onPress={onPress} style={[styles.modalbutton]}>
       <Image
         style={{ height: 12.5, width: 12.5, paddingRignt: 5 }}
-        source={{
-          uri: "https://image.flaticon.com/icons/png/512/58/58979.png",
-        }}
+        source={ArrowDownImg}
       />
-      <Text style={{ fontFamily: "SCBold", fontSize: 17.5, paddingLeft: 10, textAlign: 'center' }}>{text}</Text>
+      <Text
+        style={{
+          fontFamily: "SCBold",
+          fontSize: 17.5,
+          paddingLeft: 10,
+          textAlign: "center",
+        }}
+      >
+        {text}
+      </Text>
     </TouchableOpacity>
   );
 
   renderWritingContent() {
     return (
       <View style={[styles.writingContentModal]}>
-        <TouchableOpacity
-          onPress={() => this.setState({ visibleModal: null })}
-          style={[styles.closeModalButton]}
-        >
-          <View>
-            <Text style={{ fontFamily: "SCBold", fontSize: 20 }}>X</Text>
-          </View>
-        </TouchableOpacity>
+        <View style={[styles.closeModalButton]}>
+          <TouchableOpacity
+            onPress={() => this.setState({ visibleModal: null })}
+          >
+            <Image
+              style={{ width: 20, height: 20, margin: -5 }}
+              source={CloseCircleImg}
+              position="absolute"
+            ></Image>
+          </TouchableOpacity>
+        </View>
 
         <ScrollView showsVerticalScrollIndicator={false}>
           {ProtoWritings.map((value) => (
