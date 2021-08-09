@@ -1,8 +1,18 @@
 import UserInfo from "../Common/UserInfo";
 
+const IP = "http://192.168.29.149"
+const PORT = ":8080"
+
+///////////////////////////////////////////////////////////////
+// 모바일에서 컴퓨터에 띄운 서버를 실행시켜보자
+// 1. LINE:3에 당신의 컴퓨터 IP를 입력
+// 2. 저장 후 모바일에서 실행
+// 3. 잘 됨! (IOS 까탈스럽게 구는게 좀 있어서 거니가 수정 예정)
+///////////////////////////////////////////////////////////////
+
 export async function callApi(api, method, body) {
   try {
-    let resp = await fetch("http://localhost:8080/api/v1/" + api, {
+    let resp = await fetch( IP + PORT + "/api/v1/" + api, {
       method: method,
       headers: {
         "Content-Type": "application/json",
@@ -29,7 +39,7 @@ export async function callApi(api, method, body) {
 
 export async function callApiToken(api, method, token, body) {
   try {
-    let resp = await fetch("http://localhost:8080/api/v1/" + api, {
+    let resp = await fetch( IP + PORT + "/api/v1/" + api, {
       method: method,
       headers: {
         "Content-Type": "application/json",
