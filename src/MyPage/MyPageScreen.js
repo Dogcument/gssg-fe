@@ -93,7 +93,7 @@ export class MyPageScreen extends React.Component {
               <TouchableOpacity
                 style={[styles.FacebookStyle, { marginRight: 20 }]}
                 activeOpacity={0.5}
-                onPress={() => alert("Setting으로 이동")}
+                onPress={() => OnSettingButtonClicked(this.props.navigation)}
               >
                 <Image style={{width: 20, height: 20}} source={GearImg} />
               </TouchableOpacity>
@@ -111,4 +111,7 @@ export class MyPageScreen extends React.Component {
       </View>
     );
   }
+}
+function OnSettingButtonClicked(navigation) {
+  return navigation.navigate("Setting");
 }
