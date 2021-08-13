@@ -67,7 +67,7 @@ export default class UserInfo {
     this._comment = comment;
   }
   setDog(dog) {
-    const dogIndex = ServerDogs.findIndex((str, index, arr) => str == dog);
+    let dogIndex = ServerDogs.findIndex((str, index, arr) => str == dog);
     if (dogIndex == -1) {
       console.error("setDog error. dog is not exist. input dog : " + dog);
       dogIndex = 0;

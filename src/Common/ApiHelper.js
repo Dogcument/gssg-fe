@@ -1,6 +1,6 @@
 import UserInfo from "../Common/UserInfo";
 
-const IP = "http://172.30.1.48"
+const IP = "https://192.168.29.149"
 const PORT = ":8080"
 
 ///////////////////////////////////////////////////////////////
@@ -31,9 +31,11 @@ export async function callApi(api, method, body) {
       }
     } else {
       console.error("resp is null");
+      return false;
     }
   } catch (err) {
     console.error(err);
+    return false;
   }
 }
 
@@ -59,9 +61,11 @@ export async function callApiToken(api, method, token, body) {
       }
     } else {
       console.error("resp is null");
+      return false;
     }
   } catch (err) {
     console.error(err);
+    return false;
   }
 }
 

@@ -9,6 +9,7 @@ import { styles } from "./Styles";
 import { LogoImg } from "../../assets/ImageList";
 import UserInfo from "../Common/UserInfo";
 import { callApiToken } from "../Common/ApiHelper";
+import AsyncStorage from "@react-native-community/async-storage";
 
 export const SignUpState = {
   SetNickname: 1,
@@ -53,6 +54,10 @@ export default class AuthScreen extends React.Component {
     );
 
     if (resp == null) {
+      return;
+    } else if (resp == false) {
+      AsyncStorage.removeItem("refresh_token");
+      AsyncStorage.removeItem("jwt");
       return;
     }
 
