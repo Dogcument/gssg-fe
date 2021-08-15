@@ -1,6 +1,6 @@
 import UserInfo from "../Common/UserInfo";
 
-const IP = "https://192.168.29.149"
+const IP = "http://localhost"
 const PORT = ":8080"
 
 ///////////////////////////////////////////////////////////////
