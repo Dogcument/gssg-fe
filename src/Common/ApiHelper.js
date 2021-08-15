@@ -1,14 +1,9 @@
 import UserInfo from "../Common/UserInfo";
 
-const IP = "http://localhost"
-const PORT = ":8080"
-
-///////////////////////////////////////////////////////////////
-// 모바일에서 컴퓨터에 띄운 서버를 실행시켜보자
-// 1. LINE:3에 당신의 컴퓨터 IP를 입력
-// 2. 저장 후 모바일에서 실행
-// 3. 잘 됨! (IOS 까탈스럽게 구는게 좀 있어서 거니가 수정 예정)
-///////////////////////////////////////////////////////////////
+// Caution!
+// iOS needs https(SSL) by its policy. so, iOS cannot access.
+const IP = "http://54.180.180.213"
+const PORT = "" // aws uses port fowarding.
 
 export async function callApi(api, method, body) {
   try {
