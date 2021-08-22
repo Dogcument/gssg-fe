@@ -182,7 +182,12 @@ export class SignUpPopup extends React.Component {
     pwCheck = inputText;
   }
 
-  onEndEditing = async () => {
+  onEndEmailEditing = async () => {
+    if (!validateEmail(email)) {
+      alert("이메일 형식이 옳지 않아요!");
+      return;
+    }
+
     const resp = await callApi(
       "members/email/exists?email=" + email,
       "GET",
@@ -202,6 +207,23 @@ export class SignUpPopup extends React.Component {
       return;
     }
   };
+
+  onEndPwEditing() {
+    const isValidPw = validatePassword(pw, {
+      length: [8, Infinity],
+      lower: 1,
+      upper: 0,
+      numeric: 1,
+      special: 1,
+      badWords: ["password"],
+      badSequenceLength: 4,
+    });
+
+    if (!isValidPw) {
+      alert("비밀번호가 형식에 맞지 않아요!");
+      return;
+    }  
+  }
 
   /* Rendering Functions */
   renderSetEmailPw() {
@@ -250,7 +272,7 @@ export class SignUpPopup extends React.Component {
                 paddingLeft: 5,
               }}
               onChangeText={(inputText) => this.onEmailTextChanged(inputText)}
-              onBlur={() => this.onEndEditing()}
+              onBlur={() => this.onEndEmailEditing()}
             />
           </View>
           <View style={{ height: "10%" }}></View>
@@ -273,6 +295,7 @@ export class SignUpPopup extends React.Component {
                 paddingLeft: 5,
               }}
               onChangeText={(inputText) => this.onPwTextChanged(inputText)}
+              onBlur={() => this.onEndPwEditing()}
             />
           </View>
           <View style={{ height: "10%" }}></View>
