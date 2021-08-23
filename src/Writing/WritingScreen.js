@@ -69,6 +69,7 @@ export class WritingScreen extends React.Component {
 }
 
 async function RequestPost(navigation) {
+  const userInfo = UserInfo.get();
   const resp = await callApiToken(
     "posts",
     "POST",
