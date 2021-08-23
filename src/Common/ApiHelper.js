@@ -72,6 +72,7 @@ export function errorHandle(json) {
       userInfo.refreshJwt();
       console.log("refresh jwt");
     } else {
+      console.error(json.message)
       alert(json.code);
     }
   }

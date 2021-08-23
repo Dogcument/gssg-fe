@@ -1,4 +1,5 @@
 import AsyncStorage from "@react-native-community/async-storage";
+import moment from "moment";
 import { callApi } from "./ApiHelper";
 import { ServerDogs } from "./Dogs";
 export default class UserInfo {
@@ -10,9 +11,9 @@ export default class UserInfo {
     if (UserInfo.instance == null) {
       UserInfo.instance = new UserInfo();
 
-      const refresh_token = await AsyncStorage.getItem("refresh_token");
-      if (refresh_token != undefined) {
-        UserInfo.instance._refreshToken = refresh_token;
+      const refreshToken = await AsyncStorage.getItem("refresh_token");
+      if (refreshToken != undefined) {
+        UserInfo.instance._refreshToken = refreshToken;
       }
 
       const jwt = await AsyncStorage.getItem("jwt");
@@ -20,7 +21,7 @@ export default class UserInfo {
         UserInfo.instance._jwt = jwt;
       }
     }
-  }
+  };
   static get() {
     return this.instance;
   }
@@ -51,6 +52,20 @@ export default class UserInfo {
     return this._dog;
   }
 
+  tryToGetTempWriting = async () => {
+    const tempWriting = await AsyncStorage.getItem("temp_writing");
+    if(tempWriting == undefined) {
+      return;
+    }
+
+    const parsed = JSON.parse(tempWriting);
+    if (moment(moment.now()).isSame(moment(parsed.date), "day")) {
+      return parsed.content;
+    } else {
+      AsyncStorage.removeItem("temp_writing");
+    }
+  }
+
   // Setter
   setJwt(jwt) {
     AsyncStorage.setItem("jwt", jwt);
@@ -76,6 +91,15 @@ export default class UserInfo {
   }
   setDogByIndex(index) {
     this._dog = index;
+  }
+  setTempWriting(content) {
+    AsyncStorage.setItem(
+      "temp_writing",
+      JSON.stringify({
+        date: moment.now(),
+        content: content,
+      })
+    );
   }
 
   refreshJwt = async () => {

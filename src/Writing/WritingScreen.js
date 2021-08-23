@@ -13,9 +13,26 @@ var content = "";
 var subject = "";
 
 export class WritingScreen extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loadFinished: false,
+    };
+  }
+
   componentDidMount = async () => {
     subject = this.props.subject;
     this.props.navigation.setOptions({ title: subject });
+    this.tryToLoadTempWriting();
+  };
+
+  tryToLoadTempWriting = async () => {
+    const userInfo = UserInfo.get();
+    const tempWriting = await userInfo.tryToGetTempWriting();
+    if (tempWriting != undefined) {
+      content = tempWriting;
+      this.setState({ loadFinished: true });
+    }
   };
 
   render() {
@@ -33,6 +50,7 @@ export class WritingScreen extends React.Component {
           <TextInput
             style={styles.TextInputStyle}
             placeholder="여기에 입력"
+            defaultValue={content}
             multiline={true}
             returnKeyType="default"
             onChangeText={(inputText) => this.onChangeText(inputText)}
@@ -44,11 +62,13 @@ export class WritingScreen extends React.Component {
 
   onChangeText(inputText) {
     content = inputText;
+
+    const userInfo = UserInfo.get();
+    userInfo.setTempWriting(content);
   }
 }
 
 async function RequestPost(navigation) {
-  const userInfo = UserInfo.get();
   const resp = await callApiToken(
     "posts",
     "POST",
