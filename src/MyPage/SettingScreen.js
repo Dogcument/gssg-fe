@@ -39,6 +39,34 @@ export class SettingScreen extends React.Component {
             flexDirection: "row",
             alignItems: "center",
           }}
+        >
+          <Image source={WritingButtonImg} style={{ width: 25, height: 25 }} />
+          <Text style={{ marginLeft: 5, fontFamily: "SCBold", fontSize: 15 }}>
+            계정 정보 변경
+          </Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={{
+            width: "90%",
+            height: 50,
+            flexDirection: "row",
+            alignItems: "center",
+          }}
+        >
+          <Image source={WritingButtonImg} style={{ width: 25, height: 25 }} />
+          <Text style={{ marginLeft: 5, fontFamily: "SCBold", fontSize: 15 }}>
+            고객센터
+          </Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={{
+            width: "90%",
+            height: 50,
+            flexDirection: "row",
+            alignItems: "center",
+          }}
           onPress={() => this.deleteAccountInfo()}
         >
           <Image source={WritingButtonImg} style={{ width: 25, height: 25 }} />
