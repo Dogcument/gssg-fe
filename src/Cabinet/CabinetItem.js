@@ -1,9 +1,9 @@
 import * as React from "react";
 import { TouchableOpacity, Text, View, Image } from "react-native";
 import { styles } from "./Styles";
-import moment from "moment";
 import { DogImages, getDogIndexByServerDogName } from "../Common/Dogs";
 import { BoneBlackImg, ChatImg } from "../../assets/ImageList";
+import { getLocalizedTimeString } from "../Common/CommonMethod";
 
 var subject = "";
 
@@ -17,7 +17,7 @@ export class CabinetItem extends React.Component {
     const post = this.props.post;
     const navigation = this.props.navigation;
 
-    const writingTime = moment(post.createdAt).format("YYYY.MM.DD HH:mm");
+    const writingTime = getLocalizedTimeString(post.createdAt);
     const content = post.content;
     const writer = post.member;
     const dogIndex = getDogIndexByServerDogName(writer.profileDog);

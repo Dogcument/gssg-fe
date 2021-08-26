@@ -2,7 +2,7 @@ import * as React from "react";
 import { Text, View, Image } from "react-native";
 import { styles } from "./Styles";
 import { DogImages, getDogIndexByServerDogName } from "../Common/Dogs";
-import moment from "moment";
+import { getLocalizedTimeString } from "./CommonMethod";
 export class ItemDetail extends React.Component {
   constructor(props) {
     super(props);
@@ -15,7 +15,7 @@ export class ItemDetail extends React.Component {
 
   render() {
     const post = this.props.post;
-    const writingTime = moment(post.createdAt).format("YYYY.MM.DD HH:mm");
+    const writingTime = getLocalizedTimeString(post.createdAt);
     const writer = post.member;
     const dogIndex = getDogIndexByServerDogName(writer.profileDog);
 

@@ -6,8 +6,7 @@ import {
   ChatImg,
   WritingButtonImg,
 } from "../../assets/ImageList";
-import moment from "moment";
-import { getDogIndexByServerDogName } from "../Common/Dogs";
+import { getLocalizedTimeString } from "../Common/CommonMethod";
 
 export class MyPageItem extends React.Component {
   constructor(props) {
@@ -17,8 +16,7 @@ export class MyPageItem extends React.Component {
   render() {
     const post = this.props.post;
     const navigation = this.props.navigation;
-    const writingTime = moment(post.createdAt).format("YYYY.MM.DD HH:mm");
-
+    const writingTime = getLocalizedTimeString(post.createdAt);
     return (
       <TouchableOpacity
         style={[styles.itemContainer]}
