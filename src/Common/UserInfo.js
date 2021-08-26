@@ -58,10 +58,8 @@ export default class UserInfo {
       return;
     }
 
-    // moment(time) returns localized moment
-    // so you don't have to add comparison tz("Asia/Seoul")
     const parsed = JSON.parse(tempWriting);
-    if (moment().tz("Asia/Seoul").isSame(moment(parsed.date), "day")) {
+    if (moment().isSame(parsed.date, "day")) {
       return parsed.content;
     } else {
       AsyncStorage.removeItem("temp_writing");
@@ -98,7 +96,7 @@ export default class UserInfo {
     AsyncStorage.setItem(
       "temp_writing",
       JSON.stringify({
-        date: moment.now(),
+        date: moment(),
         content: content,
       })
     );
