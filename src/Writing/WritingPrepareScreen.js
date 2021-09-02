@@ -3,45 +3,52 @@ import {
   View,
   Text,
   TouchableOpacity,
-  TouchableHighlight,
   Image,
   ImageBackground,
 } from "react-native";
 import { styles } from "./Styles";
-import { ProtoWritings } from "../Common/ProtoWritings";
-import {
-  NextButtonImg,
-  PrevButtonImg,
-  WritingButtonImg,
-  PaperBackgroundImg,
-} from "../../assets/ImageList";
+import { WritingButtonImg, PaperBackgroundImg } from "../../assets/ImageList";
+import { callApi } from "../Common/ApiHelper";
+import moment from "moment";
 
 export class WritingPrepareScreen extends React.Component {
   constructor() {
     super();
     this.state = {
-      WritingNum: 0,
+      subject: null,
+      desc: null,
     };
   }
 
-  OnPrevButtonClicked() {
-    if (this.state.WritingNum == 0) {
+  componentDidMount = async () => {
+    this.reqGetTodaySubject();
+  };
+
+  reqGetTodaySubject = async () => {
+    const curTime = moment().format("YYYY-MM-DD");
+
+    // 서버 typo
+    // sujects -> subjects
+    const resp = await callApi("sujects/date/" + curTime);
+
+    if (resp == null) {
+      alert("오늘의 글감을 가져오지 못했습니다.");
       return;
     }
 
-    this.setState({ WritingNum: this.state.WritingNum - 1 });
-  }
+    this.onGetTodaySubject(resp);
+  };
 
-  OnNextButtonClicked() {
-    if (this.state.WritingNum >= ProtoWritings.length - 1) {
-      return;
-    }
-
-    this.setState({ WritingNum: this.state.WritingNum + 1 });
+  onGetTodaySubject(resp) {
+    const subject = resp.name;
+    const desc = resp.description;
+    this.setState({ subject: subject, desc: desc });
   }
 
   render() {
-    const subject = ProtoWritings[this.state.WritingNum];
+    const subject = this.state.subject;
+    const today = moment().format("YYYY년 MM월 DD일");
+
     return (
       <ImageBackground
         source={PaperBackgroundImg}
@@ -55,12 +62,17 @@ export class WritingPrepareScreen extends React.Component {
             justifyContent: "space-around",
           }}
         >
-          <View style={{width: "100%", justifyContent: 'center', alignItems: "center"}}>
+          <View
+            style={{
+              width: "100%",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
             <Text style={{ fontFamily: "Ridi" }}>오늘의 글감</Text>
             <View
               style={{
                 width: "100%",
-                flexDirection: "row",
                 alignItems: "center",
                 justifyContent: "space-between",
                 paddingTop: "15%",
@@ -69,21 +81,9 @@ export class WritingPrepareScreen extends React.Component {
                 paddingRight: "5%",
               }}
             >
-              <TouchableHighlight onPress={() => this.OnPrevButtonClicked()}>
-                <Image
-                  style={{ width: 25, height: 25 }}
-                  source={PrevButtonImg}
-                />
-              </TouchableHighlight>
               <Text style={styles.title}>{subject}</Text>
-              <TouchableHighlight onPress={() => this.OnNextButtonClicked()}>
-                <Image
-                  style={{ width: 25, height: 25 }}
-                  source={NextButtonImg}
-                />
-              </TouchableHighlight>
             </View>
-            <Text style={{ fontFamily: "Ridi" }}>2021년 8월 8일</Text>
+            <Text style={{ fontFamily: "Ridi" }}>{today}</Text>
           </View>
 
           <TouchableOpacity
