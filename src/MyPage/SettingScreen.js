@@ -1,7 +1,6 @@
 import * as React from "react";
 import { View, TouchableOpacity, Text, Image } from "react-native";
 import AsyncStorage from "@react-native-community/async-storage";
-import { IsValidKey } from "../Common/CommonMethod";
 import { WritingButtonImg } from "../../assets/ImageList";
 export class SettingScreen extends React.Component {
   constructor(props) {
@@ -18,6 +17,11 @@ export class SettingScreen extends React.Component {
     alert("로그아웃 되었습니다. ");
     this.setState({ gotoAuthScreen: true });
   };
+
+  onModifyAccountButtonClicked() {
+    const navigation = this.props.navigation;
+    navigation.navigate("ModifyAccount");
+  }
 
   render() {
     if (this.state.gotoAuthScreen) {
@@ -39,6 +43,7 @@ export class SettingScreen extends React.Component {
             flexDirection: "row",
             alignItems: "center",
           }}
+          onPress={() => this.onModifyAccountButtonClicked()}
         >
           <Image source={WritingButtonImg} style={{ width: 25, height: 25 }} />
           <Text style={{ marginLeft: 5, fontFamily: "SCBold", fontSize: 15 }}>

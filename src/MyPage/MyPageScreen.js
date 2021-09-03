@@ -2,7 +2,6 @@ import * as React from "react";
 import { View, ScrollView, Text, TouchableOpacity, Image } from "react-native";
 import { MyPageProfile } from "./MyPageProfile";
 import { MyPageItem } from "./MyPageItem";
-import { SettingScreen } from "./SettingScreen";
 import { styles } from "./Styles";
 import { callApiToken } from "../Common/ApiHelper";
 import UserInfo from "../Common/UserInfo";

@@ -13,11 +13,16 @@ import {
   AlarmImg,
   GearImg,
 } from "../../assets/ImageList";
+import { ModifyAccountScreen } from "./ModifyAccountScreen";
 
 const Stack = createStackNavigator();
 
 function MyPageStack({ navigation }) {
   const MyPageComponent = () => <MyPageScreen navigation={navigation} />;
+  const SettingComponent = () => <SettingScreen navigation={navigation}/>;
+  const ModifyAccountComponent = () => (
+    <ModifyAccountScreen navigation={navigation} />
+  );
   const ItemDetailComponent = ({ route }) => (
     <ItemDetail navigation={route.params.navigation} post={route.params.post} />
   );
@@ -32,7 +37,7 @@ function MyPageStack({ navigation }) {
           headerShown: false,
           headerTitleStyle: {
             fontFamily: "SCBold",
-            color: "#FFFFFF"
+            color: "#FFFFFF",
           },
           headerStyle: {
             backgroundColor: "#ae9784",
@@ -61,8 +66,9 @@ function MyPageStack({ navigation }) {
       />
       <Stack.Screen
         name="Setting"
+        component={SettingComponent}
         options={{
-          title: "세팅",
+          title: "설정",
           headerTitleStyle: {
             fontFamily: "SCBold",
           },
@@ -76,8 +82,25 @@ function MyPageStack({ navigation }) {
           ),
         }}
       >
-        {() => <SettingScreen />}
       </Stack.Screen>
+      <Stack.Screen
+        name="ModifyAccount"
+        component={ModifyAccountComponent}
+        options={{
+          title: "개인정보 변경",
+          headerTitleStyle: {
+            fontFamily: "SCBold",
+          },
+          headerTitleAlign: "left",
+          headerBackTitleVisible: false,
+          headerBackImage: () => (
+            <Image
+              style={{ marginLeft: 20, width: 20, height: 20 }}
+              source={BackButtonImg}
+            ></Image>
+          ),
+        }}
+      ></Stack.Screen>
       <Stack.Screen
         name="ItemDetail"
         component={ItemDetailComponent}
