@@ -1,5 +1,5 @@
 import * as React from "react";
-import { View, TouchableOpacity, Text, Image } from "react-native";
+import { View, TouchableOpacity, Text, Image, Linking } from "react-native";
 import AsyncStorage from "@react-native-community/async-storage";
 import { WritingButtonImg } from "../../assets/ImageList";
 export class SettingScreen extends React.Component {
@@ -21,6 +21,14 @@ export class SettingScreen extends React.Component {
   onModifyAccountButtonClicked() {
     const navigation = this.props.navigation;
     navigation.navigate("ModifyAccount");
+  }
+
+  onInfoCenterClicked() {
+    try {
+      Linking.openURL("https://frill-trouser-3a3.notion.site/50f4371e71ee4bf68f1700b1f2042472");
+    } catch(error) {
+      console.error(error);
+    }
   }
 
   render() {
@@ -58,6 +66,7 @@ export class SettingScreen extends React.Component {
             flexDirection: "row",
             alignItems: "center",
           }}
+          onPress={() => this.onInfoCenterClicked()}
         >
           <Image source={WritingButtonImg} style={{ width: 25, height: 25 }} />
           <Text style={{ marginLeft: 5, fontFamily: "SCBold", fontSize: 15 }}>
