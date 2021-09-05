@@ -27,10 +27,7 @@ export class WritingPrepareScreen extends React.Component {
   reqGetTodaySubject = async () => {
     const curTime = moment().format("YYYY-MM-DD");
 
-    // 서버 typo
-    // sujects -> subjects
-    const resp = await callApi("sujects/date/" + curTime);
-
+    const resp = await callApi("subjects/date/" + curTime);
     if (resp == null) {
       alert("오늘의 글감을 가져오지 못했습니다.");
       return;
