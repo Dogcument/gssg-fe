@@ -2,11 +2,11 @@ import * as React from "react";
 import { View, TouchableOpacity, Text, Image, Linking } from "react-native";
 import AsyncStorage from "@react-native-community/async-storage";
 import { WritingButtonImg } from "../../assets/ImageList";
+import * as Update from "expo-updates";
 export class SettingScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      gotoAuthScreen: false,
     };
   }
 
@@ -15,7 +15,7 @@ export class SettingScreen extends React.Component {
     AsyncStorage.removeItem("jwt");
 
     alert("로그아웃 되었습니다. ");
-    this.setState({ gotoAuthScreen: true });
+    Update.reloadAsync();
   };
 
   onModifyAccountButtonClicked() {
@@ -32,10 +32,6 @@ export class SettingScreen extends React.Component {
   }
 
   render() {
-    if (this.state.gotoAuthScreen) {
-      // TODO
-    }
-
     return (
       <View
         style={{
