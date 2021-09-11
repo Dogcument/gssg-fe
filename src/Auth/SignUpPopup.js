@@ -76,50 +76,39 @@ export class SignUpPopup extends React.Component {
           alert("비밀번호를 똑같이 입력해주세요!");
           return;
         }
-        this.reqSignUp();
+        this.onIdPwDone();
         break;
       case SignUpState.SetDog:
         this.setState({ signUpState: SignUpState.SetNicknameComment });
         break;
       case SignUpState.SetNicknameComment:
-        this.reqUpdateUserInfo();
+        this.reqSignUp();
         break;
     }
   }
 
-  reqSignUp = async () => {
+  reqSignUp = async() => {
     const resp = await callApi(
       "members",
       "POST",
       JSON.stringify({
         email: email,
         password: pw,
-      })
-    );
-
-    if (resp == null) {
-      return;
-    }
-    this.onSignUpSuccess();
-  };
-
-  reqUpdateUserInfo = async () => {
-    const userInfo = UserInfo.get();
-    const resp = await callApiToken(
-      "my",
-      "PATCH",
-      userInfo.getJwt(),
-      JSON.stringify({
         nickName: nickName,
         profileDogType: ServerDogs[this.state.selectedDog],
-        introduce: comment,
+        introduce: comment
       })
     );
 
     if (resp == null) {
       return;
     }
-    this.onUpdateUserInfoSuccess(resp);
+    
+    this.onSignUpSuccess();
+  }
+
+  onIdPwDone() {
+    this.setState({ signUpState: SignUpState.SetDog });
   };
 
   reqSignIn = async () => {
@@ -142,20 +131,11 @@ export class SignUpPopup extends React.Component {
     this.reqSignIn();
   }
 
-  onUpdateUserInfoSuccess(json) {
-    let userInfo = UserInfo.get();
-    userInfo.setNickName(nickName);
-    userInfo.setComment(comment);
-    userInfo.setDogByIndex(this.state.selectedDog);
-
-    this.setState({ signUpState: SignUpState.ShowTutorial });
-  }
-
   onSignInSuccess(json) {
     let userInfo = UserInfo.get();
     userInfo.setRefreshToken(json.refreshToken);
     userInfo.setJwt(json.jwt);
-    this.setState({ signUpState: SignUpState.SetDog });
+    this.setState({ signUpState: SignUpState.ShowTutorial });
   }
 
   onNicknameChange(text) {
