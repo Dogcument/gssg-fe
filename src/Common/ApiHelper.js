@@ -2,7 +2,7 @@ import UserInfo from "../Common/UserInfo";
 
 // Caution!
 // iOS needs https(SSL) by its policy. so, iOS cannot access.
-const IP = "http://localhost"
+const IP = "http://15.165.162.167"
 const PORT = ":8080"
 
 export async function callApi(api, method, body) {
