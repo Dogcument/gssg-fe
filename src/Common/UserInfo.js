@@ -67,6 +67,12 @@ export default class UserInfo {
   }
 
   // Setter
+  removeTokens() {
+    AsyncStorage.removeItem("jwt");
+    AsyncStorage.removeItem("refresh_token");
+    this._jwt = null;
+    this._refreshToken = null;
+  }
   setJwt(jwt) {
     AsyncStorage.setItem("jwt", jwt);
     this._jwt = jwt;
@@ -102,19 +108,8 @@ export default class UserInfo {
     );
   }
 
-  refreshJwt = async () => {
-    const resp = await callApi(
-      "auth/refresh",
-      "POST",
-      JSON.stringify({
-        refreshToken: this._refreshToken,
-      })
-    );
-    if (resp == undefined) {
-      return;
-    }
-
-    this.setJwt(resp.jwt);
-    this.setRefreshToken(resp.refreshToken);
+  // infiinite loop
+  deleteJwt() {
+    this.removeTokens();
   };
 }
