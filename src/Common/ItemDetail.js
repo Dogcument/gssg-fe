@@ -85,7 +85,7 @@ export class ItemDetail extends React.Component {
                 marginLeft: 5,
               }}
             >
-              <Text style={{ fontFamily: "SCBold" }}>{writer.nickName}</Text>
+              <Text style={{ fontFamily: "SCBold" }}>{writer.nickname}</Text>
               <Text style={{ fontFamily: "SCThin", fontSize: 13 }}>
                 {writer.introduce}
               </Text>

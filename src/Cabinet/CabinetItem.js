@@ -61,7 +61,7 @@ export class CabinetItem extends React.Component {
                   fontWeight: "bold",
                 }}
               >
-                {writer.nickName}
+                {writer.nickname}
               </Text>
               <Text style={{ fontFamily: "SCThin", fontSize: 10 }}>
                 {writingTime || "WritingTime"}
