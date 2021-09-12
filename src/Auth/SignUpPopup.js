@@ -27,7 +27,7 @@ export var SignUpState = {
 let email = "";
 let pw = "";
 let pwCheck = "";
-let nickName = "";
+let nickname = "";
 let comment = "";
 let isOverllapedEmail = false;
 export class SignUpPopup extends React.Component {
@@ -94,7 +94,7 @@ export class SignUpPopup extends React.Component {
       JSON.stringify({
         email: email,
         password: pw,
-        nickName: nickName,
+        nickname: nickname,
         profileDogType: ServerDogs[this.state.selectedDog],
         introduce: comment
       })
@@ -139,7 +139,7 @@ export class SignUpPopup extends React.Component {
   }
 
   onNicknameChange(text) {
-    nickName = text;
+    nickname = text;
   }
 
   onCommentChange(text) {
@@ -203,6 +203,13 @@ export class SignUpPopup extends React.Component {
       alert("비밀번호가 형식에 맞지 않아요!");
       return;
     }  
+  }
+
+  onEndPwCheckEditing() {
+    if (pw != pwCheck) {
+      alert("비밀번호가 다릅니다!");
+      return;
+    }
   }
 
   /* Rendering Functions */
@@ -298,6 +305,7 @@ export class SignUpPopup extends React.Component {
                 paddingLeft: 5,
               }}
               onChangeText={(inputText) => this.onPwCheckTextChanged(inputText)}
+              onBlur={() => this.onEndPwCheckEditing()}
             />
           </View>
         </View>
