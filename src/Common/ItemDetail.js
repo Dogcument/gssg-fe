@@ -1,8 +1,10 @@
 import * as React from "react";
-import { Text, View, Image } from "react-native";
+import { Text, View, Image, TouchableOpacity } from "react-native";
 import { styles } from "./Styles";
 import { DogImages, getDogIndexByServerDogName } from "../Common/Dogs";
 import { getLocalizedTimeString } from "./CommonMethod";
+import { BoneBlackImg, ChatImg } from "../../assets/ImageList";
+
 export class ItemDetail extends React.Component {
   constructor(props) {
     super(props);
@@ -91,6 +93,20 @@ export class ItemDetail extends React.Component {
               </Text>
             </View>
           </View>
+          <TouchableOpacity
+            style={{ width: 20, height: 20, marginRight: 15 }}
+            activeOpacity={0.5}
+            onPress={() => alert("좋아요 표시 화면으로 이동")}
+          >
+            <Image style={{ width: 20, height: 20 }} source={BoneBlackImg} />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={{ width: 20, height: 20, marginRight: 15 }}
+            activeOpacity={0.5}
+            onPress={() => alert("댓글 표시 화면으로 이동")}
+          >
+            <Image style={{ width: 20, height: 20 }} source={ChatImg} />
+          </TouchableOpacity>
         </View>
       </View>
     );

@@ -6,20 +6,14 @@ import { SettingScreen } from "./SettingScreen";
 import { styles } from "./Styles";
 import { TouchableOpacity, Image } from "react-native";
 import { ItemDetail } from "../Common/ItemDetail";
-import {
-  BoneBlackImg,
-  ChatImg,
-  BackButtonImg,
-  AlarmImg,
-  GearImg,
-} from "../../assets/ImageList";
+import { BackButtonImg, AlarmImg, GearImg } from "../../assets/ImageList";
 import { ModifyAccountScreen } from "./ModifyAccountScreen";
 
 const Stack = createStackNavigator();
 
 function MyPageStack({ navigation }) {
   const MyPageComponent = () => <MyPageScreen navigation={navigation} />;
-  const SettingComponent = () => <SettingScreen navigation={navigation}/>;
+  const SettingComponent = () => <SettingScreen navigation={navigation} />;
   const ModifyAccountComponent = () => (
     <ModifyAccountScreen navigation={navigation} />
   );
@@ -81,8 +75,7 @@ function MyPageStack({ navigation }) {
             ></Image>
           ),
         }}
-      >
-      </Stack.Screen>
+      ></Stack.Screen>
       <Stack.Screen
         name="ModifyAccount"
         component={ModifyAccountComponent}
@@ -113,27 +106,6 @@ function MyPageStack({ navigation }) {
               style={{ marginLeft: 20, width: 20, height: 20 }}
               source={BackButtonImg}
             ></Image>
-          ),
-          headerRight: () => (
-            <HeaderButtons>
-              <TouchableOpacity
-                style={{ width: 20, height: 20, marginRight: 15 }}
-                activeOpacity={0.5}
-                onPress={() => alert("좋아요 표시 화면으로 이동")}
-              >
-                <Image
-                  style={{ width: 20, height: 20 }}
-                  source={BoneBlackImg}
-                />
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={{ width: 20, height: 20, marginRight: 15 }}
-                activeOpacity={0.5}
-                onPress={() => alert("댓글 표시 화면으로 이동")}
-              >
-                <Image style={{ width: 20, height: 20 }} source={ChatImg} />
-              </TouchableOpacity>
-            </HeaderButtons>
           ),
         }}
       ></Stack.Screen>
