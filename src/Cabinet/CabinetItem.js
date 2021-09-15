@@ -2,7 +2,7 @@ import * as React from "react";
 import { TouchableOpacity, Text, View, Image } from "react-native";
 import { styles } from "./Styles";
 import { DogImages, getDogIndexByServerDogName } from "../Common/Dogs";
-import { BoneBlackImg, ChatImg } from "../../assets/ImageList";
+import { BoneNoSelectImg, ChatImg } from "../../assets/ImageList";
 import { getLocalizedTimeString } from "../Common/CommonMethod";
 
 var subject = "";
@@ -76,7 +76,7 @@ export class CabinetItem extends React.Component {
                 marginRight: 10,
                 marginBottom: -15,
               }}
-              source={BoneBlackImg}
+              source={BoneNoSelectImg}
             ></Image>
             <Image
               style={{

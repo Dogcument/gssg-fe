@@ -3,16 +3,54 @@ import { Text, View, Image, TouchableOpacity } from "react-native";
 import { styles } from "./Styles";
 import { DogImages, getDogIndexByServerDogName } from "../Common/Dogs";
 import { getLocalizedTimeString } from "./CommonMethod";
-import { BoneBlackImg, ChatImg } from "../../assets/ImageList";
+import {
+  BoneSelectImg,
+  BoneNoSelectImg,
+  ChatImg,
+} from "../../assets/ImageList";
+import { callApiToken } from "./ApiHelper";
+import UserInfo from "./UserInfo";
 
 export class ItemDetail extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      isLike: false,
+    };
   }
 
   componentDidMount() {
     const navigation = this.props.navigation;
     navigation.setOptions({ tabBarVisible: false });
+  }
+
+  onLikeButtonClicked = async () => {
+    const id = this.props.post.id;
+    const userInfo = UserInfo.get();
+    const resp = await callApiToken(
+      "posts/" + id + "/like",
+      "POST",
+      userInfo.getJwt()
+    );
+
+    if (resp == null) {
+      alert("좋아요 실패!");
+      return;
+    }
+
+    // TODO
+    // resp should be boolean
+    const isLike = resp;
+    this.onLikeResp(isLike);
+  };
+
+  onLikeResp(isLike) {
+    this.setState({ isLike: isLike });
+  }
+
+  onCommentButtonClicked() {
+    // not implemented
+    alert("댓글 표시 화면으로 이동");
   }
 
   render() {
@@ -96,14 +134,17 @@ export class ItemDetail extends React.Component {
           <TouchableOpacity
             style={{ width: 20, height: 20, marginRight: 15 }}
             activeOpacity={0.5}
-            onPress={() => alert("좋아요 표시 화면으로 이동")}
+            onPress={() => this.onLikeButtonClicked()}
           >
-            <Image style={{ width: 20, height: 20 }} source={BoneBlackImg} />
+            <Image
+              style={{ width: 20, height: 20 }}
+              source={this.state.isLike ? BoneSelectImg : BoneNoSelectImg}
+            />
           </TouchableOpacity>
           <TouchableOpacity
             style={{ width: 20, height: 20, marginRight: 15 }}
             activeOpacity={0.5}
-            onPress={() => alert("댓글 표시 화면으로 이동")}
+            onPress={() => this.onCommentButtonClicked()}
           >
             <Image style={{ width: 20, height: 20 }} source={ChatImg} />
           </TouchableOpacity>

@@ -2,7 +2,7 @@ import * as React from "react";
 import { TouchableOpacity, Text, View, Image } from "react-native";
 import { styles } from "./Styles";
 import {
-  BoneBlackImg,
+  BoneNoSelectImg,
   ChatImg,
   WritingButtonImg,
 } from "../../assets/ImageList";
@@ -50,7 +50,7 @@ export class MyPageItem extends React.Component {
         </Text>
         <Image
           style={{ height: 15, width: 15, marginLeft: 5, marginRight: 5 }}
-          source={BoneBlackImg}
+          source={BoneNoSelectImg}
         ></Image>
         <View style={{ width: "5%" }}>
           <Text style={{ fontFamily: "SCThin", fontSize: 10 }}>0</Text>

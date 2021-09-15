@@ -15,7 +15,7 @@ import UserInfo from "../Common/UserInfo";
 import { styles } from "./Styles";
 import { TutorialScreen } from "./TutorialScreen";
 import { validateEmail, validatePassword } from "../Common/CommonMethod";
-import { callApi, callApiToken } from "../Common/ApiHelper";
+import { callApi } from "../Common/ApiHelper";
 
 export var SignUpState = {
   SetEmailPw: 1,

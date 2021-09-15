@@ -1,7 +1,8 @@
 export const LogoImg = require("./images/logo.png");
 export const AnimalPawBlackImg = require("./images/AnimalPawBlack.png");
 export const AnimalPawGrayImg = require("./images/AnimalPawGray.png");
-export const BoneBlackImg = require("./images/BoneBlack.png");
+export const BoneNoSelectImg = require("./images/BoneNoSelect.png");
+export const BoneSelectImg = require("./images/BoneSelect.png");
 export const ChatImg = require("./images/Chat.png");
 export const BackButtonImg = require("./images/BackButton.png");
 export const AlarmImg = require("./images/AlarmWhite.png");
