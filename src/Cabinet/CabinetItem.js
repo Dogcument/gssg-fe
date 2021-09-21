@@ -76,7 +76,7 @@ export class CabinetItem extends React.Component {
                 marginRight: 10,
                 marginBottom: -15,
               }}
-              source={BoneNoSelectImg}
+              source={post.like ? BoneNoSelectImg : BoneNoSelectImg}
             ></Image>
             <Image
               style={{
