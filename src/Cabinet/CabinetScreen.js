@@ -4,8 +4,10 @@ import Modal from "react-native-modal";
 import { styles } from "./Styles";
 import { CabinetItem } from "./CabinetItem";
 import { ProtoWritings } from "../Common/ProtoWritings";
-import { callApi } from "../Common/ApiHelper";
+import { callApiToken } from "../Common/ApiHelper";
 import { ArrowDownImg, CloseCircleImg } from "../../assets/ImageList";
+import { UserInterfaceIdiom } from "expo-constants";
+import UserInfo from "../Common/UserInfo";
 
 let posts = null;
 export class CabinetScreen extends React.Component {
@@ -87,10 +89,11 @@ export class CabinetScreen extends React.Component {
   }
 
   reqGetPosts = async () => {
-    const resp = await callApi(
+    const userInfo = UserInfo.get();
+    const resp = await callApiToken(
       "posts" + "?" + "page=" + 0 + "&" + "size=" + 100,
       "GET",
-      null
+      userInfo.getJwt()
     );
     if (resp == null) {
       alert("posts GET 실패!");

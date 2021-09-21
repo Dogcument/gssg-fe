@@ -2,6 +2,8 @@ import UserInfo from "../Common/UserInfo";
 
 // Caution!
 // iOS needs https(SSL) by its policy. so, iOS cannot access.
+//const IP = "http://127.0.0.1"
+//const PORT = ":8080"
 const IP = "http://15.165.162.167"
 const PORT = ""
 
