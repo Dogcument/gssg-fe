@@ -6,7 +6,6 @@ import { CabinetItem } from "./CabinetItem";
 import { ProtoWritings } from "../Common/ProtoWritings";
 import { callApiToken } from "../Common/ApiHelper";
 import { ArrowDownImg, CloseCircleImg } from "../../assets/ImageList";
-import { UserInterfaceIdiom } from "expo-constants";
 import UserInfo from "../Common/UserInfo";
 
 let posts = null;
