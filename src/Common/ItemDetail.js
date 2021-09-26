@@ -49,8 +49,10 @@ export class ItemDetail extends React.Component {
   }
 
   onCommentButtonClicked() {
-    // not implemented
-    alert("댓글 표시 화면으로 이동");
+    const navigation = this.props.navigation;
+    navigation.navigate("Comment", {
+      id: this.props.post.id
+    });
   }
 
   render() {
