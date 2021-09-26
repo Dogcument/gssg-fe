@@ -8,6 +8,7 @@ import { TouchableOpacity, Image } from "react-native";
 import { ItemDetail } from "../Common/ItemDetail";
 import { BackButtonImg, AlarmImg, GearImg } from "../../assets/ImageList";
 import { ModifyAccountScreen } from "./ModifyAccountScreen";
+import { CommentScreen } from "../Common/CommentScreen";
 
 const Stack = createStackNavigator();
 
@@ -19,6 +20,9 @@ function MyPageStack({ navigation }) {
   );
   const ItemDetailComponent = ({ route }) => (
     <ItemDetail navigation={route.params.navigation} post={route.params.post} />
+  );
+  const CommentComponent = ({ route }) => (
+    <CommentScreen id={route.params.id} />
   );
 
   return (
@@ -109,6 +113,19 @@ function MyPageStack({ navigation }) {
           ),
         }}
       ></Stack.Screen>
+      <Stack.Screen
+        name="Comment"
+        component={CommentComponent}
+        options={{
+          title: "댓글",
+          headerBackImage: () => (
+            <Image
+              style={{ marginLeft: 20, width: 20, height: 20 }}
+              source={BackButtonImg}
+            ></Image>
+          ),
+        }}
+      />
     </Stack.Navigator>
   );
 }

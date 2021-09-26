@@ -5,6 +5,7 @@ import { CabinetScreen } from "./CabinetScreen";
 import { HeaderButtons } from "react-navigation-header-buttons";
 import { ItemDetail } from "../Common/ItemDetail";
 import { BackButtonImg } from "../../assets/ImageList";
+import { CommentScreen } from "../Common/CommentScreen";
 
 const Stack = createStackNavigator();
 
@@ -12,6 +13,9 @@ function CabinetStack({ navigation }) {
   const CabinetComponent = () => <CabinetScreen navigation={navigation} />;
   const ItemDetailComponent = ({ route }) => (
     <ItemDetail navigation={route.params.navigation} post={route.params.post} />
+  );
+  const CommentComponent = ({ route }) => (
+    <CommentScreen id={route.params.id} />
   );
 
   return (
@@ -60,6 +64,19 @@ function CabinetStack({ navigation }) {
         options={{
           title: "",
           headerBackTitleVisible: false,
+          headerBackImage: () => (
+            <Image
+              style={{ marginLeft: 20, width: 20, height: 20 }}
+              source={BackButtonImg}
+            ></Image>
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="Comment"
+        component={CommentComponent}
+        options={{
+          title: "댓글",
           headerBackImage: () => (
             <Image
               style={{ marginLeft: 20, width: 20, height: 20 }}
