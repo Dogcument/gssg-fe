@@ -2,7 +2,11 @@ import * as React from "react";
 import { TouchableOpacity, Text, View, Image } from "react-native";
 import { styles } from "./Styles";
 import { DogImages, getDogIndexByServerDogName } from "../Common/Dogs";
-import { BoneSelectImg, BoneNoSelectImg, ChatImg } from "../../assets/ImageList";
+import {
+  BoneSelectImg,
+  BoneNoSelectImg,
+  ChatImg,
+} from "../../assets/ImageList";
 import { getLocalizedTimeString } from "../Common/CommonMethod";
 
 var subject = "";

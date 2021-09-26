@@ -54,7 +54,7 @@ export default class UserInfo {
 
   tryToGetTempWriting = async () => {
     const tempWriting = await AsyncStorage.getItem("temp_writing");
-    if(tempWriting == undefined) {
+    if (tempWriting == undefined) {
       return;
     }
 
@@ -64,7 +64,7 @@ export default class UserInfo {
     } else {
       AsyncStorage.removeItem("temp_writing");
     }
-  }
+  };
 
   // Setter
   removeTokens() {
@@ -111,5 +111,5 @@ export default class UserInfo {
   // infiinite loop
   deleteJwt() {
     this.removeTokens();
-  };
+  }
 }

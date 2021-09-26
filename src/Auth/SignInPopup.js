@@ -64,14 +64,9 @@ export class SignInPopup extends React.Component {
 
   reqUserInfo = async () => {
     const userInfo = UserInfo.get();
-    const resp = await callApiToken(
-      "my",
-      "GET",
-      userInfo.getJwt(),
-      null
-    );
+    const resp = await callApiToken("my", "GET", userInfo.getJwt(), null);
 
-    if(resp == null) {
+    if (resp == null) {
       return;
     }
 

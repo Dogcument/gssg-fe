@@ -87,7 +87,7 @@ export class SignUpPopup extends React.Component {
     }
   }
 
-  reqSignUp = async() => {
+  reqSignUp = async () => {
     const resp = await callApi(
       "members",
       "POST",
@@ -96,20 +96,20 @@ export class SignUpPopup extends React.Component {
         password: pw,
         nickname: nickname,
         profileDogType: ServerDogs[this.state.selectedDog],
-        introduce: comment
+        introduce: comment,
       })
     );
 
     if (resp == null) {
       return;
     }
-    
+
     this.onSignUpSuccess();
-  }
+  };
 
   onIdPwDone() {
     this.setState({ signUpState: SignUpState.SetDog });
-  };
+  }
 
   reqSignIn = async () => {
     let result = await callApi(
@@ -202,7 +202,7 @@ export class SignUpPopup extends React.Component {
     if (!isValidPw) {
       alert("비밀번호가 형식에 맞지 않아요!");
       return;
-    }  
+    }
   }
 
   onEndPwCheckEditing() {
