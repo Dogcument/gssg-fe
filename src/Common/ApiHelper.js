@@ -69,7 +69,7 @@ export async function callApiToken(api, method, token, body) {
 export function errorHandle(json) {
   if (json.code != undefined) {
     if (json.code == "E1011") {
-      let userInfo = UserInfo.get();
+      let userInfo = UserInfo.instance;
       userInfo.deleteJwt();
       console.log("token is expired");
     } else {

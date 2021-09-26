@@ -26,7 +26,7 @@ export class ItemDetail extends React.Component {
 
   onLikeButtonClicked = async () => {
     const id = this.props.post.id;
-    const userInfo = UserInfo.get();
+    const userInfo = UserInfo.instance;
     const resp = await callApiToken(
       "posts/" + id + "/like",
       "POST",

@@ -30,7 +30,7 @@ export class SignInPopup extends React.Component {
   }
 
   onSignInSuccess(json) {
-    let userInfo = UserInfo.get();
+    let userInfo = UserInfo.instance;
     userInfo.setRefreshToken(json.refreshToken);
     userInfo.setJwt(json.jwt);
 
@@ -38,7 +38,7 @@ export class SignInPopup extends React.Component {
   }
 
   onReqUserInfoSuccess(json) {
-    let userInfo = UserInfo.get();
+    let userInfo = UserInfo.instance;
     userInfo.setNickName(json.nickName);
     userInfo.setComment(json.introduce);
     userInfo.setDog(json.profileDog);
@@ -63,7 +63,7 @@ export class SignInPopup extends React.Component {
   };
 
   reqUserInfo = async () => {
-    const userInfo = UserInfo.get();
+    const userInfo = UserInfo.instance;
     const resp = await callApiToken("my", "GET", userInfo.getJwt(), null);
 
     if (resp == null) {

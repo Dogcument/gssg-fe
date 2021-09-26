@@ -88,7 +88,7 @@ export class CabinetScreen extends React.Component {
   }
 
   reqGetPosts = async () => {
-    const userInfo = UserInfo.get();
+    const userInfo = UserInfo.instance;
     const resp = await callApiToken(
       "posts" + "?" + "page=" + 0 + "&" + "size=" + 100,
       "GET",

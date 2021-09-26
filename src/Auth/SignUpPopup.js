@@ -132,7 +132,7 @@ export class SignUpPopup extends React.Component {
   }
 
   onSignInSuccess(json) {
-    let userInfo = UserInfo.get();
+    let userInfo = UserInfo.instance;
     userInfo.setRefreshToken(json.refreshToken);
     userInfo.setJwt(json.jwt);
     this.setState({ signUpState: SignUpState.ShowTutorial });

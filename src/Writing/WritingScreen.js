@@ -27,7 +27,7 @@ export class WritingScreen extends React.Component {
   };
 
   tryToLoadTempWriting = async () => {
-    const userInfo = UserInfo.get();
+    const userInfo = UserInfo.instance;
     const tempWriting = await userInfo.tryToGetTempWriting();
     if (tempWriting != undefined) {
       content = tempWriting;
@@ -63,13 +63,13 @@ export class WritingScreen extends React.Component {
   onChangeText(inputText) {
     content = inputText;
 
-    const userInfo = UserInfo.get();
+    const userInfo = UserInfo.instance;
     userInfo.setTempWriting(content);
   }
 }
 
 async function RequestPost(navigation) {
-  const userInfo = UserInfo.get();
+  const userInfo = UserInfo.instance;
   const resp = await callApiToken(
     "posts",
     "POST",
