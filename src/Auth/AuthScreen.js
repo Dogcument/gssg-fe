@@ -17,7 +17,6 @@ export const SignUpState = {
   ShowTutorial: 3,
 };
 
-let accountInfo = null;
 export default class AuthScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -46,12 +45,7 @@ export default class AuthScreen extends React.Component {
   };
 
   reqLoadInfo = async (userInfo) => {
-    const resp = await callApiToken(
-      "my",
-      "GET",
-      userInfo.getJwt(),
-      null
-    );
+    const resp = await callApiToken("my", "GET", userInfo.getJwt(), null);
 
     if (resp == null) {
       return;
@@ -62,7 +56,7 @@ export default class AuthScreen extends React.Component {
     }
 
     this.onLoadInfoSuccess(resp);
-  }
+  };
 
   onLoadInfoSuccess(resp) {
     let userInfo = UserInfo.get();
@@ -73,7 +67,6 @@ export default class AuthScreen extends React.Component {
     this.state.loadInfoSuccess = true;
   }
 
-  // TODO : Tempcode - should be migrated to EncryptedStorage
   tryLoadInfo = async () => {
     const userInfo = UserInfo.get();
     const jwt = userInfo.getJwt();
@@ -109,23 +102,6 @@ export default class AuthScreen extends React.Component {
     alert("비밀번호 찾기 기능은 개발중입니다.");
   }
 
-  // TODO : EncryptedStorage does not support expo :(
-  // retrieveUserSession = async () => {
-  //   try {
-  //     const session = await EncryptedStorage.getItem("user_info");
-  //     if (session == undefined) {
-  //       console.error("로그인 정보가 없음");
-  //       this.state.isNewbie = true;
-  //     }
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-
-  //   setTimeout(() => {
-  //     this.setState({ isLoading: false });
-  //   }, 3000);
-  // };
-
   render() {
     if (this.state.goMainScreen) {
       return <MainScreen />;
@@ -156,7 +132,10 @@ export default class AuthScreen extends React.Component {
 
             {/* Sign In 팝업 */}
             <Modal isVisible={this.state.visibleModal === 1}>
-              <SignInPopup gotoMainScreen={this.gotoMainScreen} onSignUpButtonClicked={this.onSignUpButtonClicked} />
+              <SignInPopup
+                gotoMainScreen={this.gotoMainScreen}
+                onSignUpButtonClicked={this.onSignUpButtonClicked}
+              />
             </Modal>
             {/* Sign Up 팝업 */}
             <Modal isVisible={this.state.visibleModal === 2}>

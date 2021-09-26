@@ -20,9 +20,7 @@ export class MyPageItem extends React.Component {
     return (
       <TouchableOpacity
         style={[styles.itemContainer]}
-        onPress={() =>
-          OnMyPageItemClicked(navigation, post)
-        }
+        onPress={() => OnMyPageItemClicked(navigation, post)}
       >
         <Image
           source={WritingButtonImg}

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Image, View } from "react-native";
+import { Image } from "react-native";
 
 // screen component
 import WritingStack from "../Writing/WritingStack";

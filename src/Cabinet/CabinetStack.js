@@ -8,10 +8,6 @@ import { BackButtonImg } from "../../assets/ImageList";
 
 const Stack = createStackNavigator();
 
-function onHeaderClicked() {
-  CabinetScreen.onWritingsClicked();
-}
-
 function CabinetStack({ navigation }) {
   const CabinetComponent = () => <CabinetScreen navigation={navigation} />;
   const ItemDetailComponent = ({ route }) => (

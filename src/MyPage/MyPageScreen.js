@@ -5,10 +5,7 @@ import { MyPageItem } from "./MyPageItem";
 import { styles } from "./Styles";
 import { callApiToken } from "../Common/ApiHelper";
 import UserInfo from "../Common/UserInfo";
-import {
-  AlarmImg,
-  GearImg,
-} from "../../assets/ImageList";
+import { AlarmImg, GearImg } from "../../assets/ImageList";
 
 let posts = null;
 export class MyPageScreen extends React.Component {
@@ -77,25 +74,30 @@ export class MyPageScreen extends React.Component {
           }}
         >
           <Text
-            style={{ fontFamily: "SCBold", fontSize: 18.5, paddingLeft: 15, color: "#FFFFFF" }}
+            style={{
+              fontFamily: "SCBold",
+              fontSize: 18.5,
+              paddingLeft: 15,
+              color: "#FFFFFF",
+            }}
           >
             마이페이지
           </Text>
-          <View style={{flexDirection: 'row'}}>
-          <TouchableOpacity
-                style={[styles.FacebookStyle, { marginRight: 5 }]}
-                activeOpacity={0.5}
-                onPress={() => alert("개발중입니다.")}
-              >
-                <Image style={{width: 20, height: 20}} source={AlarmImg} />
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={[styles.FacebookStyle, { marginRight: 20 }]}
-                activeOpacity={0.5}
-                onPress={() => OnSettingButtonClicked(this.props.navigation)}
-              >
-                <Image style={{width: 20, height: 20}} source={GearImg} />
-              </TouchableOpacity>
+          <View style={{ flexDirection: "row" }}>
+            <TouchableOpacity
+              style={[styles.FacebookStyle, { marginRight: 5 }]}
+              activeOpacity={0.5}
+              onPress={() => alert("개발중입니다.")}
+            >
+              <Image style={{ width: 20, height: 20 }} source={AlarmImg} />
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={[styles.FacebookStyle, { marginRight: 20 }]}
+              activeOpacity={0.5}
+              onPress={() => OnSettingButtonClicked(this.props.navigation)}
+            >
+              <Image style={{ width: 20, height: 20 }} source={GearImg} />
+            </TouchableOpacity>
           </View>
         </View>
 

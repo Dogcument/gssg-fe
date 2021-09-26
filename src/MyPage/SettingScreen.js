@@ -6,8 +6,7 @@ import * as Update from "expo-updates";
 export class SettingScreen extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-    };
+    this.state = {};
   }
 
   deleteAccountInfo = async () => {
@@ -25,8 +24,10 @@ export class SettingScreen extends React.Component {
 
   onInfoCenterClicked() {
     try {
-      Linking.openURL("https://frill-trouser-3a3.notion.site/50f4371e71ee4bf68f1700b1f2042472");
-    } catch(error) {
+      Linking.openURL(
+        "https://frill-trouser-3a3.notion.site/50f4371e71ee4bf68f1700b1f2042472"
+      );
+    } catch (error) {
       console.error(error);
     }
   }

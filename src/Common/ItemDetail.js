@@ -138,7 +138,9 @@ export class ItemDetail extends React.Component {
           >
             <Image
               style={{ width: 20, height: 20 }}
-              source={post.like || this.state.isLike ? BoneSelectImg : BoneNoSelectImg}
+              source={
+                post.like || this.state.isLike ? BoneSelectImg : BoneNoSelectImg
+              }
             />
           </TouchableOpacity>
           <TouchableOpacity
