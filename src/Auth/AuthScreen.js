@@ -38,14 +38,15 @@ export default class AuthScreen extends React.Component {
 
     await UserInfo.init();
     this.tryLoadInfo();
+    setTimeout(this.closeLoadingScreen, 1500);
   };
 
   gotoMainScreen = () => {
     this.setState({ goMainScreen: true });
   };
 
-  reqLoadInfo = async (userInfo) => {
-    const resp = await callApiToken("my", "GET", userInfo.getJwt(), null);
+  reqLoadInfo = async (jwt) => {
+    const resp = await callApiToken("my", "GET", jwt, null);
 
     if (resp == null) {
       return;
@@ -71,13 +72,11 @@ export default class AuthScreen extends React.Component {
     const userInfo = UserInfo.instance;
     const jwt = userInfo.getJwt();
     if (jwt != null) {
-      this.reqLoadInfo(userInfo);
+      this.reqLoadInfo(jwt);
     }
-
-    setTimeout(this.onRetrieveUserSessionDone, 1500);
   };
 
-  onRetrieveUserSessionDone = () => {
+  closeLoadingScreen = () => {
     this.state.visibleModal = 1;
     this.setState({ isLoading: false });
   };

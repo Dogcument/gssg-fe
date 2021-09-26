@@ -1,6 +1,5 @@
 import AsyncStorage from "@react-native-community/async-storage";
 import moment from "moment";
-import { callApi } from "./ApiHelper";
 import { ServerDogs } from "./Dogs";
 export default class UserInfo {
   static instance = null;
@@ -105,7 +104,6 @@ export default class UserInfo {
     );
   }
 
-  // infiinite loop
   deleteJwt() {
     this.removeTokens();
   }
