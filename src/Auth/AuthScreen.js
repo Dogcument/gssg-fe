@@ -59,7 +59,7 @@ export default class AuthScreen extends React.Component {
   };
 
   onLoadInfoSuccess(resp) {
-    let userInfo = UserInfo.get();
+    let userInfo = UserInfo.instance;
     userInfo.setNickName(resp.nickName);
     userInfo.setComment(resp.introduce);
     userInfo.setDog(resp.profileDog);
@@ -68,7 +68,7 @@ export default class AuthScreen extends React.Component {
   }
 
   tryLoadInfo = async () => {
-    const userInfo = UserInfo.get();
+    const userInfo = UserInfo.instance;
     const jwt = userInfo.getJwt();
     if (jwt != null) {
       this.reqLoadInfo(userInfo);

@@ -6,7 +6,7 @@ import { DogImages } from "../Common/Dogs";
 
 export class MyPageProfile extends React.Component {
   render() {
-    const userInfo = UserInfo.get();
+    const userInfo = UserInfo.instance;
     const selectedDog = userInfo.getDog();
     const writingNum = this.props.writingNum;
 

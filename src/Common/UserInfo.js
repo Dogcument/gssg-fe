@@ -22,9 +22,6 @@ export default class UserInfo {
       }
     }
   };
-  static get() {
-    return this.instance;
-  }
 
   // Data
   _jwt = null;

@@ -24,7 +24,7 @@ export class MyPageScreen extends React.Component {
   }
 
   reqGetMyPosts = async () => {
-    const userInfo = UserInfo.get();
+    const userInfo = UserInfo.instance;
     const resp = await callApiToken(
       "my/posts" + "?" + "page=" + 0 + "&" + "size=" + 100,
       "GET",
