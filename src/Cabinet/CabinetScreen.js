@@ -103,8 +103,10 @@ export class CabinetScreen extends React.Component {
   };
 
   onGetPostsSuccess(resp) {
-    posts = resp.posts.content;
-    this.setState({ isLoad: true });
+    posts = resp.posts;
+    if (posts != undefined) {
+      this.setState({ isLoad: true });
+    }
   }
 
   showPosts(post) {
