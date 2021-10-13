@@ -40,7 +40,7 @@ export class MyPageScreen extends React.Component {
   };
 
   onGetMyPostsSuccess(resp) {
-    posts = resp.posts.content;
+    posts = resp.posts;
     this.setState({ isLoad: true });
   }
 
