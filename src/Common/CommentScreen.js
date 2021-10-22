@@ -80,10 +80,8 @@ export class CommentScreen extends React.Component {
   };
 
   onRespPostReply(resp) {
-    // 이거 처리를 어떻게 해야할지.
-    // 추가된 resp가 하나만 날라오는건지 확인 필요
-    // 전체가 나오는건가?
-    console.log(resp);
+    this.reqGetReply();
+    this.textInput.clear();
   }
 
   onRespGetReply(inReplies) {
@@ -133,6 +131,9 @@ export class CommentScreen extends React.Component {
         </ScrollView>
         <View>
           <TextInput
+            ref={(input) => {
+              this.textInput = input;
+            }}
             placeholder="여기에 입력"
             multiline={true}
             returnKeyType="default"
