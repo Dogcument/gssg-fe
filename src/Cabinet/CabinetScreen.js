@@ -33,7 +33,7 @@ export class CabinetScreen extends React.Component {
   renderSubjectButton = (text, onPress) => (
     <TouchableOpacity onPress={onPress} style={[styles.modalbutton]}>
       <Image
-        style={{ height: 12.5, width: 12.5, paddingRignt: 5 }}
+        style={{ height: 12.5, width: 12.5 }}
         source={ArrowDownImg}
       />
       <Text
