@@ -1,11 +1,12 @@
 import * as React from "react";
-import { View, ScrollView, Text, TouchableOpacity, Image } from "react-native";
+import { View, ScrollView, Text, TouchableOpacity, Image, Dimensions } from "react-native";
 import { MyPageProfile } from "./MyPageProfile";
 import { MyPageItem } from "./MyPageItem";
 import { styles } from "./Styles";
 import { callApiToken } from "../Common/ApiHelper";
 import UserInfo from "../Common/UserInfo";
 import { AlarmImg, GearImg } from "../../assets/ImageList";
+import { getStatusBarHeight } from "react-native-status-bar-height";
 
 let posts = null;
 export class MyPageScreen extends React.Component {
@@ -59,10 +60,12 @@ export class MyPageScreen extends React.Component {
       return <ScrollView></ScrollView>;
     }
 
+    const margin = getStatusBarHeight();
     return (
       <View style={{ flex: 1 }}>
         <View
           style={{
+            marginTop: margin,
             backgroundColor: "#ae9784",
             width: "100%",
             height: "8.5%",
