@@ -7,6 +7,7 @@ import { ProtoWritings } from "../Common/ProtoWritings";
 import { callApiToken } from "../Common/ApiHelper";
 import { ArrowDownImg, CloseCircleImg } from "../../assets/ImageList";
 import UserInfo from "../Common/UserInfo";
+import { getStatusBarHeight } from "react-native-status-bar-height";
 
 let posts = null;
 export class CabinetScreen extends React.Component {
@@ -32,10 +33,7 @@ export class CabinetScreen extends React.Component {
 
   renderSubjectButton = (text, onPress) => (
     <TouchableOpacity onPress={onPress} style={[styles.modalbutton]}>
-      <Image
-        style={{ height: 12.5, width: 12.5 }}
-        source={ArrowDownImg}
-      />
+      <Image style={{ height: 12.5, width: 12.5 }} source={ArrowDownImg} />
       <Text
         style={{
           fontFamily: "SCBold",
@@ -128,10 +126,12 @@ export class CabinetScreen extends React.Component {
       return <ScrollView></ScrollView>;
     }
 
+    const margin = getStatusBarHeight();
     return (
       <View style={{ flex: 1, justifyContent: "center" }}>
         <View
           style={{
+            marginTop: margin,
             backgroundColor: "#FFFFFF",
             width: "100%",
             height: "8.5%",
