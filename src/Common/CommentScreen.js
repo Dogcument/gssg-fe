@@ -5,6 +5,7 @@ import {
   TextInput,
   TouchableOpacity,
   Text,
+  KeyboardAvoidingView,
 } from "react-native";
 import { callApiToken } from "./ApiHelper";
 import UserInfo from "./UserInfo";
@@ -118,7 +119,10 @@ export class CommentScreen extends React.Component {
     }
 
     return (
-      <View>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === "web" ? "height" : "position"}
+        style={{ width: "100%", height: "100%" }}
+      >
         <SegmentedControlTab
           values={["좋아요 순", "시간 순"]}
           selectedIndex={this.state.selectedIndex}
@@ -143,7 +147,7 @@ export class CommentScreen extends React.Component {
             <Text>입 력</Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 }
