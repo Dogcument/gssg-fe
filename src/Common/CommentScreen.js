@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   Text,
   KeyboardAvoidingView,
+  Platform,
 } from "react-native";
 import { callApiToken } from "./ApiHelper";
 import UserInfo from "./UserInfo";
