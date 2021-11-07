@@ -20,7 +20,19 @@ class CommentComponent extends React.Component {
     super(props);
   }
 
+  reqCommentLike(isLike) {
+    
+  }
+
+  onLikeButtonClicked() {
+    const id = this.props.id;
+    console.log("댓글의 좋아요 눌럿다");
+  }
+
   render() {
+    // TODO - reflect Like Button
+    const amILike = this.props.like;
+
     const likeCount = this.props.likeCount;
     const comment = this.props.comment;
     const nickName = this.props.nickName;
@@ -34,6 +46,9 @@ class CommentComponent extends React.Component {
         <Text>{date}</Text>
         <Text>{profileDog}</Text>
         <Text>{comment}</Text>
+        <TouchableOpacity onPress={() => this.onLikeButtonClicked()}>
+          <Text>조아요✨</Text>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -100,9 +115,11 @@ export class CommentScreen extends React.Component {
   showReplies(value) {
     return (
       <CommentComponent
+        id={value.id}
         key={value.id}
         comment={value.content}
         likeCount={value.likeCount}
+        like={value.like}
         nickName={value.member.nickname}
         profileDog={value.member.profileDog}
         date={value.createdAt}
