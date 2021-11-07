@@ -25,9 +25,10 @@ export class WritingPrepareScreen extends React.Component {
   };
 
   reqGetTodaySubject = async () => {
-    const curTime = moment().format("YYYY-MM-DD");
+    const fromDate = moment().format("YYYY-MM-DD");
+    const toDate = moment().format("YYYY-MM-DD");
 
-    const resp = await callApi("subjects/date/" + curTime);
+    const resp = await callApi("subjects/?from=" + fromDate + "&to=" + toDate);
     if (resp == null) {
       alert("오늘의 글감을 가져오지 못했습니다.");
       return;
@@ -37,8 +38,9 @@ export class WritingPrepareScreen extends React.Component {
   };
 
   onGetTodaySubject(resp) {
-    const subject = resp.name;
-    const desc = resp.description;
+    const toDaySubject = resp[0];
+    const subject =toDaySubject.subject.name;
+    const desc = toDaySubject.subject.description;
     this.setState({ subject: subject, desc: desc });
   }
 
