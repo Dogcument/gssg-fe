@@ -18,21 +18,36 @@ let comment = null;
 class CommentComponent extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      isLike: this.props.like
+    };
   }
 
-  reqCommentLike(isLike) {
-    
-  }
+  reqCommentLike = async (id) => {
+    const userInfo = UserInfo.instance;
+    const resp = await callApiToken(
+      "replies/" + id + "/like",
+      "POST",
+      userInfo.getJwt(),
+      JSON.stringify({
+        postId: this.props.id,
+        content: comment,
+      })
+    );
+
+    if (!resp) {
+      alert("resp does not exist");
+    }
+
+    this.setState({ isLike: resp });
+  };
 
   onLikeButtonClicked() {
     const id = this.props.id;
-    console.log("댓글의 좋아요 눌럿다");
+    this.reqCommentLike(id);
   }
 
   render() {
-    // TODO - reflect Like Button
-    const amILike = this.props.like;
-
     const likeCount = this.props.likeCount;
     const comment = this.props.comment;
     const nickName = this.props.nickName;
