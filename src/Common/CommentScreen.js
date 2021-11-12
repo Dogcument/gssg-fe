@@ -19,7 +19,7 @@ class CommentComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLike: this.props.like
+      isLike: this.props.like,
     };
   }
 
@@ -35,7 +35,7 @@ class CommentComponent extends React.Component {
       })
     );
 
-    if (!resp) {
+    if (resp == null) {
       alert("resp does not exist");
     }
 
@@ -62,7 +62,7 @@ class CommentComponent extends React.Component {
         <Text>{profileDog}</Text>
         <Text>{comment}</Text>
         <TouchableOpacity onPress={() => this.onLikeButtonClicked()}>
-          <Text>조아요✨</Text>
+          <Text>{this.state.isLike ? "좋아하는중👻" : "안좋아하는중🙊"}</Text>
         </TouchableOpacity>
       </View>
     );
