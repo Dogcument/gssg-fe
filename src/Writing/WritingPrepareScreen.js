@@ -38,8 +38,12 @@ export class WritingPrepareScreen extends React.Component {
   };
 
   onGetTodaySubject(resp) {
+    if (0 == resp.length) {
+      alert("오늘의 글감이 비어있습니다!");
+      return;
+    }
     const toDaySubject = resp[0];
-    const subject =toDaySubject.subject.name;
+    const subject = toDaySubject.subject.name;
     const desc = toDaySubject.subject.description;
     this.setState({ subject: subject, desc: desc });
   }
