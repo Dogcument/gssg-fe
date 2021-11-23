@@ -40,6 +40,7 @@ class CommentComponent extends React.Component {
     }
 
     this.setState({ isLike: resp });
+    this.props.onCommentLikeButtonClicked();
   };
 
   onLikeButtonClicked() {
@@ -138,8 +139,13 @@ export class CommentScreen extends React.Component {
         nickName={value.member.nickname}
         profileDog={value.member.profileDog}
         date={value.createdAt}
+        onCommentLikeButtonClicked={this.onCommentLikeButtonClicked}
       />
     );
+  }
+
+  onCommentLikeButtonClicked = () => {
+    this.reqGetReply();
   }
 
   onCommentTextChanged(text) {
