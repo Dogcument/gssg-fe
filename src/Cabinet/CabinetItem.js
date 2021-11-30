@@ -1,13 +1,14 @@
 import * as React from "react";
 import { TouchableOpacity, Text, View, Image } from "react-native";
 import { styles } from "./Styles";
-import { DogImages, getDogIndexByServerDogName } from "../Common/Dogs";
+import { getDogIndexByServerDogName } from "../Common/Dogs";
 import {
   BoneSelectImg,
   BoneNoSelectImg,
   ChatImg,
 } from "../../assets/ImageList";
 import { getLocalizedTimeString } from "../Common/CommonMethod";
+import { ProfileComponent } from "../Common/ProfileComponent";
 
 var subject = "";
 
@@ -44,10 +45,7 @@ export class CabinetItem extends React.Component {
         <View style={{ height: 5 }}></View>
 
         <View style={[styles.ItemProfile]}>
-          <Image
-            style={[styles.ImageIconStyle]}
-            source={DogImages[dogIndex]}
-          ></Image>
+          <ProfileComponent dogIndex={dogIndex} navigation={navigation}/>
           <View style={{ flexDirection: "row", alignItems: "center", flex: 1 }}>
             <View
               style={{
