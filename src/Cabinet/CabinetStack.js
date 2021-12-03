@@ -3,7 +3,7 @@ import { Image, TouchableOpacity, Text } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { CabinetScreen } from "./CabinetScreen";
 import { HeaderButtons } from "react-navigation-header-buttons";
-import { ItemDetail } from "../Common/ItemDetail";
+import { ItemDetailScreen } from "../Common/ItemDetailScreen";
 import { BackButtonImg } from "../../assets/ImageList";
 import { CommentScreen } from "../Common/CommentScreen";
 
@@ -11,8 +11,8 @@ const Stack = createStackNavigator();
 
 function CabinetStack({ navigation }) {
   const CabinetComponent = () => <CabinetScreen navigation={navigation} />;
-  const ItemDetailComponent = ({ route }) => (
-    <ItemDetail navigation={route.params.navigation} post={route.params.post} />
+  const ItemDetailScreenComponent = ({ route }) => (
+    <ItemDetailScreen navigation={route.params.navigation} post={route.params.post} />
   );
   const CommentComponent = ({ route }) => (
     <CommentScreen id={route.params.id} />
@@ -59,8 +59,8 @@ function CabinetStack({ navigation }) {
         }}
       />
       <Stack.Screen
-        name="ItemDetail"
-        component={ItemDetailComponent}
+        name="ItemDetailScreen"
+        component={ItemDetailScreenComponent}
         options={{
           title: "",
           headerBackTitleVisible: false,

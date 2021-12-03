@@ -97,7 +97,7 @@ export class CabinetItem extends React.Component {
 }
 
 function OnCabinetItemClicked(navigation, post) {
-  navigation.navigate("ItemDetail", {
+  navigation.navigate("ItemDetailScreen", {
     navigation: navigation,
     post: post,
   });

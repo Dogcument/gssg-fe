@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Text, View, Image, TouchableOpacity } from "react-native";
 import { styles } from "./Styles";
-import { DogImages, getDogIndexByServerDogName } from "../Common/Dogs";
+import { getDogIndexByServerDogName } from "./Dogs";
 import { getLocalizedTimeString } from "./CommonMethod";
 import {
   BoneSelectImg,
@@ -10,8 +10,9 @@ import {
 } from "../../assets/ImageList";
 import { callApiToken } from "./ApiHelper";
 import UserInfo from "./UserInfo";
+import { ProfileComponent } from "./ProfileComponent";
 
-export class ItemDetail extends React.Component {
+export class ItemDetailScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -51,7 +52,7 @@ export class ItemDetail extends React.Component {
   onCommentButtonClicked() {
     const navigation = this.props.navigation;
     navigation.navigate("Comment", {
-      id: this.props.post.id
+      id: this.props.post.id,
     });
   }
 
@@ -105,10 +106,7 @@ export class ItemDetail extends React.Component {
             alignItems: "center",
           }}
         >
-          <Image
-            style={[styles.ImageStyle, { marginLeft: 15, marginRight: 15 }]}
-            source={DogImages[dogIndex]}
-          />
+          <ProfileComponent dogIndex={dogIndex} />
           <View
             style={([styles.profileView], { flexDirection: "row", flex: 1 })}
           >
