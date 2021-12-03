@@ -66,7 +66,7 @@ export class MyPageItem extends React.Component {
 }
 
 function OnMyPageItemClicked(navigation, post) {
-  navigation.navigate("ItemDetail", {
+  navigation.navigate("ItemDetailScreen", {
     navigation: navigation,
     post: post,
   });

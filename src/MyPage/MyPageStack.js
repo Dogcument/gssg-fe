@@ -5,7 +5,7 @@ import { MyPageScreen } from "./MyPageScreen";
 import { SettingScreen } from "./SettingScreen";
 import { styles } from "./Styles";
 import { TouchableOpacity, Image } from "react-native";
-import { ItemDetail } from "../Common/ItemDetail";
+import { ItemDetailScreen } from "../Common/ItemDetailScreen";
 import { BackButtonImg, AlarmImg, GearImg } from "../../assets/ImageList";
 import { ModifyAccountScreen } from "./ModifyAccountScreen";
 import { CommentScreen } from "../Common/CommentScreen";
@@ -18,8 +18,8 @@ function MyPageStack({ navigation }) {
   const ModifyAccountComponent = () => (
     <ModifyAccountScreen navigation={navigation} />
   );
-  const ItemDetailComponent = ({ route }) => (
-    <ItemDetail navigation={route.params.navigation} post={route.params.post} />
+  const ItemDetailScreenComponent = ({ route }) => (
+    <ItemDetailScreen navigation={route.params.navigation} post={route.params.post} />
   );
   const CommentComponent = ({ route }) => (
     <CommentScreen id={route.params.id} />
@@ -99,8 +99,8 @@ function MyPageStack({ navigation }) {
         }}
       ></Stack.Screen>
       <Stack.Screen
-        name="ItemDetail"
-        component={ItemDetailComponent}
+        name="ItemDetailScreen"
+        component={ItemDetailScreenComponent}
         options={{
           title: "",
           headerTitleAlign: "left",
