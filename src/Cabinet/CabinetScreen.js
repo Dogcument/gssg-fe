@@ -9,6 +9,17 @@ import { ArrowDownImg, CloseCircleImg } from "../../assets/ImageList";
 import UserInfo from "../Common/UserInfo";
 import { getStatusBarHeight } from "react-native-status-bar-height";
 
+const ModalTypeEnum = {
+  None: 0,
+  WritingSubject: 1,
+  Sorting: 2,
+};
+
+const SortingTypeEnum = {
+  Time: 0,
+  Like: 1,
+};
+
 let posts = null;
 export class CabinetScreen extends React.Component {
   constructor(props) {
@@ -16,14 +27,15 @@ export class CabinetScreen extends React.Component {
     this.state = {
       isLoad: false,
       subject: ProtoWritings[0],
-      visibleModal: null,
+      visibleModal: ModalTypeEnum.None,
+      sortingType: SortingTypeEnum.Like,
     };
 
-    this.reqGetPosts();
+    this.reqGetPosts(this.state.sortingType);
   }
 
   static onWritingsClicked = async () => {
-    this.setState({ visibleModal: 1 });
+    this.setState({ visibleModal: ModalTypeEnum.WritingSubject });
   };
 
   componentDidMount() {
@@ -31,7 +43,18 @@ export class CabinetScreen extends React.Component {
     navigation.setOptions({ tabBarVisible: true });
   }
 
-  renderSubjectButton = (text, onPress) => (
+  getSortingTypeText(sortingType) {
+    switch(sortingType) {
+      case SortingTypeEnum.Like:
+        return "좋아요 순";
+      case SortingTypeEnum.Time:
+        return "시간 순";
+      default:
+        return "????";
+    }
+  }
+
+  renderRightSideButton = (text, onPress) => (
     <TouchableOpacity onPress={onPress} style={[styles.modalbutton]}>
       <Image style={{ height: 12.5, width: 12.5 }} source={ArrowDownImg} />
       <Text
@@ -47,12 +70,49 @@ export class CabinetScreen extends React.Component {
     </TouchableOpacity>
   );
 
+  renderSortingMenus = () => {
+    return (
+      <View style={[styles.writingContentModal]}>
+        <View style={[styles.closeModalButton]}>
+          <TouchableOpacity
+            onPress={() => this.setState({ visibleModal: ModalTypeEnum.None })}
+          >
+            <Image
+              style={{ width: 20, height: 20, margin: -5 }}
+              source={CloseCircleImg}
+              position="absolute"
+            ></Image>
+          </TouchableOpacity>
+        </View>
+        
+        <TouchableOpacity
+          key={1}
+          style={{ height: 40 }}
+          onPress={() => this.onSortingTypeClicked(SortingTypeEnum.Like)}
+        >
+          <Text style={{ fontFamily: "SCBold", textAlign: "center" }}>
+            좋아요 순
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          key={2}
+          style={{ height: 40 }}
+          onPress={() => this.onSortingTypeClicked(SortingTypeEnum.Time)}
+        >
+          <Text style={{ fontFamily: "SCBold", textAlign: "center" }}>
+            시간 순
+          </Text>
+        </TouchableOpacity>
+      </View>
+    );
+  };
+
   renderWritingContent() {
     return (
       <View style={[styles.writingContentModal]}>
         <View style={[styles.closeModalButton]}>
           <TouchableOpacity
-            onPress={() => this.setState({ visibleModal: null })}
+            onPress={() => this.setState({ visibleModal: ModalTypeEnum.None })}
           >
             <Image
               style={{ width: 20, height: 20, margin: -5 }}
@@ -82,16 +142,33 @@ export class CabinetScreen extends React.Component {
   onWritingSubjectClicked(subject) {
     console.log(subject);
     this.state.subject = subject;
-    this.setState({ visibleModal: subject });
+    this.setState({ visibleModal: ModalTypeEnum.None });
   }
 
-  reqGetPosts = async () => {
+  onSortingTypeClicked(sortingType) {
+    this.state.sortingType = sortingType;
+    this.state.visibleModal = ModalTypeEnum.None;
+    this.reqGetPosts(sortingType);
+  }
+
+  reqGetPosts = async (sortType) => {
     const userInfo = UserInfo.instance;
+    var sortTypeStr;
+    switch(sortType) {
+      case SortingTypeEnum.Like:
+        sortTypeStr = "LIKE_COUNT";
+        break;
+      case SortingTypeEnum.Time:
+        sortTypeStr = "ID";
+        break;
+    }
+
     const resp = await callApiToken(
-      "posts" + "?" + "page=" + 0 + "&" + "size=" + 100,
+      "posts" + "?" + "size=" + 100 + "&" + "sortType=" + sortTypeStr,
       "GET",
       userInfo.getJwt()
     );
+
     if (resp == null) {
       alert("posts GET 실패!");
       return;
@@ -147,16 +224,25 @@ export class CabinetScreen extends React.Component {
           >
             보관함
           </Text>
-          <View style={{ paddingRight: 15 }}>
-            {this.renderSubjectButton(this.state.subject, () =>
-              this.setState({ visibleModal: 1 })
+          <View style={{ paddingRight: 3 }}>
+            {this.renderRightSideButton(this.state.subject, () =>
+              this.setState({ visibleModal: ModalTypeEnum.WritingSubject })
+            )}
+          </View>
+          <View style={{ paddingRight: 3 }}>
+            {this.renderRightSideButton(this.getSortingTypeText(this.state.sortingType), () =>
+              this.setState({ visibleModal: ModalTypeEnum.Sorting })
             )}
           </View>
         </View>
         <ScrollView>{posts.map((value) => this.showPosts(value))}</ScrollView>
 
-        <Modal isVisible={this.state.visibleModal === 1}>
+        <Modal isVisible={this.state.visibleModal === ModalTypeEnum.WritingSubject}>
           {this.renderWritingContent()}
+        </Modal>
+
+        <Modal isVisible={this.state.visibleModal === ModalTypeEnum.Sorting}>
+          {this.renderSortingMenus()}
         </Modal>
       </View>
     );
