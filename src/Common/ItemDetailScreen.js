@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Text, View, Image, TouchableOpacity } from "react-native";
-import { styles } from "./Styles";
+import { commonStyles } from "./Styles";
 import { getDogIndexByServerDogName } from "./Dogs";
 import { getLocalizedTimeString } from "./CommonMethod";
 import {
@@ -108,7 +108,7 @@ export class ItemDetailScreen extends React.Component {
         >
           <ProfileComponent dogIndex={dogIndex} />
           <View
-            style={([styles.profileView], { flexDirection: "row", flex: 1 })}
+            style={([commonStyles.profileView], { flexDirection: "row", flex: 1 })}
           >
             <View
               style={{

@@ -7,10 +7,15 @@ import {
   Text,
   KeyboardAvoidingView,
   Platform,
+  Image,
 } from "react-native";
+import Modal from "react-native-modal";
 import { callApiToken } from "./ApiHelper";
 import UserInfo from "./UserInfo";
-import SegmentedControlTab from "react-native-segmented-control-tab";
+import { styles } from "../Cabinet/Styles";
+import { commonStyles } from "./Styles";
+import { ArrowDownImg, CloseCircleImg } from "../../assets/ImageList";
+import { SortingTypeEnum, getSortingTypeText } from "../Common/CommonMethod";
 
 let replies = null;
 let comment = null;
@@ -75,16 +80,27 @@ export class CommentScreen extends React.Component {
     super(props);
     this.state = {
       respReplyFinished: false,
-      selectedIndex: 0,
+      visibleModal: false,
+      sortingType: SortingTypeEnum.Time,
     };
-    this.reqGetReply();
+    this.reqGetReply(SortingTypeEnum.Time);
   }
 
-  reqGetReply = async () => {
+  reqGetReply = async (sortingType) => {
     const id = this.props.id;
     const userInfo = UserInfo.instance;
+    var sortTypeStr;
+    switch(sortingType) {
+      case SortingTypeEnum.Like:
+        sortTypeStr = "LIKE_COUNT";
+        break;
+      case SortingTypeEnum.Time:
+        sortTypeStr = "ID";
+        break;
+    }
+
     const resp = await callApiToken(
-      "posts/" + id + "/replies",
+      "posts/" + id + "/replies?" + "size=10&" + "sortType=" + sortTypeStr,
       "GET",
       userInfo.getJwt()
     );
@@ -113,7 +129,7 @@ export class CommentScreen extends React.Component {
   };
 
   onRespPostReply(resp) {
-    this.reqGetReply();
+    this.reqGetReply(this.state.sortingType);
     this.textInput.clear();
   }
 
@@ -121,12 +137,6 @@ export class CommentScreen extends React.Component {
     replies = inReplies;
     this.setState({ respReplyFinished: true });
   }
-
-  onTabSelected = (index) => {
-    this.setState({
-      selectedIndex: index,
-    });
-  };
 
   showReplies(value) {
     return (
@@ -145,13 +155,72 @@ export class CommentScreen extends React.Component {
   }
 
   onCommentLikeButtonClicked = () => {
-    this.reqGetReply();
-  }
+    this.reqGetReply(this.state.sortingType);
+  };
 
   onCommentTextChanged(text) {
     comment = text;
   }
 
+  renderRightSideButton = (text, onPress) => (
+    <TouchableOpacity onPress={onPress} style={styles.modalbutton}>
+      <Image style={{ height: 12.5, width: 12.5 }} source={ArrowDownImg} />
+      <Text
+        style={{
+          fontFamily: "SCBold",
+          fontSize: 17.5,
+          paddingLeft: 10,
+          textAlign: "center",
+        }}
+      >
+        {text}
+      </Text>
+    </TouchableOpacity>
+  );
+
+  onSortingTypeClicked(sortingType) {
+    this.state.sortingType = sortingType;
+    this.state.visibleModal = false;
+    this.reqGetReply(sortingType);
+  }
+
+  renderSortingMenus = () => {
+    return (
+      <View style={[commonStyles.writingContentModal]}>
+        <View style={[commonStyles.closeModalButton]}>
+          <TouchableOpacity
+            onPress={() => this.setState({ visibleModal: false })}
+          >
+            <Image
+              style={{ width: 20, height: 20, margin: -5 }}
+              source={CloseCircleImg}
+              position="absolute"
+            ></Image>
+          </TouchableOpacity>
+        </View>
+        
+        <TouchableOpacity
+          key={1}
+          style={{ height: 40 }}
+          onPress={() => this.onSortingTypeClicked(SortingTypeEnum.Like)}
+        >
+          <Text style={{ fontFamily: "SCBold", textAlign: "center" }}>
+            좋아요 순
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          key={2}
+          style={{ height: 40 }}
+          onPress={() => this.onSortingTypeClicked(SortingTypeEnum.Time)}
+        >
+          <Text style={{ fontFamily: "SCBold", textAlign: "center" }}>
+            시간 순
+          </Text>
+        </TouchableOpacity>
+      </View>
+    );
+  }
+  
   render() {
     if (!this.state.respReplyFinished) {
       return <View />;
@@ -162,11 +231,12 @@ export class CommentScreen extends React.Component {
         behavior={Platform.OS === "web" ? "height" : "position"}
         style={{ width: "100%", height: "100%" }}
       >
-        <SegmentedControlTab
-          values={["좋아요 순", "시간 순"]}
-          selectedIndex={this.state.selectedIndex}
-          onTabPress={this.onTabSelected}
-        />
+        <View style={{ paddingRight: 3 }}>
+          {this.renderRightSideButton(
+            getSortingTypeText(this.state.sortingType),
+            () => this.setState({ visibleModal: true })
+          )}
+        </View>
         <ScrollView>
           {replies.length == 0
             ? null
@@ -186,6 +256,9 @@ export class CommentScreen extends React.Component {
             <Text>입 력</Text>
           </TouchableOpacity>
         </View>
+        <Modal isVisible={this.state.visibleModal == true}>
+          {this.renderSortingMenus()}
+        </Modal>
       </KeyboardAvoidingView>
     );
   }
