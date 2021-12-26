@@ -10,6 +10,22 @@ export function validateEmail(email) {
   return re.test(String(email).toLowerCase());
 }
 
+export const SortingTypeEnum = {
+  Time: 0,
+  Like: 1,
+};
+
+export function getSortingTypeText(sortingType) {
+  switch(sortingType) {
+    case SortingTypeEnum.Like:
+      return "좋아요 순";
+    case SortingTypeEnum.Time:
+      return "시간 순";
+    default:
+      return "????";
+  }
+}
+
 // From
 // https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=vucket&logNo=220930066224
 /*

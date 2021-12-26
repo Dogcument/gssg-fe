@@ -2,22 +2,19 @@ import React from "react";
 import { ScrollView, TouchableOpacity, Text, View, Image } from "react-native";
 import Modal from "react-native-modal";
 import { styles } from "./Styles";
+import { commonStyles } from "../Common/Styles";
 import { CabinetItem } from "./CabinetItem";
 import { ProtoWritings } from "../Common/ProtoWritings";
 import { callApiToken } from "../Common/ApiHelper";
 import { ArrowDownImg, CloseCircleImg } from "../../assets/ImageList";
 import UserInfo from "../Common/UserInfo";
 import { getStatusBarHeight } from "react-native-status-bar-height";
+import { SortingTypeEnum, getSortingTypeText } from "../Common/CommonMethod";
 
 const ModalTypeEnum = {
   None: 0,
   WritingSubject: 1,
   Sorting: 2,
-};
-
-const SortingTypeEnum = {
-  Time: 0,
-  Like: 1,
 };
 
 let posts = null;
@@ -43,17 +40,6 @@ export class CabinetScreen extends React.Component {
     navigation.setOptions({ tabBarVisible: true });
   }
 
-  getSortingTypeText(sortingType) {
-    switch(sortingType) {
-      case SortingTypeEnum.Like:
-        return "좋아요 순";
-      case SortingTypeEnum.Time:
-        return "시간 순";
-      default:
-        return "????";
-    }
-  }
-
   renderRightSideButton = (text, onPress) => (
     <TouchableOpacity onPress={onPress} style={[styles.modalbutton]}>
       <Image style={{ height: 12.5, width: 12.5 }} source={ArrowDownImg} />
@@ -72,8 +58,8 @@ export class CabinetScreen extends React.Component {
 
   renderSortingMenus = () => {
     return (
-      <View style={[styles.writingContentModal]}>
-        <View style={[styles.closeModalButton]}>
+      <View style={[commonStyles.writingContentModal]}>
+        <View style={[commonStyles.closeModalButton]}>
           <TouchableOpacity
             onPress={() => this.setState({ visibleModal: ModalTypeEnum.None })}
           >
@@ -230,7 +216,7 @@ export class CabinetScreen extends React.Component {
             )}
           </View>
           <View style={{ paddingRight: 3 }}>
-            {this.renderRightSideButton(this.getSortingTypeText(this.state.sortingType), () =>
+            {this.renderRightSideButton(getSortingTypeText(this.state.sortingType), () =>
               this.setState({ visibleModal: ModalTypeEnum.Sorting })
             )}
           </View>
