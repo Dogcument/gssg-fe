@@ -1,12 +1,12 @@
 import * as React from "react";
-import { View, ScrollView, Text, TouchableOpacity, Image, Dimensions } from "react-native";
-import { MyPageProfile } from "./MyPageProfile";
+import { View, ScrollView, Text, TouchableOpacity, Image } from "react-native";
 import { MyPageItem } from "./MyPageItem";
 import { styles } from "./Styles";
 import { callApiToken } from "../Common/ApiHelper";
 import UserInfo from "../Common/UserInfo";
 import { AlarmImg, GearImg } from "../../assets/ImageList";
 import { getStatusBarHeight } from "react-native-status-bar-height";
+import { DogImages } from "../Common/Dogs";
 
 let posts = null;
 export class MyPageScreen extends React.Component {
@@ -54,6 +54,111 @@ export class MyPageScreen extends React.Component {
       />
     );
   }
+
+  renderUserProfile = (writingNum) => {
+    const userInfo = UserInfo.instance;
+    const selectedDog = userInfo.getDog();
+    return (
+      <View style={[styles.profileContainer]}>
+        <View
+          style={{
+            flexDirection: "row",
+            flex: 7,
+            marginLeft: "2.5%",
+            marginRight: "2.5%",
+            alignItems: "center",
+            justifyContent: "space-around",
+          }}
+        >
+          <View
+            style={{ flex: 2, flexDirection: "column", alignItems: "center" }}
+          >
+            <Text
+              style={{
+                fontFamily: "SCBold",
+                fontSize: 12,
+                marginBottom: 5,
+                color: "#FFFFFF",
+              }}
+            >
+              Writing
+            </Text>
+            <Text
+              style={{
+                fontFamily: "SCThin",
+                fontSize: 20,
+                fontWeight: "bold",
+                color: "#FFFFFF",
+              }}
+            >
+              {writingNum}
+            </Text>
+          </View>
+          <Image
+            style={([styles.profileImageStyle], { flex: 6 })}
+            resizeMode="contain"
+            source={DogImages[selectedDog]}
+          />
+          <View
+            style={{ flex: 2, flexDirection: "column", alignItems: "center" }}
+          >
+            <Text
+              style={{
+                fontFamily: "SCBold",
+                fontSize: 12,
+                marginBottom: 5,
+                color: "#FFFFFF",
+              }}
+            >
+              Follower
+            </Text>
+            <Text
+              style={{
+                fontFamily: "SCThin",
+                fontSize: 20,
+                fontWeight: "bold",
+                color: "#FFFFFF",
+              }}
+            >
+              0
+            </Text>
+          </View>
+        </View>
+        <View
+          style={{
+            width: " 90%",
+            marginLeft: "5%",
+            marginTop: "7.5%",
+            flexDirection: "column",
+            flex: 3,
+            alignItems: "center",
+          }}
+        >
+          <Text
+            style={{
+              fontFamily: "SCBold",
+              marginLeft: 10,
+              fontSize: 20,
+              color: "#FFFFFF",
+            }}
+          >
+            {userInfo.getNickName()}
+          </Text>
+          <Text
+            style={{
+              fontFamily: "SCThin",
+              marginLeft: 10,
+              marginTop: 5,
+              fontSize: 15,
+              color: "#FFFFFF",
+            }}
+          >
+            {userInfo.getComment()}
+          </Text>
+        </View>
+      </View>
+    );
+  };
 
   render() {
     if (!this.state.isLoad) {
@@ -106,7 +211,8 @@ export class MyPageScreen extends React.Component {
 
         {/* Fixed Line */}
         <View>
-          <MyPageProfile writingNum={posts.length} />
+          {/* <MyPageProfile writingNum={posts.length} /> */}
+          {this.renderUserProfile(posts.length)}
         </View>
         {/* Fixed Line */}
         <ScrollView showsVerticalScrollIndicator={false}>
