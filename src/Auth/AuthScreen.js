@@ -61,7 +61,7 @@ export default class AuthScreen extends React.Component {
 
   onLoadInfoSuccess(resp) {
     let userInfo = UserInfo.instance;
-    userInfo.setNickName(resp.nickName);
+    userInfo.setNickName(resp.nickname);
     userInfo.setComment(resp.introduce);
     userInfo.setDog(resp.profileDog);
 

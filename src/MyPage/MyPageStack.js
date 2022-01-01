@@ -1,7 +1,7 @@
 import * as React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { HeaderButtons } from "react-navigation-header-buttons";
-import { MyPageScreen } from "./MyPageScreen";
+import { ProfileScreen } from "../Profile/ProfileScreen";
 import { SettingScreen } from "./SettingScreen";
 import { styles } from "./Styles";
 import { TouchableOpacity, Image } from "react-native";
@@ -9,11 +9,17 @@ import { ItemDetailScreen } from "../Common/ItemDetailScreen";
 import { BackButtonImg, AlarmImg, GearImg } from "../../assets/ImageList";
 import { ModifyAccountScreen } from "./ModifyAccountScreen";
 import { CommentScreen } from "../Common/CommentScreen";
+import UserInfo from "../Common/UserInfo";
 
 const Stack = createStackNavigator();
 
 function MyPageStack({ navigation }) {
-  const MyPageComponent = () => <MyPageScreen navigation={navigation} />;
+  const ProfileComponent = () => (
+    <ProfileScreen
+      navigation={navigation}
+      userName={UserInfo.instance.getNickName()}
+    />
+  );
   const SettingComponent = () => <SettingScreen navigation={navigation} />;
   const ModifyAccountComponent = () => (
     <ModifyAccountScreen navigation={navigation} />
@@ -25,14 +31,15 @@ function MyPageStack({ navigation }) {
     <CommentScreen id={route.params.id} />
   );
 
+  const userName = UserInfo.instance.getNickName();
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="MyPage"
-        component={MyPageComponent}
+        name="Profile"
+        component={ProfileComponent}
         options={{
-          title: "마이페이지",
-          headerShown: false,
+          title: userName,
+          headerShown: true,
           headerTitleStyle: {
             fontFamily: "SCBold",
             color: "#FFFFFF",
@@ -41,7 +48,7 @@ function MyPageStack({ navigation }) {
             backgroundColor: "#ae9784",
             shadowColor: "transparent",
           },
-          headerTitleAlign: "left",
+          headerTitleAlign: "center",
           headerRight: () => (
             <HeaderButtons>
               <TouchableOpacity
