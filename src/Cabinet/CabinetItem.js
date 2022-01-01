@@ -45,11 +45,7 @@ export class CabinetItem extends React.Component {
         <View style={{ height: 5 }}></View>
 
         <View style={[styles.ItemProfile]}>
-          <ProfileComponent
-            dogIndex={dogIndex}
-            navigation={navigation}
-            userName={writer.nickname}
-          />
+          <ProfileComponent dogIndex={dogIndex} navigation={navigation}/>
           <View style={{ flexDirection: "row", alignItems: "center", flex: 1 }}>
             <View
               style={{

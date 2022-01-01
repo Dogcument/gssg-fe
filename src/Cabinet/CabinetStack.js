@@ -5,7 +5,6 @@ import { CabinetScreen } from "./CabinetScreen";
 import { ItemDetailScreen } from "../Common/ItemDetailScreen";
 import { BackButtonImg } from "../../assets/ImageList";
 import { CommentScreen } from "../Common/CommentScreen";
-import { ProfileScreen } from "../Profile/ProfileScreen";
 
 const Stack = createStackNavigator();
 
@@ -19,12 +18,6 @@ function CabinetStack({ navigation }) {
   );
   const CommentComponent = ({ route }) => (
     <CommentScreen id={route.params.id} />
-  );
-  const ProfileScreenComponent = ({ route }) => (
-    <ProfileScreen
-      navigation={route.params.navigation}
-      userName={route.params.userName}
-    />
   );
 
   return (
@@ -62,28 +55,6 @@ function CabinetStack({ navigation }) {
             ></Image>
           ),
         }}
-      />
-      <Stack.Screen
-        name="ProfileScreen"
-        component={ProfileScreenComponent}
-        options={({ route }) => ({
-          title: route.params.userName,
-          headerTitleAlign: "center",
-          headerTitleStyle: {
-            fontFamily: "SCBold",
-            color: "#FFFFFF",
-          },
-          headerStyle: {
-            backgroundColor: "#ae9784",
-            shadowColor: "transparent",
-          },
-          headerBackImage: () => (
-            <Image
-              style={{ marginLeft: 20, width: 20, height: 20 }}
-              source={BackButtonImg}
-            ></Image>
-          ),
-        })}
       />
     </Stack.Navigator>
   );

@@ -106,15 +106,9 @@ export class ItemDetailScreen extends React.Component {
             alignItems: "center",
           }}
         >
-          <ProfileComponent
-            dogIndex={dogIndex}
-            userName={writer.nickname}
-            navigation={this.props.navigation}
-          />
+          <ProfileComponent dogIndex={dogIndex} />
           <View
-            style={
-              ([commonStyles.profileView], { flexDirection: "row", flex: 1 })
-            }
+            style={([commonStyles.profileView], { flexDirection: "row", flex: 1 })}
           >
             <View
               style={{
@@ -144,7 +138,9 @@ export class ItemDetailScreen extends React.Component {
           >
             <Image
               style={{ width: 20, height: 20 }}
-              source={this.state.isLike ? BoneSelectImg : BoneNoSelectImg}
+              source={
+                this.state.isLike ? BoneSelectImg : BoneNoSelectImg
+              }
             />
           </TouchableOpacity>
           <TouchableOpacity
