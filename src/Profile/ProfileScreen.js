@@ -1,7 +1,7 @@
 import * as React from "react";
 import { View, ScrollView, Text, TouchableOpacity, Image } from "react-native";
-import { MyPageItem } from "./MyPageItem";
-import { styles } from "./Styles";
+import { MyPageItem } from "../MyPage/MyPageItem";
+import { styles } from "../MyPage/Styles";
 import { callApiToken } from "../Common/ApiHelper";
 import UserInfo from "../Common/UserInfo";
 import { AlarmImg, GearImg } from "../../assets/ImageList";
@@ -9,14 +9,18 @@ import { getStatusBarHeight } from "react-native-status-bar-height";
 import { DogImages } from "../Common/Dogs";
 
 let posts = null;
-export class MyPageScreen extends React.Component {
+export class ProfileScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       isLoad: false,
     };
 
-    this.reqGetMyPosts();
+    if (this.props.userName == null) {
+      alert("ProfileScreen: this.props.userName is null");
+      return;
+    }
+    this.reqGetPosts(this.props.userName);
   }
 
   componentDidMount() {
@@ -24,23 +28,30 @@ export class MyPageScreen extends React.Component {
     navigation.setOptions({ tabBarVisible: true });
   }
 
-  reqGetMyPosts = async () => {
+  reqGetPosts = async (userName) => {
     const userInfo = UserInfo.instance;
-    const resp = await callApiToken(
-      "my/posts" + "?" + "page=" + 0 + "&" + "size=" + 100,
-      "GET",
-      userInfo.getJwt(),
-      null
-    );
-    if (resp == null) {
-      alert("posts GET 실패!");
-      return;
+
+    var resp = null;
+    if (userInfo.getNickName() == userName) {
+      resp = await callApiToken(
+        "my/posts" + "?" + "page=" + 0 + "&" + "size=" + 100,
+        "GET",
+        userInfo.getJwt(),
+        null
+      );
+      if (resp == null) {
+        alert("posts GET 실패!");
+        return;
+      }
+    } else {
+      // TODO
+      // Need to make a `getOtherUserPosts`
     }
 
-    this.onGetMyPostsSuccess(resp);
+    this.onGetPostsDone(resp);
   };
 
-  onGetMyPostsSuccess(resp) {
+  onGetPostsDone(resp) {
     posts = resp.posts;
     this.setState({ isLoad: true });
   }
@@ -168,7 +179,7 @@ export class MyPageScreen extends React.Component {
     const margin = getStatusBarHeight();
     return (
       <View style={{ flex: 1 }}>
-        <View
+        {/* <View
           style={{
             marginTop: margin,
             backgroundColor: "#ae9784",
@@ -207,7 +218,7 @@ export class MyPageScreen extends React.Component {
               <Image style={{ width: 20, height: 20 }} source={GearImg} />
             </TouchableOpacity>
           </View>
-        </View>
+        </View> */}
 
         {/* Fixed Line */}
         <View>
