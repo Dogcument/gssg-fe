@@ -2,21 +2,30 @@ import React from "react";
 import { TouchableOpacity, Image } from "react-native";
 import { DogImages } from "./Dogs";
 import { styles } from "../Cabinet/Styles";
-import { MyPageScreen } from "../MyPage/MyPageScreen";
 
 export class ProfileComponent extends React.Component {
+  constructor(props) {
+    super(props);
+
+    if (this.props.userName == null) {
+      alert("ProfileComponent: `userName` props does not exist.")
+      return;
+    }
+    if (this.props.navigation == null) {
+      alert("ProfileComponent: `navigation` props does not exist.");
+      return;
+    }
+    if(this.props.dogIndex == null) {
+      alert("ProfileComponent: `dogIndex` props does not exist.");
+      return;
+    }
+  }
+
   moveToProfilePage() {
-    const navigation = this.props.navigation;
-
-    // Gunny 
-    // TODO
-    // MypageScreen refectoring
-
-    // navigation.navigate("MyPageScreen", {
-    //   navigation: navigation,
-    //   //post: post,
-    // });
-    alert("프로필페이지로 이동");
+    this.props.navigation.navigate("ProfileScreen", {
+      navigation: this.props.navigation,
+      userName: this.props.userName,
+    });
   }
 
   onClicked() {
