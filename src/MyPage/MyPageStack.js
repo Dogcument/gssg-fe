@@ -14,10 +14,13 @@ import UserInfo from "../Common/UserInfo";
 const Stack = createStackNavigator();
 
 function MyPageStack({ navigation }) {
+  const userInfo = UserInfo.instance;
+  const userName = userInfo.getNickName();
+
   const ProfileComponent = () => (
     <ProfileScreen
       navigation={navigation}
-      userName={UserInfo.instance.getNickName()}
+      userName={userName}
     />
   );
   const SettingComponent = () => <SettingScreen navigation={navigation} />;
@@ -31,7 +34,6 @@ function MyPageStack({ navigation }) {
     <CommentScreen id={route.params.id} />
   );
 
-  const userName = UserInfo.instance.getNickName();
   return (
     <Stack.Navigator>
       <Stack.Screen
