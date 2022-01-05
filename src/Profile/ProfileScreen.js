@@ -13,6 +13,7 @@ export class ProfileScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      nickname: this.props.userName,
       isLoad: false,
     };
 
@@ -44,8 +45,22 @@ export class ProfileScreen extends React.Component {
         return;
       }
     } else {
-      // TODO
-      // Need to make a `getOtherUserPosts`
+      resp = await callApiToken(
+        "member/post/" +
+          "?" +
+          "nickname=" +
+          userName +
+          "&" +
+          "size=" +
+          100,
+        "GET",
+        userInfo.getJwt(),
+        null
+      );
+      if (resp == null) {
+        alert("posts GET 실패!");
+        return;
+      }
     }
 
     this.onGetPostsDone(resp);
@@ -153,7 +168,7 @@ export class ProfileScreen extends React.Component {
               color: "#FFFFFF",
             }}
           >
-            {userInfo.getNickName()}
+            {this.state.nickname}
           </Text>
           <Text
             style={{
