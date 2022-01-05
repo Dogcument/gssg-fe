@@ -2,7 +2,7 @@ import * as React from "react";
 import { View, ScrollView, Text, TouchableOpacity, Image } from "react-native";
 import { MyPageItem } from "../MyPage/MyPageItem";
 import { styles } from "../MyPage/Styles";
-import { callApiToken } from "../Common/ApiHelper";
+import { callApi, callApiToken } from "../Common/ApiHelper";
 import UserInfo from "../Common/UserInfo";
 import { AlarmImg, GearImg } from "../../assets/ImageList";
 import { getStatusBarHeight } from "react-native-status-bar-height";
@@ -13,7 +13,12 @@ export class ProfileScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      // userinfo
       nickname: this.props.userName,
+      intro: null,
+      dog: null,
+
+      // state
       isLoad: false,
     };
 
@@ -21,7 +26,10 @@ export class ProfileScreen extends React.Component {
       alert("ProfileScreen: this.props.userName is null");
       return;
     }
-    this.reqGetPosts(this.props.userName);
+
+    // 1. Req user info
+    this.reqUserInfo(this.state.nickname);
+    // 2. Req posts
   }
 
   componentDidMount() {
@@ -29,11 +37,31 @@ export class ProfileScreen extends React.Component {
     navigation.setOptions({ tabBarVisible: true });
   }
 
-  reqGetPosts = async (userName) => {
+  reqUserInfo = async (nickname) => {
+    const resp = await callApi(
+      "member/info?" + "nickname=" + nickname,
+      "GET",
+      null
+    );
+    if (resp == null) {
+      alert("member/info GET 실패!");
+      return;
+    }
+
+    this.onRespUserInfo(resp);
+  }
+
+  onRespUserInfo(resp) {
+    this.state.intro = resp.introduce;
+    this.state.dog = resp.profileDog;
+    this.reqGetPosts(this.state.nickname);
+  }
+
+  reqGetPosts = async (nickname) => {
     const userInfo = UserInfo.instance;
 
     var resp = null;
-    if (userInfo.getNickName() == userName) {
+    if (userInfo.getNickName() == nickname) {
       resp = await callApiToken(
         "my/posts" + "?" + "page=" + 0 + "&" + "size=" + 100,
         "GET",
@@ -49,12 +77,11 @@ export class ProfileScreen extends React.Component {
         "member/post/" +
           "?" +
           "nickname=" +
-          userName +
+          nickname +
           "&" +
           "size=" +
           100,
         "GET",
-        userInfo.getJwt(),
         null
       );
       if (resp == null) {
@@ -63,10 +90,10 @@ export class ProfileScreen extends React.Component {
       }
     }
 
-    this.onGetPostsDone(resp);
+    this.onRespGetPosts(resp);
   };
 
-  onGetPostsDone(resp) {
+  onRespGetPosts(resp) {
     posts = resp.posts;
     this.setState({ isLoad: true });
   }
@@ -82,8 +109,7 @@ export class ProfileScreen extends React.Component {
   }
 
   renderUserProfile = (writingNum) => {
-    const userInfo = UserInfo.instance;
-    const selectedDog = userInfo.getDog();
+    const selectedDog = this.state.dog;
     return (
       <View style={[styles.profileContainer]}>
         <View
@@ -179,7 +205,7 @@ export class ProfileScreen extends React.Component {
               color: "#FFFFFF",
             }}
           >
-            {userInfo.getComment()}
+            {this.state.intro}
           </Text>
         </View>
       </View>
