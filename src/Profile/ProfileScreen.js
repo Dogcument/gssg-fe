@@ -26,10 +26,8 @@ export class ProfileScreen extends React.Component {
       alert("ProfileScreen: this.props.userName is null");
       return;
     }
-
-    // 1. Req user info
+    
     this.reqUserInfo(this.state.nickname);
-    // 2. Req posts
   }
 
   componentDidMount() {
