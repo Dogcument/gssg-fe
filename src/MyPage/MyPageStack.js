@@ -17,18 +17,23 @@ function MyPageStack({ navigation }) {
   const userInfo = UserInfo.instance;
   const userName = userInfo.getNickName();
 
+  if (userName == null) {
+    alert("MyPageStack: userName does not exist");
+    return;
+  }
+
   const ProfileComponent = () => (
-    <ProfileScreen
-      navigation={navigation}
-      userName={userName}
-    />
+    <ProfileScreen navigation={navigation} userName={userName} />
   );
   const SettingComponent = () => <SettingScreen navigation={navigation} />;
   const ModifyAccountComponent = () => (
     <ModifyAccountScreen navigation={navigation} />
   );
   const ItemDetailScreenComponent = ({ route }) => (
-    <ItemDetailScreen navigation={route.params.navigation} post={route.params.post} />
+    <ItemDetailScreen
+      navigation={route.params.navigation}
+      post={route.params.post}
+    />
   );
   const CommentComponent = ({ route }) => (
     <CommentScreen id={route.params.id} />
