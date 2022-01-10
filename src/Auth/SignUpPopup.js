@@ -12,7 +12,6 @@ import {
 import { WritingButtonImg } from "../../assets/ImageList";
 import { Dogs, DogImages, ServerDogs } from "../Common/Dogs";
 import UserInfo from "../Common/UserInfo";
-import { styles } from "./Styles";
 import { TutorialScreen } from "./TutorialScreen";
 import { validateEmail, validatePassword } from "../Common/CommonMethod";
 import { callApi } from "../Common/ApiHelper";
@@ -314,7 +313,23 @@ export class SignUpPopup extends React.Component {
 
         <TouchableOpacity
           onPress={() => this.OnNextButtonClicked()}
-          style={[styles.ModalButton]}
+          style={{
+            height: 30,
+            marginLeft: "40%",
+            width: "20%",
+            backgroundColor: "#FFFFFF",
+            borderRadius: 20,
+            alignItems: "center",
+            justifyContent: "center",
+            elevation: 5,
+            shadowColor: "#000000",
+            shadowOpacity: 0.7,
+            shadowOffset: {
+              height: 7.5,
+              width: 7.5,
+            },
+            shadowRadius: 25,
+          }}
         >
           <View>
             <Text style={{ fontFamily: "SCThin", fontSize: 15 }}> 다음! </Text>
@@ -402,7 +417,23 @@ export class SignUpPopup extends React.Component {
 
         <TouchableOpacity
           onPress={() => this.OnNextButtonClicked()}
-          style={[styles.ModalButton]}
+          style={{
+            height: 30,
+            marginLeft: "40%",
+            width: "20%",
+            backgroundColor: "#FFFFFF",
+            borderRadius: 20,
+            alignItems: "center",
+            justifyContent: "center",
+            elevation: 5,
+            shadowColor: "#000000",
+            shadowOpacity: 0.7,
+            shadowOffset: {
+              height: 7.5,
+              width: 7.5,
+            },
+            shadowRadius: 25,
+          }}
         >
           <View>
             <Text style={{ fontFamily: "SCThin", fontSize: 15 }}> 다음! </Text>
@@ -491,7 +522,23 @@ export class SignUpPopup extends React.Component {
 
         <TouchableOpacity
           onPress={() => this.OnNextButtonClicked()}
-          style={[styles.ModalButton]}
+          style={{
+            height: 30,
+            marginLeft: "40%",
+            width: "20%",
+            backgroundColor: "#FFFFFF",
+            borderRadius: 20,
+            alignItems: "center",
+            justifyContent: "center",
+            elevation: 5,
+            shadowColor: "#000000",
+            shadowOpacity: 0.7,
+            shadowOffset: {
+              height: 7.5,
+              width: 7.5,
+            },
+            shadowRadius: 25,
+          }}
         >
           <View>
             <Text style={{ fontFamily: "SCThin", fontSize: 15 }}> 완료! </Text>

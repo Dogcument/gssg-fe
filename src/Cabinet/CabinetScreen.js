@@ -1,8 +1,6 @@
 import React from "react";
 import { ScrollView, TouchableOpacity, Text, View, Image } from "react-native";
 import Modal from "react-native-modal";
-import { styles } from "./Styles";
-import { commonStyles } from "../Common/Styles";
 import { CabinetItem } from "./CabinetItem";
 import { ProtoWritings } from "../Common/ProtoWritings";
 import { callApiToken } from "../Common/ApiHelper";
@@ -41,7 +39,15 @@ export class CabinetScreen extends React.Component {
   }
 
   renderRightSideButton = (text, onPress) => (
-    <TouchableOpacity onPress={onPress} style={[styles.modalbutton]}>
+    <TouchableOpacity
+      onPress={onPress}
+      style={{
+        paddingTop: 5,
+        justifyContent: "center",
+        alignItems: "center",
+        flexDirection: "row",
+      }}
+    >
       <Image style={{ height: 12.5, width: 12.5 }} source={ArrowDownImg} />
       <Text
         style={{
@@ -58,8 +64,24 @@ export class CabinetScreen extends React.Component {
 
   renderSortingMenus = () => {
     return (
-      <View style={[commonStyles.writingContentModal]}>
-        <View style={[commonStyles.closeModalButton]}>
+      <View
+        style={{
+          fontFamily: "Ridi",
+          backgroundColor: "#FFFFFF",
+          width: "80%",
+          marginLeft: "10%",
+          height: "60%",
+          borderRadius: 5,
+          padding: 20,
+        }}
+      >
+        <View
+          style={{
+            width: "100%",
+            flexDirection: "row",
+            justifyContent: "flex-end",
+          }}
+        >
           <TouchableOpacity
             onPress={() => this.setState({ visibleModal: ModalTypeEnum.None })}
           >
@@ -70,7 +92,7 @@ export class CabinetScreen extends React.Component {
             ></Image>
           </TouchableOpacity>
         </View>
-        
+
         <TouchableOpacity
           key={1}
           style={{ height: 40 }}
@@ -95,8 +117,24 @@ export class CabinetScreen extends React.Component {
 
   renderWritingContent() {
     return (
-      <View style={[styles.writingContentModal]}>
-        <View style={[styles.closeModalButton]}>
+      <View
+        style={{
+          fontFamily: "Ridi",
+          backgroundColor: "#FFFFFF",
+          width: "80%",
+          marginLeft: "10%",
+          height: "60%",
+          borderRadius: 5,
+          padding: 20,
+        }}
+      >
+        <View
+          style={{
+            width: "100%",
+            flexDirection: "row",
+            justifyContent: "flex-end",
+          }}
+        >
           <TouchableOpacity
             onPress={() => this.setState({ visibleModal: ModalTypeEnum.None })}
           >
@@ -140,7 +178,7 @@ export class CabinetScreen extends React.Component {
   reqGetPosts = async (sortType) => {
     const userInfo = UserInfo.instance;
     var sortTypeStr;
-    switch(sortType) {
+    switch (sortType) {
       case SortingTypeEnum.Like:
         sortTypeStr = "LIKE_COUNT";
         break;
@@ -216,14 +254,17 @@ export class CabinetScreen extends React.Component {
             )}
           </View>
           <View style={{ paddingRight: 3 }}>
-            {this.renderRightSideButton(getSortingTypeText(this.state.sortingType), () =>
-              this.setState({ visibleModal: ModalTypeEnum.Sorting })
+            {this.renderRightSideButton(
+              getSortingTypeText(this.state.sortingType),
+              () => this.setState({ visibleModal: ModalTypeEnum.Sorting })
             )}
           </View>
         </View>
         <ScrollView>{posts.map((value) => this.showPosts(value))}</ScrollView>
 
-        <Modal isVisible={this.state.visibleModal === ModalTypeEnum.WritingSubject}>
+        <Modal
+          isVisible={this.state.visibleModal === ModalTypeEnum.WritingSubject}
+        >
           {this.renderWritingContent()}
         </Modal>
 

@@ -1,21 +1,20 @@
 import React from "react";
 import { TouchableOpacity, Image } from "react-native";
 import { DogImages } from "./Dogs";
-import { styles } from "../Cabinet/Styles";
 
 export class ProfileComponent extends React.Component {
   constructor(props) {
     super(props);
 
     if (this.props.userName == null) {
-      alert("ProfileComponent: `userName` props does not exist.")
+      alert("ProfileComponent: `userName` props does not exist.");
       return;
     }
     if (this.props.navigation == null) {
       alert("ProfileComponent: `navigation` props does not exist.");
       return;
     }
-    if(this.props.dogIndex == null) {
+    if (this.props.dogIndex == null) {
       alert("ProfileComponent: `dogIndex` props does not exist.");
       return;
     }
@@ -37,7 +36,14 @@ export class ProfileComponent extends React.Component {
     return (
       <TouchableOpacity onPress={() => this.onClicked()}>
         <Image
-          style={[styles.ImageIconStyle]}
+          style={{
+            padding: 10,
+            margin: 5,
+            height: 40,
+            width: 40,
+            marginBottom: -100,
+            // resizeMode: 'stretch',
+          }}
           source={DogImages[dogIndex]}
         ></Image>
       </TouchableOpacity>

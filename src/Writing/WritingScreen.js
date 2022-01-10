@@ -5,7 +5,6 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
 } from "react-native";
-import { styles } from "./Styles";
 import { callApiToken } from "../Common/ApiHelper";
 import UserInfo from "../Common/UserInfo";
 
@@ -48,7 +47,17 @@ export class WritingScreen extends React.Component {
           }}
         >
           <TextInput
-            style={styles.TextInputStyle}
+            style={{
+              fontFamily: "Ridi",
+              textAlign: "center",
+              alignItems: "center",
+              justifyContent: "center",
+              width: "90%",
+              lineHeight: 20,
+              // borderRadius: 10,
+              // borderWidth: 2,
+              // borderColor: '#009688',
+            }}
             placeholder="여기에 입력"
             defaultValue={content}
             multiline={true}

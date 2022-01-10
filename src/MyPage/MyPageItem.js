@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TouchableOpacity, Text, View, Image } from "react-native";
-import { styles } from "./Styles";
 import {
   BoneNoSelectImg,
   ChatImg,
@@ -19,7 +18,24 @@ export class MyPageItem extends React.Component {
     const writingTime = getLocalizedTimeString(post.createdAt);
     return (
       <TouchableOpacity
-        style={[styles.itemContainer]}
+        style={{
+          backgroundColor: "#FFFFFF",
+          width: "95%",
+          height: 50,
+          flexDirection: "row",
+          borderColor: "#ae9784",
+          borderWidth: 1,
+          alignItems: "center",
+          justifyContent: "space-around",
+          marginTop: 5,
+          marginBottom: 5,
+          marginLeft: "2.5%",
+          elevation: 3,
+          shadowColor: "#000000",
+          shadowOpacity: 0.3,
+          shadowOffset: { width: 2, height: 2 },
+          shadowRadius: 3,
+        }}
         onPress={() => OnMyPageItemClicked(navigation, post)}
       >
         <Image

@@ -3,7 +3,6 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { HeaderButtons } from "react-navigation-header-buttons";
 import { ProfileScreen } from "../Profile/ProfileScreen";
 import { SettingScreen } from "./SettingScreen";
-import { styles } from "./Styles";
 import { TouchableOpacity, Image } from "react-native";
 import { ItemDetailScreen } from "../Common/ItemDetailScreen";
 import { BackButtonImg, AlarmImg, GearImg } from "../../assets/ImageList";
@@ -59,18 +58,44 @@ function MyPageStack({ navigation }) {
           headerRight: () => (
             <HeaderButtons>
               <TouchableOpacity
-                style={[styles.FacebookStyle, { marginRight: 5 }]}
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                  height: 40,
+                  borderRadius: 5,
+                  margin: 5,
+                  marginRight: 5,
+                }}
                 activeOpacity={0.5}
                 onPress={() => alert("개발중입니다.")}
               >
-                <Image style={styles.StackIconStyle} source={AlarmImg} />
+                <Image
+                  style={{
+                    height: 20,
+                    width: 20,
+                  }}
+                  source={AlarmImg}
+                />
               </TouchableOpacity>
               <TouchableOpacity
-                style={[styles.FacebookStyle, { marginRight: 15 }]}
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                  height: 40,
+                  borderRadius: 5,
+                  margin: 5,
+                  marginRight: 15,
+                }}
                 activeOpacity={0.5}
                 onPress={() => OpenSettingScreen(navigation)}
               >
-                <Image style={styles.StackIconStyle} source={GearImg} />
+                <Image
+                  style={{
+                    height: 20,
+                    width: 20,
+                  }}
+                  source={GearImg}
+                />
               </TouchableOpacity>
             </HeaderButtons>
           ),

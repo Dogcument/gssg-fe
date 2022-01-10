@@ -5,7 +5,6 @@ import * as Font from "expo-font";
 import { SignUpPopup } from "./SignUpPopup";
 import { SignInPopup } from "./SignInPopup";
 import MainScreen from "../Main/MainScreen";
-import { styles } from "./Styles";
 import { LogoImg } from "../../assets/ImageList";
 import UserInfo from "../Common/UserInfo";
 import { callApiToken } from "../Common/ApiHelper";
@@ -86,7 +85,23 @@ export default class AuthScreen extends React.Component {
   };
 
   renderCloseButton = (text, onPress) => (
-    <TouchableOpacity onPress={onPress} style={[styles.modalbutton]}>
+    <TouchableOpacity onPress={onPress} style={{
+      height: 30,
+      marginLeft: "40%",
+      width: "20%",
+      backgroundColor: "#FFFFFF",
+      borderRadius: 20,
+      alignItems: "center",
+      justifyContent: "center",
+      elevation: 5,
+      shadowColor: "#000000",
+      shadowOpacity: 0.7,
+      shadowOffset: {
+        height: 7.5,
+        width: 7.5,
+      },
+      shadowRadius: 25,
+    }}>
       <View>
         <Text style={{ fontFamily: "SCBold", fontSize: 20 }}> {text} </Text>
       </View>

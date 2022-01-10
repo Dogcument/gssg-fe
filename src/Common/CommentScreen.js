@@ -12,8 +12,6 @@ import {
 import Modal from "react-native-modal";
 import { callApiToken } from "./ApiHelper";
 import UserInfo from "./UserInfo";
-import { styles } from "../Cabinet/Styles";
-import { commonStyles } from "./Styles";
 import { ArrowDownImg, CloseCircleImg } from "../../assets/ImageList";
 import { SortingTypeEnum, getSortingTypeText } from "../Common/CommonMethod";
 
@@ -90,7 +88,7 @@ export class CommentScreen extends React.Component {
     const id = this.props.id;
     const userInfo = UserInfo.instance;
     var sortTypeStr;
-    switch(sortingType) {
+    switch (sortingType) {
       case SortingTypeEnum.Like:
         sortTypeStr = "LIKE_COUNT";
         break;
@@ -163,7 +161,15 @@ export class CommentScreen extends React.Component {
   }
 
   renderRightSideButton = (text, onPress) => (
-    <TouchableOpacity onPress={onPress} style={styles.modalbutton}>
+    <TouchableOpacity
+      onPress={onPress}
+      style={{
+        paddingTop: 5,
+        justifyContent: "center",
+        alignItems: "center",
+        flexDirection: "row",
+      }}
+    >
       <Image style={{ height: 12.5, width: 12.5 }} source={ArrowDownImg} />
       <Text
         style={{
@@ -186,8 +192,24 @@ export class CommentScreen extends React.Component {
 
   renderSortingMenus = () => {
     return (
-      <View style={[commonStyles.writingContentModal]}>
-        <View style={[commonStyles.closeModalButton]}>
+      <View
+        style={{
+          fontFamily: "Ridi",
+          backgroundColor: "#FFFFFF",
+          width: "80%",
+          marginLeft: "10%",
+          height: "60%",
+          borderRadius: 5,
+          padding: 20,
+        }}
+      >
+        <View
+          style={{
+            width: "100%",
+            flexDirection: "row",
+            justifyContent: "flex-end",
+          }}
+        >
           <TouchableOpacity
             onPress={() => this.setState({ visibleModal: false })}
           >
@@ -198,7 +220,7 @@ export class CommentScreen extends React.Component {
             ></Image>
           </TouchableOpacity>
         </View>
-        
+
         <TouchableOpacity
           key={1}
           style={{ height: 40 }}
@@ -219,8 +241,8 @@ export class CommentScreen extends React.Component {
         </TouchableOpacity>
       </View>
     );
-  }
-  
+  };
+
   render() {
     if (!this.state.respReplyFinished) {
       return <View />;
