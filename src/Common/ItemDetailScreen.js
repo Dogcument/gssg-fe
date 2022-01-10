@@ -1,6 +1,5 @@
 import * as React from "react";
 import { Text, View, Image, TouchableOpacity } from "react-native";
-import { commonStyles } from "./Styles";
 import { getDogIndexByServerDogName } from "./Dogs";
 import { getLocalizedTimeString } from "./CommonMethod";
 import {
@@ -113,7 +112,12 @@ export class ItemDetailScreen extends React.Component {
           />
           <View
             style={
-              ([commonStyles.profileView], { flexDirection: "row", flex: 1 })
+              ({
+                alignItems: "flex-start",
+                flexDirection: "column",
+                justifyContent: "space-around",
+              },
+              { flexDirection: "row", flex: 1 })
             }
           >
             <View

@@ -6,7 +6,6 @@ import {
   Image,
   ImageBackground,
 } from "react-native";
-import { styles } from "./Styles";
 import { WritingButtonImg, PaperBackgroundImg } from "../../assets/ImageList";
 import { callApi } from "../Common/ApiHelper";
 import moment from "moment";
@@ -84,19 +83,41 @@ export class WritingPrepareScreen extends React.Component {
                 paddingRight: "5%",
               }}
             >
-              <Text style={styles.title}>{subject}</Text>
+              <Text
+                style={{
+                  fontSize: 30,
+                  fontFamily: "SCBold",
+                }}
+              >
+                {subject}
+              </Text>
             </View>
             <Text style={{ fontFamily: "Ridi" }}>{today}</Text>
           </View>
 
           <TouchableOpacity
-            style={styles.FacebookStyle}
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+              height: 40,
+              borderRadius: 5,
+              margin: 5,
+            }}
             activeOpacity={0.5}
             onPress={() =>
               OnWritingButtonClicked(this.props.navigation, subject)
             }
           >
-            <Image style={styles.ImageIconStyle} source={WritingButtonImg} />
+            <Image
+              style={{
+                padding: 10,
+                margin: 5,
+                height: 60,
+                width: 60,
+                resizeMode: "stretch",
+              }}
+              source={WritingButtonImg}
+            />
           </TouchableOpacity>
         </View>
       </ImageBackground>

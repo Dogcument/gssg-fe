@@ -10,7 +10,6 @@ import {
 } from "react-native";
 import { WritingButtonImg } from "../../assets/ImageList";
 import UserInfo from "../Common/UserInfo";
-import { styles } from "./Styles";
 import { callApi, callApiToken } from "../Common/ApiHelper";
 
 let email = "";
@@ -83,7 +82,26 @@ export class SignInPopup extends React.Component {
         behavior={Platform.OS === "web" ? "height" : "position"}
         style={{ width: "100%", height: "100%" }}
       >
-        <View style={[styles.SignInModal]}>
+        <View
+          style={{
+            flexDirection: "column",
+            width: "90%",
+            height: "25%",
+            marginTop: "130%",
+            marginLeft: "5%",
+            padding: 15,
+            borderRadius: 5,
+            backgroundColor: "#FFFFFF",
+            elevation: 5,
+            shadowColor: "#000000",
+            shadowOpacity: 0.7,
+            shadowOffset: {
+              height: 7.5,
+              width: 7.5,
+            },
+            shadowRadius: 25,
+          }}
+        >
           <View style={{ width: "100%", flexDirection: "row" }}>
             <Image
               source={WritingButtonImg}
@@ -186,7 +204,23 @@ export class SignInPopup extends React.Component {
 
         <TouchableOpacity
           onPress={() => this.onLoginButtonClicked()}
-          style={[styles.ModalButton]}
+          style={{
+            height: 30,
+            marginLeft: "40%",
+            width: "20%",
+            backgroundColor: "#FFFFFF",
+            borderRadius: 20,
+            alignItems: "center",
+            justifyContent: "center",
+            elevation: 5,
+            shadowColor: "#000000",
+            shadowOpacity: 0.7,
+            shadowOffset: {
+              height: 7.5,
+              width: 7.5,
+            },
+            shadowRadius: 25,
+          }}
         >
           <View>
             <Text style={{ fontFamily: "SCThin", fontSize: 15 }}>로그인</Text>

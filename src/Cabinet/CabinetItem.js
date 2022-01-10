@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TouchableOpacity, Text, View, Image } from "react-native";
-import { styles } from "./Styles";
 import { getDogIndexByServerDogName } from "../Common/Dogs";
 import {
   BoneSelectImg,
@@ -29,12 +28,45 @@ export class CabinetItem extends React.Component {
 
     return (
       <TouchableOpacity
-        style={[styles.ItemContainer]}
+        style={{
+          backgroundColor: "#FFFFFF",
+          width: "95%",
+          height: 200,
+          flexDirection: "column",
+          borderWidth: 1,
+          borderColor: "#ae9784",
+          justifyContent: "space-between",
+          marginTop: 5,
+          marginBottom: 5,
+          marginLeft: "2.5%",
+          shadowColor: "#000000",
+          shadowOffset: { width: 3, height: 3 },
+          shadowOpacity: 0.4,
+          shadowRadius: 3,
+        }}
         onPress={() => OnCabinetItemClicked(navigation, post)}
       >
-        <View style={[styles.ItemContent]}>
+        <View
+          style={{
+            width: "100%",
+            height: "100%",
+            flexDirection: "column",
+            flex: 3.5,
+            marginTop: 5,
+            justifyContent: "center",
+          }}
+        >
           <Text
-            style={[styles.ItemText]}
+            style={{
+              alignItems: "flex-end",
+              flexDirection: "column",
+              fontFamily: "Ridi",
+              marginTop: 10,
+              marginLeft: 10,
+              width: "95%",
+              textAlign: "center",
+              lineHeight: 20,
+            }}
             numberOfLines={6}
             ellipsizeMode={"tail"}
           >
@@ -44,7 +76,12 @@ export class CabinetItem extends React.Component {
 
         <View style={{ height: 5 }}></View>
 
-        <View style={[styles.ItemProfile]}>
+        <View
+          style={{
+            flex: 2,
+            justifyContent: "flex-end",
+          }}
+        >
           <ProfileComponent
             dogIndex={dogIndex}
             navigation={navigation}

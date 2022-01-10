@@ -1,10 +1,8 @@
 import * as React from "react";
-import { View, ScrollView, Text, TouchableOpacity, Image } from "react-native";
+import { View, ScrollView, Text, Image } from "react-native";
 import { MyPageItem } from "../MyPage/MyPageItem";
-import { styles } from "../MyPage/Styles";
 import { callApi, callApiToken } from "../Common/ApiHelper";
 import UserInfo from "../Common/UserInfo";
-import { AlarmImg, GearImg } from "../../assets/ImageList";
 import { getStatusBarHeight } from "react-native-status-bar-height";
 import { DogImages } from "../Common/Dogs";
 
@@ -26,7 +24,7 @@ export class ProfileScreen extends React.Component {
       alert("ProfileScreen: this.props.userName is null");
       return;
     }
-    
+
     this.reqUserInfo(this.state.nickname);
   }
 
@@ -47,7 +45,7 @@ export class ProfileScreen extends React.Component {
     }
 
     this.onRespUserInfo(resp);
-  }
+  };
 
   onRespUserInfo(resp) {
     this.state.intro = resp.introduce;
@@ -72,13 +70,7 @@ export class ProfileScreen extends React.Component {
       }
     } else {
       resp = await callApiToken(
-        "member/post/" +
-          "?" +
-          "nickname=" +
-          nickname +
-          "&" +
-          "size=" +
-          100,
+        "member/post/" + "?" + "nickname=" + nickname + "&" + "size=" + 100,
         "GET",
         null
       );
@@ -109,7 +101,25 @@ export class ProfileScreen extends React.Component {
   renderUserProfile = (writingNum) => {
     const selectedDog = this.state.dog;
     return (
-      <View style={[styles.profileContainer]}>
+      <View
+        style={{
+          width: "100%",
+          height: 300,
+          padding: 10,
+          flexDirection: "column",
+          backgroundColor: "#ae9784",
+          borderWidth: 0.5,
+          borderColor: "#ae9784",
+          borderRightWidth: 0,
+          borderLeftWidth: 0,
+          borderTopWidth: 0,
+          elevation: 3,
+          shadowColor: "#000000",
+          shadowOpacity: 0.4,
+          shadowOffset: { width: 3, height: 3 },
+          shadowRadius: 3,
+        }}
+      >
         <View
           style={{
             flexDirection: "row",
@@ -145,7 +155,11 @@ export class ProfileScreen extends React.Component {
             </Text>
           </View>
           <Image
-            style={([styles.profileImageStyle], { flex: 6 })}
+            style={{
+              height: "80%",
+              width: "90%",
+              flex: 6,
+            }}
             resizeMode="contain"
             source={DogImages[selectedDog]}
           />
@@ -218,47 +232,6 @@ export class ProfileScreen extends React.Component {
     const margin = getStatusBarHeight();
     return (
       <View style={{ flex: 1 }}>
-        {/* <View
-          style={{
-            marginTop: margin,
-            backgroundColor: "#ae9784",
-            width: "100%",
-            height: "8.5%",
-            borderBottomWidth: 1,
-            borderBottomColor: "#ae9784",
-            justifyContent: "space-between",
-            alignItems: "center",
-            flexDirection: "row",
-          }}
-        >
-          <Text
-            style={{
-              fontFamily: "SCBold",
-              fontSize: 18.5,
-              paddingLeft: 15,
-              color: "#FFFFFF",
-            }}
-          >
-            마이페이지
-          </Text>
-          <View style={{ flexDirection: "row" }}>
-            <TouchableOpacity
-              style={[styles.FacebookStyle, { marginRight: 5 }]}
-              activeOpacity={0.5}
-              onPress={() => alert("개발중입니다.")}
-            >
-              <Image style={{ width: 20, height: 20 }} source={AlarmImg} />
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={[styles.FacebookStyle, { marginRight: 20 }]}
-              activeOpacity={0.5}
-              onPress={() => OnSettingButtonClicked(this.props.navigation)}
-            >
-              <Image style={{ width: 20, height: 20 }} source={GearImg} />
-            </TouchableOpacity>
-          </View>
-        </View> */}
-
         {/* Fixed Line */}
         <View>
           {/* <MyPageProfile writingNum={posts.length} /> */}
