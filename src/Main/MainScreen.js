@@ -49,7 +49,7 @@ export default class MainScreen extends React.Component {
             }}
           />
           <Tab.Screen
-            name="보관함"
+            name="CabinetStack"
             component={CabinetStack}
             options={{
               tabBarIcon: ({ focused }) => {

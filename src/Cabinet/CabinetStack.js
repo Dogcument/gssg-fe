@@ -6,11 +6,14 @@ import { ItemDetailScreen } from "../Common/ItemDetailScreen";
 import { BackButtonImg } from "../../assets/ImageList";
 import { CommentScreen } from "../Common/CommentScreen";
 import { ProfileScreen } from "../Profile/ProfileScreen";
+import { ProtoWritings } from "../Common/ProtoWritings";
 
 const Stack = createStackNavigator();
 
 function CabinetStack({ navigation }) {
-  const CabinetComponent = () => <CabinetScreen navigation={navigation} />;
+  const CabinetComponent = ({ route }) => (
+    <CabinetScreen navigation={navigation} subject={route.params.subject} />
+  );
   const ItemDetailScreenComponent = ({ route }) => (
     <ItemDetailScreen
       navigation={route.params.navigation}
@@ -30,7 +33,8 @@ function CabinetStack({ navigation }) {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="Cabinet"
+        name="CabinetScreen"
+        initialParams={{ subject: ProtoWritings[0] }}
         component={CabinetComponent}
         options={{
           headerShown: false,

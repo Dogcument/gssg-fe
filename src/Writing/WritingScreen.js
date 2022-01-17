@@ -98,7 +98,10 @@ async function RequestPost(navigation) {
 }
 
 function onRequestPostSuccess(navigation) {
-  return navigation.navigate("보관함", { screen: "Cabinet" });
+  return navigation.navigate("CabinetStack", {
+    screen: "CabinetScreen",
+    params: { subject: subject },
+  });
 }
 
 export function OnDoneButtonClicked(navigation) {
