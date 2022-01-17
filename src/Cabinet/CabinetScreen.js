@@ -21,7 +21,7 @@ export class CabinetScreen extends React.Component {
     super(props);
     this.state = {
       isLoad: false,
-      subject: ProtoWritings[0],
+      subject: props.subject,
       visibleModal: ModalTypeEnum.None,
       sortingType: SortingTypeEnum.Like,
     };
