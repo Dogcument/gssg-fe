@@ -1,9 +1,8 @@
 import * as React from "react";
-import { View, ScrollView, Text, Image } from "react-native";
+import { View, ScrollView, Text, Image, TouchableOpacity } from "react-native";
 import { MyPageItem } from "../MyPage/MyPageItem";
 import { callApi, callApiToken } from "../Common/ApiHelper";
 import UserInfo from "../Common/UserInfo";
-import { getStatusBarHeight } from "react-native-status-bar-height";
 import { DogImages } from "../Common/Dogs";
 
 let posts = null;
@@ -18,6 +17,9 @@ export class ProfileScreen extends React.Component {
 
       // state
       isLoad: false,
+
+      // edit mode
+      isEditMode: false,
     };
 
     if (this.props.userName == null) {
@@ -97,6 +99,20 @@ export class ProfileScreen extends React.Component {
       />
     );
   }
+
+  onEditButtonClicked() {
+    this.setState({ isEditMode: !this.state.isEditMode });
+  }
+
+  renderEditUserProfile = () => {
+    return (
+      <View>
+        <TouchableOpacity onPress={() => this.onEditButtonClicked()}>
+          <Text>취소</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  };
 
   renderUserProfile = (writingNum) => {
     const selectedDog = this.state.dog;
@@ -219,6 +235,9 @@ export class ProfileScreen extends React.Component {
           >
             {this.state.intro}
           </Text>
+          <TouchableOpacity onPress={() => this.onEditButtonClicked()}>
+            <Text>프로필 편집</Text>
+          </TouchableOpacity>
         </View>
       </View>
     );
@@ -229,13 +248,13 @@ export class ProfileScreen extends React.Component {
       return <ScrollView></ScrollView>;
     }
 
-    const margin = getStatusBarHeight();
     return (
       <View style={{ flex: 1 }}>
         {/* Fixed Line */}
         <View>
-          {/* <MyPageProfile writingNum={posts.length} /> */}
-          {this.renderUserProfile(posts.length)}
+          {this.state.isEditMode
+            ? this.renderEditUserProfile()
+            : this.renderUserProfile(posts.length)}
         </View>
         {/* Fixed Line */}
         <ScrollView showsVerticalScrollIndicator={false}>
