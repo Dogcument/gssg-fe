@@ -3,7 +3,7 @@ import { View, ScrollView, Text, Image, TouchableOpacity } from "react-native";
 import { MyPageItem } from "../MyPage/MyPageItem";
 import { callApi, callApiToken } from "../Common/ApiHelper";
 import UserInfo from "../Common/UserInfo";
-import { DogImages } from "../Common/Dogs";
+import { DogImages, getDogIndexByServerDogName } from "../Common/Dogs";
 
 let posts = null;
 export class ProfileScreen extends React.Component {
@@ -105,17 +105,7 @@ export class ProfileScreen extends React.Component {
   }
 
   renderEditUserProfile = () => {
-    return (
-      <View>
-        <TouchableOpacity onPress={() => this.onEditButtonClicked()}>
-          <Text>취소</Text>
-        </TouchableOpacity>
-      </View>
-    );
-  };
-
-  renderUserProfile = (writingNum) => {
-    const selectedDog = this.state.dog;
+    const selectedDog = getDogIndexByServerDogName(this.state.dog);
     return (
       <View
         style={{
@@ -167,7 +157,136 @@ export class ProfileScreen extends React.Component {
                 color: "#FFFFFF",
               }}
             >
-              {writingNum}
+              {posts.length}
+            </Text>
+          </View>
+          <Image
+            style={{
+              height: "80%",
+              width: "90%",
+              flex: 6,
+            }}
+            resizeMode="contain"
+            source={DogImages[selectedDog]}
+          />
+          <View
+            style={{ flex: 2, flexDirection: "column", alignItems: "center" }}
+          >
+            <Text
+              style={{
+                fontFamily: "SCBold",
+                fontSize: 12,
+                marginBottom: 5,
+                color: "#FFFFFF",
+              }}
+            >
+              Follower
+            </Text>
+            <Text
+              style={{
+                fontFamily: "SCThin",
+                fontSize: 20,
+                fontWeight: "bold",
+                color: "#FFFFFF",
+              }}
+            >
+              0
+            </Text>
+          </View>
+        </View>
+        <View
+          style={{
+            width: " 90%",
+            marginLeft: "5%",
+            marginTop: "7.5%",
+            flexDirection: "column",
+            flex: 3,
+            alignItems: "center",
+          }}
+        >
+          <Text
+            style={{
+              fontFamily: "SCBold",
+              marginLeft: 10,
+              fontSize: 20,
+              color: "#FFFFFF",
+            }}
+          >
+            {this.state.nickname}
+          </Text>
+          <Text
+            style={{
+              fontFamily: "SCThin",
+              marginLeft: 10,
+              marginTop: 5,
+              fontSize: 15,
+              color: "#FFFFFF",
+            }}
+          >
+            {this.state.intro}
+          </Text>
+          <TouchableOpacity onPress={() => this.onEditButtonClicked()}>
+            <Text>취소</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    );
+  };
+
+  renderUserProfile = () => {
+    const selectedDog = getDogIndexByServerDogName(this.state.dog);
+    return (
+      <View
+        style={{
+          width: "100%",
+          height: 300,
+          padding: 10,
+          flexDirection: "column",
+          backgroundColor: "#ae9784",
+          borderWidth: 0.5,
+          borderColor: "#ae9784",
+          borderRightWidth: 0,
+          borderLeftWidth: 0,
+          borderTopWidth: 0,
+          elevation: 3,
+          shadowColor: "#000000",
+          shadowOpacity: 0.4,
+          shadowOffset: { width: 3, height: 3 },
+          shadowRadius: 3,
+        }}
+      >
+        <View
+          style={{
+            flexDirection: "row",
+            flex: 7,
+            marginLeft: "2.5%",
+            marginRight: "2.5%",
+            alignItems: "center",
+            justifyContent: "space-around",
+          }}
+        >
+          <View
+            style={{ flex: 2, flexDirection: "column", alignItems: "center" }}
+          >
+            <Text
+              style={{
+                fontFamily: "SCBold",
+                fontSize: 12,
+                marginBottom: 5,
+                color: "#FFFFFF",
+              }}
+            >
+              Writing
+            </Text>
+            <Text
+              style={{
+                fontFamily: "SCThin",
+                fontSize: 20,
+                fontWeight: "bold",
+                color: "#FFFFFF",
+              }}
+            >
+              {posts.length}
             </Text>
           </View>
           <Image
@@ -254,7 +373,7 @@ export class ProfileScreen extends React.Component {
         <View>
           {this.state.isEditMode
             ? this.renderEditUserProfile()
-            : this.renderUserProfile(posts.length)}
+            : this.renderUserProfile()}
         </View>
         {/* Fixed Line */}
         <ScrollView showsVerticalScrollIndicator={false}>
