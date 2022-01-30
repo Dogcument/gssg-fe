@@ -8,11 +8,19 @@ import {
   KeyboardAvoidingView,
   Platform,
   Image,
+  StyleSheet,
 } from "react-native";
+import { getDogIndexByServerDogName } from "./Dogs";
+import { ProfileComponent } from "./ProfileComponent";
 import Modal from "react-native-modal";
 import { callApiToken } from "./ApiHelper";
 import UserInfo from "./UserInfo";
-import { ArrowDownImg, CloseCircleImg } from "../../assets/ImageList";
+import {
+  ArrowDownImg,
+  CloseCircleImg,
+  BoneNoSelectImg,
+  BoneSelectImg,
+} from "../../assets/ImageList";
 import { SortingTypeEnum, getSortingTypeText } from "../Common/CommonMethod";
 
 let replies = null;
@@ -56,18 +64,34 @@ class CommentComponent extends React.Component {
     const comment = this.props.comment;
     const nickName = this.props.nickName;
     const profileDog = this.props.profileDog;
+    const dogIndex = getDogIndexByServerDogName(this.props.profileDog);
     const date = this.props.date;
 
     return (
-      <View>
-        <Text>{likeCount}</Text>
-        <Text>{nickName}</Text>
-        <Text>{date}</Text>
-        <Text>{profileDog}</Text>
-        <Text>{comment}</Text>
-        <TouchableOpacity onPress={() => this.onLikeButtonClicked()}>
-          <Text>{this.state.isLike ? "좋아하는중👻" : "안좋아하는중🙊"}</Text>
-        </TouchableOpacity>
+      <View style={styles.container}>
+        <View style={styles.profile}>
+          <ProfileComponent
+            dogIndex={dogIndex}
+            userName={this.props.nickName}
+            navigation={this.props.navigation}
+          />
+        </View>
+        <View style={styles.comment}>
+          <View style={styles.comment_top}>
+            <Text>{nickName}</Text>
+            <Text>{date}</Text>
+          </View>
+          <Text>{comment}</Text>
+        </View>
+        <View style={styles.like}>
+          <TouchableOpacity onPress={() => this.onLikeButtonClicked()}>
+            <Image
+              style={{ height: 20, width: 20 }}
+              source={this.state.isLike ? BoneSelectImg : BoneNoSelectImg}
+            ></Image>
+          </TouchableOpacity>
+          <Text>{likeCount}</Text>
+        </View>
       </View>
     );
   }
@@ -192,24 +216,8 @@ export class CommentScreen extends React.Component {
 
   renderSortingMenus = () => {
     return (
-      <View
-        style={{
-          fontFamily: "Ridi",
-          backgroundColor: "#FFFFFF",
-          width: "80%",
-          marginLeft: "10%",
-          height: "60%",
-          borderRadius: 5,
-          padding: 20,
-        }}
-      >
-        <View
-          style={{
-            width: "100%",
-            flexDirection: "row",
-            justifyContent: "flex-end",
-          }}
-        >
+      <View style={styles.writingContentModal}>
+        <View style={styles.closeModalButton}>
           <TouchableOpacity
             onPress={() => this.setState({ visibleModal: false })}
           >
@@ -264,8 +272,9 @@ export class CommentScreen extends React.Component {
             ? null
             : replies.map((value) => this.showReplies(value))}
         </ScrollView>
-        <View>
+        <View style={styles.commentInput}>
           <TextInput
+            style={styles.textInput}
             ref={(input) => {
               this.textInput = input;
             }}
@@ -274,7 +283,10 @@ export class CommentScreen extends React.Component {
             returnKeyType="default"
             onChangeText={(inputText) => this.onCommentTextChanged(inputText)}
           />
-          <TouchableOpacity onPress={() => this.reqPostReply()}>
+          <TouchableOpacity
+            style={styles.inputButton}
+            onPress={() => this.reqPostReply()}
+          >
             <Text>입 력</Text>
           </TouchableOpacity>
         </View>
@@ -285,3 +297,63 @@ export class CommentScreen extends React.Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: "row",
+    flex: 1,
+    marginBottom: 5,
+  },
+  profile_dog: {
+    width: "100%",
+  },
+  profile: {
+    flex: 1.25,
+    justifyContent: "center",
+    backgroundColor: "powderblue",
+  },
+  comment: {
+    flexDirection: "column",
+    flex: 7.5,
+    backgroundColor: "skyblue",
+  },
+  comment_top: {
+    justifyContent: "space-between",
+    flexDirection: "row",
+  },
+  like: {
+    flexDirection: "row",
+    backgroundColor: "steelblue",
+    justifyContent: "center",
+    flex: 1.25,
+  },
+
+  writingContentModal: {
+    fontFamily: "Ridi",
+    backgroundColor: "#FFFFFF",
+    width: "80%",
+    marginLeft: "10%",
+    height: "60%",
+    borderRadius: 5,
+    padding: 20,
+  },
+  closeModalButton: {
+    width: "100%",
+    flexDirection: "row",
+    justifyContent: "flex-end",
+  },
+  commentInput: {
+    backfaceVisibility: "tomato",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "5%",
+    flexDirection: "row",
+  },
+  textInput: {
+    flex: 9,
+  },
+  inputButton: {
+    flex: 1,
+    backgroundColor: "lime",
+  },
+});
