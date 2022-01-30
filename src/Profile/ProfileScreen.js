@@ -1,10 +1,20 @@
 import * as React from "react";
-import { View, ScrollView, Text, Image, TouchableOpacity } from "react-native";
+import {
+  View,
+  ScrollView,
+  Text,
+  Image,
+  TouchableOpacity,
+  TextInput,
+} from "react-native";
 import { MyPageItem } from "../MyPage/MyPageItem";
 import { callApi, callApiToken } from "../Common/ApiHelper";
 import UserInfo from "../Common/UserInfo";
 import { DogImages, getDogIndexByServerDogName } from "../Common/Dogs";
 
+let modifiedNickname = "";
+let modifiedDog = "";
+let modifiedIntro = "";
 let posts = null;
 export class ProfileScreen extends React.Component {
   constructor(props) {
@@ -50,6 +60,13 @@ export class ProfileScreen extends React.Component {
   };
 
   onRespUserInfo(resp) {
+    {
+      // init modifieds
+      modifiedNickname = this.state.nickname;
+      modifiedDog = resp.profileDog;
+      modifiedIntro = resp.introduce;
+    }
+
     this.state.intro = resp.introduce;
     this.state.dog = resp.profileDog;
     this.reqGetPosts(this.state.nickname);
@@ -100,8 +117,38 @@ export class ProfileScreen extends React.Component {
     );
   }
 
+  onTextChanged(newIntro) {
+    modifiedIntro = newIntro;
+  }
+
   onEditButtonClicked() {
     this.setState({ isEditMode: !this.state.isEditMode });
+  }
+
+  reqPatchMy = async () => {
+    const userInfo = UserInfo.instance;
+    const resp = await callApiToken(
+      "my",
+      "PATCH",
+      userInfo.getJwt(),
+      JSON.stringify({
+        nickname: modifiedNickname,
+        profileDogType: modifiedDog,
+        introduce: modifiedIntro,
+      })
+    );
+    if (resp == null) {
+      alert("my PATCH 실패");
+      return;
+    }
+
+    this.reqUserInfo(userInfo.getNickName());
+    console.log(resp);
+  };
+
+  onApplyButtonClicked() {
+    this.reqPatchMy();
+    this.setState({ isEditMode: false });
   }
 
   renderEditUserProfile = () => {
@@ -214,20 +261,30 @@ export class ProfileScreen extends React.Component {
           >
             {this.state.nickname}
           </Text>
-          <Text
+          <TextInput
             style={{
               fontFamily: "SCThin",
+              textAlign: "center",
               marginLeft: 10,
               marginTop: 5,
               fontSize: 15,
               color: "#FFFFFF",
             }}
+            placeholder={this.state.intro}
+            onChangeText={(inputText) => this.onTextChanged(inputText)}
+          ></TextInput>
+          <View
+            style={{
+              flexDirection: "row",
+            }}
           >
-            {this.state.intro}
-          </Text>
-          <TouchableOpacity onPress={() => this.onEditButtonClicked()}>
-            <Text>취소</Text>
-          </TouchableOpacity>
+            <TouchableOpacity onPress={() => this.onEditButtonClicked()}>
+              <Text> 취소😳 </Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => this.onApplyButtonClicked()}>
+              <Text> 적용😘 </Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     );
