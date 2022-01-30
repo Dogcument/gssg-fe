@@ -77,7 +77,7 @@ export default class UserInfo {
     AsyncStorage.setItem("refresh_token", token);
     this._refreshToken = token;
   }
-  setNickName(nickName) {
+  setNickname(nickName) {
     this._nickName = nickName;
   }
   setComment(comment) {

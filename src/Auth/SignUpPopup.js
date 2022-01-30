@@ -19,7 +19,7 @@ import { callApi } from "../Common/ApiHelper";
 export var SignUpState = {
   SetEmailPw: 1,
   SetDog: 2,
-  SetNicknameComment: 3,
+  setNicknameComment: 3,
   ShowTutorial: 4,
 };
 
@@ -78,9 +78,9 @@ export class SignUpPopup extends React.Component {
         this.onIdPwDone();
         break;
       case SignUpState.SetDog:
-        this.setState({ signUpState: SignUpState.SetNicknameComment });
+        this.setState({ signUpState: SignUpState.setNicknameComment });
         break;
-      case SignUpState.SetNicknameComment:
+      case SignUpState.setNicknameComment:
         this.reqSignUp();
         break;
     }
@@ -361,7 +361,26 @@ export class SignUpPopup extends React.Component {
   renderSetDog() {
     return (
       <View style={{ width: "100%", height: "100%" }}>
-        <View style={[styles.SignUpModal]}>
+        <View
+          style={{
+            flexDirection: "column",
+            width: "95%",
+            height: "25%",
+            marginTop: "130%",
+            marginLeft: "2.5%",
+            padding: 15,
+            borderRadius: 5,
+            backgroundColor: "#FFFFFF",
+            elevation: 5,
+            shadowColor: "#000000",
+            shadowOpacity: 0.7,
+            shadowOffset: {
+              height: 7.5,
+              width: 7.5,
+            },
+            shadowRadius: 25,
+          }}
+        >
           <View style={{ width: "100%", flexDirection: "row" }}>
             <Image
               source={WritingButtonImg}
@@ -462,13 +481,32 @@ export class SignUpPopup extends React.Component {
     );
   }
 
-  renderSetNickNameComment() {
+  rendersetNicknameComment() {
     return (
       <KeyboardAvoidingView
         behavior={Platform.OS === "web" ? "height" : "position"}
         style={{ width: "100%", height: "100%" }}
       >
-        <View style={[styles.SignUpModal]}>
+        <View
+          style={{
+            flexDirection: "column",
+            width: "95%",
+            height: "25%",
+            marginTop: "130%",
+            marginLeft: "2.5%",
+            padding: 15,
+            borderRadius: 5,
+            backgroundColor: "#FFFFFF",
+            elevation: 5,
+            shadowColor: "#000000",
+            shadowOpacity: 0.7,
+            shadowOffset: {
+              height: 7.5,
+              width: 7.5,
+            },
+            shadowRadius: 25,
+          }}
+        >
           <Image
             source={DogImages[this.state.selectedDog]}
             style={{
@@ -577,8 +615,8 @@ export class SignUpPopup extends React.Component {
         return this.renderSetEmailPw();
       case SignUpState.SetDog:
         return this.renderSetDog();
-      case SignUpState.SetNicknameComment:
-        return this.renderSetNickNameComment();
+      case SignUpState.setNicknameComment:
+        return this.rendersetNicknameComment();
       case SignUpState.ShowTutorial:
         return this.renderTutorial();
     }

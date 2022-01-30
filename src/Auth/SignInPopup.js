@@ -38,7 +38,7 @@ export class SignInPopup extends React.Component {
 
   onReqUserInfoSuccess(json) {
     let userInfo = UserInfo.instance;
-    userInfo.setNickName(json.nickname);
+    userInfo.setNickname(json.nickname);
     userInfo.setComment(json.introduce);
     userInfo.setDog(json.profileDog);
 

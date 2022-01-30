@@ -11,7 +11,7 @@ import { callApiToken } from "../Common/ApiHelper";
 import AsyncStorage from "@react-native-community/async-storage";
 
 export const SignUpState = {
-  SetNickname: 1,
+  setNickname: 1,
   SetDog: 2,
   ShowTutorial: 3,
 };
@@ -24,7 +24,7 @@ export default class AuthScreen extends React.Component {
       isLoading: true,
       loadInfoSuccess: false,
       visibleModal: null,
-      signUpState: SignUpState.SetNickname,
+      signUpState: SignUpState.setNickname,
     };
   }
 
@@ -60,7 +60,7 @@ export default class AuthScreen extends React.Component {
 
   onLoadInfoSuccess(resp) {
     let userInfo = UserInfo.instance;
-    userInfo.setNickName(resp.nickname);
+    userInfo.setNickname(resp.nickname);
     userInfo.setComment(resp.introduce);
     userInfo.setDog(resp.profileDog);
 
