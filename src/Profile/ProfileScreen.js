@@ -15,6 +15,11 @@ import { DogImages, getDogIndexByServerDogName } from "../Common/Dogs";
 let modifiedNickname = "";
 let modifiedDog = "";
 let modifiedIntro = "";
+
+let originNickname = "";
+let originDog = "";
+let originIntro = "";
+
 let posts = null;
 export class ProfileScreen extends React.Component {
   constructor(props) {
@@ -61,10 +66,14 @@ export class ProfileScreen extends React.Component {
 
   onRespUserInfo(resp) {
     {
-      // init modifieds
-      modifiedNickname = this.state.nickname;
-      modifiedDog = resp.profileDog;
-      modifiedIntro = resp.introduce;
+      originNickname = this.state.nickname;
+      modifiedNickname = originNickname;
+
+      originDog = resp.profileDog;
+      modifiedDog = originDog;
+
+      originIntro = resp.introduce;
+      modifiedIntro = originDog;
     }
 
     this.state.intro = resp.introduce;
@@ -126,6 +135,15 @@ export class ProfileScreen extends React.Component {
   }
 
   reqPatchMy = async () => {
+    if (
+      modifiedIntro == originIntro &&
+      modifiedDog == originDog &&
+      modifiedNickname == originNickname
+    ) {
+      alert("변경 사항이 없습니다.");
+      return;
+    }
+
     const userInfo = UserInfo.instance;
     const resp = await callApiToken(
       "my",
