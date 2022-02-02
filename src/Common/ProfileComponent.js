@@ -37,12 +37,8 @@ export class ProfileComponent extends React.Component {
       <TouchableOpacity onPress={() => this.onClicked()}>
         <Image
           style={{
-            padding: 10,
-            margin: 5,
             height: 40,
             width: 40,
-            marginBottom: -100,
-            // resizeMode: 'stretch',
           }}
           source={DogImages[dogIndex]}
         ></Image>
