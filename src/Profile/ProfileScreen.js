@@ -1,6 +1,7 @@
 import * as React from "react";
 import {
   View,
+  StyleSheet,
   ScrollView,
   Text,
   Image,
@@ -169,125 +170,32 @@ export class ProfileScreen extends React.Component {
     this.setState({ isEditMode: false });
   }
 
+  // TODO
+  // render dog select page
+  // github #38
   renderEditUserProfile = () => {
     const selectedDog = getDogIndexByServerDogName(this.state.dog);
     return (
-      <View
-        style={{
-          width: "100%",
-          height: 300,
-          padding: 10,
-          flexDirection: "column",
-          backgroundColor: "#ae9784",
-          borderWidth: 0.5,
-          borderColor: "#ae9784",
-          borderRightWidth: 0,
-          borderLeftWidth: 0,
-          borderTopWidth: 0,
-          elevation: 3,
-          shadowColor: "#000000",
-          shadowOpacity: 0.4,
-          shadowOffset: { width: 3, height: 3 },
-          shadowRadius: 3,
-        }}
-      >
-        <View
-          style={{
-            flexDirection: "row",
-            flex: 7,
-            marginLeft: "2.5%",
-            marginRight: "2.5%",
-            alignItems: "center",
-            justifyContent: "space-around",
-          }}
-        >
-          <View
-            style={{ flex: 2, flexDirection: "column", alignItems: "center" }}
-          >
-            <Text
-              style={{
-                fontFamily: "SCBold",
-                fontSize: 12,
-                marginBottom: 5,
-                color: "#FFFFFF",
-              }}
-            >
-              Writing
-            </Text>
-            <Text
-              style={{
-                fontFamily: "SCThin",
-                fontSize: 20,
-                fontWeight: "bold",
-                color: "#FFFFFF",
-              }}
-            >
-              {posts.length}
-            </Text>
+      <View style={styles.container}>
+        <View style={styles.profileContainer}>
+          <View style={styles.writingFollowerContainer}>
+            <Text style={styles.writingFollower}>Writing</Text>
+            <Text style={styles.statusNum}>{posts.length}</Text>
           </View>
           <Image
-            style={{
-              height: "80%",
-              width: "90%",
-              flex: 6,
-            }}
+            style={styles.dogImage}
             resizeMode="contain"
             source={DogImages[selectedDog]}
           />
-          <View
-            style={{ flex: 2, flexDirection: "column", alignItems: "center" }}
-          >
-            <Text
-              style={{
-                fontFamily: "SCBold",
-                fontSize: 12,
-                marginBottom: 5,
-                color: "#FFFFFF",
-              }}
-            >
-              Follower
-            </Text>
-            <Text
-              style={{
-                fontFamily: "SCThin",
-                fontSize: 20,
-                fontWeight: "bold",
-                color: "#FFFFFF",
-              }}
-            >
-              0
-            </Text>
+          <View style={styles.writingFollowerContainer}>
+            <Text style={styles.writingFollower}>Follower</Text>
+            <Text style={styles.statusNum}>0</Text>
           </View>
         </View>
-        <View
-          style={{
-            width: " 90%",
-            marginLeft: "5%",
-            marginTop: "7.5%",
-            flexDirection: "column",
-            flex: 3,
-            alignItems: "center",
-          }}
-        >
-          <Text
-            style={{
-              fontFamily: "SCBold",
-              marginLeft: 10,
-              fontSize: 20,
-              color: "#FFFFFF",
-            }}
-          >
-            {this.state.nickname}
-          </Text>
+        <View style={styles.userInfoContainer}>
+          <Text style={styles.nickname}>{this.state.nickname}</Text>
           <TextInput
-            style={{
-              fontFamily: "SCThin",
-              textAlign: "center",
-              marginLeft: 10,
-              marginTop: 5,
-              fontSize: 15,
-              color: "#FFFFFF",
-            }}
+            style={styles.intro}
             placeholder={this.state.intro}
             onChangeText={(inputText) => this.onTextChanged(inputText)}
           ></TextInput>
@@ -311,124 +219,25 @@ export class ProfileScreen extends React.Component {
   renderUserProfile = () => {
     const selectedDog = getDogIndexByServerDogName(this.state.dog);
     return (
-      <View
-        style={{
-          width: "100%",
-          height: 300,
-          padding: 10,
-          flexDirection: "column",
-          backgroundColor: "#ae9784",
-          borderWidth: 0.5,
-          borderColor: "#ae9784",
-          borderRightWidth: 0,
-          borderLeftWidth: 0,
-          borderTopWidth: 0,
-          elevation: 3,
-          shadowColor: "#000000",
-          shadowOpacity: 0.4,
-          shadowOffset: { width: 3, height: 3 },
-          shadowRadius: 3,
-        }}
-      >
-        <View
-          style={{
-            flexDirection: "row",
-            flex: 7,
-            marginLeft: "2.5%",
-            marginRight: "2.5%",
-            alignItems: "center",
-            justifyContent: "space-around",
-          }}
-        >
-          <View
-            style={{ flex: 2, flexDirection: "column", alignItems: "center" }}
-          >
-            <Text
-              style={{
-                fontFamily: "SCBold",
-                fontSize: 12,
-                marginBottom: 5,
-                color: "#FFFFFF",
-              }}
-            >
-              Writing
-            </Text>
-            <Text
-              style={{
-                fontFamily: "SCThin",
-                fontSize: 20,
-                fontWeight: "bold",
-                color: "#FFFFFF",
-              }}
-            >
-              {posts.length}
-            </Text>
+      <View style={styles.container}>
+        <View style={styles.profileContainer}>
+          <View style={styles.writingFollowerContainer}>
+            <Text style={styles.writingFollower}>Writing</Text>
+            <Text style={styles.statusNum}>{posts.length}</Text>
           </View>
           <Image
-            style={{
-              height: "80%",
-              width: "90%",
-              flex: 6,
-            }}
+            style={styles.dogImage}
             resizeMode="contain"
             source={DogImages[selectedDog]}
           />
-          <View
-            style={{ flex: 2, flexDirection: "column", alignItems: "center" }}
-          >
-            <Text
-              style={{
-                fontFamily: "SCBold",
-                fontSize: 12,
-                marginBottom: 5,
-                color: "#FFFFFF",
-              }}
-            >
-              Follower
-            </Text>
-            <Text
-              style={{
-                fontFamily: "SCThin",
-                fontSize: 20,
-                fontWeight: "bold",
-                color: "#FFFFFF",
-              }}
-            >
-              0
-            </Text>
+          <View style={styles.writingFollowerContainer}>
+            <Text style={styles.writingFollower}>Follower</Text>
+            <Text style={styles.statusNum}>0</Text>
           </View>
         </View>
-        <View
-          style={{
-            width: " 90%",
-            marginLeft: "5%",
-            marginTop: "7.5%",
-            flexDirection: "column",
-            flex: 3,
-            alignItems: "center",
-          }}
-        >
-          <Text
-            style={{
-              fontFamily: "SCBold",
-              marginLeft: 10,
-              fontSize: 20,
-              color: "#FFFFFF",
-            }}
-          >
-            {this.state.nickname}
-          </Text>
-          <Text
-            style={{
-              fontFamily: "SCThin",
-              marginLeft: 10,
-              marginTop: 5,
-              fontSize: 15,
-              color: "#FFFFFF",
-            }}
-          >
-            {this.state.intro}
-          </Text>
+        <View style={styles.userInfoContainer}>
+          <Text style={styles.nickname}>{this.state.nickname}</Text>
+          <Text style={styles.intro}>{this.state.intro}</Text>
           <TouchableOpacity onPress={() => this.onEditButtonClicked()}>
             <Text>프로필 편집</Text>
           </TouchableOpacity>
@@ -461,3 +270,75 @@ export class ProfileScreen extends React.Component {
 function OnSettingButtonClicked(navigation) {
   return navigation.navigate("Setting");
 }
+
+const styles = StyleSheet.create({
+  container: {
+    width: "100%",
+    height: 300,
+    padding: 10,
+    flexDirection: "column",
+    backgroundColor: "#ae9784",
+    borderWidth: 0.5,
+    borderColor: "#ae9784",
+    borderRightWidth: 0,
+    borderLeftWidth: 0,
+    borderTopWidth: 0,
+    elevation: 3,
+    shadowColor: "#000000",
+    shadowOpacity: 0.4,
+    shadowOffset: { width: 3, height: 3 },
+    shadowRadius: 3,
+  },
+  profileContainer: {
+    flexDirection: "row",
+    flex: 7,
+    marginLeft: "2.5%",
+    marginRight: "2.5%",
+    alignItems: "center",
+    justifyContent: "space-around",
+  },
+  writingFollowerContainer: {
+    flex: 2,
+    flexDirection: "column",
+    alignItems: "center",
+  },
+  writingFollower: {
+    fontFamily: "SCBold",
+    fontSize: 12,
+    marginBottom: 5,
+    color: "#FFFFFF",
+  },
+  statusNum: {
+    fontFamily: "SCThin",
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "#FFFFFF",
+  },
+  dogImage: {
+    height: "80%",
+    width: "90%",
+    flex: 6,
+  },
+  userInfoContainer: {
+    width: " 90%",
+    marginLeft: "5%",
+    marginTop: "7.5%",
+    flexDirection: "column",
+    flex: 3,
+    alignItems: "center",
+  },
+  nickname: {
+    fontFamily: "SCBold",
+    marginLeft: 10,
+    fontSize: 20,
+    color: "#FFFFFF",
+  },
+  intro: {
+    fontFamily: "SCThin",
+    textAlign: "center",
+    marginLeft: 10,
+    marginTop: 5,
+    fontSize: 15,
+    color: "#FFFFFF",
+  },
+});
