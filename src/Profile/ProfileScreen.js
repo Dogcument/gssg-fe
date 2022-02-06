@@ -11,7 +11,7 @@ import {
 import { MyPageItem } from "../MyPage/MyPageItem";
 import { callApi, callApiToken } from "../Common/ApiHelper";
 import UserInfo from "../Common/UserInfo";
-import { DogImages, getDogIndexByServerDogName } from "../Common/Dogs";
+import { Dogs, DogImages, ServerDogs, getDogIndexByServerDogName } from "../Common/Dogs";
 
 let modifiedNickname = "";
 let modifiedDog = "";
@@ -246,23 +246,71 @@ export class ProfileScreen extends React.Component {
     );
   };
 
+  onDogSelected(dogIndex) {
+    const dogName = ServerDogs[dogIndex];
+    this.setState({ dog: dogName });
+  }
+
+  renderDogSelect = () => {
+    return (
+      <View style={styles.dogSelectContainer}>
+        <ScrollView
+          horizontal={false}
+          style={{
+            flexDirection: "column",
+            backgroundColor: "#d4d4d4",
+            borderRadius: 10,
+          }}
+        >
+          <View
+            style={{
+              flex: 1,
+              flexDirection: "row",
+              flexWrap: "wrap",
+              justifyContent: "space-around",
+              padding: 5,
+            }}
+          >
+            {Dogs.map((_value, index) => (
+              <TouchableOpacity
+                key={index}
+                onPress={() => this.onDogSelected(index)}
+              >
+                <Image
+                  source={DogImages[index]}
+                  style={{ width: 50, height: 50 }}
+                />
+              </TouchableOpacity>
+            ))}
+          </View>
+        </ScrollView>
+      </View>
+    );
+  };
+
   render() {
     if (!this.state.isLoad) {
       return <ScrollView></ScrollView>;
     }
 
     return (
-      <View style={{ flex: 1 }}>
+      <View style={{ flexDirection: "column", width: "100%", height: "100%" }}>
         {/* Fixed Line */}
         <View>
           {this.state.isEditMode
             ? this.renderEditUserProfile()
             : this.renderUserProfile()}
         </View>
-        {/* Fixed Line */}
-        <ScrollView showsVerticalScrollIndicator={false}>
-          {posts.map((value) => this.showPosts(value))}
-        </ScrollView>
+        <View>
+          {/* Fixed Line */}
+          {this.state.isEditMode ? (
+            this.renderDogSelect()
+          ) : (
+            <ScrollView showsVerticalScrollIndicator={false}>
+              {posts.map((value) => this.showPosts(value))}
+            </ScrollView>
+          )}
+        </View>
       </View>
     );
   }
@@ -340,5 +388,22 @@ const styles = StyleSheet.create({
     marginTop: 5,
     fontSize: 15,
     color: "#FFFFFF",
+  },
+  dogSelectContainer: {
+    flexDirection: "column",
+    marginTop: "5%",
+    marginLeft: "2.5%",
+    marginRight: "2.5%",
+    padding: 15,
+    borderRadius: 5,
+    backgroundColor: "#FFFFFF",
+    elevation: 5,
+    shadowColor: "#000000",
+    shadowOpacity: 0.7,
+    shadowOffset: {
+      height: 7.5,
+      width: 7.5,
+    },
+    shadowRadius: 10,
   },
 });
