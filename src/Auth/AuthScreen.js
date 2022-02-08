@@ -8,7 +8,7 @@ import MainScreen from "../Main/MainScreen";
 import { LogoImg } from "../../assets/ImageList";
 import UserInfo from "../Common/UserInfo";
 import { callApiToken } from "../Common/ApiHelper";
-import AsyncStorage from "@react-native-community/async-storage";
+import AsyncStorage from "react-native";
 
 export const SignUpState = {
   setNickname: 1,

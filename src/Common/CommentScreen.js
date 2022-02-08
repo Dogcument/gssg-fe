@@ -343,7 +343,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
   },
   commentInput: {
-    backfaceVisibility: "tomato",
+    backfaceVisibility: "visible",
     justifyContent: "center",
     alignItems: "center",
     height: "5%",
