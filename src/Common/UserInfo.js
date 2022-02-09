@@ -1,4 +1,4 @@
-import AsyncStorage from "react-native";
+import AsyncStorage from "@react-native-community/async-storage";
 import moment from "moment";
 import { ServerDogs } from "./Dogs";
 export default class UserInfo {
