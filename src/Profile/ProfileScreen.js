@@ -74,7 +74,7 @@ export class ProfileScreen extends React.Component {
       modifiedDog = originDog;
 
       originIntro = resp.introduce;
-      modifiedIntro = originDog;
+      modifiedIntro = originIntro;
     }
 
     this.state.intro = resp.introduce;
@@ -247,8 +247,8 @@ export class ProfileScreen extends React.Component {
   };
 
   onDogSelected(dogIndex) {
-    const dogName = ServerDogs[dogIndex];
-    this.setState({ dog: dogName });
+    modifiedDog = ServerDogs[dogIndex];
+    this.setState({ dog: modifiedDog });
   }
 
   renderDogSelect = () => {
