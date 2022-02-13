@@ -28,12 +28,12 @@ export default class AuthScreen extends React.Component {
     };
   }
 
-  componentDidMount() {
-    // await Font.loadAsync({
-    //   Ridi: require("../../assets/fonts/RIDIBatang.otf"),
-    //   SCBold: require("../../assets/fonts/SCDreamBold.otf"),
-    //   SCThin: require("../../assets/fonts/SCDreamThin.otf"),
-    // });
+  componentDidMount = async () => {
+    await Font.loadAsync({
+      Ridi: require("../../assets/fonts/RIDIBatang.otf"),
+      SCBold: require("../../assets/fonts/SCDreamBold.otf"),
+      SCThin: require("../../assets/fonts/SCDreamThin.otf"),
+    });
 
     UserInfo.init();
     this.tryLoadInfo();
