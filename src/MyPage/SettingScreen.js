@@ -1,6 +1,6 @@
 import * as React from "react";
 import { View, TouchableOpacity, Text, Image, Linking } from "react-native";
-import AsyncStorage from "@react-native-community/async-storage";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { WritingButtonImg } from "../../assets/ImageList";
 import * as Update from "expo-updates";
 export class SettingScreen extends React.Component {
