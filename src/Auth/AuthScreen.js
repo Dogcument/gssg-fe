@@ -35,8 +35,8 @@ export default class AuthScreen extends React.Component {
       SCThin: require("../../assets/fonts/SCDreamThin.otf"),
     });
 
-    UserInfo.init();
-    this.tryLoadInfo();
+    await UserInfo.init();
+    await this.tryLoadInfo();
     setTimeout(this.closeLoadingScreen, 1500);
   };
 
