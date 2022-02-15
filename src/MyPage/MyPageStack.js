@@ -1,7 +1,7 @@
 import * as React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { HeaderButtons } from "react-navigation-header-buttons";
-import { ProfileScreen } from "../Profile/ProfileScreen";
+import { ProfileScreen, ProfileEditScreen } from "../Profile/ProfileScreen";
 import { SettingScreen } from "./SettingScreen";
 import { TouchableOpacity, Image } from "react-native";
 import { ItemDetailScreen } from "../Common/ItemDetailScreen";
@@ -14,19 +14,23 @@ const Stack = createStackNavigator();
 
 function MyPageStack({ navigation }) {
   const userInfo = UserInfo.instance;
-  const userName = userInfo.getNickName();
+  const nickName = userInfo.getNickName();
 
-  if (userName == null) {
+  if (nickName == null) {
     alert("MyPageStack: userName does not exist");
     return;
   }
 
-  const ProfileComponent = () => (
-    <ProfileScreen navigation={navigation} userName={userName} />
+  const ProfileEditComponent = ({ route }) => (
+    <ProfileEditScreen navigation={route.params.navigation} />
   );
-  const SettingComponent = () => <SettingScreen navigation={navigation} />;
-  const ModifyAccountComponent = () => (
-    <ModifyAccountScreen navigation={navigation} />
+  
+  const ProfileComponent = ({route}) => (
+    <ProfileScreen navigation={navigation} userName={nickName} />
+  );
+  const SettingComponent = ({route}) => <SettingScreen navigation={route.params.navigation} />;
+  const ModifyAccountComponent = ({route}) => (
+    <ModifyAccountScreen navigation={route.params.navigation} />
   );
   const ItemDetailScreenComponent = ({ route }) => (
     <ItemDetailScreen
@@ -44,7 +48,7 @@ function MyPageStack({ navigation }) {
         name="Profile"
         component={ProfileComponent}
         options={{
-          title: userName,
+          title: nickName,
           headerShown: true,
           headerTitleStyle: {
             fontFamily: "SCBold",
@@ -99,6 +103,23 @@ function MyPageStack({ navigation }) {
               </TouchableOpacity>
             </HeaderButtons>
           ),
+        }}
+      />
+      <Stack.Screen
+        name="ProfileEdit"
+        component={ProfileEditComponent}
+        options={{
+          title: nickName,
+          headerShown: true,
+          headerTitleStyle: {
+            fontFamily: "SCBold",
+            color: "#FFFFFF",
+          },
+          headerStyle: {
+            backgroundColor: "#ae9784",
+            shadowColor: "transparent",
+          },
+          headerTitleAlign: "center",
         }}
       />
       <Stack.Screen
