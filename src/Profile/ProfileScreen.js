@@ -11,7 +11,12 @@ import {
 import { MyPageItem } from "../MyPage/MyPageItem";
 import { callApi, callApiToken } from "../Common/ApiHelper";
 import UserInfo from "../Common/UserInfo";
-import { Dogs, DogImages, ServerDogs, getDogIndexByServerDogName } from "../Common/Dogs";
+import {
+  Dogs,
+  DogImages,
+  ServerDogs,
+  getDogIndexByServerDogName,
+} from "../Common/Dogs";
 
 let modifiedNickname = "";
 let modifiedDog = "";
@@ -33,9 +38,6 @@ export class ProfileScreen extends React.Component {
 
       // state
       isLoad: false,
-
-      // edit mode
-      isEditMode: false,
     };
 
     if (this.props.userName == null) {
@@ -75,6 +77,14 @@ export class ProfileScreen extends React.Component {
 
       originIntro = resp.introduce;
       modifiedIntro = originIntro;
+    }
+
+    // update user info
+    {
+      const userInfo = UserInfo.instance;
+      userInfo.setNickname(originNickname);
+      userInfo.setComment(originIntro);
+      userInfo.setDog(originDog);
     }
 
     this.state.intro = resp.introduce;
@@ -127,12 +137,78 @@ export class ProfileScreen extends React.Component {
     );
   }
 
-  onTextChanged(newIntro) {
-    modifiedIntro = newIntro;
+  onEditButtonClicked = () => {
+    this.props.navigation.navigate("ProfileEdit", {
+      navigation: this.props.navigation,
+    });
+  };
+
+  renderUserProfile = () => {
+    const selectedDog = getDogIndexByServerDogName(this.state.dog);
+    return (
+      <View style={styles.container}>
+        <View style={styles.profileContainer}>
+          <View style={styles.writingFollowerContainer}>
+            <Text style={styles.writingFollower}>Writing</Text>
+            <Text style={styles.statusNum}>{posts.length}</Text>
+          </View>
+          <Image
+            style={styles.dogImage}
+            resizeMode="contain"
+            source={DogImages[selectedDog]}
+          />
+          <View style={styles.writingFollowerContainer}>
+            <Text style={styles.writingFollower}>Follower</Text>
+            <Text style={styles.statusNum}>0</Text>
+          </View>
+        </View>
+        <View style={styles.userInfoContainer}>
+          <Text style={styles.nickname}>{this.state.nickname}</Text>
+          <Text style={styles.intro}>{this.state.intro}</Text>
+          <TouchableOpacity onPress={() => this.onEditButtonClicked()}>
+            <Text>프로필 편집</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    );
+  };
+
+  render() {
+    if (!this.state.isLoad) {
+      return <ScrollView></ScrollView>;
+    }
+
+    return (
+      <View style={{ flexDirection: "column", width: "100%", height: "100%" }}>
+        {/* Fixed Line */}
+        <View>{this.renderUserProfile()}</View>
+        <View>
+          {/* Fixed Line */}
+          {
+            <ScrollView showsVerticalScrollIndicator={false}>
+              {posts.map((value) => this.showPosts(value))}
+            </ScrollView>
+          }
+        </View>
+      </View>
+    );
+  }
+}
+
+export class ProfileEditScreen extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  gotoProfileScreen() {
+    this.props.navigation.navigate("Profile", {
+      navigation: this.props.navigation,
+      userName: originNickname,
+    });
   }
 
   onEditButtonClicked() {
-    this.setState({ isEditMode: !this.state.isEditMode });
+    this.gotoProfileScreen();
   }
 
   reqPatchMy = async () => {
@@ -161,20 +237,19 @@ export class ProfileScreen extends React.Component {
       return;
     }
 
-    this.reqUserInfo(userInfo.getNickName());
-    console.log(resp);
+    this.gotoProfileScreen();
   };
 
   onApplyButtonClicked() {
     this.reqPatchMy();
-    this.setState({ isEditMode: false });
   }
 
-  // TODO
-  // render dog select page
-  // github #38
+  onTextChanged(newIntro) {
+    modifiedIntro = newIntro;
+  }
+
   renderEditUserProfile = () => {
-    const selectedDog = getDogIndexByServerDogName(this.state.dog);
+    const dogIndex = getDogIndexByServerDogName(modifiedDog);
     return (
       <View style={styles.container}>
         <View style={styles.profileContainer}>
@@ -185,7 +260,7 @@ export class ProfileScreen extends React.Component {
           <Image
             style={styles.dogImage}
             resizeMode="contain"
-            source={DogImages[selectedDog]}
+            source={DogImages[dogIndex]}
           />
           <View style={styles.writingFollowerContainer}>
             <Text style={styles.writingFollower}>Follower</Text>
@@ -193,10 +268,10 @@ export class ProfileScreen extends React.Component {
           </View>
         </View>
         <View style={styles.userInfoContainer}>
-          <Text style={styles.nickname}>{this.state.nickname}</Text>
+          <Text style={styles.nickname}>{originNickname}</Text>
           <TextInput
             style={styles.intro}
-            placeholder={this.state.intro}
+            placeholder={originIntro}
             onChangeText={(inputText) => this.onTextChanged(inputText)}
           ></TextInput>
           <View
@@ -211,36 +286,6 @@ export class ProfileScreen extends React.Component {
               <Text> 적용😘 </Text>
             </TouchableOpacity>
           </View>
-        </View>
-      </View>
-    );
-  };
-
-  renderUserProfile = () => {
-    const selectedDog = getDogIndexByServerDogName(this.state.dog);
-    return (
-      <View style={styles.container}>
-        <View style={styles.profileContainer}>
-          <View style={styles.writingFollowerContainer}>
-            <Text style={styles.writingFollower}>Writing</Text>
-            <Text style={styles.statusNum}>{posts.length}</Text>
-          </View>
-          <Image
-            style={styles.dogImage}
-            resizeMode="contain"
-            source={DogImages[selectedDog]}
-          />
-          <View style={styles.writingFollowerContainer}>
-            <Text style={styles.writingFollower}>Follower</Text>
-            <Text style={styles.statusNum}>0</Text>
-          </View>
-        </View>
-        <View style={styles.userInfoContainer}>
-          <Text style={styles.nickname}>{this.state.nickname}</Text>
-          <Text style={styles.intro}>{this.state.intro}</Text>
-          <TouchableOpacity onPress={() => this.onEditButtonClicked()}>
-            <Text>프로필 편집</Text>
-          </TouchableOpacity>
         </View>
       </View>
     );
@@ -289,34 +334,13 @@ export class ProfileScreen extends React.Component {
   };
 
   render() {
-    if (!this.state.isLoad) {
-      return <ScrollView></ScrollView>;
-    }
-
     return (
       <View style={{ flexDirection: "column", width: "100%", height: "100%" }}>
-        {/* Fixed Line */}
-        <View>
-          {this.state.isEditMode
-            ? this.renderEditUserProfile()
-            : this.renderUserProfile()}
-        </View>
-        <View>
-          {/* Fixed Line */}
-          {this.state.isEditMode ? (
-            this.renderDogSelect()
-          ) : (
-            <ScrollView showsVerticalScrollIndicator={false}>
-              {posts.map((value) => this.showPosts(value))}
-            </ScrollView>
-          )}
-        </View>
+        {this.renderEditUserProfile()}
+        {this.renderDogSelect()}
       </View>
     );
   }
-}
-function OnSettingButtonClicked(navigation) {
-  return navigation.navigate("Setting");
 }
 
 const styles = StyleSheet.create({
