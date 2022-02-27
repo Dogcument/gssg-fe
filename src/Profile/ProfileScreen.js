@@ -143,7 +143,16 @@ export class ProfileScreen extends React.Component {
     });
   };
 
+  showEditButton = () => {
+    return (
+      <TouchableOpacity onPress={() => this.onEditButtonClicked()}>
+        <Text>프로필 편집</Text>
+      </TouchableOpacity>
+    );
+  };
+
   renderUserProfile = () => {
+    const myInfo = UserInfo.instance.getNickName();
     const selectedDog = getDogIndexByServerDogName(this.state.dog);
     return (
       <View style={styles.container}>
@@ -165,9 +174,7 @@ export class ProfileScreen extends React.Component {
         <View style={styles.userInfoContainer}>
           <Text style={styles.nickname}>{this.state.nickname}</Text>
           <Text style={styles.intro}>{this.state.intro}</Text>
-          <TouchableOpacity onPress={() => this.onEditButtonClicked()}>
-            <Text>프로필 편집</Text>
-          </TouchableOpacity>
+          {myInfo == originNickname ? this.showEditButton() : null}
         </View>
       </View>
     );
