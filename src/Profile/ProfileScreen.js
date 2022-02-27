@@ -80,8 +80,8 @@ export class ProfileScreen extends React.Component {
     }
 
     // update user info
-    {
-      const userInfo = UserInfo.instance;
+    const userInfo = UserInfo.instance;
+    if (userInfo.getNickName() == originNickname) {
       userInfo.setNickname(originNickname);
       userInfo.setComment(originIntro);
       userInfo.setDog(originDog);
