@@ -28,7 +28,7 @@ function MyPageStack({ navigation }) {
   const ProfileComponent = ({route}) => (
     <ProfileScreen navigation={navigation} userName={nickName} />
   );
-  const SettingComponent = ({route}) => <SettingScreen navigation={route.params.navigation} />;
+  const SettingComponent = () => <SettingScreen navigation={navigation} />;
   const ModifyAccountComponent = ({route}) => (
     <ModifyAccountScreen navigation={route.params.navigation} />
   );
