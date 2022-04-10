@@ -73,7 +73,7 @@ export class WritingScreen extends React.Component {
     content = inputText;
 
     const userInfo = UserInfo.instance;
-    userInfo.setTempWriting(content);
+    userInfo.setTempWriting(userInfo.getNickName(), content);
   }
 }
 
