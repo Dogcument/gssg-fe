@@ -55,7 +55,10 @@ export default class UserInfo {
     }
 
     const parsed = JSON.parse(tempWriting);
-    if (moment().isSame(parsed.date, "day")) {
+    if (
+      moment().isSame(parsed.date, "day") &&
+      this._nickName == parsed.nickName
+    ) {
       return parsed.content;
     } else {
       AsyncStorage.removeItem("temp_writing");
@@ -94,10 +97,11 @@ export default class UserInfo {
   setDogByIndex(index) {
     this._dog = index;
   }
-  setTempWriting(content) {
+  setTempWriting(inNickName, content) {
     AsyncStorage.setItem(
       "temp_writing",
       JSON.stringify({
+        nickName: inNickName,
         date: moment(),
         content: content,
       })
