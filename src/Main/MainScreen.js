@@ -6,6 +6,7 @@ import { Image } from "react-native";
 // screen component
 import WritingStack from "../Writing/WritingStack";
 import CabinetStack from "../Cabinet/CabinetStack";
+import DictionaryStack from "../Dictionary/DictionaryStack";
 import MyPageStack from "../MyPage/MyPageStack";
 import { navigationIcons } from "./TabBarIcons";
 
@@ -59,6 +60,25 @@ export default class MainScreen extends React.Component {
                       focused
                         ? navigationIcons[1].active
                         : navigationIcons[1].inactive
+                    }
+                    style={{ width: 30, height: 30 }}
+                  />
+                );
+              },
+              unmountOnBlur: true,
+            }}
+          />
+          <Tab.Screen
+            name="백과사전"
+            component={DictionaryStack}
+            options={{
+              tabBarIcon: ({ focused }) => {
+                return (
+                  <Image
+                    source={
+                      focused
+                        ? navigationIcons[0].active
+                        : navigationIcons[0].inactive
                     }
                     style={{ width: 30, height: 30 }}
                   />
