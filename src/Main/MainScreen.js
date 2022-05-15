@@ -77,8 +77,8 @@ export default class MainScreen extends React.Component {
                   <Image
                     source={
                       focused
-                        ? navigationIcons[0].active
-                        : navigationIcons[0].inactive
+                        ? navigationIcons[2].active
+                        : navigationIcons[2].inactive
                     }
                     style={{ width: 30, height: 30 }}
                   />
@@ -96,8 +96,8 @@ export default class MainScreen extends React.Component {
                   <Image
                     source={
                       focused
-                        ? navigationIcons[2].active
-                        : navigationIcons[2].inactive
+                        ? navigationIcons[3].active
+                        : navigationIcons[3].inactive
                     }
                     style={{ width: 30, height: 30 }}
                   />

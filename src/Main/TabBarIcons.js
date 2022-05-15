@@ -3,6 +3,8 @@ import {
   TabBarWritingSelectedImg,
   TabBarCabinetNormalImg,
   TabBarCabinetSelectedImg,
+  TabBarDictionaryNormalImg,
+  TabBarDictionarySelectedImg,
   TabBarMyPageNormalImg,
   TabBarMyPageSelectedImg,
 } from "../../assets/ImageList";
@@ -17,6 +19,11 @@ export const navigationIcons = [
     // Cabinet Icon
     active: TabBarCabinetSelectedImg,
     inactive: TabBarCabinetNormalImg,
+  },
+  {
+    // Dictionary Icon
+    active: TabBarDictionarySelectedImg,
+    inactive: TabBarDictionaryNormalImg,
   },
   {
     // MyPage Icon

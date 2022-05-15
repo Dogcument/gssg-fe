@@ -21,6 +21,8 @@ export const TabBarWritingNormalImg = require("./images/WritingNormal.png");
 export const TabBarWritingSelectedImg = require("./images/WritingSelected.png");
 export const TabBarCabinetNormalImg = require("./images/CabinetNormal.png");
 export const TabBarCabinetSelectedImg = require("./images/CabinetSelected.png");
+export const TabBarDictionaryNormalImg = require("./images/DictionaryNormal.png");
+export const TabBarDictionarySelectedImg = require("./images/DictionarySelected.png");
 export const TabBarMyPageNormalImg = require("./images/MyPageNormal.png");
 export const TabBarMyPageSelectedImg = require("./images/MyPageSelected.png");
 
