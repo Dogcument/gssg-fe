@@ -31,6 +31,9 @@ export class WritingScreen extends React.Component {
     if (tempWriting != undefined) {
       content = tempWriting;
       this.setState({ loadFinished: true });
+    } else {
+      content = "";
+      this.setState({ loadFinished: false });
     }
   };
 
@@ -98,6 +101,10 @@ async function RequestPost(navigation) {
 }
 
 function onRequestPostSuccess(navigation) {
+  const userInfo = UserInfo.instance;
+  userInfo.clearTempWriting();
+  content = "";
+  
   return navigation.navigate("CabinetStack", {
     screen: "CabinetScreen",
     params: { subject: subject },
