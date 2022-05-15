@@ -108,6 +108,10 @@ export default class UserInfo {
     );
   }
 
+  clearTempWriting() {
+    AsyncStorage.removeItem("temp_writing");
+  }
+
   deleteJwt() {
     this.removeTokens();
   }
