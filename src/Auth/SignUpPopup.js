@@ -163,8 +163,10 @@ export class SignUpPopup extends React.Component {
   }
 
   onEndEmailEditing = async () => {
+    // GSSG-270 
+    // - 로그인 형식이 바뀔예정이라, Email, Pw validation 제거
     if (!validateEmail(email)) {
-      alert("이메일 형식이 옳지 않아요!");
+      console.error("이메일 형식이 옳지않음");
       return;
     }
 
@@ -199,10 +201,12 @@ export class SignUpPopup extends React.Component {
       badSequenceLength: 4,
     });
 
-    if (!isValidPw) {
-      alert("비밀번호가 형식에 맞지 않아요!");
-      return;
-    }
+    // GSSG-270 
+    // - 로그인 형식이 바뀔예정이라, Email, Pw validation 제거
+    // if (!isValidPw) {
+    //   alert("비밀번호가 형식에 맞지 않아요!");
+    //   return;
+    // }
   }
 
   onEndPwCheckEditing() {
