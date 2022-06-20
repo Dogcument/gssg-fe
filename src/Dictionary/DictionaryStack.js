@@ -8,11 +8,8 @@ function DictionaryStack({ navigation }) {
   const DictionaryScreenComponent = ({ route }) => <DictionaryScreen />;
 
   return (
-    <Stack.Navigator>
-      <Stack.Screen
-        name="딕"
-        component={DictionaryScreenComponent}
-      />
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="dictionary" component={DictionaryScreenComponent} />
     </Stack.Navigator>
   );
 }
