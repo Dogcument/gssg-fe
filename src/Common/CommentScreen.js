@@ -69,28 +69,30 @@ class CommentComponent extends React.Component {
 
     return (
       <View style={styles.container}>
-        <View style={styles.profile}>
-          <ProfileComponent
-            dogIndex={dogIndex}
-            userName={this.props.nickName}
-            navigation={this.props.navigation}
-          />
+        <View style={styles.profileContainer}>
+          <View style={styles.profile}>
+            <ProfileComponent
+              dogIndex={dogIndex}
+              userName={this.props.nickName}
+              navigation={this.props.navigation}
+            />
+          </View>
+          <View style={styles.profileNickname}>
+            <Text style={{ fontFamily: "Ridi" }}>{nickName}</Text>
+            <Text style={{ fontFamily: "Ridi" }}>{date}</Text>
+          </View>
+          <View style={styles.like}>
+            <TouchableOpacity onPress={() => this.onLikeButtonClicked()}>
+              <Image
+                style={{ height: 20, width: 20 }}
+                source={this.state.isLike ? BoneSelectImg : BoneNoSelectImg}
+              ></Image>
+            </TouchableOpacity>
+            <Text>{likeCount}</Text>
+          </View>
         </View>
         <View style={styles.comment}>
-          <View style={styles.comment_top}>
-            <Text>{nickName}</Text>
-            <Text>{date}</Text>
-          </View>
-          <Text>{comment}</Text>
-        </View>
-        <View style={styles.like}>
-          <TouchableOpacity onPress={() => this.onLikeButtonClicked()}>
-            <Image
-              style={{ height: 20, width: 20 }}
-              source={this.state.isLike ? BoneSelectImg : BoneNoSelectImg}
-            ></Image>
-          </TouchableOpacity>
-          <Text>{likeCount}</Text>
+          <Text style={{ fontFamily: "Ridi" }}>{comment}</Text>
         </View>
       </View>
     );
@@ -273,16 +275,25 @@ export class CommentScreen extends React.Component {
             : replies.map((value) => this.showReplies(value))}
         </ScrollView>
         <View style={styles.commentInput}>
-          <TextInput
-            style={styles.textInput}
-            ref={(input) => {
-              this.textInput = input;
-            }}
-            placeholder="여기에 입력"
-            multiline={true}
-            returnKeyType="default"
-            onChangeText={(inputText) => this.onCommentTextChanged(inputText)}
-          />
+          <View style={styles.commentProfile}>
+            {/* <ProfileComponent
+              dogIndex={dogIndex}
+              userName={this.props.nickName}
+              navigation={this.props.navigation}
+            /> */}
+          </View>
+          <View style={styles.commentTextinput}>
+            <TextInput
+              style={styles.textInput}
+              ref={(input) => {
+                this.textInput = input;
+              }}
+              placeholder="여기에 입력"
+              multiline={true}
+              returnKeyType="default"
+              onChangeText={(inputText) => this.onCommentTextChanged(inputText)}
+            />
+          </View>
           <TouchableOpacity
             style={styles.inputButton}
             onPress={() => this.reqPostReply()}
@@ -300,9 +311,13 @@ export class CommentScreen extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
+    flexDirection: "column",
+    flex: 1,
+    marginBottom: 10,
+  },
+  profileContainer: {
     flexDirection: "row",
     flex: 1,
-    marginBottom: 5,
   },
   profile_dog: {
     width: "100%",
@@ -310,24 +325,27 @@ const styles = StyleSheet.create({
   profile: {
     flex: 1.25,
     justifyContent: "center",
+    alignItems: "center",
     backgroundColor: "powderblue",
   },
-  comment: {
+  profileNickname: {
     flexDirection: "column",
     flex: 7.5,
     backgroundColor: "skyblue",
-  },
-  comment_top: {
-    justifyContent: "space-between",
-    flexDirection: "row",
+    fontFamily: "Ridi",
+    justifyContent: "center",
   },
   like: {
     flexDirection: "row",
     backgroundColor: "steelblue",
     justifyContent: "center",
+    alignItems: "center",
     flex: 1.25,
   },
-
+  comment: {
+    paddingHorizontal: "5%",
+    paddingTop: 10,
+  },
   writingContentModal: {
     fontFamily: "Ridi",
     backgroundColor: "#FFFFFF",
@@ -343,17 +361,26 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
   },
   commentInput: {
+    backgroundColor: "tomato",
     backfaceVisibility: "visible",
     justifyContent: "center",
     alignItems: "center",
-    height: "5%",
+    height: "7.5%",
     flexDirection: "row",
   },
+  commentProfile: {
+    flex: 1.25,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  commentTextinput: {
+    flex: 7.5,
+  },
   textInput: {
-    flex: 9,
+    paddingHorizontal: "2.5%",
   },
   inputButton: {
-    flex: 1,
+    flex: 1.25,
     backgroundColor: "lime",
   },
 });
