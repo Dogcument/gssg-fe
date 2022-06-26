@@ -6,15 +6,15 @@ export class ProfileComponent extends React.Component {
   constructor(props) {
     super(props);
 
-    if (this.props.userName == null) {
+    if (props.userName == null) {
       alert("ProfileComponent: `userName` props does not exist.");
       return;
     }
-    if (this.props.navigation == null) {
+    if (props.navigation == null) {
       alert("ProfileComponent: `navigation` props does not exist.");
       return;
     }
-    if (this.props.dogIndex == null) {
+    if (props.dogIndex == null) {
       alert("ProfileComponent: `dogIndex` props does not exist.");
       return;
     }

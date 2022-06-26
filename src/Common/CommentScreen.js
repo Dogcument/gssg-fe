@@ -173,6 +173,7 @@ export class CommentScreen extends React.Component {
         nickName={value.member.nickname}
         profileDog={value.member.profileDog}
         date={value.createdAt}
+        navigation={this.props.navigation}
         onCommentLikeButtonClicked={this.onCommentLikeButtonClicked}
       />
     );

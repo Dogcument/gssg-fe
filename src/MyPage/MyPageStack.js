@@ -26,7 +26,7 @@ function MyPageStack({ navigation }) {
   );
   
   const ProfileComponent = ({route}) => (
-    <ProfileScreen navigation={navigation} userName={nickName} />
+    <ProfileScreen navigation={route.params.navigation} userName={route.params.userName} />
   );
   const SettingComponent = () => <SettingScreen navigation={navigation} />;
   const ModifyAccountComponent = ({route}) => (
@@ -39,7 +39,7 @@ function MyPageStack({ navigation }) {
     />
   );
   const CommentComponent = ({ route }) => (
-    <CommentScreen id={route.params.id} />
+    <CommentScreen id={route.params.id} navigation={route.params.navigation} />
   );
 
   return (
