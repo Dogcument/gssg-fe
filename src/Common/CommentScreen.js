@@ -20,8 +20,13 @@ import {
   CloseCircleImg,
   BoneNoSelectImg,
   BoneSelectImg,
+  WritingButtonImg,
 } from "../../assets/ImageList";
-import { SortingTypeEnum, getSortingTypeText, getLocalizedTimeString } from "../Common/CommonMethod";
+import {
+  SortingTypeEnum,
+  getSortingTypeText,
+  getLocalizedTimeString,
+} from "../Common/CommonMethod";
 
 let replies = null;
 let comment = null;
@@ -134,7 +139,7 @@ export class CommentScreen extends React.Component {
 
   reqPostReply = async () => {
     if (comment == null || comment == "") {
-      alert("코멘트가 비어있습니다.");
+      alert("댓글이 아직 없습니다! :(");
       return;
     }
 
@@ -299,7 +304,10 @@ export class CommentScreen extends React.Component {
             style={styles.inputButton}
             onPress={() => this.reqPostReply()}
           >
-            <Text>입 력</Text>
+            <Image
+              style={{ width: 40, height: 40 }}
+              source={WritingButtonImg}
+            />
           </TouchableOpacity>
         </View>
         <Modal isVisible={this.state.visibleModal == true}>
@@ -362,12 +370,12 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
   },
   commentInput: {
-    backgroundColor: "tomato",
     backfaceVisibility: "visible",
     justifyContent: "center",
     alignItems: "center",
     height: "7.5%",
     flexDirection: "row",
+    backgroundColor: "#FFFFFF",
   },
   commentProfile: {
     flex: 1.25,
@@ -382,6 +390,7 @@ const styles = StyleSheet.create({
   },
   inputButton: {
     flex: 1.25,
-    backgroundColor: "lime",
+    justifyContent: "center",
+    alignItems: "center",
   },
 });

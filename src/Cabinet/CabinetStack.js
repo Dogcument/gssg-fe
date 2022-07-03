@@ -58,7 +58,7 @@ function CabinetStack({ navigation }) {
         name="Comment"
         component={CommentComponent}
         options={{
-          title: "댓글",
+          title: "",
           headerBackImage: () => (
             <Image
               style={{ marginLeft: 20, width: 20, height: 20 }}

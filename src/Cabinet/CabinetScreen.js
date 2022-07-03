@@ -4,7 +4,11 @@ import Modal from "react-native-modal";
 import { CabinetItem } from "./CabinetItem";
 import { ProtoWritings } from "../Common/ProtoWritings";
 import { callApiToken } from "../Common/ApiHelper";
-import { ArrowDownImg, CloseCircleImg } from "../../assets/ImageList";
+import {
+  ArrowDownImg,
+  CloseCircleImg,
+  CabinetIconImg,
+} from "../../assets/ImageList";
 import UserInfo from "../Common/UserInfo";
 import { getStatusBarHeight } from "react-native-status-bar-height";
 import { SortingTypeEnum, getSortingTypeText } from "../Common/CommonMethod";
@@ -51,10 +55,11 @@ export class CabinetScreen extends React.Component {
       <Image style={{ height: 12.5, width: 12.5 }} source={ArrowDownImg} />
       <Text
         style={{
-          fontFamily: "SCBold",
-          fontSize: 17.5,
-          paddingLeft: 10,
+          fontFamily: "Ridi",
+          fontSize: 15,
+          paddingLeft: 5,
           textAlign: "center",
+          color: "AE9784",
         }}
       >
         {text}
@@ -243,21 +248,39 @@ export class CabinetScreen extends React.Component {
             flexDirection: "row",
           }}
         >
-          <Text
-            style={{ fontFamily: "SCBold", fontSize: 18.5, paddingLeft: 15 }}
-          >
-            보관함
-          </Text>
-          <View style={{ paddingRight: 3 }}>
-            {this.renderRightSideButton(this.state.subject, () =>
-              this.setState({ visibleModal: ModalTypeEnum.WritingSubject })
-            )}
+          <View style={{ flex: 5, justifyContent: "flex-start" }}>
+            <Image
+              style={{ height: 35, width: 35, marginLeft: 10 }}
+              source={CabinetIconImg}
+            />
           </View>
-          <View style={{ paddingRight: 3 }}>
-            {this.renderRightSideButton(
-              getSortingTypeText(this.state.sortingType),
-              () => this.setState({ visibleModal: ModalTypeEnum.Sorting })
-            )}
+          <View style={{ flexDirection: "row", marginRight: 10, flex: 5 }}>
+            <View
+              style={{
+                paddingRight: 3,
+                marginRight: 10,
+                flex: 1,
+                justifyContent: "flex-start",
+                alignItems: "flex-start",
+              }}
+            >
+              {this.renderRightSideButton(this.state.subject, () =>
+                this.setState({ visibleModal: ModalTypeEnum.WritingSubject })
+              )}
+            </View>
+            <View
+              style={{
+                paddingRight: 3,
+                flex: 1,
+                justifyContent: "flex-start",
+                alignItems: "flex-start",
+              }}
+            >
+              {this.renderRightSideButton(
+                getSortingTypeText(this.state.sortingType),
+                () => this.setState({ visibleModal: ModalTypeEnum.Sorting })
+              )}
+            </View>
           </View>
         </View>
         <ScrollView>{posts.map((value) => this.showPosts(value))}</ScrollView>

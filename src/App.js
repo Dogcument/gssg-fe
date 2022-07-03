@@ -13,7 +13,7 @@ class App extends React.Component {
 
   render() {
     StatusBar.setBarStyle("dark-content", true);
-    return <AuthScreen/>;
+    return <AuthScreen />;
   }
 }
 

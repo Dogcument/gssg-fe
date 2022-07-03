@@ -15,6 +15,7 @@ export const NextButtonImg = require("./images/NextButton.png");
 export const PrevButtonImg = require("./images/PrevButton.png");
 export const ArrowDownImg = require("./images/ArrowDown.png");
 export const CloseCircleImg = require("./images/CloseCircle.png");
+export const CabinetIconImg = require("./images/CabinetIcon.png");
 
 // Tab bar icons
 export const TabBarWritingNormalImg = require("./images/WritingNormal.png");

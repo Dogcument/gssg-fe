@@ -71,7 +71,9 @@ export class WritingPrepareScreen extends React.Component {
               alignItems: "center",
             }}
           >
-            <Text style={{ fontFamily: "Ridi" }}>오늘의 글감</Text>
+            <Text style={{ fontFamily: "Ridi", color: "#927965" }}>
+              오늘의 글감
+            </Text>
             <View
               style={{
                 width: "100%",
@@ -86,13 +88,16 @@ export class WritingPrepareScreen extends React.Component {
               <Text
                 style={{
                   fontSize: 30,
-                  fontFamily: "SCBold",
+                  fontFamily: "Ridi",
+                  color: "#927965",
                 }}
               >
                 {subject}
               </Text>
             </View>
-            <Text style={{ fontFamily: "Ridi" }}>{today}</Text>
+            <Text style={{ fontFamily: "Ridi", color: "#927965" }}>
+              {today}
+            </Text>
           </View>
 
           <TouchableOpacity
