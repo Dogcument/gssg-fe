@@ -1,7 +1,7 @@
 import moment from "moment-timezone";
 
 export function getLocalizedTimeString(utcTime) {
-  return moment.utc(utcTime).tz("Asia/Seoul").format("YYYY.MM.DD HH:mm:ss");
+  return moment.utc(utcTime).format("YYYY.MM.DD HH:mm:ss");
 }
 
 export function validateEmail(email) {
