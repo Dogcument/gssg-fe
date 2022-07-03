@@ -21,7 +21,7 @@ import {
   BoneNoSelectImg,
   BoneSelectImg,
 } from "../../assets/ImageList";
-import { SortingTypeEnum, getSortingTypeText } from "../Common/CommonMethod";
+import { SortingTypeEnum, getSortingTypeText, getLocalizedTimeString } from "../Common/CommonMethod";
 
 let replies = null;
 let comment = null;
@@ -65,7 +65,7 @@ class CommentComponent extends React.Component {
     const nickName = this.props.nickName;
     const profileDog = this.props.profileDog;
     const dogIndex = getDogIndexByServerDogName(this.props.profileDog);
-    const date = this.props.date;
+    const date = getLocalizedTimeString(this.props.date);
 
     return (
       <View style={styles.container}>
