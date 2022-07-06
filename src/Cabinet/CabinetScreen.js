@@ -33,10 +33,6 @@ export class CabinetScreen extends React.Component {
     this.reqGetPosts(this.state.sortingType);
   }
 
-  static onWritingsClicked = async () => {
-    this.setState({ visibleModal: ModalTypeEnum.WritingSubject });
-  };
-
   componentDidMount() {
     const navigation = this.props.navigation;
     navigation.setOptions({ tabBarVisible: true });

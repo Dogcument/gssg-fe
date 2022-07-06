@@ -16,7 +16,7 @@ function CabinetStack({ navigation }) {
   );
   const ItemDetailScreenComponent = ({ route }) => (
     <ItemDetailScreen
-      navigation={route.params.navigation}
+      navigation={navigation}
       post={route.params.post}
     />
   );
@@ -25,7 +25,7 @@ function CabinetStack({ navigation }) {
   );
   const ProfileScreenComponent = ({ route }) => (
     <ProfileScreen
-      navigation={route.params.navigation}
+      navigation={navigation}
       userName={route.params.userName}
     />
   );
