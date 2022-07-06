@@ -22,7 +22,7 @@ function MyPageStack({ navigation }) {
   }
 
   const ProfileEditComponent = ({ route }) => (
-    <ProfileEditScreen navigation={route.params.navigation} />
+    <ProfileEditScreen navigation={navigation} />
   );
   
   const ProfileComponent = ({route}) => (
@@ -30,16 +30,16 @@ function MyPageStack({ navigation }) {
   );
   const SettingComponent = () => <SettingScreen navigation={navigation} />;
   const ModifyAccountComponent = ({route}) => (
-    <ModifyAccountScreen navigation={route.params.navigation} />
+    <ModifyAccountScreen navigation={navigation} />
   );
   const ItemDetailScreenComponent = ({ route }) => (
     <ItemDetailScreen
-      navigation={route.params.navigation}
+      navigation={navigation}
       post={route.params.post}
     />
   );
   const CommentComponent = ({ route }) => (
-    <CommentScreen id={route.params.id} navigation={route.params.navigation} />
+    <CommentScreen id={route.params.id} navigation={navigation} />
   );
 
   return (

@@ -13,12 +13,6 @@ import { navigationIcons } from "./TabBarIcons";
 const Tab = createBottomTabNavigator();
 
 export default class MainScreen extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isNewbie: props.IsNewbie,
-    };
-  }
   render() {
     return (
       <NavigationContainer>
